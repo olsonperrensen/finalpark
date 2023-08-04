@@ -9,4 +9,8 @@ add_executable(finalpark main.cpp
         Accommodations.cpp
         Accommodations.h
         LuxuryLevel.cpp
-        LuxuryLevel.h)
+        LuxuryLevel.h
+        Cabin.cpp
+        Cabin.h
+        HotelRoom.cpp
+        HotelRoom.h)
