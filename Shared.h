@@ -19,9 +19,15 @@ template <typename T>
 
 template <typename T>
 void removeItem(std::vector<T>& vec, int id) {
-    vec.erase(std::remove_if(vec.begin(), vec.end(), [id](const T& item) {
-        return item.getID() == id;
-    }), vec.end());
+    try {
+        vec.erase(std::remove_if(vec.begin(), vec.end(), [id](const T& item) {
+            return item.getID() == id;
+        }), vec.end());
+        std::cout << "The " << typeid(T).name() << " with ID " << id << " has been removed successfully.\n";
+    }
+    catch (const std::exception &e) {
+        std::cout << "No " << typeid(T).name() << " with ID " << id << " was found. Error: " << e.what() << std::endl;
+    }
 }
 
 
