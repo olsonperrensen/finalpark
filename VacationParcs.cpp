@@ -34,3 +34,12 @@ VacationParcs::VacationParcs(std::string name, std::string address, ParcServices
                              VAT(VAT),parcs(parcs),customers(customers){
 
 }
+
+void VacationParcs::addPark(Parcs park) {
+//    As the function name suggests, push to vector
+    parcs.push_back(park);
+}
+
+void VacationParcs::removePark(int parkID) {
+//TODO combine with getParcId()
+}

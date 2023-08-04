@@ -9,11 +9,13 @@
 #include "Accommodations.h"
 
 class Parcs {
-protected:
+public:
+    int getParcId() const;
+
     class ParcServices{
     public:
 //        Idem as other default bc it is being used by another class otherwise it complains;
-        ParcServices()=default;
+//        ParcServices()=default;
         ParcServices(bool subtropicSwimmingPool,
                      bool sportsInfrastructure, bool bowlingAlley,bool bicycleRent,bool childrensParadise,bool waterBikes);
 
@@ -48,8 +50,13 @@ private:
     std::string name,address;
     ParcServices services;
     std::vector<Accommodations> accommodations;
+//    own identification to pop it as element from VacationParcs
+    static int aantalParcs;
+    int parcID;
+
+
 public:
-    Parcs(std::string name,std::string address,ParcServices services,std::vector<Accommodations> accommodations);
+    Parcs(std::string name, std::string address, ParcServices services, std::vector<Accommodations> accommodations);
 };
 
 

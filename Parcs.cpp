@@ -60,8 +60,13 @@ Parcs::ParcServices::ParcServices(bool subtropicSwimmingPool, bool sportsInfrast
 
 }
 
-Parcs::Parcs(std::string name, std::string address, Parcs::ParcServices services,
-             std::vector<Accommodations> accommodations):name(name),address(address), services(services),
-             accommodations(accommodations) {
+Parcs::Parcs(std::string name, std::string address, ParcServices services,
+             std::vector<Accommodations> accommodations): name(name), address(address), services(services),
+                                              accommodations(accommodations) {
+// have IDs get some value at birth based on previous born and dead instances
+    this->parcID = aantalParcs++;
+}
 
+int Parcs::getParcId() const {
+    return parcID;
 }
