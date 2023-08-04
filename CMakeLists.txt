@@ -17,4 +17,6 @@ add_executable(finalpark main.cpp
         Booking.cpp
         Booking.h
         Parcs.cpp
-        Parcs.h)
+        Parcs.h
+        VacationParcs.cpp
+        VacationParcs.h)

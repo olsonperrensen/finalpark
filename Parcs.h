@@ -9,7 +9,7 @@
 #include "Accommodations.h"
 
 class Parcs {
-private:
+protected:
     class ParcServices{
     public:
 //        Idem as other default bc it is being used by another class otherwise it complains;
@@ -44,6 +44,7 @@ private:
     private:
         bool subtropicSwimmingPool,sportsInfrastructure,bowlingAlley,bicycleRent,childrensParadise,waterBikes;
     };
+private:
     std::string name,address;
     ParcServices services;
     std::vector<Accommodations> accommodations;
