@@ -4,6 +4,9 @@
 
 #include "Parcs.h"
 
+// Have no parks at the beginning of the program
+int Parcs::aantalParcs = 0;
+
 bool Parcs::ParcServices::isSubtropicSwimmingPool() const {
     return subtropicSwimmingPool;
 }
@@ -64,7 +67,7 @@ Parcs::Parcs(std::string name, std::string address, ParcServices services,
              std::vector<Accommodations> accommodations): name(name), address(address), services(services),
                                               accommodations(accommodations) {
 // have IDs get some value at birth based on previous born and dead instances
-    this->parcID = aantalParcs++;
+    this->parcID = ++Parcs::aantalParcs;
 }
 
 int Parcs::getParcId() const {
