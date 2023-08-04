@@ -16,7 +16,7 @@ private:
 public:
     Accommodations()=default;
     Accommodations(int ID,int nrPeople,int size,bool bathroomWithBath,LuxuryLevel luxuryLevel);
-    int getId() const;
+    int getID() const;
 
     void setId(int id);
 

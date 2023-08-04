@@ -63,6 +63,15 @@ Parcs::ParcServices::ParcServices(bool subtropicSwimmingPool, bool sportsInfrast
 
 }
 
+void Parcs::addAccommodation(const Accommodations &accommodation) {
+    addItem(accommodations,accommodation);
+}
+
+void Parcs::removeAccommodation(int id) {
+    removeItem(accommodations,id);
+}
+
+
 Parcs::Parcs(std::string name, std::string address, ParcServices services,
              std::vector<Accommodations> accommodations): name(name), address(address), services(services),
                                               accommodations(accommodations) {
@@ -70,6 +79,6 @@ Parcs::Parcs(std::string name, std::string address, ParcServices services,
     this->parcID = ++Parcs::aantalParcs;
 }
 
-int Parcs::getParcId() const {
+int Parcs::getID() const {
     return parcID;
 }

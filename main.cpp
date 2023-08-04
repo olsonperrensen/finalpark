@@ -20,7 +20,10 @@ int main() {
                      v, "BE01", pv,
                      cv);
 
+    std::vector<Parcs> vp2 = vp.getParcs();
+    for (Parcs e:vp2) {
+    e.removeAccommodation(1);
+    }
     vp.removePark(1);
-
     return 0;
 }

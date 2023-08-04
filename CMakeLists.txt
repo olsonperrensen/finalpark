@@ -19,4 +19,5 @@ add_executable(finalpark main.cpp
         Parcs.cpp
         Parcs.h
         VacationParcs.cpp
-        VacationParcs.h)
+        VacationParcs.h
+        Shared.h)

@@ -7,11 +7,12 @@
 #include <string>
 #include <vector>
 #include "Accommodations.h"
+#include "Shared.h"
 
 class Parcs {
 public:
-    int getParcId() const;
-
+    int getID() const;
+//NESTED class - careful here
     class ParcServices{
     public:
 //        Idem as other default bc it is being used by another class otherwise it complains;
@@ -56,6 +57,9 @@ private:
 
 
 public:
+//        Make good use of tempaltes again
+    void addAccommodation(const Accommodations& accommodation);
+    void removeAccommodation(int id);
     Parcs(std::string name, std::string address, ParcServices services, std::vector<Accommodations> accommodations);
 };
 

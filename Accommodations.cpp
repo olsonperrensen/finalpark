@@ -4,7 +4,7 @@
 
 #include "Accommodations.h"
 
-int Accommodations::getId() const {
+int Accommodations::getID() const {
     return ID;
 }
 

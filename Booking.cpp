@@ -10,7 +10,7 @@ Booking::Booking(int ID, Customer customer, std::vector<Accommodations> accomoda
 
 }
 
-int Booking::getId() const {
+int Booking::getID() const {
     return ID;
 }
 

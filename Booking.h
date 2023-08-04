@@ -16,7 +16,7 @@ private:
     std::vector<Accommodations> accomodations;
     bool activityPass,sportsPass,bicycleRent,swimmingPass;
 public:
-    int getId() const;
+    int getID() const;
 
     void setId(int id);
 

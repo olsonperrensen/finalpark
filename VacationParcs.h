@@ -8,6 +8,7 @@
 #include <vector>
 #include "Parcs.h"
 #include "Customer.h"
+#include "Shared.h"
 
 class VacationParcs: public Parcs{
 private:
@@ -27,9 +28,9 @@ public:
                   std::vector<Accommodations> accommodations, std::string VAT, std::vector<Parcs> parcs,
                   std::vector<Customer> customers);
 
-//    Own methods needed for the program to work
-    void addPark(Parcs park);
-    void removePark(int parkID);
+//    Make good use of templates
+    void addPark(const Parcs& park);
+    void removePark(int id);
 
     const std::string &getVat() const;
 
