@@ -13,4 +13,8 @@ add_executable(finalpark main.cpp
         Cabin.cpp
         Cabin.h
         HotelRoom.cpp
-        HotelRoom.h)
+        HotelRoom.h
+        Booking.cpp
+        Booking.h
+        Parcs.cpp
+        Parcs.h)
