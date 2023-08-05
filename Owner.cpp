@@ -14,10 +14,7 @@ void Owner::createPark(VacationParcs &company, const Parcs &park) {
 }
 
 void Owner::modifyPark(VacationParcs &company, int parkID, const Parcs &updatedPark) {
-    std::for_each(company.getParcs().begin(),company.getParcs().end(),[&](Parcs p){
-        if(p.getID()==parkID)
-            p = updatedPark;
-    });
+    company.modifyPark(parkID, updatedPark);
 }
 
 void Owner::deletePark(VacationParcs &company, int parkID) {

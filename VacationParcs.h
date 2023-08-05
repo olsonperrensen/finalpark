@@ -44,6 +44,9 @@ public:
     const std::vector<Customer> &getCustomers() const;
 
     void setCustomers(const std::vector<Customer> &customers);
+
+//    Own logic for MGMT
+    void modifyPark(int parkID, const Parcs &updatedPark);
 };
 
 
