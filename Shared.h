@@ -12,6 +12,7 @@
 //    Own methods needed for the program to work
 // Universal benefit of using template functions! No need for boilerplate repetition anymore.
 const std::vector<std::string> LUXURIES = {"BBQ","Surround System","Breakfast Service","Cleaning Service"};
+const std::vector<std::string> SERVICES = {"Subtropic Swimming Pool","Sports Infrastructure","Bowling Alley","Bicycle Rent", "Children's Paradise","Water Bikes"};
 
 template <typename T>
     void addItem(std::vector<T>& vec, const T& item) {

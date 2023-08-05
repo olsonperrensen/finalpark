@@ -44,6 +44,9 @@ public:
 
         void setWaterBikes(bool waterBikes);
 
+//        shortcut fun
+        void getAllServicesAtOnce();
+
     private:
         bool subtropicSwimmingPool,sportsInfrastructure,bowlingAlley,bicycleRent,childrensParadise,waterBikes;
     };

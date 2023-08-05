@@ -63,6 +63,17 @@ Parcs::ParcServices::ParcServices(bool subtropicSwimmingPool, bool sportsInfrast
 
 }
 
+void Parcs::ParcServices::getAllServicesAtOnce() {
+    printBooleans(
+            SERVICES[0],Parcs::ParcServices().isSubtropicSwimmingPool(),
+            SERVICES[1], Parcs::ParcServices().isSportsInfrastructure(),
+            SERVICES[2],Parcs::ParcServices().isBowlingAlley(),
+            SERVICES[3],Parcs::ParcServices().isBicycleRent(),
+            SERVICES[4],Parcs::ParcServices().isChildrensParadise(),
+            SERVICES[5],Parcs::ParcServices().isWaterBikes()
+    );
+}
+
 void Parcs::addAccommodation(const Accommodations &accommodation) {
     addItem(accommodations,accommodation);
 }
