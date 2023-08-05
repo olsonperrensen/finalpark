@@ -19,5 +19,4 @@ void Owner::modifyPark(VacationParcs &company, int parkID, const Parcs &updatedP
 
 void Owner::deletePark(VacationParcs &company, int parkID) {
     company.removePark(parkID);
-    std::cout << "Parc " << parkID << " has been deleted" << std::endl;
 }
