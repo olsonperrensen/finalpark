@@ -11,7 +11,12 @@
 #include "Shared.h"
 #include "Customer.h"
 
-class VacationParcs: public Parcs{
+// Inheriting from Parcs would cause duplicates since a VacationParc could have by its own:
+// vp.getAccommodations().at(0); and at the same time
+//   vp.getParcs().at(0).getAccommodations().at(0);
+// Not worth the hassle. So no inheritance taking place. More of a composition relationship
+// Note below
+class VacationParcs{
 private:
     std::string VAT;
 //    Voor alle duidelijkheid:
@@ -24,14 +29,27 @@ private:
 // ***********************************************************************************************
     std::vector<Parcs> parcs;
     std::vector<Customer> customers;
+//    Managing a business so these attributes from Parc are redefined here for sole convenience
+    std::string bizName;
+    std::string bizAddress;
+public:
+    const std::string &getBizName() const;
+
+    void setBizName(const std::string &bizName);
+
+    const std::string &getBizAddress() const;
+
+    void setBizAddress(const std::string &bizAddress);
+
 public:
     friend std::ostream& operator<<(std::ostream& os, const VacationParcs& obj) {
-        os << "VacationParcs(name: " << obj.getName() << ", address: " << obj.getAddress()
-           << ", VAT: " << obj.getVAT() << ")";
+        os << "VacationParcs(name: " << obj.getBizName() << ", address: " << obj.getBizAddress()
+           << ", VAT: " << obj.getVAT() << ", Parcs: " << obj.getParcs().at(0) << ", Customers: " <<
+           obj.getCustomers().at(0) << ")"; // TODO vectorize output
         return os;
     }
-    VacationParcs(std::string name, std::string address, ParcServices services,
-                  std::vector<Accommodations> accommodations, std::string VAT, std::vector<Parcs> parcs,
+    VacationParcs(std::string name, std::string address,
+                  std::string VAT, std::vector<Parcs> parcs,
                   std::vector<Customer> customers);
 
 //    Make good use of templates

@@ -30,12 +30,9 @@ void VacationParcs::setCustomers(const std::vector<Customer> &customers) {
     VacationParcs::customers = customers;
 }
 
-VacationParcs::VacationParcs(std::string name, std::string address, ParcServices services,
-                             std::vector<Accommodations> accommodations, std::string VAT, std::vector<Parcs> parcs,
-                             std::vector<Customer> customers) : Parcs(name, address, services, accommodations),
-                                                            VAT(VAT), parcs(parcs), customers(customers){
-
-}
+VacationParcs::VacationParcs(std::string bizName, std::string bizAddress,
+                             std::string VAT, std::vector<Parcs> parcs, std::vector<Customer> customers)
+                             : bizName(bizName),bizAddress(bizAddress),VAT(VAT),parcs(parcs),customers(customers){}
 
 void VacationParcs::addPark(const Parcs &park) {
     addItem(parcs, park);
@@ -59,4 +56,20 @@ void VacationParcs::modifyPark(int parkID, const Parcs &updatedPark) {
 
     // If the park is not found, print an error message.
     std::cout << "Error: Park not found.\n";
+}
+
+const std::string &VacationParcs::getBizName() const {
+    return bizName;
+}
+
+void VacationParcs::setBizName(const std::string &bizName) {
+    this->bizName = bizName;
+}
+
+const std::string &VacationParcs::getBizAddress() const {
+    return bizAddress;
+}
+
+void VacationParcs::setBizAddress(const std::string &bizAddress) {
+    this->bizAddress = bizAddress;
 }
