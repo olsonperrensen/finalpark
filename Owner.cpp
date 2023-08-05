@@ -36,7 +36,7 @@ void Owner::createAccommodation(VacationParcs &company, int parkID, const Accomm
 void Owner::modifyAccommodations(VacationParcs &company, int parkID, const std::vector<Accommodations> &updatedAccommodation) {
     std::vector<Parcs>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
             // Add the new accommodationS IN BULK to the park
-            //            TODO allow for one modification only ipv bulk... in other words
+            //            TODO allow for one modification only ipv bulk... in other words CHECK removeItem for sth similar
             // //          findItemByID should happen with Accommodations as well
     if (Parcs* parc = findItemByID(parcs, parkID))
         parc->setAccommodations(updatedAccommodation);
@@ -45,5 +45,10 @@ void Owner::modifyAccommodations(VacationParcs &company, int parkID, const std::
 }
 
 void Owner::deleteAccommodation(VacationParcs &company, int parkID, int accommodationID) {
+    std::vector<Parcs>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
 
+    if (Parcs* parc = findItemByID(parcs, parkID))
+        parc->removeAccommodation(accommodationID);
+    else
+        std::cout << "Your Parc number does not match with our records. Nothing could be found.\n";
 }

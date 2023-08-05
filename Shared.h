@@ -23,6 +23,7 @@ template <typename T>
 
 template <typename T>
 void removeItem(std::vector<T>& vec, int id) {
+//    TODO bug still deletes even when ID does not exist
     try {
         vec.erase(std::remove_if(vec.begin(), vec.end(), [id](const T& item) {
             return item.getID() == id;

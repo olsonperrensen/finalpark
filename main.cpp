@@ -41,6 +41,7 @@ int main() {
 //    o.deletePark(vp,1);
     o.createAccommodation(vp,2,anew);
     o.modifyAccommodations(vp,2,vnew);
+    o.deleteAccommodation(vp,2,999);
 //    TODO just as you did with accommodations, remove all consts for customers so Employees can modify them
     std::cout << vp;
 //TODO only accept true w/static cast, not 1
