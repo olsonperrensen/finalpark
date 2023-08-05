@@ -32,3 +32,20 @@ void Owner::createAccommodation(VacationParcs &company, int parkID, const Accomm
         }
     }
 }
+
+void Owner::modifyAccommodations(VacationParcs &company, int parkID, const std::vector<Accommodations> &updatedAccommodation) {
+    std::vector<Parcs>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
+    for (Parcs &parc : parcs) {
+        if (parc.getID() == parkID) {
+            // Add the new accommodationS IN BULK to the park
+            //            TODO allow for one modification only ipv bulk
+            parc.setAccommodations(updatedAccommodation);
+        } else {
+            std::cout << "Your Parc number does not match with our records. Nothing could be found.\n";
+        }
+    }
+}
+
+void Owner::deleteAccommodation(VacationParcs &company, int parkID, int accommodationID) {
+
+}

@@ -9,9 +9,13 @@ int main() {
 
     LuxuryLevel l(false,false, false, false,"Best in town");
     std::vector<Accommodations> v;
+
     Accommodations a(1,13,2,false,l);
     Accommodations anew(66,2,4,true,l);
+    Accommodations anewnew(999,9,9,true,l);
+    std::vector<Accommodations> vnew{anewnew};
     v.push_back(a);
+
     Parcs::ParcServices s(false,false, false, false, false, false);
     std::vector<Parcs>pv;
     Parcs p("Destination 1","bloemlaan 7",s,v);
@@ -36,6 +40,8 @@ int main() {
     o.modifyPark(vp, 1, parkupdate);
 //    o.deletePark(vp,1);
     o.createAccommodation(vp,2,anew);
+    o.modifyAccommodations(vp,2,vnew);
+//    TODO just as you did with accommodations, remove all consts for customers so Employees can modify them
     std::cout << vp;
 //TODO only accept true w/static cast, not 1
     Booking b(1,c,v,1,1,1,1);
