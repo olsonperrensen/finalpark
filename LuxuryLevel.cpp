@@ -48,3 +48,12 @@ LuxuryLevel::LuxuryLevel(bool BBQ, bool surroundSystem, bool breakfastService, b
 breakfastService(breakfastService),cleaningService(cleaningService){
 
 }
+
+void LuxuryLevel::getAllFacilitiesAtOnce() {
+    printBooleans(
+            LUXURIES[0],LuxuryLevel::isBbq(),
+            LUXURIES[1], LuxuryLevel::isSurroundSystem(),
+            LUXURIES[2],LuxuryLevel::isBreakfastService(),
+            LUXURIES[3],LuxuryLevel::isCleaningService()
+    );
+}

@@ -6,6 +6,7 @@
 #define FINALPARK_LUXURYLEVEL_H
 #include <string>
 #include <iostream>
+#include "Shared.h"
 
 class LuxuryLevel {
 private:
@@ -35,6 +36,8 @@ public:
     const std::string &getAccommodationKind() const;
 
     void setAccommodationKind(const std::string &accommodationKind);
+
+    void getAllFacilitiesAtOnce();
 };
 
 

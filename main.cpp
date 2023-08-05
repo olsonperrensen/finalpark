@@ -25,5 +25,6 @@ int main() {
     e.removeAccommodation(1);
     }
     vp.removePark(1);
+    l.getAllFacilitiesAtOnce();
     return 0;
 }

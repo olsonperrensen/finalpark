@@ -11,6 +11,8 @@
 #include <algorithm>
 //    Own methods needed for the program to work
 // Universal benefit of using template functions! No need for boilerplate repetition anymore.
+const std::vector<std::string> LUXURIES = {"BBQ","Surround System","Breakfast Service","Cleaning Service"};
+
 template <typename T>
     void addItem(std::vector<T>& vec, const T& item) {
         vec.push_back(item);
@@ -29,7 +31,20 @@ void removeItem(std::vector<T>& vec, int id) {
         std::cout << "No " << typeid(T).name() << " with ID " << id << " was found. Error: " << e.what() << std::endl;
     }
 }
+// Base case: single name-value pair.
+template<typename T>
+void printBooleans(const std::string& name, T value) {
+    static_assert(std::is_same<T, bool>::value, "All arguments should be of type bool.");
+    std::cout << name << ": " << (value ? "true" : "false") << '\n';
+}
 
+// Recursive case: multiple name-value pairs.
+template<typename T, typename... Args>
+void printBooleans(const std::string& name, T value, Args... args) {
+    static_assert(std::is_same<T, bool>::value, "All arguments should be of type bool.");
+    std::cout << name << ": " << (value ? "true" : "false") << '\n';
+    printBooleans(args...);
+}
 
 
 #endif //FINALPARK_SHARED_H
