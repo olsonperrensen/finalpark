@@ -36,7 +36,8 @@ void Owner::createAccommodation(VacationParcs &company, int parkID, const Accomm
 void Owner::modifyAccommodations(VacationParcs &company, int parkID, const std::vector<Accommodations> &updatedAccommodation) {
     std::vector<Parcs>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
             // Add the new accommodationS IN BULK to the park
-            //            TODO allow for one modification only ipv bulk
+            //            TODO allow for one modification only ipv bulk... in other words
+            // //          findItemByID should happen with Accommodations as well
     if (Parcs* parc = findItemByID(parcs, parkID))
         parc->setAccommodations(updatedAccommodation);
      else

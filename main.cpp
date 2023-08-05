@@ -46,6 +46,7 @@ int main() {
 //TODO only accept true w/static cast, not 1
     Booking b(1,c,v,1,1,1,1);
 //TODO accommodationKind should only come from a shared.h array
+//TODO find by id Booking
 //   std::cout << b;
     return 0;
 }
