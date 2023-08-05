@@ -18,9 +18,22 @@ public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, const Booking& obj) {
         os << "Booking ( ID: " << obj.getID() << ", customer: " << obj.getCustomer()
-           << ", accommodations: " << obj.getAccommodations().at(0) << ", activityPass: " << obj.activityPass // TODO vectorize output
-                << ", sportsPass: " << obj.sportsPass<< ", bicycleRent: " << obj.bicycleRent
-                << ", swimmingPass: " << obj.swimmingPass<<" ) ";
+           << ", accommodations: [";
+
+        const std::vector<Accommodations>& accommodations = obj.getAccommodations();
+        for (size_t i = 0; i < accommodations.size(); ++i) {
+            os << accommodations[i];
+
+            // If not the last element, add a comma and a space
+            if (i != accommodations.size() - 1) {
+                os << ", ";
+            }
+        }
+
+        os << "], activityPass: " << obj.activityPass
+           << ", sportsPass: " << obj.sportsPass << ", bicycleRent: " << obj.bicycleRent
+           << ", swimmingPass: " << obj.swimmingPass << " ) ";
+
         return os;
     }
 

@@ -2,6 +2,7 @@
 #include "Parcs.h"
 #include "VacationParcs.h"
 #include "Owner.h"
+#include "Booking.h"
 #include <vector>
 int main() {
     std::cout << "Hello, World!" << std::endl;
@@ -36,7 +37,10 @@ int main() {
 //    o.deletePark(vp,1);
     o.createAccommodation(vp,3,anew);
 //    TODO change does not take effect ... Index 1 is out of range where it should've been created
-    std::cout << vp.getParcs().at(0);
+
+//TODO only accept true, not 1
+    Booking b(1,c,v,1,1,1,1);
+
 //    std::cout << vp;
     return 0;
 }
