@@ -34,5 +34,6 @@ int main() {
     Owner o("Bruce","Kennisstraat 13","Lee@Lee.lee");
     o.modifyPark(vp, 1, vpupdate);
 //    o.deletePark(vp,1);
+    std::cout << vp;
     return 0;
 }

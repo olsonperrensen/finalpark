@@ -24,4 +24,6 @@ add_executable(finalpark main.cpp
         Customer.cpp
         Customer.h
         Owner.cpp
-        Owner.h)
+        Owner.h
+        Employee.cpp
+        Employee.h)
