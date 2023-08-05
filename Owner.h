@@ -21,6 +21,7 @@ public:
     static void createPark(VacationParcs& company, const Parcs& park);
     void modifyPark(VacationParcs& company, int parkID, const Parcs& updatedPark);
     void deletePark(VacationParcs& company, int parkID);
+    void createAccommodation(VacationParcs &company, int parkID, const Accommodations &newAccommodation);
 };
 
 

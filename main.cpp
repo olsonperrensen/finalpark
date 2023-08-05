@@ -9,6 +9,7 @@ int main() {
     LuxuryLevel l(false,false, false, false);
     std::vector<Accommodations> v;
     Accommodations a(1,13,2,false,l);
+    Accommodations anew(66,2,4,true,l);
     v.push_back(a);
     Parcs::ParcServices s(false,false, false, false, false, false);
     std::vector<Parcs>pv;
@@ -34,6 +35,8 @@ int main() {
     Owner o("Bruce","Kennisstraat 13","Lee@Lee.lee");
     o.modifyPark(vp, 1, vpupdate);
 //    o.deletePark(vp,1);
-    std::cout << vp;
+    o.createAccommodation(vp,3,anew);
+//    TODO change does not take effect ... Index 1 is out of range where it should've been created
+    std::cout << vp.getAccommodations().at(0);
     return 0;
 }
