@@ -66,6 +66,15 @@ void setBooleans(T& object, void(T::*setter)(bool), bool value, Args... args) {
     }
 }
 
-
+//More templates!
+template <typename T>
+T* findItemByID(std::vector<T>& vec, int id) {
+    for (T& item : vec) {
+        if (item.getID() == id) {
+            return &item;  // Return a pointer to the found item
+        }
+    }
+    return nullptr;  // Return nullptr if no item was found
+}
 
 #endif //FINALPARK_SHARED_H

@@ -46,15 +46,15 @@ void VacationParcs::removePark(int id) {
 
 void VacationParcs::modifyPark(int parkID, const Parcs &updatedPark) {
     // Find the park with the given ID in the list of parks.
-    for (Parcs& park : parcs) {
+
 //        std::cout << "preivous id: " << park.getID() << " checking with given ID" << parkID;
-        if (park.getID() == parkID) {
+        if (Parcs* parc = findItemByID(parcs, parkID)) {
             // If the park is found, modify its attributes.
-            park = updatedPark;
+//            IMPORTANT: Derenfece pointer otherwise your only changing where it points to!
+            *parc = updatedPark;
             std::cout << "Park " << parkID <<" has been modified successfully." << std::endl;
             return;
         }
-    }
 
     // If the park is not found, print an error message.
     std::cout << "Error: Park not found.\n";
