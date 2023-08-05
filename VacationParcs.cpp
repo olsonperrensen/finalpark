@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include "VacationParcs.h"
+#include "Customer.h"
 
 const std::string &VacationParcs::getVat() const {
     return VAT;
@@ -32,7 +33,7 @@ void VacationParcs::setCustomers(const std::vector<Customer> &customers) {
 VacationParcs::VacationParcs(std::string name, std::string address, ParcServices services,
                              std::vector<Accommodations> accommodations, std::string VAT, std::vector<Parcs> parcs,
                              std::vector<Customer> customers) : Parcs(name, address, services, accommodations),
-                             VAT(VAT),parcs(parcs),customers(customers){
+                                                            VAT(VAT), parcs(parcs), customers(customers){
 
 }
 

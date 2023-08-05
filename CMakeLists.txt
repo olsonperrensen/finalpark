@@ -4,8 +4,8 @@ project(finalpark)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(finalpark main.cpp
-        Customer.cpp
-        Customer.h
+        User.cpp
+        User.h
         Accommodations.cpp
         Accommodations.h
         LuxuryLevel.cpp
@@ -20,4 +20,6 @@ add_executable(finalpark main.cpp
         Parcs.h
         VacationParcs.cpp
         VacationParcs.h
-        Shared.h)
+        Shared.h
+        Customer.cpp
+        Customer.h)

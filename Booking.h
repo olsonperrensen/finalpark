@@ -5,9 +5,8 @@
 #ifndef FINALPARK_BOOKING_H
 #define FINALPARK_BOOKING_H
 #include <vector>
-
-#include "Customer.h"
 #include "Accommodations.h"
+#include "Customer.h"
 
 class Booking {
 private:
@@ -44,8 +43,8 @@ public:
 
     void setSwimmingPass(bool swimmingPass);
 
-    Booking(int ID,Customer customer,std::vector<Accommodations> accomodations,bool activityPass,
-            bool sportsPass,bool bicycleRent,bool swimmingPass);
+    Booking(int ID, Customer customer, std::vector<Accommodations> accomodations, bool activityPass,
+            bool sportsPass, bool bicycleRent, bool swimmingPass);
 };
 
 

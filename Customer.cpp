@@ -1,33 +1,21 @@
 //
-// Created by Admin on 8/4/2023.
+// Created by Admin on 8/5/2023.
 //
 
 #include "Customer.h"
+#include "Shared.h"
 
-
-Customer::Customer(std::string name, std::string address, std::string mail):name(name),address(address),mail(mail){
+const std::string &Customer::getPaymentMethod() const {
+    return paymentMethod;
 }
 
-const std::string &Customer::getName() const {
-    return name;
+void Customer::setPaymentMethod(const std::string &paymentMethod) {
+    if(std::find(PAYMENT_METHODS.begin(),PAYMENT_METHODS.end(),paymentMethod)!=PAYMENT_METHODS.end())
+        Customer::paymentMethod = paymentMethod;
 }
 
-void Customer::setName(const std::string &name) {
-    Customer::name = name;
-}
+Customer::Customer(std::string name,
+                   std::string address, std::string mail, std::string paymentMethod) : User(name, address, mail),
+                   paymentMethod(paymentMethod){
 
-const std::string &Customer::getAddress() const {
-    return address;
-}
-
-void Customer::setAddress(const std::string &address) {
-    Customer::address = address;
-}
-
-const std::string &Customer::getMail() const {
-    return mail;
-}
-
-void Customer::setMail(const std::string &mail) {
-    Customer::mail = mail;
 }

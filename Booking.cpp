@@ -3,6 +3,7 @@
 //
 
 #include "Booking.h"
+#include "Customer.h"
 
 Booking::Booking(int ID, Customer customer, std::vector<Accommodations> accomodations, bool activityPass,
                  bool sportsPass, bool bicycleRent, bool swimmingPass):ID(ID), customer(customer),accomodations(accomodations),

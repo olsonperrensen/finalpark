@@ -13,7 +13,7 @@ int main() {
     std::vector<Parcs>pv;
     Parcs p("p","k",s,v);
     pv.push_back(p);
-    Customer c("lee","hong lane 1","bruce@lee.vn");
+    Customer c("Bruce Lee","hongkongstraat 178", "blee@hotmail.co.uk", "Bancontact");
     std::vector<Customer> cv;
     cv.push_back(c);
     VacationParcs vp("jonh", "lane 8", s,
