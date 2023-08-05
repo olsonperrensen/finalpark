@@ -18,7 +18,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Accommodations& obj) {
         os << "Accommodations(ID: " << obj.ID << ", nrPeople: " << obj.nrPeople
            << ", size: " << obj.size<< ", bathroomWithBath: " << obj.bathroomWithBath
-           << ", luxuryLevel: " << ")";//TODO dunder for luxurylevel
+           << ", luxuryLevel: " << obj.luxuryLevel << ")";
         return os;
     }
     Accommodations()=default;

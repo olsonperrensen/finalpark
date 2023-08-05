@@ -18,7 +18,9 @@ public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, const Booking& obj) {
         os << "Booking(ID: " << obj.getID() << ", customer: " << obj.getCustomer()
-           << ", accommodations: " << obj.getAccommodations() << ")";
+           << ", accommodations: " << obj.getAccommodations().at(0) << ", activityPass: " << obj.activityPass // TODO vectorize output
+                << ", sportsPass: " << obj.sportsPass<< ", bicycleRent: " << obj.bicycleRent
+                << ", swimmingPass: " << obj.swimmingPass<<")";
         return os;
     }
 

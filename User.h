@@ -11,6 +11,11 @@ class User {
 protected:
     std::string name,address,mail;
 public:
+//    base dunder
+    friend std::ostream& operator<<(std::ostream& os, const User& obj) {
+        os << "User(name: " << obj.getName() << ", address: " << obj.getAddress() << ")";
+        return os;
+    }
     const std::string &getName() const;
 
     void setName(const std::string &name);

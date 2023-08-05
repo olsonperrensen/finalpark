@@ -15,6 +15,16 @@ public:
 //NESTED class - careful here
     class ParcServices{
     public:
+//        nested dunder!
+        friend std::ostream& operator<<(std::ostream& os, const ParcServices& obj) {
+            os << "ParcServices(subtropicSwimmingPool: " << obj.isSubtropicSwimmingPool()
+               << ", sportsInfrastructure: " << obj.isSportsInfrastructure()
+               << ", bowlingAlley: " << obj.isBowlingAlley()
+               << ", bicycleRent: " << obj.isBicycleRent()
+               << ", childrensParadise: " << obj.isChildrensParadise()
+               << ", waterBikes: " << obj.isWaterBikes() << ")";
+            return os;
+        }
 //        Idem as other default bc it is being used by another class otherwise it complains;
         ParcServices()=default;
         ParcServices(bool subtropicSwimmingPool,
@@ -58,6 +68,12 @@ private:
     ParcServices services;
     std::vector<Accommodations> accommodations;
 public:
+//    dunder
+    friend std::ostream& operator<<(std::ostream& os, const Parcs& obj) {
+        os << "Parcs(name: " << obj.getName() << ", address: " << obj.getAddress() <<
+                ", services: " << obj.getServices() << ", accommodations: " << obj.getAccommodations().at(0)<<")"; // TODO vectorize output
+        return os;
+    }
     const std::string &getName() const;
 
     void setName(const std::string &name);

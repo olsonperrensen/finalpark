@@ -6,11 +6,11 @@
 #include "VacationParcs.h"
 #include "Customer.h"
 
-const std::string &VacationParcs::getVat() const {
+const std::string &VacationParcs::getVAT() const {
     return VAT;
 }
 
-void VacationParcs::setVat(const std::string &vat) {
+void VacationParcs::setVAT(const std::string &vat) {
     VAT = vat;
 }
 

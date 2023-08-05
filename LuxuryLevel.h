@@ -13,11 +13,19 @@ private:
     bool BBQ, surroundSystem,breakfastService,cleaningService;
     std::string accommodationKind;
 public:
+//    dunder
+    friend std::ostream& operator<<(std::ostream& os, const LuxuryLevel& obj) {
+        os << "LuxuryLevel(BBQ: " << obj.isBBQ() << ", surroundSystem: " << obj.isSurroundSystem()
+           << ", breakfastService: " << obj.isBreakfastService() << ", cleaningService: " << obj.isCleaningService() <<
+           ", cleaningService: " << obj.getAccommodationKind() <<")";
+        return os;
+    }
+
     LuxuryLevel(bool BBQ, bool surroundSystem,bool breakfastService, bool cleaningService);
 //    Accommodations needs a default for this class otherwise complains.
     LuxuryLevel()=default;
 
-    bool isBbq() const;
+    bool isBBQ() const;
 
     void setBBQ(bool bbq);
 

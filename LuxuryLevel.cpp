@@ -4,7 +4,7 @@
 
 #include "LuxuryLevel.h"
 
-bool LuxuryLevel::isBbq() const {
+bool LuxuryLevel::isBBQ() const {
     return BBQ;
 }
 
@@ -51,7 +51,7 @@ breakfastService(breakfastService),cleaningService(cleaningService){
 
 void LuxuryLevel::getAllFacilitiesAtOnce() {
     printBooleans(
-            LUXURIES[0],LuxuryLevel::isBbq(),
+            LUXURIES[0],LuxuryLevel::isBBQ(),
             LUXURIES[1], LuxuryLevel::isSurroundSystem(),
             LUXURIES[2],LuxuryLevel::isBreakfastService(),
             LUXURIES[3],LuxuryLevel::isCleaningService()

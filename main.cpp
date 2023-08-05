@@ -20,6 +20,7 @@ int main() {
     VacationParcs vp("jonh", "lane 8", s,
                      v, "BE01", pv,
                      cv);
+//    TODO convert to explicit so NO VacationParcs can go ipv Parcs (derived attributes get lost)
     VacationParcs vpupdate("SAM", "Kyotostraat 88", s,
                      v, "FI01", pv,
                      cv);
@@ -33,6 +34,6 @@ int main() {
     Owner o("Bruce","Kennisstraat 13","Lee@Lee.lee");
     o.modifyPark(vp, 1, vpupdate);
     std::cout << vp.getParcs().at(0).getAddress() << std::endl;
-    std::cout << a;
+    std::cout << vp.getParcs().at(0).getAccommodations().at(0).getLuxuryLevel();
     return 0;
 }

@@ -12,6 +12,13 @@ class Customer: public User {
 private:
     std::string paymentMethod;
 public:
+//    dunder
+    friend std::ostream& operator<<(std::ostream& os, const Customer& obj) {
+        os << "Customer(name: " << obj.getName() << ", address: " << obj.getAddress()
+           << ", mail: " << obj.getMail() << ", paymentMethod: " << obj.paymentMethod<<")";
+        return os;
+    }
+
     Customer(std::string name,std::string address, std::string mail, std::string paymentMethod);
     const std::string &getPaymentMethod() const;
 

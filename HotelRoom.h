@@ -12,6 +12,8 @@ private:
     bool childrenBed;
     std::string location;
 public:
+//  TODO  dunder
+
     HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed);
 
     int getFloor() const;

@@ -25,6 +25,11 @@ private:
     std::vector<Parcs> parcs;
     std::vector<Customer> customers;
 public:
+    friend std::ostream& operator<<(std::ostream& os, const VacationParcs& obj) {
+        os << "VacationParcs(name: " << obj.getName() << ", address: " << obj.getAddress()
+           << ", VAT: " << obj.getVAT() << ")";
+        return os;
+    }
     VacationParcs(std::string name, std::string address, ParcServices services,
                   std::vector<Accommodations> accommodations, std::string VAT, std::vector<Parcs> parcs,
                   std::vector<Customer> customers);
@@ -33,9 +38,9 @@ public:
     void addPark(const Parcs& park);
     void removePark(int id);
 
-    const std::string &getVat() const;
+    const std::string &getVAT() const;
 
-    void setVat(const std::string &vat);
+    void setVAT(const std::string &vat);
 
     const std::vector<Parcs> &getParcs() const;
 
