@@ -14,6 +14,13 @@ private:
     bool bathroomWithBath;
     LuxuryLevel luxuryLevel;
 public:
+//    Python-like str-dunder method
+    friend std::ostream& operator<<(std::ostream& os, const Accommodations& obj) {
+        os << "Accommodations(ID: " << obj.ID << ", nrPeople: " << obj.nrPeople
+           << ", size: " << obj.size<< ", bathroomWithBath: " << obj.bathroomWithBath
+           << ", luxuryLevel: " << ")";//TODO dunder for luxurylevel
+        return os;
+    }
     Accommodations()=default;
     Accommodations(int ID,int nrPeople,int size,bool bathroomWithBath,LuxuryLevel luxuryLevel);
     int getID() const;

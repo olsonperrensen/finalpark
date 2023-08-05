@@ -32,6 +32,7 @@ int main() {
 //    User test
     Owner o("Bruce","Kennisstraat 13","Lee@Lee.lee");
     o.modifyPark(vp, 1, vpupdate);
-    std::cout << vp.getParcs().at(0).getAddress();
+    std::cout << vp.getParcs().at(0).getAddress() << std::endl;
+    std::cout << a;
     return 0;
 }
