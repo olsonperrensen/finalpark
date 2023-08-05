@@ -42,10 +42,35 @@ public:
     void setBizAddress(const std::string &bizAddress);
 
 public:
+//    dunder
     friend std::ostream& operator<<(std::ostream& os, const VacationParcs& obj) {
         os << "VacationParcs ( name: " << obj.getBizName() << ", address: " << obj.getBizAddress()
-           << ", VAT: " << obj.getVAT() << ", Parcs: " << obj.getParcs().at(0) << ", Customers: " <<
-           obj.getCustomers().at(0) << " ) "; // TODO vectorize output
+           << ", VAT: " << obj.getVAT() << ", Parcs: [";
+
+        const std::vector<Parcs>& parcs = obj.getParcs();
+        for (size_t i = 0; i < parcs.size(); ++i) {
+            os << parcs[i];
+
+            // If not the last element, add a comma and a space
+            if (i != parcs.size() - 1) {
+                os << ", ";
+            }
+        }
+
+        os << "], Customers: [";
+
+        const std::vector<Customer>& customers = obj.getCustomers();
+        for (size_t i = 0; i < customers.size(); ++i) {
+            os << customers[i];
+
+            // If not the last element, add a comma and a space
+            if (i != customers.size() - 1) {
+                os << ", ";
+            }
+        }
+
+        os << "])";
+
         return os;
     }
     VacationParcs(std::string name, std::string address,

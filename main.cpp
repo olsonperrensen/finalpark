@@ -41,6 +41,6 @@ int main() {
 //TODO only accept true, not 1
     Booking b(1,c,v,1,1,1,1);
 
-//    std::cout << vp;
+   std::cout << vp;
     return 0;
 }
