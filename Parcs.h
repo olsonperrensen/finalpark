@@ -46,6 +46,9 @@ public:
 
 //        shortcut fun
         void getAllServicesAtOnce();
+        //    For after the object being born, allow bulk modification ~ just like constructor does
+        void setAllServicesAtOnce(bool subtropicSwimmingPool,
+                                  bool sportsInfrastructure, bool bowlingAlley,bool bicycleRent,bool childrensParadise,bool waterBikes);
 
     private:
         bool subtropicSwimmingPool,sportsInfrastructure,bowlingAlley,bicycleRent,childrensParadise,waterBikes;

@@ -8,7 +8,7 @@
 #include <iostream>
 
 class User {
-private:
+protected:
     std::string name,address,mail;
 public:
     const std::string &getName() const;
@@ -25,6 +25,7 @@ public:
 
 public:
     User(std::string name, std::string address, std::string mail);
+    virtual ~User() {}
 };
 
 

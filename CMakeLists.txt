@@ -22,4 +22,6 @@ add_executable(finalpark main.cpp
         VacationParcs.h
         Shared.h
         Customer.cpp
-        Customer.h)
+        Customer.h
+        Owner.cpp
+        Owner.h)

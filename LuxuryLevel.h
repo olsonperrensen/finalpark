@@ -19,7 +19,7 @@ public:
 
     bool isBbq() const;
 
-    void setBbq(bool bbq);
+    void setBBQ(bool bbq);
 
     bool isSurroundSystem() const;
 
@@ -38,6 +38,9 @@ public:
     void setAccommodationKind(const std::string &accommodationKind);
 
     void getAllFacilitiesAtOnce();
+
+//    For after the object being born, allow bulk modification ~ just like constructor does
+    void setAllFacilitiesAtOnce(bool BBQ, bool surroundSystem,bool breakfastService, bool cleaningService);
 };
 
 

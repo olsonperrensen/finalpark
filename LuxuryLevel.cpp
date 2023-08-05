@@ -8,7 +8,7 @@ bool LuxuryLevel::isBbq() const {
     return BBQ;
 }
 
-void LuxuryLevel::setBbq(bool bbq) {
+void LuxuryLevel::setBBQ(bool bbq) {
     BBQ = bbq;
 }
 
@@ -56,4 +56,9 @@ void LuxuryLevel::getAllFacilitiesAtOnce() {
             LUXURIES[2],LuxuryLevel::isBreakfastService(),
             LUXURIES[3],LuxuryLevel::isCleaningService()
     );
+}
+
+void LuxuryLevel::setAllFacilitiesAtOnce(bool BBQ, bool surroundSystem, bool breakfastService, bool cleaningService) {
+    setBooleans(*this, &LuxuryLevel::setBBQ, BBQ, &LuxuryLevel::setSurroundSystem, surroundSystem,
+                &LuxuryLevel::setBreakfastService, breakfastService, &LuxuryLevel::setCleaningService, cleaningService);
 }

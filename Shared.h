@@ -48,5 +48,24 @@ void printBooleans(const std::string& name, T value, Args... args) {
     printBooleans(args...);
 }
 
+// Again use of tempaltes to facilitate setting multiple booleans at once instead of calling separate methods
+// that basically do the same
+// Base case: single name-value pair.
+template<typename T>
+void setBooleans(T& object, void(T::*setter)(bool), bool value) {
+    static_assert(std::is_same<decltype(setter), void(T::*)(bool)>::value, "All setter methods should take a single bool argument.");
+    (object.*setter)(value);
+}
+
+// Recursive case: multiple name-value pairs.
+template <typename T, typename... Args>
+void setBooleans(T& object, void(T::*setter)(bool), bool value, Args... args) {
+    (object.*setter)(value);
+    if constexpr (sizeof...(args) > 0) {
+        setBooleans(object, args...);
+    }
+}
+
+
 
 #endif //FINALPARK_SHARED_H
