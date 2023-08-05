@@ -13,7 +13,7 @@ protected:
 public:
 //    base dunder
     friend std::ostream& operator<<(std::ostream& os, const User& obj) {
-        os << "User(name: " << obj.getName() << ", address: " << obj.getAddress() << ")";
+        os << "User ( name: " << obj.getName() << ", address: " << obj.getAddress() << " ) ";
         return os;
     }
     const std::string &getName() const;

@@ -14,8 +14,8 @@ private:
 public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, const Customer& obj) {
-        os << "Customer(name: " << obj.getName() << ", address: " << obj.getAddress()
-           << ", mail: " << obj.getMail() << ", paymentMethod: " << obj.paymentMethod<<")";
+        os << "Customer ( name: " << obj.getName() << ", address: " << obj.getAddress()
+           << ", mail: " << obj.getMail() << ", paymentMethod: " << obj.paymentMethod<<" ) ";
         return os;
     }
 

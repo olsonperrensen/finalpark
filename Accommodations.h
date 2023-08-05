@@ -16,9 +16,9 @@ private:
 public:
 //    Python-like str-dunder method
     friend std::ostream& operator<<(std::ostream& os, const Accommodations& obj) {
-        os << "Accommodations(ID: " << obj.ID << ", nrPeople: " << obj.nrPeople
+        os << "Accommodations ( ID: " << obj.ID << ", nrPeople: " << obj.nrPeople
            << ", size: " << obj.size<< ", bathroomWithBath: " << obj.bathroomWithBath
-           << ", luxuryLevel: " << obj.luxuryLevel << ")";
+           << ", luxuryLevel: " << obj.luxuryLevel << " ) ";
         return os;
     }
     Accommodations()=default;

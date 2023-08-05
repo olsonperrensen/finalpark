@@ -43,9 +43,9 @@ public:
 
 public:
     friend std::ostream& operator<<(std::ostream& os, const VacationParcs& obj) {
-        os << "VacationParcs(name: " << obj.getBizName() << ", address: " << obj.getBizAddress()
+        os << "VacationParcs ( name: " << obj.getBizName() << ", address: " << obj.getBizAddress()
            << ", VAT: " << obj.getVAT() << ", Parcs: " << obj.getParcs().at(0) << ", Customers: " <<
-           obj.getCustomers().at(0) << ")"; // TODO vectorize output
+           obj.getCustomers().at(0) << " ) "; // TODO vectorize output
         return os;
     }
     VacationParcs(std::string name, std::string address,

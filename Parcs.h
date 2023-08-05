@@ -17,12 +17,12 @@ public:
     public:
 //        nested dunder!
         friend std::ostream& operator<<(std::ostream& os, const ParcServices& obj) {
-            os << "ParcServices(subtropicSwimmingPool: " << obj.isSubtropicSwimmingPool()
+            os << "ParcServices ( subtropicSwimmingPool: " << obj.isSubtropicSwimmingPool()
                << ", sportsInfrastructure: " << obj.isSportsInfrastructure()
                << ", bowlingAlley: " << obj.isBowlingAlley()
                << ", bicycleRent: " << obj.isBicycleRent()
                << ", childrensParadise: " << obj.isChildrensParadise()
-               << ", waterBikes: " << obj.isWaterBikes() << ")";
+               << ", waterBikes: " << obj.isWaterBikes() << " ) ";
             return os;
         }
 //        Idem as other default bc it is being used by another class otherwise it complains;
@@ -70,8 +70,21 @@ private:
 public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, const Parcs& obj) {
-        os << "Parcs(name: " << obj.getName() << ", address: " << obj.getAddress() <<
-                ", services: " << obj.getServices() << ", accommodations: " << obj.getAccommodations().at(0)<<")"; // TODO vectorize output
+        os << "Parcs ( name: " << obj.getName() << ", address: " << obj.getAddress() <<
+           ", services: " << obj.getServices() << ", accommodations: [";
+
+        const std::vector<Accommodations>& dunderAccommodations = obj.getAccommodations();
+        for (size_t i = 0; i < dunderAccommodations.size(); ++i) {
+            os << dunderAccommodations[i];
+
+            // If not the last element, add a comma and a space
+            if (i != dunderAccommodations.size() - 1) {
+                os << ", ";
+            }
+        }
+
+        os << "] ) ";
+
         return os;
     }
     const std::string &getName() const;

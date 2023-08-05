@@ -44,8 +44,10 @@ void LuxuryLevel::setAccommodationKind(const std::string &accommodationKind) {
     LuxuryLevel::accommodationKind = accommodationKind;
 }
 
-LuxuryLevel::LuxuryLevel(bool BBQ, bool surroundSystem, bool breakfastService, bool cleaningService):BBQ(BBQ),surroundSystem(surroundSystem),
-breakfastService(breakfastService),cleaningService(cleaningService){
+LuxuryLevel::LuxuryLevel(bool BBQ, bool surroundSystem, bool breakfastService, bool cleaningService,
+                         std::string accommodationKind):BBQ(BBQ),
+surroundSystem(surroundSystem),
+breakfastService(breakfastService),cleaningService(cleaningService),accommodationKind(accommodationKind){
 
 }
 

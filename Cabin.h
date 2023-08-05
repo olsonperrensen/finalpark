@@ -15,7 +15,7 @@ public:
     explicit Cabin(int id, int nrPeople, int size, bool bathroomWithBath, LuxuryLevel luxuryLevel, int bedrooms);
 // dunder
     friend std::ostream& operator<<(std::ostream& os, const Cabin& obj) {
-        os << "Cabin(ID: " << obj.getID() << ", bedrooms: " << obj.getBedrooms() << ")";
+        os << "Cabin ( ID: " << obj.getID() << ", bedrooms: " << obj.getBedrooms() << " ) ";
         return os;
     }
 

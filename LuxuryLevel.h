@@ -15,13 +15,13 @@ private:
 public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, const LuxuryLevel& obj) {
-        os << "LuxuryLevel(BBQ: " << obj.isBBQ() << ", surroundSystem: " << obj.isSurroundSystem()
+        os << "LuxuryLevel ( BBQ: " << obj.isBBQ() << ", surroundSystem: " << obj.isSurroundSystem()
            << ", breakfastService: " << obj.isBreakfastService() << ", cleaningService: " << obj.isCleaningService() <<
-           ", cleaningService: " << obj.getAccommodationKind() <<")";
+           ", accommodationKind: " << obj.getAccommodationKind() <<" ) ";
         return os;
     }
 
-    LuxuryLevel(bool BBQ, bool surroundSystem,bool breakfastService, bool cleaningService);
+    LuxuryLevel(bool BBQ, bool surroundSystem,bool breakfastService, bool cleaningService,std::string accommodationKind);
 //    Accommodations needs a default for this class otherwise complains.
     LuxuryLevel()=default;
 
