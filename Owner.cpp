@@ -22,9 +22,8 @@ void Owner::deletePark(VacationParcs &company, int parkID) {
 }
 
 void Owner::createAccommodation(VacationParcs &company, int parkID, const Accommodations &newAccommodation) {
-     std::vector<Parcs> parcs = company.getParcs();
-//     Ampersand needed (reference) in order for changes to take effect (call by reference)
-    for (Parcs &parc:parcs) {
+    std::vector<Parcs>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
+    for (Parcs &parc : parcs) {
         if (parc.getID() == parkID) {
             // Add the new accommodation to the park
             parc.addAccommodation(newAccommodation);

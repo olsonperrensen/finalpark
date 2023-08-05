@@ -14,9 +14,11 @@ void VacationParcs::setVAT(const std::string &vat) {
     VAT = vat;
 }
 
-const std::vector<Parcs> &VacationParcs::getParcs() const {
+// In the VacationParcs class
+std::vector<Parcs>& VacationParcs::getParcs() {
     return parcs;
 }
+
 
 void VacationParcs::setParcs(const std::vector<Parcs> &parcs) {
     VacationParcs::parcs = parcs;

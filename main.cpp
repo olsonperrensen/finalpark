@@ -35,12 +35,11 @@ int main() {
     Owner o("Bruce","Kennisstraat 13","Lee@Lee.lee");
     o.modifyPark(vp, 1, parkupdate);
 //    o.deletePark(vp,1);
-    o.createAccommodation(vp,3,anew);
-//    TODO change does not take effect ... Index 1 is out of range where it should've been created
-
-//TODO only accept true, not 1
+    o.createAccommodation(vp,2,anew);
+    std::cout << vp;
+//TODO only accept true w/static cast, not 1
     Booking b(1,c,v,1,1,1,1);
-
-   std::cout << vp;
+//TODO accommodationKind should only come from a shared.h array
+//   std::cout << b;
     return 0;
 }

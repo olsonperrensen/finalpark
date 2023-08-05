@@ -43,11 +43,11 @@ public:
 
 public:
 //    dunder
-    friend std::ostream& operator<<(std::ostream& os, const VacationParcs& obj) {
+    friend std::ostream& operator<<(std::ostream& os, VacationParcs obj) {
         os << "VacationParcs ( name: " << obj.getBizName() << ", address: " << obj.getBizAddress()
            << ", VAT: " << obj.getVAT() << ", Parcs: [";
 
-        const std::vector<Parcs>& parcs = obj.getParcs();
+        std::vector<Parcs>& parcs = obj.getParcs();
         for (size_t i = 0; i < parcs.size(); ++i) {
             os << parcs[i];
 
@@ -85,7 +85,7 @@ public:
 
     void setVAT(const std::string &vat);
 
-    const std::vector<Parcs> &getParcs() const;
+    std::vector<Parcs>& getParcs();
 
     void setParcs(const std::vector<Parcs> &parcs);
 
