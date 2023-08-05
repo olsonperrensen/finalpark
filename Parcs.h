@@ -57,6 +57,24 @@ private:
     std::string name,address;
     ParcServices services;
     std::vector<Accommodations> accommodations;
+public:
+    const std::string &getName() const;
+
+    void setName(const std::string &name);
+
+    const std::string &getAddress() const;
+
+    void setAddress(const std::string &address);
+
+    const ParcServices &getServices() const;
+
+    void setServices(const ParcServices &services);
+
+    const std::vector<Accommodations> &getAccommodations() const;
+
+    void setAccommodations(const std::vector<Accommodations> &accommodations);
+
+private:
 //    own identification to pop it as element from VacationParcs
     static int aantalParcs;
     int parcID;

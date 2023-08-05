@@ -103,3 +103,35 @@ Parcs::Parcs(std::string name, std::string address, ParcServices services,
 int Parcs::getID() const {
     return parcID;
 }
+
+const std::string &Parcs::getName() const {
+    return name;
+}
+
+void Parcs::setName(const std::string &name) {
+    Parcs::name = name;
+}
+
+const std::string &Parcs::getAddress() const {
+    return address;
+}
+
+void Parcs::setAddress(const std::string &address) {
+    Parcs::address = address;
+}
+
+const Parcs::ParcServices &Parcs::getServices() const {
+    return services;
+}
+
+void Parcs::setServices(const Parcs::ParcServices &services) {
+    Parcs::services = services;
+}
+
+const std::vector<Accommodations> &Parcs::getAccommodations() const {
+    return accommodations;
+}
+
+void Parcs::setAccommodations(const std::vector<Accommodations> &accommodations) {
+    Parcs::accommodations = accommodations;
+}
