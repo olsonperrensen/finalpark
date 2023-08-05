@@ -12,9 +12,16 @@ class Booking {
 private:
     int ID;
     Customer customer;
-    std::vector<Accommodations> accomodations;
+    std::vector<Accommodations> accommodations;
     bool activityPass,sportsPass,bicycleRent,swimmingPass;
 public:
+//    dunder
+    friend std::ostream& operator<<(std::ostream& os, const Booking& obj) {
+        os << "Booking(ID: " << obj.getID() << ", customer: " << obj.getCustomer()
+           << ", accommodations: " << obj.getAccommodations() << ")";
+        return os;
+    }
+
     int getID() const;
 
     void setId(int id);
@@ -23,9 +30,9 @@ public:
 
     void setCustomer(const Customer &customer);
 
-    const std::vector<Accommodations> &getAccomodations() const;
+    const std::vector<Accommodations> &getAccommodations() const;
 
-    void setAccomodations(const std::vector<Accommodations> &accomodations);
+    void setAccommodations(const std::vector<Accommodations> &accommodations);
 
     bool isActivityPass() const;
 
@@ -43,7 +50,7 @@ public:
 
     void setSwimmingPass(bool swimmingPass);
 
-    Booking(int ID, Customer customer, std::vector<Accommodations> accomodations, bool activityPass,
+    Booking(int ID, Customer customer, std::vector<Accommodations> accommodations, bool activityPass,
             bool sportsPass, bool bicycleRent, bool swimmingPass);
 };
 
