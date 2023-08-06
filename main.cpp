@@ -84,6 +84,8 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //    e.deleteCustomer(vp,1);
 //individual modifying
     e.modifyAccommodation(vp,2,999,afinal);
+    c.modifyData(Customer("Larry Page","Sergeistraat 9", "larry@goo.gl", "Bancontact"));
+
     std::cout << vp;
 //TODO find by id Booking
 //   std::cout << b;

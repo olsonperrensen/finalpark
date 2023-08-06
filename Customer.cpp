@@ -23,3 +23,11 @@ Customer::Customer(std::string name,
 //    Idem as with accomodationKind, can't list init due to check
     setPaymentMethod(paymentMethod);
 }
+
+void Customer::modifyData(const Customer &updatedCustomer) {
+//    Learning note: *this dereferences the current instance (which "this" points to 0x RAM address)
+// by doing *this you allow the content of the instance pointer to be accessed and, zoals in this case,
+// rewritten
+    *this = updatedCustomer;
+    std::cout << "Customer " << this->getID() << " has updated their data successfully." << std::endl;
+}

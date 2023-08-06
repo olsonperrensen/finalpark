@@ -23,6 +23,8 @@ public:
     const std::string &getPaymentMethod() const;
 
     void setPaymentMethod(const std::string &paymentMethod);
+//    Meta
+    void modifyData(const Customer &updatedCustomer);
 };
 
 
