@@ -21,8 +21,8 @@ public:
            << ", luxuryLevel: " << obj.luxuryLevel << " ) ";
         return os;
     }
-
-    bool operator==(const Accommodations& other) const {
+// No Accommodations should be initialized
+    virtual bool operator==(const Accommodations& other) const {
     return (this->ID==other.ID)&&(this->nrPeople==other.nrPeople)&&(this->size==other.size)
     &&(this->bathroomWithBath==other.bathroomWithBath)&&(this->luxuryLevel==other.luxuryLevel);
 }

@@ -5,16 +5,33 @@
 #ifndef FINALPARK_HOTELROOM_H
 #define FINALPARK_HOTELROOM_H
 #include <string>
+#include "Accommodations.h"
 
-class HotelRoom {
+class HotelRoom: public Accommodations {
 private:
     int floor,nrBeds;
     bool childrenBed;
     std::string location;
 public:
 //  TODO  dunder
+    friend std::ostream& operator<<(std::ostream& os, const HotelRoom& obj) {
+        os << static_cast<const Accommodations&>(obj)  // Print the base class members
+           << ", floor: " << obj.floor << ", nrBeds: " << obj.nrBeds
+           << ", childrenBed: " << obj.childrenBed << ", location: " << obj.location << " ) ";
+        return os;
+    }
+    bool operator==(const Accommodations& other) const override {
+        const HotelRoom* derivedOther = dynamic_cast<const HotelRoom*>(&other);
+        if (derivedOther == nullptr) {
+            // The other object is not of type Derived, so the objects are not equal.
+            return false;
+        }
 
-    HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed);
+        // Compare base class members and derived class members.
+        return Accommodations::operator==(other) && (this->floor == derivedOther->floor);
+    }
+    HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed,
+              int ID,int nrPeople,int size,bool bathroomWithBath,LuxuryLevel luxuryLevel);
 
     int getFloor() const;
 

@@ -5,6 +5,8 @@
 #include "Booking.h"
 #include "Sys/Employee.h"
 #include "Sys/OS.h"
+#include "HotelRoom.h"
+#include "Cabin.h"
 #include <vector>
 int main() {
     OS os;
@@ -88,6 +90,8 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 
     std::cout << vp;
 //TODO find by id Booking
+    HotelRoom hr(1,"Bahamas",12,false,1,12,32,false,l);
+    Cabin cab(2,2,2,false,l,3);
     return 0;
 //    TODO implement polymorphism -> pointer getting the right call
 }

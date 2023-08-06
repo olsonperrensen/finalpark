@@ -36,7 +36,8 @@ void HotelRoom::setLocation(const std::string &location) {
     HotelRoom::location = location;
 }
 
-HotelRoom::HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed):floor(floor),location(location),
-nrBeds(nrBeds),childrenBed(childrenBed){
+HotelRoom::HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed, int ID, int nrPeople, int size,
+                     bool bathroomWithBath, LuxuryLevel luxuryLevel):Accommodations(ID,nrPeople,size,bathroomWithBath,luxuryLevel),
+                     floor(floor),location(location),nrBeds(nrBeds),childrenBed(childrenBed) {
 
 }
