@@ -28,7 +28,7 @@ public:
 
 //    Accommodation-related own funs for MGMT
     void createAccommodation(VacationParcs &company, int parkID, const Accommodations &newAccommodation);
-    void modifyAccommodations(VacationParcs &company, int parkID, const std::vector<Accommodations> &updatedAccommodation);
+    void modifyAccommodations(VacationParcs &company, int parkID, const std::vector<Accommodations> &updatedAccommodations);
     void deleteAccommodation(VacationParcs &company, int parkID, int accommodationID);
 };
 
