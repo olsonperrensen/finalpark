@@ -14,6 +14,7 @@
 const std::vector<std::string> LUXURIES = {"BBQ","Surround System","Breakfast Service","Cleaning Service"};
 const std::vector<std::string> SERVICES = {"Subtropic Swimming Pool","Sports Infrastructure","Bowling Alley","Bicycle Rent", "Children's Paradise","Water Bikes"};
 const std::vector<std::string> PAYMENT_METHODS = {"Bancontact","Payconiq","Contant Geld"};
+const std::vector<std::string> ACCO_KINDS = {"HotelRoom","Cabin"};
 
 template <typename T>
     void addItem(std::vector<T>& vec, const T& item) {

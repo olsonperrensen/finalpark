@@ -41,14 +41,20 @@ const std::string &LuxuryLevel::getAccommodationKind() const {
 }
 
 void LuxuryLevel::setAccommodationKind(const std::string &accommodationKind) {
-    LuxuryLevel::accommodationKind = accommodationKind;
+    if(std::find(ACCO_KINDS.begin(),ACCO_KINDS.end(),accommodationKind)!=ACCO_KINDS.end())
+       LuxuryLevel::accommodationKind = accommodationKind;
+    else
+        throw std::invalid_argument("\nPlease choose a valid accommodation kind. Valid options:\n- "
+                                    + ACCO_KINDS[0] + "\n- " + ACCO_KINDS[1] +
+                                    "\nYour option was:\n- "+accommodationKind+"\nTry again.\n");
 }
 
 LuxuryLevel::LuxuryLevel(bool BBQ, bool surroundSystem, bool breakfastService, bool cleaningService,
                          std::string accommodationKind):BBQ(BBQ),
 surroundSystem(surroundSystem),
-breakfastService(breakfastService),cleaningService(cleaningService),accommodationKind(accommodationKind){
-
+breakfastService(breakfastService),cleaningService(cleaningService){
+//    Can't list init acc kind since no checking happens. Must be in body block
+    setAccommodationKind(accommodationKind);
 }
 
 void LuxuryLevel::getAllFacilitiesAtOnce() {

@@ -7,7 +7,7 @@
 int main() {
     std::cout << "Hello, World!" << std::endl;
 
-    LuxuryLevel l(false,false, false, false,"Best in town");
+    LuxuryLevel l(false,false, false, false,"CCabin");
     std::vector<Accommodations> v;
 
     Accommodations a(1,13,2,false,l);
@@ -46,8 +46,8 @@ int main() {
     std::cout << vp;
 //TODO only accept true w/static cast, not 1
     Booking b(1,c,v,1,1,1,1);
-//TODO accommodationKind should only come from a shared.h array
 //TODO find by id Booking
 //   std::cout << b;
     return 0;
+//    TODO implement polymorphism -> pointer getting the right call
 }
