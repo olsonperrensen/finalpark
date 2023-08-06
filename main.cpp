@@ -80,13 +80,13 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
     }
 //    TODO update dunder str so vp outputs Bookings as well
 
-    os.bookAccommodation(vp,1,999,b);
+    os.bookAccommodation(vp,1,1,b);
     os.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));
 //    TODO prevent change ID Booking
 //    e.deleteBooking(vp,72);
 //    e.deleteCustomer(vp,1);
 //individual modifying
-    os.modifyAccommodation(vp,2,999,afinal);
+    os.modifyAccommodation(vp,2,1,afinal);
     c->modifyData(Customer("Larry Page","Sergeistraat 9", "larry@goo.gl", "Bancontact"));
 
     std::cout << vp;

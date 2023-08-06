@@ -71,7 +71,7 @@ public:
 
         std::vector<Parcs*> parcs = obj.getParcs();
         for (size_t i = 0; i < parcs.size(); ++i) {
-            os << parcs[i];
+            os << *parcs[i];
 
             // If not the last element, add a comma and a space
             if (i != parcs.size() - 1) {
@@ -82,7 +82,7 @@ public:
 
         std::vector<Customer*> customers = obj.getCustomers();
         for (size_t i = 0; i < customers.size(); ++i) {
-            os << customers[i];
+            os << *customers[i];
 
             // If not the last element, add a comma and a space
             if (i != customers.size() - 1) {
@@ -94,7 +94,7 @@ public:
 
         std::vector<Booking *> bookings = obj.getBookings();
         for (size_t i = 0; i < bookings.size(); ++i) {
-            os << bookings[i];
+            os << *bookings[i];
 
             // If not the last element, add a comma and a space
             if (i != bookings.size() - 1) {

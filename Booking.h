@@ -29,7 +29,7 @@ public:
 
         const std::vector<Accommodations*>& accommodations = obj.getAccommodations();
         for (size_t i = 0; i < accommodations.size(); ++i) {
-            os << accommodations[i];
+            os << *accommodations[i];
 
             // If not the last element, add a comma and a space
             if (i != accommodations.size() - 1) {

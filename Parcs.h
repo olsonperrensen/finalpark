@@ -86,7 +86,7 @@ public:
 
         const std::vector<Accommodations*>& dunderAccommodations = obj.getAccommodations();
         for (size_t i = 0; i < dunderAccommodations.size(); ++i) {
-            os << dunderAccommodations[i];
+            os << *dunderAccommodations[i];
 
             // If not the last element, add a comma and a space
             if (i != dunderAccommodations.size() - 1) {
