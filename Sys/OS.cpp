@@ -23,6 +23,8 @@ void OS::modifyBooking(VacationParcs &company, int bookingID, const Booking &upd
 }
 
 void OS::modifyAccommodation(VacationParcs &company, int parkID, int accommodationID,Accommodations* updatedAccommodation) {
+//    POLYMORPHISM happens right here. It is here that the pointer is getting the right call to which function to execute
+// based on the right derived class (HotelRoom) or (Cabin) the pointer is pointing to
     // Find the park with the given ID in the list of parks.
     std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
 
@@ -87,7 +89,7 @@ void OS::deleteBooking(VacationParcs &company, int bookingID) {
     std::cout << "Error: Booking not found.\n";
 }
 
-void OS::createCustomer(VacationParcs &company, const Customer &newCustomer) {
+void OS::createCustomer(VacationParcs &company, Customer* newCustomer) {
 //    TODO rethink
     company.registerCustomer(newCustomer);
 }

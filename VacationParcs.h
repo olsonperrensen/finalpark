@@ -113,7 +113,7 @@ public:
 }
     VacationParcs(std::string name, std::string address,
                   std::string VAT, std::vector<Parcs*> parcs,
-                  std::vector<Customer> customers);
+                  std::vector<Customer*> customers);
 
 // CRUD for Parc
 //    Make good use of templates
@@ -137,9 +137,9 @@ public:
 // BULK CUSTOMER ADDITION, NOT WHAT WE WANT normally
 
 //    individual Customer adding
-    void addCustomer(const Customer& neuCustomer);
+    void addCustomer(Customer* neuCustomer);
 //    CLI exec fun
-    void registerCustomer(const Customer &newCustomer);
+    void registerCustomer(Customer *newCustomer);
 };
 
 

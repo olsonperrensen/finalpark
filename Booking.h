@@ -11,10 +11,13 @@
 class Booking {
 private:
     int ID;
-    Customer customer;
+    Customer* customer;
     std::vector<Accommodations*> accommodations;
 public:
-    void setAccommodations1(const std::vector<Accommodations *> &accommodations);
+
+    Customer *getCustomer() const;
+
+    void setCustomer(Customer *customer);
 
 private:
     bool activityPass,sportsPass,bicycleRent,swimmingPass;
@@ -24,7 +27,7 @@ public:
         os << "Booking ( ID: " << obj.getID() << ", customer: " << obj.getCustomer()
            << ", accommodations: [";
 
-        const std::vector<Accommodations>& accommodations = obj.getAccommodations();
+        const std::vector<Accommodations*>& accommodations = obj.getAccommodations();
         for (size_t i = 0; i < accommodations.size(); ++i) {
             os << accommodations[i];
 
@@ -41,6 +44,10 @@ public:
         return os;
     }
 
+    const std::vector<Accommodations *> &getAccommodations() const;
+
+    void setAccommodations(const std::vector<Accommodations *> &accommodations);
+
 //    Important! :
 //    BE ABLE TO COMPARE TWO FULL OBJECTS against each other
 //TODO operator== for all classes ... expand this one once done
@@ -53,14 +60,6 @@ public:
     int getID() const;
 
     void setId(int id);
-
-    const Customer &getCustomer() const;
-
-    void setCustomer(const Customer &customer);
-
-    const std::vector<Accommodations> &getAccommodations() const;
-
-    void setAccommodations(const std::vector<Accommodations> &accommodations);
 
     bool isActivityPass() const;
 
@@ -78,7 +77,7 @@ public:
 
     void setSwimmingPass(bool swimmingPass);
 
-    Booking(int ID, Customer customer, std::vector<Accommodations*> accommodations, bool activityPass,
+    Booking(int ID, Customer* customer, std::vector<Accommodations*> accommodations, bool activityPass,
             bool sportsPass, bool bicycleRent, bool swimmingPass);
 };
 

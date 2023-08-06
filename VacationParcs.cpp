@@ -1,8 +1,6 @@
 //
 // Created by Admin on 8/4/2023.
 //
-
-#include <algorithm>
 #include "VacationParcs.h"
 #include "Customer.h"
 
@@ -15,7 +13,7 @@ void VacationParcs::setVAT(const std::string &vat) {
 }
 
 VacationParcs::VacationParcs(std::string bizName, std::string bizAddress,
-                             std::string VAT, std::vector<Parcs*> parcs, std::vector<Customer> customers)
+                             std::string VAT, std::vector<Parcs*> parcs, std::vector<Customer*> customers)
                              : bizName(bizName),bizAddress(bizAddress),VAT(VAT),parcs(parcs),customers(customers){}
 
 void VacationParcs::addPark(Parcs* park) {
@@ -95,15 +93,15 @@ void VacationParcs::changeParkSrv(int parcID,int srvToBeChanged,bool state) {
     }
 }
 
-void VacationParcs::addCustomer(const Customer& neuCustomer) {
+void VacationParcs::addCustomer(Customer* neuCustomer) {
 //    Vanilla - No checks!
     customers.push_back(neuCustomer);
 }
 
-void VacationParcs::registerCustomer(const Customer &newCustomer) {
+void VacationParcs::registerCustomer(Customer* newCustomer) {
     // TODO With if checks so all data is valid
     addCustomer(newCustomer);
-    std::cout << "Customer " << newCustomer.getID() << " has registered successfully." << std::endl;
+    std::cout << "Customer " << newCustomer->getID() << " has registered successfully." << std::endl;
 }
 
 void VacationParcs::addBooking(Booking* newBooking) {

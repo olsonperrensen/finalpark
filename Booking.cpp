@@ -5,7 +5,7 @@
 #include "Booking.h"
 #include "Customer.h"
 
-Booking::Booking(int ID, Customer customer, std::vector<Accommodations*> accommodations, bool activityPass,
+Booking::Booking(int ID, Customer* customer, std::vector<Accommodations*> accommodations, bool activityPass,
                  bool sportsPass, bool bicycleRent, bool swimmingPass): ID(ID), customer(customer), accommodations(accommodations),
                                                                         activityPass(activityPass){
 
@@ -17,14 +17,6 @@ int Booking::getID() const {
 
 void Booking::setId(int id) {
     ID = id;
-}
-
-const Customer &Booking::getCustomer() const {
-    return customer;
-}
-
-void Booking::setCustomer(const Customer &customer) {
-    Booking::customer = customer;
 }
 
 bool Booking::isActivityPass() const {
@@ -58,7 +50,18 @@ bool Booking::isSwimmingPass() const {
 void Booking::setSwimmingPass(bool swimmingPass) {
     Booking::swimmingPass = swimmingPass;
 }
+Customer *Booking::getCustomer() const {
+    return customer;
+}
 
-void Booking::setAccommodations1(const std::vector<Accommodations *> &accommodations) {
+void Booking::setCustomer(Customer *customer) {
+    Booking::customer = customer;
+}
+
+const std::vector<Accommodations *> &Booking::getAccommodations() const {
+    return accommodations;
+}
+
+void Booking::setAccommodations(const std::vector<Accommodations *> &accommodations) {
     Booking::accommodations = accommodations;
 }

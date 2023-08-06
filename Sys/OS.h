@@ -22,7 +22,7 @@ public:
     //    Acc MGMT
     void modifyAccommodation(VacationParcs &company, int parkID, int accommodationID,Accommodations* updatedAccommodation);
 // Usr MGMT
-    void createCustomer(VacationParcs &company, const Customer &newCustomer);
+    void createCustomer(VacationParcs &company, Customer* newCustomer);
 
     void deleteCustomer(VacationParcs &company, int userID);
 //    Booking MGMT

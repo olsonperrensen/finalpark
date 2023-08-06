@@ -16,20 +16,20 @@ int main() {
     std::vector<Accommodations*> v;
 //TODO remove manual ID placing
     HotelRoom a(1,"Bahamas",12,false,1,12,32,false,l);
-    Cabin anew(2,2,2,false,l,3);
+    Cabin* anew = new Cabin(2,2,2,false,l,3);
     HotelRoom anewnew(999,"Maldives",12,false,1,12,32,false,l);
-    Cabin afinal(999,2,2,false,l,3);
+    Cabin* afinal = new Cabin(999,2,2,false,l,3);
     std::vector<Accommodations*> vnew{&anewnew};
     v.push_back(&a);
 
     Parcs::ParcServices s(true,true, true, true, true, true);
-    std::vector<Parcs>pv;
-    Parcs p("Destination 1","bloemlaan 7",s,v);
+    std::vector<Parcs*>pv;
+    Parcs* p = new Parcs("Destination 1","bloemlaan 7",s,v);
     pv.push_back(p);
-    Customer c("Bruce Lee","hongkongstraat 178", "blee@hotmail.co.uk", "Bancontact");
-    Customer neuc("Mary Manson","Brusselsepoort 2", "mary@manson.no", "Payconiq");
+    Customer* c = new Customer("Bruce Lee","hongkongstraat 178", "blee@hotmail.co.uk", "Bancontact");
+    Customer* neuc = new Customer("Mary Manson","Brusselsepoort 2", "mary@manson.no", "Payconiq");
 
-    std::vector<Customer> cv;
+    std::vector<Customer*> cv;
     cv.push_back(c);
 
     VacationParcs vp("jonh", "lane 8", "BE01", pv,
@@ -38,7 +38,7 @@ int main() {
     Parcs parkupdate("SAM", "Kyotostraat 88", s,
                      v);
 
-    std::vector<Parcs> vp2 = vp.getParcs();
+    std::vector<Parcs*> vp2 = vp.getParcs();
 //    for (Parcs e:vp2) {
 //    e.removeAccommodation(1);
 //    }
@@ -65,7 +65,7 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //    TODO just as you did with accommodations, remove all consts for customers so Employees can modify them
 //TODO only accept true w/static cast, not 1
 //TODO remove manual IDing
-    Booking b(1,c,v,1,1,1,1);
+    Booking* b = new Booking(1,c,v,1,1,1,1);
     Employee e("Tom Sawyer","laanbaan 1", "tom@boom.be", "Bancontact",false);
     os.createCustomer(vp,neuc);
 
@@ -76,7 +76,7 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
     std::cout << "Customers present in VP:\n";
     for (auto e:vp.getCustomers()) {
 //        TODO fix ID being replaced
-    std::cout << std::endl << "Customer ID: "<<e.getID() << std::endl;
+    std::cout << std::endl << "Customer ID: "<<e->getID() << std::endl;
     }
 //    TODO update dunder str so vp outputs Bookings as well
     os.bookAccommodation(vp,1,999,b);
@@ -86,7 +86,7 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //    e.deleteCustomer(vp,1);
 //individual modifying
     os.modifyAccommodation(vp,2,999,afinal);
-    c.modifyData(Customer("Larry Page","Sergeistraat 9", "larry@goo.gl", "Bancontact"));
+    c->modifyData(Customer("Larry Page","Sergeistraat 9", "larry@goo.gl", "Bancontact"));
 
     std::cout << vp;
 //TODO find by id Booking
