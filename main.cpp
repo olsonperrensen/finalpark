@@ -14,7 +14,7 @@ int main() {
 
     LuxuryLevel l(false,false, false, false,"Cabin");
     std::vector<Accommodations*> v;
-//TODO remove manual ID placing
+//TODO remove manual IDing
     HotelRoom a(1,"Bahamas",12,false,1,12,32,false,l);
     Cabin* anew = new Cabin(2,2,2,false,l,3);
     HotelRoom anewnew(42,"Maldives",12,false,1,12,32,false,l);
@@ -62,27 +62,20 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
         std::cin >> srv;
         o.changeService(vp,2,srv,false);
     }
-//    TODO just as you did with accommodations, remove all consts for customers so Employees can modify them
 //TODO only accept true w/static cast, not 1
-//TODO remove manual IDing
     Booking* b = new Booking(1,c,v,1,1,1,1);
     Employee e("Tom Sawyer","laanbaan 1", "tom@boom.be", "Bancontact",false);
     os.createCustomer(vp,neuc);
-
-//TODO    Also accept on the fly creation
-//    e.createCustomer(vp,new Customer("Mary Manson","Brusselsepoort 2", "mary@manson.no", "Payconiq"));
     os.modifyCustomer(vp,2,Customer("Bush Anderson","Manhattanweg 33", "mht@work.cn", "Contant Geld"));
 
     std::cout << "Customers present in VP:\n";
     for (auto e:vp.getCustomers()) {
-//        TODO fix ID being replaced
-    std::cout << std::endl << "Customer ID: "<<e->getID() << std::endl;
+//        TODO fix ID being replaced on all modify methods!
+        std::cout << std::endl << "Customer ID: " << e->getID() << std::endl;
     }
-//    TODO update dunder str so vp outputs Bookings as well
 
     os.bookAccommodation(vp,1,1,b);
     os.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));
-//    TODO prevent change ID Booking
 //    e.deleteBooking(vp,72);
 //    e.deleteCustomer(vp,1);
 //individual modifying
@@ -90,7 +83,5 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
     c->modifyData(Customer("Larry Page","Sergeistraat 9", "larry@goo.gl", "Bancontact"));
 
     std::cout << vp;
-//TODO find by id Booking
     return 0;
-//    TODO implement polymorphism -> pointer getting the right call
 }
