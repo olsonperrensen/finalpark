@@ -13,7 +13,6 @@ private:
     bool childrenBed;
     std::string location;
 public:
-//  TODO  dunder
     friend std::ostream& operator<<(std::ostream& os, const HotelRoom& obj) {
         os << static_cast<const Accommodations&>(obj)  // Print the base class members
            << ", floor: " << obj.floor << ", nrBeds: " << obj.nrBeds

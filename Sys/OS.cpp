@@ -94,6 +94,5 @@ void OS::deleteBooking(VacationParcs &company, int bookingID) {
 }
 
 void OS::createCustomer(VacationParcs &company, Customer* newCustomer) {
-//    TODO rethink
     company.registerCustomer(newCustomer);
 }

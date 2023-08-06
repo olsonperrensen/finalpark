@@ -125,9 +125,7 @@ public:
     //    Own logic for MGMT
 // REPLACES entire object with completely new park! NOt individual pieces.
     void modifyPark(int parkID, const Parcs &updatedPark);
-//    Function overloading to the rescue!
-//TODO
-    void modifyPark(int parkID, const Parcs::ParcServices &updatedServices);
+// Solved by using changeParkSrv instead
 
     const std::string &getVAT() const;
 
@@ -138,7 +136,9 @@ public:
 
 //    individual Customer adding
     void addCustomer(Customer* neuCustomer);
-//    CLI exec fun
+//    //    VP part
+////    individual Customer adding
+////    CLI execs fun
     void registerCustomer(Customer *newCustomer);
 };
 

@@ -50,7 +50,6 @@ public:
 
 //    Important! :
 //    BE ABLE TO COMPARE TWO FULL OBJECTS against each other
-//TODO operator== for all classes ... expand this one once done
     bool operator==(const Booking& other) const {
         return (this->ID == other.ID)&&(this->customer==other.customer)&&(this->accommodations==other.accommodations)
         &&(this->activityPass==other.activityPass)&&(this->sportsPass==other.sportsPass)&&(this->bicycleRent==other.bicycleRent)

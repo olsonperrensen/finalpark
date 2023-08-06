@@ -29,10 +29,6 @@ public:
     void bookAccommodation(VacationParcs &company, int customerID, int accommodationID,  Booking* newBooking);
 
     void deleteBooking(VacationParcs &company, int bookingID);
-//    VP part
-//    individual Customer adding
-//    CLI execs fun
-    void registerCustomer(VacationParcs &company,const Customer &newCustomer);
 };
 
 
