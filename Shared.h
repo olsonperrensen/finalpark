@@ -13,7 +13,7 @@
 // Universal benefit of using template functions! No need for boilerplate repetition anymore.
 const std::vector<std::string> LUXURIES = {"BBQ","Surround System","Breakfast Service","Cleaning Service"};
 const std::vector<std::string> SERVICES = {"Subtropic Swimming Pool","Sports Infrastructure","Bowling Alley","Bicycle Rent", "Children's Paradise","Water Bikes"};
-const enum class ESERVICES:int{SUBTROPIC_SWIMMING_POOL=1,SPORTS_INFRASTRUCTURE,BOWLING_ALLEY,BICYCLE_RENT,CHILDRENS_PARADISE,WATER_BIKES};
+enum class ESERVICES:int{SUBTROPIC_SWIMMING_POOL=1,SPORTS_INFRASTRUCTURE=2,BOWLING_ALLEY=3,BICYCLE_RENT=4,CHILDRENS_PARADISE=5,WATER_BIKES=6};
 const std::vector<std::string> PAYMENT_METHODS = {"Bancontact","Payconiq","Contant Geld"};
 const std::vector<std::string> ACCO_KINDS = {"HotelRoom","Cabin"};
 

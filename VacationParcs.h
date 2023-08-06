@@ -83,7 +83,7 @@ public:
 //    Full object removal
     void removePark(int id);
 //    Partial removal -> Service removal inside of Parc, not Parc itself!
-    void removeParkSrv(int id,int srvToBeChanged);
+    void removeParkSrv(int parcID,int srvToBeChanged);
     //    Own logic for MGMT
 // REPLACES entire object with completely new park! NOt individual pieces.
     void modifyPark(int parkID, const Parcs &updatedPark);

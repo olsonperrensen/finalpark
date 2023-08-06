@@ -7,7 +7,7 @@
 int main() {
     std::cout << "Hello, World!" << std::endl;
 
-    LuxuryLevel l(false,false, false, false,"CCabin");
+    LuxuryLevel l(false,false, false, false,"Cabin");
     std::vector<Accommodations> v;
 
     Accommodations a(1,13,2,false,l);
@@ -16,7 +16,7 @@ int main() {
     std::vector<Accommodations> vnew{anewnew};
     v.push_back(a);
 
-    Parcs::ParcServices s(false,false, false, false, false, false);
+    Parcs::ParcServices s(true,true, true, true, true, true);
     std::vector<Parcs>pv;
     Parcs p("Destination 1","bloemlaan 7",s,v);
     pv.push_back(p);
@@ -42,6 +42,18 @@ int main() {
     o.createAccommodation(vp,2,anew);
     o.modifyAccommodations(vp,2,vnew);
     o.deleteAccommodation(vp,2,999);
+    if(1){
+        int srv;
+        std::cout << "Choose which services to remove:" << R"(
+SUBTROPIC_SWIMMING_POOL=1,
+SPORTS_INFRASTRUCTURE=2,
+BOWLING_ALLEY=3,
+BICYCLE_RENT=4,
+CHILDRENS_PARADISE=5,
+WATER_BIKES=6)" << std::endl << "Choose: ";
+        std::cin >> srv;
+        o.removeService(vp,2,srv);
+    }
 //    TODO just as you did with accommodations, remove all consts for customers so Employees can modify them
     std::cout << vp;
 //TODO only accept true w/static cast, not 1

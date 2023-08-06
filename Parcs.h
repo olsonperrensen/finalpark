@@ -69,7 +69,7 @@ private:
     std::vector<Accommodations> accommodations;
 public:
 //    dunder
-    friend std::ostream& operator<<(std::ostream& os, const Parcs& obj) {
+    friend std::ostream& operator<<(std::ostream& os, Parcs obj) {
         os << "Parcs ( name: " << obj.getName() << ", address: " << obj.getAddress() <<
            ", services: " << obj.getServices() << ", accommodations: [";
 

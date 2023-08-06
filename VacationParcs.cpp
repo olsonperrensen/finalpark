@@ -76,13 +76,13 @@ void VacationParcs::setBizAddress(const std::string &bizAddress) {
     this->bizAddress = bizAddress;
 }
 
-void VacationParcs::removeParkSrv(int id,int srvToBeChanged) {
+void VacationParcs::removeParkSrv(int parcID,int srvToBeChanged) {
     const bool TURNOFF = false;
-    if (Parcs* parc = findItemByID(parcs, id)) {
+    if (Parcs* parc = findItemByID(parcs, parcID)) {
         switch (srvToBeChanged) {
             using enum ESERVICES;
             case static_cast<int>(SUBTROPIC_SWIMMING_POOL):
-                parc->getServices().setWaterBikes(TURNOFF);
+                parc->getServices().setSubtropicSwimmingPool(TURNOFF);
                 std::cout << "Subtropic swimming pool service has been turned off." << std::endl;
                 break;
             case static_cast<int>(SPORTS_INFRASTRUCTURE):
