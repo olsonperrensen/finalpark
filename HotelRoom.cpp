@@ -37,10 +37,14 @@ void HotelRoom::setLocation(const std::string &location) {
 }
 
 HotelRoom::HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed, int ID, int nrPeople, int size,
-                     bool bathroomWithBath, LuxuryLevel luxuryLevel):Accommodations(ID,nrPeople,size,bathroomWithBath,luxuryLevel),
-                     floor(floor),location(location),nrBeds(nrBeds),childrenBed(childrenBed) {
-
+                     bool bathroomWithBath, LuxuryLevel luxuryLevel):floor(floor),location(location),nrBeds(nrBeds),childrenBed(childrenBed) {
+    this->ID = ID;
+    this->nrPeople = nrPeople;
+    this->size = size;
+    this->bathroomWithBath = bathroomWithBath;
+    this->luxuryLevel = luxuryLevel;
 }
+
 // De-abstract from parent
 
 int HotelRoom::getID() const  {

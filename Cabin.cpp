@@ -12,10 +12,12 @@ void Cabin::setBedrooms(int bedrooms) {
     Cabin::bedrooms = bedrooms;
 }
 
-Cabin::Cabin(int id, int nrPeople, int size, bool bathroomWithBath, LuxuryLevel luxuryLevel, int bedrooms)
-// Since it is a derived class, calling Base is needed, otherwise complaints.
-        : Accommodations(), bedrooms(bedrooms) {
-
+Cabin::Cabin(int id, int nrPeople, int size, bool bathroomWithBath, LuxuryLevel luxuryLevel, int bedrooms): bedrooms(bedrooms) {
+    this->ID = ID;
+    this->nrPeople = nrPeople;
+    this->size = size;
+    this->bathroomWithBath = bathroomWithBath;
+    this->luxuryLevel = luxuryLevel;
 }
 
 int Cabin::getID() const  {

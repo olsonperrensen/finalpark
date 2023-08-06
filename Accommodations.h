@@ -26,9 +26,9 @@ public:
     return (this->ID==other.ID)&&(this->nrPeople==other.nrPeople)&&(this->size==other.size)
     &&(this->bathroomWithBath==other.bathroomWithBath)&&(this->luxuryLevel==other.luxuryLevel);
 }
-
+//NO full constructor!! Never initialize since abstract. I prefer copying list initialization values in the derived classes
+// than providing a fake constructor here.
     Accommodations()=default;
-    Accommodations(int ID,int nrPeople,int size,bool bathroomWithBath,LuxuryLevel luxuryLevel);
     virtual int getID() const =0;
 
     virtual void setId(int id) =0;
