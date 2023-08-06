@@ -18,6 +18,11 @@ public:
         os << "User ( ID: " << obj.getID() << ", name: " << obj.getName() << ", address: " << obj.getAddress() << " ) ";
         return os;
     }
+//    no (direct) User instance can ever be born.
+    virtual bool operator==(const User& other) const {
+        return (this->userID == other.userID)&&(this->name==other.name)&&(this->address==other.address)
+        &&(this->mail==other.mail);
+    }
     const std::string &getName() const;
 
     void setName(const std::string &name);

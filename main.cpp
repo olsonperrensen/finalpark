@@ -88,7 +88,6 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 
     std::cout << vp;
 //TODO find by id Booking
-//   std::cout << b;
     return 0;
 //    TODO implement polymorphism -> pointer getting the right call
 }

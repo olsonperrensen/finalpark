@@ -18,7 +18,16 @@ public:
            << ", mail: " << obj.getMail() << ", paymentMethod: " << obj.paymentMethod<<" ) ";
         return os;
     }
+    bool operator==(const User& other) const override {
+        const Customer* derivedOther = dynamic_cast<const Customer*>(&other);
+        if (derivedOther == nullptr) {
+            // The other object is not of type Derived, so the objects are not equal.
+            return false;
+        }
 
+        // Compare base class members and derived class members.
+        return User::operator==(other) && (this->paymentMethod==derivedOther->paymentMethod);
+    }
     Customer(std::string name,std::string address, std::string mail, std::string paymentMethod);
     const std::string &getPaymentMethod() const;
 

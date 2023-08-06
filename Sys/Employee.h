@@ -19,7 +19,17 @@ public:
            << ", mail: " << obj.getMail() << ", isOnLeave: " << obj.isOnLeave<<" ) ";
         return os;
     }
+//    doing cd ../../
+    bool operator==(const User& other) const override {
+        const Employee* derivedOther = dynamic_cast<const Employee*>(&other);
+        if (derivedOther == nullptr) {
+            // The other object is not of type Derived, so the objects are not equal.
+            return false;
+        }
 
+        // Compare base class members and derived class members.
+        return Customer::operator==(other) && (this->isOnLeave==derivedOther->isOnLeave);
+    }
     Employee(std::string name,std::string address, std::string mail, std::string paymentMethod,bool isOnLeave);
 private:
     bool isOnLeave;
