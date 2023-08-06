@@ -32,12 +32,12 @@ void VacationParcs::modifyPark(int parkID, const Parcs &updatedPark) {
             // If the park is found, modify its attributes.
 //            IMPORTANT: Derenfece pointer otherwise your only changing where it points to!
             *parc = updatedPark;
-            std::cout << "Park " << parkID <<" has been modified successfully." << std::endl;
+            std::cout << "modifyPark -> Park " << parkID <<" has been modified successfully." << std::endl;
             return;
         }
 
     // If the park is not found, print an error message.
-    std::cout << "Error: Park not found.\n";
+    std::cout << "modifyPark -> Error: Park not found.\n";
 }
 
 const std::string &VacationParcs::getBizName() const {
@@ -62,34 +62,34 @@ void VacationParcs::changeParkSrv(int parcID,int srvToBeChanged,bool state) {
             using enum ESERVICES;
             case static_cast<int>(SUBTROPIC_SWIMMING_POOL):
                 parc->getServices().setSubtropicSwimmingPool(state);
-                std::cout << "Subtropic swimming pool service has been turned "<< (state?"on":"off") << "." << std::endl;
+                std::cout << "changeParkSrv -> Subtropic swimming pool service has been turned "<< (state?"on":"off") << "." << std::endl;
                 break;
             case static_cast<int>(SPORTS_INFRASTRUCTURE):
                 parc->getServices().setSportsInfrastructure(state);
-                std::cout << "Sports infrastructure service has been turned "<< (state?"on":"off") << "." << std::endl;
+                std::cout << "changeParkSrv -> Sports infrastructure service has been turned "<< (state?"on":"off") << "." << std::endl;
                 break;
             case static_cast<int>(BOWLING_ALLEY):
                 parc->getServices().setBowlingAlley(state);
-                std::cout << "Bowling alley service has been turned "<< (state?"on":"off") << "." << std::endl;
+                std::cout << "changeParkSrv -> Bowling alley service has been turned "<< (state?"on":"off") << "." << std::endl;
                 break;
             case static_cast<int>(BICYCLE_RENT):
                 parc->getServices().setBicycleRent(state);
-                std::cout << "Bicycle rent service has been turned "<< (state?"on":"off") << "." << std::endl;
+                std::cout << "changeParkSrv -> Bicycle rent service has been turned "<< (state?"on":"off") << "." << std::endl;
                 break;
             case static_cast<int>(CHILDRENS_PARADISE):
                 parc->getServices().setChildrensParadise(state);
-                std::cout << "Children's paradise service has been turned "<< (state?"on":"off") << "." << std::endl;
+                std::cout << "changeParkSrv -> Children's paradise service has been turned "<< (state?"on":"off") << "." << std::endl;
                 break;
             case static_cast<int>(WATER_BIKES):
                 parc->getServices().setWaterBikes(state);
-                std::cout << "Water bikes service has been turned off "<< (state?"on":"off") << "." << std::endl;
+                std::cout << "changeParkSrv -> Water bikes service has been turned off "<< (state?"on":"off") << "." << std::endl;
                 break;
             default:
-                std::cout << "Invalid service ID." << std::endl;
+                std::cout << "changeParkSrv -> Invalid service ID." << std::endl;
                 break;
         }
     } else {
-        std::cout << "Could not find a park with the given ID." << std::endl;
+        std::cout << "changeParkSrv -> Could not find a park with the given ID." << std::endl;
     }
 }
 
@@ -101,7 +101,7 @@ void VacationParcs::addCustomer(Customer* neuCustomer) {
 void VacationParcs::registerCustomer(Customer* newCustomer) {
     // TODO With if checks so all data is valid
     addCustomer(newCustomer);
-    std::cout << "Customer " << newCustomer->getID() << " has registered successfully." << std::endl;
+    std::cout << "registerCustomer -> Customer " << newCustomer->getID() << " has registered successfully." << std::endl;
 }
 
 void VacationParcs::addBooking(Booking* newBooking) {

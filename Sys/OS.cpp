@@ -7,19 +7,19 @@
 void OS::modifyCustomer(VacationParcs &company, int userID, const Customer &updatedCustomer) {
     if (Customer* customer = findItemByID(company.getCustomers(), userID)) {
         *customer = updatedCustomer;
-        std::cout << "Customer " << userID << " has been modified successfully." << std::endl;
+        std::cout << "modifyCustomer -> Customer " << userID << " has been modified successfully." << std::endl;
         return;
     }
-    std::cout << "Error: Customer not found.\n";
+    std::cout << "modifyCustomer -> Error: Customer not found.\n";
 }
 
 void OS::modifyBooking(VacationParcs &company, int bookingID, const Booking &updatedBooking) {
     if (Booking* booking = findItemByID(company.getBookings(), bookingID)) {
         *booking = updatedBooking;
-        std::cout << "Booking " << bookingID << " has been modified successfully." << std::endl;
+        std::cout << "modifyBooking -> Booking " << bookingID << " has been modified successfully." << std::endl;
         return;
     }
-    std::cout << "Error: Booking not found.\n";
+    std::cout << "modifyBooking -> Error: Booking not found.\n";
 }
 
 void OS::modifyAccommodation(VacationParcs &company, int parkID, int accommodationID,Accommodations* updatedAccommodation) {
@@ -36,21 +36,21 @@ void OS::modifyAccommodation(VacationParcs &company, int parkID, int accommodati
             std::cout << "Accommodation " << accommodationID << " has been modified successfully." << std::endl;
             return;
         }
-        std::cout << "Error: Accommodation not found.\n";
+        std::cout << "modifyAccommodation -> Error: Accommodation not found.\n";
         return;
     }
-    std::cout << "Error: Park not found.\n";
+    std::cout << "modifyAccommodation -> Error: Park not found.\n";
 }
 
 void OS::deleteCustomer(VacationParcs &company, int userID) {
     // Find the booking with the given ID in the list of bookings.
     if (Customer* c = findItemByID(company.getCustomers(), userID)) {
         removeItem(company.getCustomers(),userID);
-        std::cout << "Customer " << userID << " has been deleted successfully." << std::endl;
+        std::cout << "deleteCustomer -> Customer " << userID << " has been deleted successfully." << std::endl;
         return;
     }
     // If the booking is not found, print an error message.
-    std::cout << "Error: Customer not found.\n";
+    std::cout << "deleteCustomer -> Error: Customer not found.\n";
 }
 
 void OS::bookAccommodation(VacationParcs &company, int customerID, int accommodationID,  Booking* newBooking) {
@@ -58,7 +58,7 @@ void OS::bookAccommodation(VacationParcs &company, int customerID, int accommoda
     std::vector<Customer*>& customers = company.getCustomers();  // MUST reference otherwise copy-work :(
     Customer* customer = findItemByID(customers, customerID);
     if (!customer) {
-        std::cout << "Error: Customer not found.\n";
+        std::cout << "bookAccommodation -> Error: Customer not found.\n";
         return;
     }
 
@@ -70,23 +70,23 @@ void OS::bookAccommodation(VacationParcs &company, int customerID, int accommoda
         if (accommodation) {
             // Add the new booking to the list of bookings.
             company.addBooking(newBooking);
-            std::cout << "Booking " << newBooking->getID() << " has been created successfully.\n";
+            std::cout << "bookAccommodation -> Booking " << newBooking->getID() << " has been created successfully.\n";
             return;
         }
     }
 
-    std::cout << "Error: Accommodation not found.\n";
+    std::cout << "bookAccommodation -> Error: Accommodation not found.\n";
 }
 
 void OS::deleteBooking(VacationParcs &company, int bookingID) {
     // Find the booking with the given ID in the list of bookings.
     if (Booking* booking = findItemByID(company.getBookings(), bookingID)) {
         removeItem(company.getBookings(),bookingID);
-        std::cout << "Booking " << bookingID << " has been deleted successfully." << std::endl;
+        std::cout << "deleteBooking -> Booking " << bookingID << " has been deleted successfully." << std::endl;
         return;
     }
     // If the booking is not found, print an error message.
-    std::cout << "Error: Booking not found.\n";
+    std::cout << "deleteBooking -> Error: Booking not found.\n";
 }
 
 void OS::createCustomer(VacationParcs &company, Customer* newCustomer) {

@@ -20,30 +20,30 @@ const std::vector<std::string> ACCO_KINDS = {"HotelRoom","Cabin"};
 template <typename T>
     void addItem(std::vector<T*>& vec, T* item) {
         vec.push_back(item);
-        std::cout << "A new " << typeid(T).name() << " has been added successfully.\n";
+        std::cout << "addItem -> A new " << typeid(T).name() << " has been added successfully.\n";
     }
 
 template <typename T>
 void removeItem(std::vector<T*>& vec, int id) {
     if (id < 0 || id >= vec.size()) {
-        std::cout << "Invalid ID.\n";
+        std::cout << "removeItem -> Invalid ID.\n";
         return;
     }
 
     vec.erase(vec.begin() + id);
-    std::cout << "The item with ID " << id << " has been removed successfully.\n";
+    std::cout << "removeItem -> The item with ID " << id << " has been removed successfully.\n";
 }
 // Base case: single name-value pair.
 template<typename T>
 void printBooleans(const std::string& name, T value) {
-    static_assert(std::is_same<T, bool>::value, "All arguments should be of type bool.");
+    static_assert(std::is_same<T, bool>::value, "printBooleans -> All arguments should be of type bool.");
     std::cout << name << ": " << (value ? "true" : "false") << '\n';
 }
 
 // Recursive case: multiple name-value pairs.
 template<typename T, typename... Args>
 void printBooleans(const std::string& name, T value, Args... args) {
-    static_assert(std::is_same<T, bool>::value, "All arguments should be of type bool.");
+    static_assert(std::is_same<T, bool>::value, "printBooleans -> All arguments should be of type bool.");
     std::cout << name << ": " << (value ? "true" : "false") << '\n';
     printBooleans(args...);
 }
@@ -53,7 +53,7 @@ void printBooleans(const std::string& name, T value, Args... args) {
 // Base case: single name-value pair.
 template<typename T>
 void setBooleans(T& object, void(T::*setter)(bool), bool value) {
-    static_assert(std::is_same<decltype(setter), void(T::*)(bool)>::value, "All setter methods should take a single bool argument.");
+    static_assert(std::is_same<decltype(setter), void(T::*)(bool)>::value, "setBooleans-> All setter methods should take a single bool argument.");
     (object.*setter)(value);
 }
 

@@ -10,7 +10,7 @@ Owner::Owner(std::string name, std::string address, std::string mail) : User(nam
 
 void Owner::createPark(VacationParcs &company, Parcs* park) {
     company.addPark(park);
-    std::cout << "A new parc has been created" << std::endl;
+    std::cout << "createPark -> A new parc has been created" << std::endl;
 }
 
 void Owner::modifyPark(VacationParcs &company, int parkID, const Parcs &updatedPark) {
@@ -28,7 +28,7 @@ void Owner::createAccommodation(VacationParcs &company, int parkID, Accommodatio
             // Add the new accommodation to the park
             parc->addAccommodation(newAccommodation);
         } else {
-            std::cout << "Your Parc number does not match with our records. Nothing could be found.\n";
+            std::cout << "createAccommodation -> Your Parc number does not match with our records. Nothing could be found.\n";
         }
     }
 }
@@ -39,9 +39,12 @@ void Owner::modifyAccommodations(VacationParcs &company, int parkID,  std::vecto
             //            TODO allow for one modification only ipv bulk... in other words CHECK removeItem for sth similar
             // //          findItemByID should happen with Accommodations as well
     if (Parcs* parc = findItemByID(parcs, parkID))
+    {
         parc->setAccommodations(updatedAccommodations);
+        std::cout << "modifyAccommodations -> Bulk accommodation modification completed!\n";
+    }
      else
-        std::cout << "Your Parc number does not match with our records. Nothing could be found.\n";
+        std::cout << "modifyAccommodations -> Your Parc number does not match with our records. Nothing could be found.\n";
 }
 
 void Owner::deleteAccommodation(VacationParcs &company, int parkID, int accommodationID) {
@@ -50,7 +53,7 @@ void Owner::deleteAccommodation(VacationParcs &company, int parkID, int accommod
     if (Parcs* parc = findItemByID(parcs, parkID))
         parc->removeAccommodation(accommodationID);
     else
-        std::cout << "Your Parc number does not match with our records. Nothing could be found.\n";
+        std::cout << "deleteAccommodation -> Your Parc number does not match with our records. Nothing could be found.\n";
 }
 
 void Owner::changeService(VacationParcs &company, int parkID, const int srvToBeChanged, const bool state) {

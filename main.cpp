@@ -17,7 +17,7 @@ int main() {
 //TODO remove manual ID placing
     HotelRoom a(1,"Bahamas",12,false,1,12,32,false,l);
     Cabin* anew = new Cabin(2,2,2,false,l,3);
-    HotelRoom anewnew(999,"Maldives",12,false,1,12,32,false,l);
+    HotelRoom anewnew(42,"Maldives",12,false,1,12,32,false,l);
     Cabin* afinal = new Cabin(999,2,2,false,l,3);
     std::vector<Accommodations*> vnew{&anewnew};
     v.push_back(&a);
@@ -79,6 +79,7 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
     std::cout << std::endl << "Customer ID: "<<e->getID() << std::endl;
     }
 //    TODO update dunder str so vp outputs Bookings as well
+
     os.bookAccommodation(vp,1,999,b);
     os.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));
 //    TODO prevent change ID Booking
