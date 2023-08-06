@@ -30,7 +30,7 @@ void OS::modifyAccommodation(VacationParcs &company, int parkID, int accommodati
         // Find the accommodation with the given ID in the list of accommodations.
 //        NESTED var init (again) so mem doesn't get wasted
         if (Accommodations* accommodation = findItemByID(parc->getAccommodations(), accommodationID)) {
-            *accommodation = updatedAccommodation;
+            *accommodation = *updatedAccommodation;
             std::cout << "Accommodation " << accommodationID << " has been modified successfully." << std::endl;
             return;
         }
@@ -51,14 +51,9 @@ void OS::deleteCustomer(VacationParcs &company, int userID) {
     std::cout << "Error: Customer not found.\n";
 }
 
-void OS::createCustomer(VacationParcs &company, const Customer &newCustomer) {
-//    TODO rethink
-    company.registerCustomer(newCustomer);
-}
-
-void OS::bookAccommodation(VacationParcs &company, int customerID, int accommodationID, const Booking& newBooking) {
+void OS::bookAccommodation(VacationParcs &company, int customerID, int accommodationID,  Booking* newBooking) {
     // Find the customer with the given ID in the list of customers.
-    std::vector<Customer>& customers = company.getCustomers();  // MUST reference otherwise copy-work :(
+    std::vector<Customer*>& customers = company.getCustomers();  // MUST reference otherwise copy-work :(
     Customer* customer = findItemByID(customers, customerID);
     if (!customer) {
         std::cout << "Error: Customer not found.\n";
@@ -66,14 +61,14 @@ void OS::bookAccommodation(VacationParcs &company, int customerID, int accommoda
     }
 
     // Find the accommodation with the given ID in the list of accommodations.
-    std::vector<Parcs>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
-    for (Parcs& parc : parcs) {
-        std::vector<Accommodations>& accommodations = parc.getAccommodations();  // MUST reference otherwise copy-work :(
+    std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
+    for (Parcs* parc : parcs) {
+        std::vector<Accommodations*>& accommodations = parc->getAccommodations();  // MUST reference otherwise copy-work :(
         Accommodations* accommodation = findItemByID(accommodations, accommodationID);
         if (accommodation) {
             // Add the new booking to the list of bookings.
             company.addBooking(newBooking);
-            std::cout << "Booking " << newBooking.getID() << " has been created successfully.\n";
+            std::cout << "Booking " << newBooking->getID() << " has been created successfully.\n";
             return;
         }
     }
@@ -90,4 +85,9 @@ void OS::deleteBooking(VacationParcs &company, int bookingID) {
     }
     // If the booking is not found, print an error message.
     std::cout << "Error: Booking not found.\n";
+}
+
+void OS::createCustomer(VacationParcs &company, const Customer &newCustomer) {
+//    TODO rethink
+    company.registerCustomer(newCustomer);
 }

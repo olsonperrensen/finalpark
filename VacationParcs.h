@@ -20,15 +20,14 @@ class VacationParcs{
 private:
 //    OWN way of saving Bookings... was bt here and in Customer but since it would be easier to manipulate
 // bookings directly if it belongs to the Customer class I think here is a bit safer
-    std::vector<Booking> bookings;
+    std::vector<Booking*> bookings;
 public:
-     std::vector<Booking> &getBookings() ;
+     std::vector<Booking *> &getBookings() ;
 
-//     BULK level - avoid
-    void setBookings(const std::vector<Booking> &bookings);
+    void setBookings(const std::vector<Booking *> &bookings);
 
 //    At individual level - good
-    void addBooking(const Booking& newBooking);
+    void addBooking(Booking* newBooking);
 
 private:
     std::string VAT;
@@ -41,7 +40,13 @@ private:
 //    then it would make sense for it to have a std::vector<Parcs> parcs attribute.
 // ***********************************************************************************************
     std::vector<Parcs*> parcs;
-    std::vector<Customer> customers;
+    std::vector<Customer*> customers;
+public:
+     std::vector<Customer *> &getCustomers() ;
+
+    void setCustomers(const std::vector<Customer *> &customers);
+
+private:
 //    Managing a business so these attributes from Parc are redefined here for sole convenience
     std::string bizName;
     std::string bizAddress;
@@ -75,7 +80,7 @@ public:
         }
         os << "], Customers: [";
 
-        std::vector<Customer>& customers = obj.getCustomers();
+        std::vector<Customer*> customers = obj.getCustomers();
         for (size_t i = 0; i < customers.size(); ++i) {
             os << customers[i];
 
@@ -87,7 +92,7 @@ public:
 
         os << "], Bookings: [";
 
-        std::vector<Booking>& bookings = obj.getBookings();
+        std::vector<Booking *> bookings = obj.getBookings();
         for (size_t i = 0; i < bookings.size(); ++i) {
             os << bookings[i];
 
@@ -128,9 +133,9 @@ public:
 
     void setVAT(const std::string &vat);
 
-    std::vector<Customer> &getCustomers() ;
+
 // BULK CUSTOMER ADDITION, NOT WHAT WE WANT normally
-    void setCustomers(const std::vector<Customer> &customers);
+
 //    individual Customer adding
     void addCustomer(const Customer& neuCustomer);
 //    CLI exec fun

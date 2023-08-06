@@ -26,7 +26,7 @@ public:
 
     void deleteCustomer(VacationParcs &company, int userID);
 //    Booking MGMT
-    void bookAccommodation(VacationParcs &company, int customerID, int accommodationID, const Booking& newBooking);
+    void bookAccommodation(VacationParcs &company, int customerID, int accommodationID,  Booking* newBooking);
 
     void deleteBooking(VacationParcs &company, int bookingID);
 //    VP part
