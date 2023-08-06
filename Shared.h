@@ -18,23 +18,20 @@ const std::vector<std::string> PAYMENT_METHODS = {"Bancontact","Payconiq","Conta
 const std::vector<std::string> ACCO_KINDS = {"HotelRoom","Cabin"};
 
 template <typename T>
-    void addItem(std::vector<T>& vec, const T& item) {
+    void addItem(std::vector<T*>& vec, T* item) {
         vec.push_back(item);
         std::cout << "A new " << typeid(T).name() << " has been added successfully.\n";
     }
 
 template <typename T>
-void removeItem(std::vector<T>& vec, int id) {
-//    TODO bug still deletes even when ID does not exist
-    try {
-        vec.erase(std::remove_if(vec.begin(), vec.end(), [id](const T& item) {
-            return item.getID() == id;
-        }), vec.end());
-        std::cout << "The " << typeid(T).name() << " with ID " << id << " has been removed successfully.\n";
+void removeItem(std::vector<T*>& vec, int id) {
+    if (id < 0 || id >= vec.size()) {
+        std::cout << "Invalid ID.\n";
+        return;
     }
-    catch (const std::exception &e) {
-        std::cout << "No " << typeid(T).name() << " with ID " << id << " was found. Error: " << e.what() << std::endl;
-    }
+
+    vec.erase(vec.begin() + id);
+    std::cout << "The item with ID " << id << " has been removed successfully.\n";
 }
 // Base case: single name-value pair.
 template<typename T>
@@ -71,13 +68,24 @@ void setBooleans(T& object, void(T::*setter)(bool), bool value, Args... args) {
 
 //More templates!
 template <typename T>
-T* findItemByID(std::vector<T>& vec, int id) {
-    for (T& item : vec) {
-        if (item.getID() == id) {
-            return &item;  // Return a pointer to the found item
+T* findItemByID(std::vector<T*>& vec, int id) {
+    for (T* item : vec) {
+        if (item->getID() == id) {
+            return item;  // Return the found item
         }
     }
     return nullptr;  // Return nullptr if no item was found
 }
-
+// DEPRECATED
+// For non-pointers (Accommodation vectors are impossible in c++ unless with pointers. Therefore
+// this function is meant for Customer to still work under the same mechanisms if you don't want to use pointers
+//template <typename T>
+//T* findItemByID(std::vector<T>& vec, int id) {
+//    for (T* item : vec) {
+//        if (item->getID() == id) {
+//            return item;  // Return the found item
+//        }
+//    }
+//    return nullptr;  // Return nullptr if no item was found
+//}
 #endif //FINALPARK_SHARED_H

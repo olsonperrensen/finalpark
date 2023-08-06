@@ -13,14 +13,14 @@ int main() {
     std::cout << "Hello, World!" << std::endl;
 
     LuxuryLevel l(false,false, false, false,"Cabin");
-    std::vector<Accommodations> v;
+    std::vector<Accommodations*> v;
 //TODO remove manual ID placing
     HotelRoom a(1,"Bahamas",12,false,1,12,32,false,l);
     Cabin anew(2,2,2,false,l,3);
     HotelRoom anewnew(999,"Maldives",12,false,1,12,32,false,l);
     Cabin afinal(999,2,2,false,l,3);
-    std::vector<Accommodations> vnew{anewnew};
-    v.push_back(a);
+    std::vector<Accommodations*> vnew{&anewnew};
+    v.push_back(&a);
 
     Parcs::ParcServices s(true,true, true, true, true, true);
     std::vector<Parcs>pv;

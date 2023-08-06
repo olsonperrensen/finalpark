@@ -12,7 +12,11 @@ class Booking {
 private:
     int ID;
     Customer customer;
-    std::vector<Accommodations> accommodations;
+    std::vector<Accommodations*> accommodations;
+public:
+    void setAccommodations1(const std::vector<Accommodations *> &accommodations);
+
+private:
     bool activityPass,sportsPass,bicycleRent,swimmingPass;
 public:
 //    dunder
@@ -74,7 +78,7 @@ public:
 
     void setSwimmingPass(bool swimmingPass);
 
-    Booking(int ID, Customer customer, std::vector<Accommodations> accommodations, bool activityPass,
+    Booking(int ID, Customer customer, std::vector<Accommodations*> accommodations, bool activityPass,
             bool sportsPass, bool bicycleRent, bool swimmingPass);
 };
 

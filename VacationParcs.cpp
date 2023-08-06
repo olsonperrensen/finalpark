@@ -14,16 +14,6 @@ void VacationParcs::setVAT(const std::string &vat) {
     VAT = vat;
 }
 
-// In the VacationParcs class
-std::vector<Parcs>& VacationParcs::getParcs() {
-    return parcs;
-}
-
-
-void VacationParcs::setParcs(const std::vector<Parcs> &parcs) {
-    VacationParcs::parcs = parcs;
-}
-
  std::vector<Customer> &VacationParcs::getCustomers()  {
     return customers;
 }
@@ -33,10 +23,10 @@ void VacationParcs::setCustomers(const std::vector<Customer> &customers) {
 }
 
 VacationParcs::VacationParcs(std::string bizName, std::string bizAddress,
-                             std::string VAT, std::vector<Parcs> parcs, std::vector<Customer> customers)
+                             std::string VAT, std::vector<Parcs*> parcs, std::vector<Customer> customers)
                              : bizName(bizName),bizAddress(bizAddress),VAT(VAT),parcs(parcs),customers(customers){}
 
-void VacationParcs::addPark(const Parcs &park) {
+void VacationParcs::addPark(Parcs* park) {
     addItem(parcs, park);
 }
 
@@ -135,4 +125,12 @@ void VacationParcs::setBookings(const std::vector<Booking> &bookings) {
 
 void VacationParcs::addBooking(const Booking &newBooking) {
     bookings.push_back(newBooking);
+}
+
+ std::vector<Parcs *> &VacationParcs::getParcs()  {
+    return parcs;
+}
+
+void VacationParcs::setParcs(const std::vector<Parcs *> &parcs) {
+    VacationParcs::parcs = parcs;
 }

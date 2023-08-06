@@ -22,9 +22,9 @@ void OS::modifyBooking(VacationParcs &company, int bookingID, const Booking &upd
     std::cout << "Error: Booking not found.\n";
 }
 
-void OS::modifyAccommodation(VacationParcs &company, int parkID, int accommodationID, const Accommodations &updatedAccommodation) {
+void OS::modifyAccommodation(VacationParcs &company, int parkID, int accommodationID,Accommodations* updatedAccommodation) {
     // Find the park with the given ID in the list of parks.
-    std::vector<Parcs>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
+    std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
 
     if (Parcs* parc = findItemByID(parcs, parkID)) {
         // Find the accommodation with the given ID in the list of accommodations.

@@ -72,14 +72,19 @@ public:
 private:
     std::string name,address;
     ParcServices services;
-    std::vector<Accommodations> accommodations;
+    std::vector<Accommodations*> accommodations;
+public:
+     std::vector<Accommodations *> &getAccommodations();
+
+    void setAccommodations(const std::vector<Accommodations *> &accommodations);
+
 public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, Parcs obj) {
         os << "Parcs ( ID: " << obj.getID() << ", name: " << obj.getName() << ", address: " << obj.getAddress() <<
            ", services: " << obj.getServices() << ", accommodations: [";
 
-        const std::vector<Accommodations>& dunderAccommodations = obj.getAccommodations();
+        const std::vector<Accommodations*>& dunderAccommodations = obj.getAccommodations();
         for (size_t i = 0; i < dunderAccommodations.size(); ++i) {
             os << dunderAccommodations[i];
 
@@ -109,10 +114,6 @@ public:
 
     void setServices(const ParcServices &services);
 
-     std::vector<Accommodations> &getAccommodations() ;
-
-    void setAccommodations(const std::vector<Accommodations> &accommodations);
-
 private:
 //    own identification to pop it as element from VacationParcs
     static int aantalParcs;
@@ -121,9 +122,9 @@ private:
 
 public:
 //        Make good use of tempaltes again
-    void addAccommodation(const Accommodations& accommodation);
+    void addAccommodation( Accommodations* accommodation);
     void removeAccommodation(int id);
-    Parcs(std::string name, std::string address, ParcServices services, std::vector<Accommodations> accommodations);
+    Parcs(std::string name, std::string address, ParcServices services, std::vector<Accommodations*> accommodations);
 };
 
 

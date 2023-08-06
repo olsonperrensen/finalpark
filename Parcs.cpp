@@ -84,7 +84,7 @@ Parcs::ParcServices::setAllServicesAtOnce(bool subtropicSwimmingPool,
                 &ParcServices::setChildrensParadise,childrensParadise,&ParcServices::setWaterBikes,waterBikes);
 }
 
-void Parcs::addAccommodation(const Accommodations &accommodation) {
+void Parcs::addAccommodation(Accommodations *accommodation) {
     addItem(accommodations,accommodation);
 }
 
@@ -94,7 +94,7 @@ void Parcs::removeAccommodation(int id) {
 
 
 Parcs::Parcs(std::string name, std::string address, ParcServices services,
-             std::vector<Accommodations> accommodations): name(name), address(address), services(services),
+             std::vector<Accommodations*> accommodations): name(name), address(address), services(services),
                                               accommodations(accommodations) {
 // have IDs get some value at birth based on previous born and dead instances
     this->parcID = ++Parcs::aantalParcs;
@@ -128,10 +128,10 @@ void Parcs::setServices(const Parcs::ParcServices &services) {
     Parcs::services = services;
 }
 
- std::vector<Accommodations> &Parcs::getAccommodations()  {
+std::vector<Accommodations *> &Parcs::getAccommodations() {
     return accommodations;
 }
 
-void Parcs::setAccommodations(const std::vector<Accommodations> &accommodations) {
+void Parcs::setAccommodations(const std::vector<Accommodations *> &accommodations) {
     Parcs::accommodations = accommodations;
 }

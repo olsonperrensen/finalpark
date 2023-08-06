@@ -40,7 +40,7 @@ private:
 //    If VacationParcs is meant to represent a company that manages multiple parks,
 //    then it would make sense for it to have a std::vector<Parcs> parcs attribute.
 // ***********************************************************************************************
-    std::vector<Parcs> parcs;
+    std::vector<Parcs*> parcs;
     std::vector<Customer> customers;
 //    Managing a business so these attributes from Parc are redefined here for sole convenience
     std::string bizName;
@@ -54,13 +54,17 @@ public:
 
     void setBizAddress(const std::string &bizAddress);
 
+     std::vector<Parcs *> &getParcs() ;
+
+    void setParcs(const std::vector<Parcs *> &parcs);
+
 public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, VacationParcs obj) {
         os << "VacationParcs ( name: " << obj.getBizName() << ", address: " << obj.getBizAddress()
            << ", VAT: " << obj.getVAT() << ", Parcs: [";
 
-        std::vector<Parcs>& parcs = obj.getParcs();
+        std::vector<Parcs*> parcs = obj.getParcs();
         for (size_t i = 0; i < parcs.size(); ++i) {
             os << parcs[i];
 
@@ -103,12 +107,12 @@ public:
     (this->bizName==other.bizName)&&(this->bizAddress==other.bizAddress);
 }
     VacationParcs(std::string name, std::string address,
-                  std::string VAT, std::vector<Parcs> parcs,
+                  std::string VAT, std::vector<Parcs*> parcs,
                   std::vector<Customer> customers);
 
 // CRUD for Parc
 //    Make good use of templates
-    void addPark(const Parcs& park);
+    void addPark(Parcs* park);
 //    Full object removal
     void removePark(int id);
 //    Partial removal -> Service removal inside of Parc, not Parc itself!
@@ -123,10 +127,6 @@ public:
     const std::string &getVAT() const;
 
     void setVAT(const std::string &vat);
-
-    std::vector<Parcs>& getParcs();
-
-    void setParcs(const std::vector<Parcs> &parcs);
 
     std::vector<Customer> &getCustomers() ;
 // BULK CUSTOMER ADDITION, NOT WHAT WE WANT normally
