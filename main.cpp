@@ -77,6 +77,7 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //    TODO update dunder str so vp outputs Bookings as well
     e.createBooking(vp,1,999,b);
     e.deleteBooking(vp,1);
+    e.deleteCustomer(vp,1);
 //TODO find by id Booking
 //   std::cout << b;
     std::cout << vp;

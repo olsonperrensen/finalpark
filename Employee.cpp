@@ -58,3 +58,14 @@ void Employee::createBooking(VacationParcs &company, int customerID, int accommo
 
     std::cout << "Error: Accommodation not found.\n";
 }
+
+void Employee::deleteCustomer(VacationParcs &company, int userID) {
+    // Find the booking with the given ID in the list of bookings.
+    if (Customer* c = findItemByID(company.getCustomers(), userID)) {
+        removeItem(company.getCustomers(),userID);
+        std::cout << "Customer " << userID << " has been deleted successfully." << std::endl;
+        return;
+    }
+    // If the booking is not found, print an error message.
+    std::cout << "Error: Customer not found.\n";
+}
