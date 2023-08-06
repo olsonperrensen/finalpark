@@ -112,3 +112,7 @@ void VacationParcs::changeParkSrv(int parcID,int srvToBeChanged,bool state) {
         std::cout << "Could not find a park with the given ID." << std::endl;
     }
 }
+
+void VacationParcs::addCustomer(const Customer& neuCustomer) {
+    customers.push_back(neuCustomer);
+}

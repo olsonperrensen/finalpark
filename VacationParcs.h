@@ -100,8 +100,10 @@ public:
     void setParcs(const std::vector<Parcs> &parcs);
 
     const std::vector<Customer> &getCustomers() const;
-
+// BULK CUSTOMER ADDITION, NOT WHAT WE WANT normally
     void setCustomers(const std::vector<Customer> &customers);
+//    individual Customer adding
+    void addCustomer(const Customer& neuCustomer);
 };
 
 

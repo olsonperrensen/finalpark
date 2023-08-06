@@ -3,8 +3,10 @@
 #include "VacationParcs.h"
 #include "Owner.h"
 #include "Booking.h"
+#include "Employee.h"
 #include <vector>
 int main() {
+//    TODO move actors into Sys folder
     std::cout << "Hello, World!" << std::endl;
 
     LuxuryLevel l(false,false, false, false,"Cabin");
@@ -21,6 +23,8 @@ int main() {
     Parcs p("Destination 1","bloemlaan 7",s,v);
     pv.push_back(p);
     Customer c("Bruce Lee","hongkongstraat 178", "blee@hotmail.co.uk", "Bancontact");
+    Customer neuc("Mary Manson","Brusselsepoort 2", "mary@manson.no", "Payconiq");
+
     std::vector<Customer> cv;
     cv.push_back(c);
 
@@ -55,9 +59,11 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
         o.changeService(vp,2,srv,false);
     }
 //    TODO just as you did with accommodations, remove all consts for customers so Employees can modify them
-    std::cout << vp;
 //TODO only accept true w/static cast, not 1
     Booking b(1,c,v,1,1,1,1);
+    Employee e("Tom Sawyer","laanbaan 1", "tom@boom.be", "Bancontact",false);
+    e.createCustomer(vp,neuc);
+    std::cout << vp;
 //TODO find by id Booking
 //   std::cout << b;
     return 0;
