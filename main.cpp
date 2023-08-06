@@ -15,6 +15,7 @@ int main() {
     Accommodations a(1,13,2,false,l);
     Accommodations anew(66,2,4,true,l);
     Accommodations anewnew(999,9,9,true,l);
+    Accommodations afinal(999,9,9,true,l);
     std::vector<Accommodations> vnew{anewnew};
     v.push_back(a);
 
@@ -78,13 +79,14 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //    TODO update dunder str so vp outputs Bookings as well
     e.createBooking(vp,1,999,b);
     e.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));
-    std::cout << vp.getBookings().at(0);
 //    TODO prevent change ID Booking
-    e.deleteBooking(vp,72);
-    e.deleteCustomer(vp,1);
+//    e.deleteBooking(vp,72);
+//    e.deleteCustomer(vp,1);
+//individual modifying
+    e.modifyAccommodation(vp,2,999,afinal);
+    std::cout << vp;
 //TODO find by id Booking
 //   std::cout << b;
-//    std::cout << vp;
     return 0;
 //    TODO implement polymorphism -> pointer getting the right call
 }

@@ -58,7 +58,6 @@ public:
 public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, VacationParcs obj) {
-//    TODO include ID as in user base
         os << "VacationParcs ( name: " << obj.getBizName() << ", address: " << obj.getBizAddress()
            << ", VAT: " << obj.getVAT() << ", Parcs: [";
 
@@ -74,7 +73,7 @@ public:
 
         os << "], Customers: [";
 
-         std::vector<Customer>& customers = obj.getCustomers();
+        std::vector<Customer>& customers = obj.getCustomers();
         for (size_t i = 0; i < customers.size(); ++i) {
             os << customers[i];
 
@@ -84,10 +83,23 @@ public:
             }
         }
 
-        os << "])";
+        os << "], Bookings: [";
+
+        std::vector<Booking>& bookings = obj.getBookings();
+        for (size_t i = 0; i < bookings.size(); ++i) {
+            os << bookings[i];
+
+            // If not the last element, add a comma and a space
+            if (i != bookings.size() - 1) {
+                os << ", ";
+            }
+        }
+
+        os << "])" << std::endl;
 
         return os;
     }
+
     VacationParcs(std::string name, std::string address,
                   std::string VAT, std::vector<Parcs> parcs,
                   std::vector<Customer> customers);

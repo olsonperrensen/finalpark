@@ -78,3 +78,22 @@ void Employee::modifyBooking(VacationParcs &company, int bookingID, const Bookin
     }
     std::cout << "Error: Booking not found.\n";
 }
+
+void Employee::modifyAccommodation(VacationParcs &company, int parkID, int accommodationID, const Accommodations &updatedAccommodation) {
+    // Find the park with the given ID in the list of parks.
+    std::vector<Parcs>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
+
+    if (Parcs* parc = findItemByID(parcs, parkID)) {
+        // Find the accommodation with the given ID in the list of accommodations.
+//        NESTED var init (again) so mem doesn't get wasted
+        if (Accommodations* accommodation = findItemByID(parc->getAccommodations(), accommodationID)) {
+            *accommodation = updatedAccommodation;
+            std::cout << "Accommodation " << accommodationID << " has been modified successfully." << std::endl;
+            return;
+        }
+        std::cout << "Error: Accommodation not found.\n";
+        return;
+    }
+    std::cout << "Error: Park not found.\n";
+}
+
