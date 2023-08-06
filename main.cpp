@@ -68,7 +68,6 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 
 //TODO    Also accept on the fly creation
 //    e.createCustomer(vp,new Customer("Mary Manson","Brusselsepoort 2", "mary@manson.no", "Payconiq"));
-
     e.modifyCustomer(vp,2,Customer("Bush Anderson","Manhattanweg 33", "mht@work.cn", "Contant Geld"));
 
     std::cout << "Customers present in VP:\n";

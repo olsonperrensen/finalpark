@@ -131,6 +131,8 @@ public:
     void setCustomers(const std::vector<Customer> &customers);
 //    individual Customer adding
     void addCustomer(const Customer& neuCustomer);
+//    CLI exec fun
+    void registerCustomer(const Customer &newCustomer);
 };
 
 

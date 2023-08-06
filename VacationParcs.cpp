@@ -114,8 +114,16 @@ void VacationParcs::changeParkSrv(int parcID,int srvToBeChanged,bool state) {
 }
 
 void VacationParcs::addCustomer(const Customer& neuCustomer) {
+//    Vanilla - No checks!
     customers.push_back(neuCustomer);
 }
+
+void VacationParcs::registerCustomer(const Customer &newCustomer) {
+    // TODO With if checks so all data is valid
+    addCustomer(newCustomer);
+    std::cout << "Customer " << newCustomer.getID() << " has registered successfully." << std::endl;
+}
+
 
  std::vector<Booking> &VacationParcs::getBookings() {
     return bookings;
