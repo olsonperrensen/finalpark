@@ -56,7 +56,7 @@ void OS::createCustomer(VacationParcs &company, const Customer &newCustomer) {
     company.registerCustomer(newCustomer);
 }
 
-void OS::createBooking(VacationParcs &company, int customerID, int accommodationID, const Booking& newBooking) {
+void OS::bookAccommodation(VacationParcs &company, int customerID, int accommodationID, const Booking& newBooking) {
     // Find the customer with the given ID in the list of customers.
     std::vector<Customer>& customers = company.getCustomers();  // MUST reference otherwise copy-work :(
     Customer* customer = findItemByID(customers, customerID);

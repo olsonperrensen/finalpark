@@ -77,7 +77,7 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
     std::cout << std::endl << "Customer ID: "<<e.getID() << std::endl;
     }
 //    TODO update dunder str so vp outputs Bookings as well
-    os.createBooking(vp,1,999,b);
+    os.bookAccommodation(vp,1,999,b);
     os.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));
 //    TODO prevent change ID Booking
 //    e.deleteBooking(vp,72);
