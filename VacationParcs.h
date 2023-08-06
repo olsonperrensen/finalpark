@@ -77,9 +77,19 @@ public:
                   std::string VAT, std::vector<Parcs> parcs,
                   std::vector<Customer> customers);
 
+// CRUD for Parc
 //    Make good use of templates
     void addPark(const Parcs& park);
+//    Full object removal
     void removePark(int id);
+//    Partial removal -> Service removal inside of Parc, not Parc itself!
+    void removeParkSrv(int id,int srvToBeChanged);
+    //    Own logic for MGMT
+// REPLACES entire object with completely new park! NOt individual pieces.
+    void modifyPark(int parkID, const Parcs &updatedPark);
+//    Function overloading to the rescue!
+//TODO
+    void modifyPark(int parkID, const Parcs::ParcServices &updatedServices);
 
     const std::string &getVAT() const;
 
@@ -92,9 +102,6 @@ public:
     const std::vector<Customer> &getCustomers() const;
 
     void setCustomers(const std::vector<Customer> &customers);
-
-//    Own logic for MGMT
-    void modifyPark(int parkID, const Parcs &updatedPark);
 };
 
 

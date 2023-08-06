@@ -95,7 +95,7 @@ public:
 
     void setAddress(const std::string &address);
 
-    const ParcServices &getServices() const;
+     ParcServices &getServices();
 
     void setServices(const ParcServices &services);
 

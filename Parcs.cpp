@@ -120,7 +120,7 @@ void Parcs::setAddress(const std::string &address) {
     Parcs::address = address;
 }
 
-const Parcs::ParcServices &Parcs::getServices() const {
+ Parcs::ParcServices &Parcs::getServices()  {
     return services;
 }
 

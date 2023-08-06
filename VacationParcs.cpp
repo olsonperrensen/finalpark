@@ -75,3 +75,41 @@ const std::string &VacationParcs::getBizAddress() const {
 void VacationParcs::setBizAddress(const std::string &bizAddress) {
     this->bizAddress = bizAddress;
 }
+
+void VacationParcs::removeParkSrv(int id,int srvToBeChanged) {
+    const bool TURNOFF = false;
+    if (Parcs* parc = findItemByID(parcs, id)) {
+        switch (srvToBeChanged) {
+            using enum ESERVICES;
+            case static_cast<int>(SUBTROPIC_SWIMMING_POOL):
+                parc->getServices().setWaterBikes(TURNOFF);
+                std::cout << "Subtropic swimming pool service has been turned off." << std::endl;
+                break;
+            case static_cast<int>(SPORTS_INFRASTRUCTURE):
+                parc->getServices().setSportsInfrastructure(TURNOFF);
+                std::cout << "Sports infrastructure service has been turned off." << std::endl;
+                break;
+            case static_cast<int>(BOWLING_ALLEY):
+                parc->getServices().setBowlingAlley(TURNOFF);
+                std::cout << "Bowling alley service has been turned off." << std::endl;
+                break;
+            case static_cast<int>(BICYCLE_RENT):
+                parc->getServices().setBicycleRent(TURNOFF);
+                std::cout << "Bicycle rent service has been turned off." << std::endl;
+                break;
+            case static_cast<int>(CHILDRENS_PARADISE):
+                parc->getServices().setChildrensParadise(TURNOFF);
+                std::cout << "Children's paradise service has been turned off." << std::endl;
+                break;
+            case static_cast<int>(WATER_BIKES):
+                parc->getServices().setWaterBikes(TURNOFF);
+                std::cout << "Water bikes service has been turned off." << std::endl;
+                break;
+            default:
+                std::cout << "Invalid service ID." << std::endl;
+                break;
+        }
+    } else {
+        std::cout << "Could not find a park with the given ID." << std::endl;
+    }
+}
