@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(finalpark main.cpp
         Sys/User.cpp
         Sys/User.h
-        Accommodations.cpp
         Accommodations.h
         LuxuryLevel.cpp
         LuxuryLevel.h

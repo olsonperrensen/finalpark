@@ -15,10 +15,10 @@ int main() {
     LuxuryLevel l(false,false, false, false,"Cabin");
     std::vector<Accommodations> v;
 //TODO remove manual ID placing
-    Accommodations a(1,13,2,false,l);
-    Accommodations anew(66,2,4,true,l);
-    Accommodations anewnew(999,9,9,true,l);
-    Accommodations afinal(999,9,9,true,l);
+    HotelRoom a(1,"Bahamas",12,false,1,12,32,false,l);
+    Cabin anew(2,2,2,false,l,3);
+    HotelRoom anewnew(999,"Maldives",12,false,1,12,32,false,l);
+    Cabin afinal(999,2,2,false,l,3);
     std::vector<Accommodations> vnew{anewnew};
     v.push_back(a);
 
@@ -90,8 +90,6 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 
     std::cout << vp;
 //TODO find by id Booking
-    HotelRoom hr(1,"Bahamas",12,false,1,12,32,false,l);
-    Cabin cab(2,2,2,false,l,3);
     return 0;
 //    TODO implement polymorphism -> pointer getting the right call
 }

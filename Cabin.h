@@ -32,6 +32,27 @@ public:
     int getBedrooms() const;
 
     void setBedrooms(int bedrooms);
+
+//    De-abstract from parent
+     int getID() const override;
+
+     void setId(int id)  override;
+
+     int getNrPeople() const  override;
+
+     void setNrPeople(int nrPeople) override;
+
+     int getSize() const override;
+
+     void setSize(int size) override;
+
+     bool isBathroomWithBath() const override;
+
+     void setBathroomWithBath(bool bathroomWithBath) override;
+
+     const LuxuryLevel &getLuxuryLevel() const override;
+
+     void setLuxuryLevel(const LuxuryLevel &luxuryLevel) override;
 };
 
 

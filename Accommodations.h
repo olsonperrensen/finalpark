@@ -9,7 +9,7 @@
 #include "LuxuryLevel.h"
 
 class Accommodations {
-private:
+protected:
     int ID,nrPeople,size;
     bool bathroomWithBath;
     LuxuryLevel luxuryLevel;
@@ -29,25 +29,25 @@ public:
 
     Accommodations()=default;
     Accommodations(int ID,int nrPeople,int size,bool bathroomWithBath,LuxuryLevel luxuryLevel);
-    int getID() const;
+    virtual int getID() const =0;
 
-    void setId(int id);
+    virtual void setId(int id) =0;
 
-    int getNrPeople() const;
+    virtual int getNrPeople() const =0;
 
-    void setNrPeople(int nrPeople);
+    virtual void setNrPeople(int nrPeople)=0;
 
-    int getSize() const;
+    virtual int getSize() const=0;
 
-    void setSize(int size);
+    virtual void setSize(int size)=0;
 
-    bool isBathroomWithBath() const;
+    virtual bool isBathroomWithBath() const=0;
 
-    void setBathroomWithBath(bool bathroomWithBath);
+    virtual void setBathroomWithBath(bool bathroomWithBath)=0;
 
-    const LuxuryLevel &getLuxuryLevel() const;
+    virtual const LuxuryLevel &getLuxuryLevel() const=0;
 
-    void setLuxuryLevel(const LuxuryLevel &luxuryLevel);
+    virtual void setLuxuryLevel(const LuxuryLevel &luxuryLevel)=0;
 };
 
 

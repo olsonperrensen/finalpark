@@ -48,6 +48,27 @@ public:
     const std::string &getLocation() const;
 
     void setLocation(const std::string &location);
+//    De-abstract from parent
+//    De-abstract from parent
+    int getID() const override;
+
+    void setId(int id)  override;
+
+    int getNrPeople() const  override;
+
+    void setNrPeople(int nrPeople) override;
+
+    int getSize() const override;
+
+    void setSize(int size) override;
+
+    bool isBathroomWithBath() const override;
+
+    void setBathroomWithBath(bool bathroomWithBath) override;
+
+    const LuxuryLevel &getLuxuryLevel() const override;
+
+    void setLuxuryLevel(const LuxuryLevel &luxuryLevel) override;
 };
 
 
