@@ -24,7 +24,7 @@ public:
     void modifyPark(VacationParcs& company, int parkID, const Parcs& updatedPark);
     void deletePark(VacationParcs& company, int parkID);
 //    Service-related own funs for MGMT
-    void removeService(VacationParcs &company, int parkID, const int srvToBeChanged);
+    void changeService(VacationParcs &company, int parkID, const int srvToBeChanged,bool state);
 
 //    Accommodation-related own funs for MGMT
     void createAccommodation(VacationParcs &company, int parkID, const Accommodations &newAccommodation);

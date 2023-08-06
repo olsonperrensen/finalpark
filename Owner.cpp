@@ -53,7 +53,7 @@ void Owner::deleteAccommodation(VacationParcs &company, int parkID, int accommod
         std::cout << "Your Parc number does not match with our records. Nothing could be found.\n";
 }
 
-void Owner::removeService(VacationParcs &company, int parkID, const int srvToBeChanged) {
-    company.removeParkSrv(parkID,srvToBeChanged);
+void Owner::changeService(VacationParcs &company, int parkID, const int srvToBeChanged, const bool state) {
+    company.changeParkSrv(parkID,srvToBeChanged,state);
 //    TODO follow other examples logic... move fun above into Parc, not VacationParcs!
 }

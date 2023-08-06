@@ -52,7 +52,7 @@ BICYCLE_RENT=4,
 CHILDRENS_PARADISE=5,
 WATER_BIKES=6)" << std::endl << "Choose: ";
         std::cin >> srv;
-        o.removeService(vp,2,srv);
+        o.changeService(vp,2,srv,false);
     }
 //    TODO just as you did with accommodations, remove all consts for customers so Employees can modify them
     std::cout << vp;

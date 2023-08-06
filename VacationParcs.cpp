@@ -76,34 +76,33 @@ void VacationParcs::setBizAddress(const std::string &bizAddress) {
     this->bizAddress = bizAddress;
 }
 
-void VacationParcs::removeParkSrv(int parcID,int srvToBeChanged) {
-    const bool TURNOFF = false;
+void VacationParcs::changeParkSrv(int parcID,int srvToBeChanged,bool state) {
     if (Parcs* parc = findItemByID(parcs, parcID)) {
         switch (srvToBeChanged) {
             using enum ESERVICES;
             case static_cast<int>(SUBTROPIC_SWIMMING_POOL):
-                parc->getServices().setSubtropicSwimmingPool(TURNOFF);
-                std::cout << "Subtropic swimming pool service has been turned off." << std::endl;
+                parc->getServices().setSubtropicSwimmingPool(state);
+                std::cout << "Subtropic swimming pool service has been turned "<< (state?"on":"off") << "." << std::endl;
                 break;
             case static_cast<int>(SPORTS_INFRASTRUCTURE):
-                parc->getServices().setSportsInfrastructure(TURNOFF);
-                std::cout << "Sports infrastructure service has been turned off." << std::endl;
+                parc->getServices().setSportsInfrastructure(state);
+                std::cout << "Sports infrastructure service has been turned "<< (state?"on":"off") << "." << std::endl;
                 break;
             case static_cast<int>(BOWLING_ALLEY):
-                parc->getServices().setBowlingAlley(TURNOFF);
-                std::cout << "Bowling alley service has been turned off." << std::endl;
+                parc->getServices().setBowlingAlley(state);
+                std::cout << "Bowling alley service has been turned "<< (state?"on":"off") << "." << std::endl;
                 break;
             case static_cast<int>(BICYCLE_RENT):
-                parc->getServices().setBicycleRent(TURNOFF);
-                std::cout << "Bicycle rent service has been turned off." << std::endl;
+                parc->getServices().setBicycleRent(state);
+                std::cout << "Bicycle rent service has been turned "<< (state?"on":"off") << "." << std::endl;
                 break;
             case static_cast<int>(CHILDRENS_PARADISE):
-                parc->getServices().setChildrensParadise(TURNOFF);
-                std::cout << "Children's paradise service has been turned off." << std::endl;
+                parc->getServices().setChildrensParadise(state);
+                std::cout << "Children's paradise service has been turned "<< (state?"on":"off") << "." << std::endl;
                 break;
             case static_cast<int>(WATER_BIKES):
-                parc->getServices().setWaterBikes(TURNOFF);
-                std::cout << "Water bikes service has been turned off." << std::endl;
+                parc->getServices().setWaterBikes(state);
+                std::cout << "Water bikes service has been turned off "<< (state?"on":"off") << "." << std::endl;
                 break;
             default:
                 std::cout << "Invalid service ID." << std::endl;
