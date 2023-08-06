@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(finalpark main.cpp
-        User.cpp
-        User.h
+        Sys/User.cpp
+        Sys/User.h
         Accommodations.cpp
         Accommodations.h
         LuxuryLevel.cpp
@@ -24,7 +24,9 @@ add_executable(finalpark main.cpp
         Shared.h
         Customer.cpp
         Customer.h
-        Owner.cpp
-        Owner.h
-        Employee.cpp
-        Employee.h)
+        Sys/Owner.cpp
+        Sys/Owner.h
+        Sys/Employee.cpp
+        Sys/Employee.h
+        Sys/OS.cpp
+        Sys/OS.h)

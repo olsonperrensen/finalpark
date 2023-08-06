@@ -7,9 +7,8 @@
 #include <string>
 #include <vector>
 #include "Parcs.h"
-#include "User.h"
+#include "Sys/User.h"
 #include "Shared.h"
-#include "Customer.h"
 #include "Booking.h"
 
 // Inheriting from Parcs would cause duplicates since a VacationParc could have by its own:

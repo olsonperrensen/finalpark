@@ -1,12 +1,13 @@
 #include <iostream>
 #include "Parcs.h"
 #include "VacationParcs.h"
-#include "Owner.h"
+#include "Sys/Owner.h"
 #include "Booking.h"
-#include "Employee.h"
+#include "Sys/Employee.h"
+#include "Sys/OS.h"
 #include <vector>
 int main() {
-//    TODO move actors into Sys folder
+    OS os;
     std::cout << "Hello, World!" << std::endl;
 
     LuxuryLevel l(false,false, false, false,"Cabin");
@@ -64,11 +65,11 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //TODO remove manual IDing
     Booking b(1,c,v,1,1,1,1);
     Employee e("Tom Sawyer","laanbaan 1", "tom@boom.be", "Bancontact",false);
-    e.createCustomer(vp,neuc);
+    os.createCustomer(vp,neuc);
 
 //TODO    Also accept on the fly creation
 //    e.createCustomer(vp,new Customer("Mary Manson","Brusselsepoort 2", "mary@manson.no", "Payconiq"));
-    e.modifyCustomer(vp,2,Customer("Bush Anderson","Manhattanweg 33", "mht@work.cn", "Contant Geld"));
+    os.modifyCustomer(vp,2,Customer("Bush Anderson","Manhattanweg 33", "mht@work.cn", "Contant Geld"));
 
     std::cout << "Customers present in VP:\n";
     for (auto e:vp.getCustomers()) {
@@ -76,13 +77,13 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
     std::cout << std::endl << "Customer ID: "<<e.getID() << std::endl;
     }
 //    TODO update dunder str so vp outputs Bookings as well
-    e.createBooking(vp,1,999,b);
-    e.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));
+    os.createBooking(vp,1,999,b);
+    os.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));
 //    TODO prevent change ID Booking
 //    e.deleteBooking(vp,72);
 //    e.deleteCustomer(vp,1);
 //individual modifying
-    e.modifyAccommodation(vp,2,999,afinal);
+    os.modifyAccommodation(vp,2,999,afinal);
     c.modifyData(Customer("Larry Page","Sergeistraat 9", "larry@goo.gl", "Bancontact"));
 
     std::cout << vp;
