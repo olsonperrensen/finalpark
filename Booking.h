@@ -37,6 +37,12 @@ public:
         return os;
     }
 
+//    Important! :
+//    BE ABLE TO COMPARE TWO FULL OBJECTS against each other
+    bool operator==(const Booking& other) const {
+        return ID == other.ID;
+    }
+
     int getID() const;
 
     void setId(int id);

@@ -99,7 +99,7 @@ public:
 
     void setServices(const ParcServices &services);
 
-    const std::vector<Accommodations> &getAccommodations() const;
+     std::vector<Accommodations> &getAccommodations() ;
 
     void setAccommodations(const std::vector<Accommodations> &accommodations);
 

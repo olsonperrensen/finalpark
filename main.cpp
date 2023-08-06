@@ -45,7 +45,7 @@ int main() {
 //    o.deletePark(vp,1);
     o.createAccommodation(vp,2,anew);
     o.modifyAccommodations(vp,2,vnew);
-    o.deleteAccommodation(vp,2,999);
+//    o.deleteAccommodation(vp,2,999);
     if(0){
         int srv;
         std::cout << "Choose which services to remove:" << R"(
@@ -63,12 +63,21 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
     Booking b(1,c,v,1,1,1,1);
     Employee e("Tom Sawyer","laanbaan 1", "tom@boom.be", "Bancontact",false);
     e.createCustomer(vp,neuc);
-    e.createCustomer(vp,Customer("Mary Manson","Brusselsepoort 2", "mary@manson.no", "Payconiq"));
+
 //TODO    Also accept on the fly creation
 //    e.createCustomer(vp,new Customer("Mary Manson","Brusselsepoort 2", "mary@manson.no", "Payconiq"));
-    std::cout << vp;
+
+    e.modifyCustomer(vp,2,Customer("Bush Anderson","Manhattanweg 33", "mht@work.cn", "Contant Geld"));
+
+    std::cout << "Customers present in VP:\n";
+    for (auto e:vp.getCustomers()) {
+//        TODO fix ID being replaced
+    std::cout << std::endl << "Customer ID: "<<e.getID() << std::endl;
+    }
+    e.createBooking(vp,1,999,b);
 //TODO find by id Booking
 //   std::cout << b;
+    std::cout << vp;
     return 0;
 //    TODO implement polymorphism -> pointer getting the right call
 }

@@ -128,7 +128,7 @@ void Parcs::setServices(const Parcs::ParcServices &services) {
     Parcs::services = services;
 }
 
-const std::vector<Accommodations> &Parcs::getAccommodations() const {
+ std::vector<Accommodations> &Parcs::getAccommodations()  {
     return accommodations;
 }
 

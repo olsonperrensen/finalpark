@@ -10,6 +10,7 @@
 #include "User.h"
 #include "Shared.h"
 #include "Customer.h"
+#include "Booking.h"
 
 // Inheriting from Parcs would cause duplicates since a VacationParc could have by its own:
 // vp.getAccommodations().at(0); and at the same time
@@ -17,6 +18,19 @@
 // Not worth the hassle. So no inheritance taking place. More of a composition relationship
 // Note below
 class VacationParcs{
+private:
+//    OWN way of saving Bookings... was bt here and in Customer but since it would be easier to manipulate
+// bookings directly if it belongs to the Customer class I think here is a bit safer
+    std::vector<Booking> bookings;
+public:
+     std::vector<Booking> &getBookings() ;
+
+//     BULK level - avoid
+    void setBookings(const std::vector<Booking> &bookings);
+
+//    At individual level - good
+    void addBooking(const Booking& newBooking);
+
 private:
     std::string VAT;
 //    Voor alle duidelijkheid:

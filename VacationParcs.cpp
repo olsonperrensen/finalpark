@@ -116,3 +116,15 @@ void VacationParcs::changeParkSrv(int parcID,int srvToBeChanged,bool state) {
 void VacationParcs::addCustomer(const Customer& neuCustomer) {
     customers.push_back(neuCustomer);
 }
+
+ std::vector<Booking> &VacationParcs::getBookings() {
+    return bookings;
+}
+
+void VacationParcs::setBookings(const std::vector<Booking> &bookings) {
+    VacationParcs::bookings = bookings;
+}
+
+void VacationParcs::addBooking(const Booking &newBooking) {
+    bookings.push_back(newBooking);
+}

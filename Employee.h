@@ -20,15 +20,16 @@ public:
         return os;
     }
     //    Acc MGMT
+//    TODO merge Owner fun and Employee fun as template fun (modifyAccommodation,createAccommodation,deleteAccommodation)
     void modifyAccommodation(VacationParcs &company, int parkID, int accommodationID, const Accommodations &updatedAccommodation);
 // Usr MGMT
     void createCustomer(VacationParcs &company, const Customer &newCustomer);
     void modifyCustomer(VacationParcs &company, int userID, const Customer &updatedCustomer);
     void deleteCustomer(VacationParcs &company, int userID);
 //    Booking MGMT
-    void createBooking(VacationParcs &company, int userID, const Booking &newBooking);
+    void createBooking(VacationParcs &company, int customerID, int accommodationID, const Booking& newBooking);
     void modifyBooking(VacationParcs &company, int userID, int bookingID, const Booking &updatedBooking);
-    void deleteBooking(VacationParcs &company, int userID, int bookingID);
+    void deleteBooking(VacationParcs &company, int bookingID);
 
     Employee(std::string name,std::string address, std::string mail, std::string paymentMethod,bool isOnLeave);
 private:
