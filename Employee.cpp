@@ -25,10 +25,7 @@ void Employee::modifyCustomer(VacationParcs &company, int userID, const Customer
 void Employee::deleteBooking(VacationParcs &company, int bookingID) {
     // Find the booking with the given ID in the list of bookings.
     if (Booking* booking = findItemByID(company.getBookings(), bookingID)) {
-        // If the booking is found, remove it from the list of bookings.
-//        Good to know: Before calling .remove be sure you have a way to compare 2 full Objects and not its attributes...
-//        Use operator== overloading to achieve this
-        company.getBookings().erase(std::remove(company.getBookings().begin(), company.getBookings().end(), *booking), company.getBookings().end());
+        removeItem(company.getBookings(),bookingID);
         std::cout << "Booking " << bookingID << " has been deleted successfully." << std::endl;
         return;
     }

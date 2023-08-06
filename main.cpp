@@ -11,7 +11,7 @@ int main() {
 
     LuxuryLevel l(false,false, false, false,"Cabin");
     std::vector<Accommodations> v;
-
+//TODO remove manual ID placing
     Accommodations a(1,13,2,false,l);
     Accommodations anew(66,2,4,true,l);
     Accommodations anewnew(999,9,9,true,l);
@@ -74,7 +74,9 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //        TODO fix ID being replaced
     std::cout << std::endl << "Customer ID: "<<e.getID() << std::endl;
     }
+//    TODO update dunder str so vp outputs Bookings as well
     e.createBooking(vp,1,999,b);
+    e.deleteBooking(vp,1);
 //TODO find by id Booking
 //   std::cout << b;
     std::cout << vp;
