@@ -69,7 +69,6 @@ public:
                 os << ", ";
             }
         }
-
         os << "], Customers: [";
 
         std::vector<Customer>& customers = obj.getCustomers();
@@ -99,6 +98,10 @@ public:
         return os;
     }
 
+    bool operator==(const VacationParcs& other) const {
+    return (this->VAT==other.VAT)&&(this->parcs==other.parcs)&&(this->customers==other.customers)&&
+    (this->bizName==other.bizName)&&(this->bizAddress==other.bizAddress);
+}
     VacationParcs(std::string name, std::string address,
                   std::string VAT, std::vector<Parcs> parcs,
                   std::vector<Customer> customers);

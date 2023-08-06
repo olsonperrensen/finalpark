@@ -25,6 +25,12 @@ public:
                << ", waterBikes: " << obj.isWaterBikes() << " ) ";
             return os;
         }
+        bool operator==(const Parcs::ParcServices& other) const {
+            return (this->subtropicSwimmingPool==other.subtropicSwimmingPool)&&
+                    (this->sportsInfrastructure==other.sportsInfrastructure)&&
+                    (this->bowlingAlley==other.bowlingAlley)&&(this->bicycleRent==other.bicycleRent)
+                    &&(this->childrensParadise==other.childrensParadise)&&(this->waterBikes==other.waterBikes);
+}
 //        Idem as other default bc it is being used by another class otherwise it complains;
         ParcServices()=default;
         ParcServices(bool subtropicSwimmingPool,
@@ -87,6 +93,10 @@ public:
 
         return os;
     }
+    bool operator==(const Parcs& other) const {
+    return (this->name==other.name)&&(this->accommodations==other.accommodations)&&
+    (this->services==other.services)&&(this->address==other.address);
+}
     const std::string &getName() const;
 
     void setName(const std::string &name);
