@@ -63,6 +63,9 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
     Booking b(1,c,v,1,1,1,1);
     Employee e("Tom Sawyer","laanbaan 1", "tom@boom.be", "Bancontact",false);
     e.createCustomer(vp,neuc);
+    e.createCustomer(vp,Customer("Mary Manson","Brusselsepoort 2", "mary@manson.no", "Payconiq"));
+//TODO    Also accept on the fly creation
+//    e.createCustomer(vp,new Customer("Mary Manson","Brusselsepoort 2", "mary@manson.no", "Payconiq"));
     std::cout << vp;
 //TODO find by id Booking
 //   std::cout << b;
