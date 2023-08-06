@@ -13,16 +13,22 @@
 
 class Employee: public Customer{
 public:
+    //    dunder
+    friend std::ostream& operator<<(std::ostream& os, const Employee& obj) {
+        os << "Employee ( ID: " << obj.getID() << ", name: " << obj.getName() << ", address: " << obj.getAddress()
+           << ", mail: " << obj.getMail() << ", isOnLeave: " << obj.isOnLeave<<" ) ";
+        return os;
+    }
     //    Acc MGMT
     void modifyAccommodation(VacationParcs &company, int parkID, int accommodationID, const Accommodations &updatedAccommodation);
 // Usr MGMT
     void createCustomer(VacationParcs &company, const Customer &newCustomer);
-    void modifyCustomer(VacationParcs &company, int customerID, const Customer &updatedCustomer);
-    void deleteCustomer(VacationParcs &company, int customerID);
+    void modifyCustomer(VacationParcs &company, int userID, const Customer &updatedCustomer);
+    void deleteCustomer(VacationParcs &company, int userID);
 //    Booking MGMT
-    void createBooking(VacationParcs &company, int customerID, const Booking &newBooking);
-    void modifyBooking(VacationParcs &company, int customerID, int bookingID, const Booking &updatedBooking);
-    void deleteBooking(VacationParcs &company, int customerID, int bookingID);
+    void createBooking(VacationParcs &company, int userID, const Booking &newBooking);
+    void modifyBooking(VacationParcs &company, int userID, int bookingID, const Booking &updatedBooking);
+    void deleteBooking(VacationParcs &company, int userID, int bookingID);
 
     Employee(std::string name,std::string address, std::string mail, std::string paymentMethod,bool isOnLeave);
 private:

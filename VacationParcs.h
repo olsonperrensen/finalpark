@@ -44,6 +44,7 @@ public:
 public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, VacationParcs obj) {
+//    TODO include ID as in user base
         os << "VacationParcs ( name: " << obj.getBizName() << ", address: " << obj.getBizAddress()
            << ", VAT: " << obj.getVAT() << ", Parcs: [";
 
@@ -59,7 +60,7 @@ public:
 
         os << "], Customers: [";
 
-        const std::vector<Customer>& customers = obj.getCustomers();
+         std::vector<Customer>& customers = obj.getCustomers();
         for (size_t i = 0; i < customers.size(); ++i) {
             os << customers[i];
 
@@ -99,7 +100,7 @@ public:
 
     void setParcs(const std::vector<Parcs> &parcs);
 
-    const std::vector<Customer> &getCustomers() const;
+    std::vector<Customer> &getCustomers() ;
 // BULK CUSTOMER ADDITION, NOT WHAT WE WANT normally
     void setCustomers(const std::vector<Customer> &customers);
 //    individual Customer adding

@@ -70,7 +70,7 @@ private:
 public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, Parcs obj) {
-        os << "Parcs ( name: " << obj.getName() << ", address: " << obj.getAddress() <<
+        os << "Parcs ( " << obj.getName() << ", address: " << obj.getAddress() <<
            ", services: " << obj.getServices() << ", accommodations: [";
 
         const std::vector<Accommodations>& dunderAccommodations = obj.getAccommodations();

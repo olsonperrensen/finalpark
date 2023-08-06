@@ -24,7 +24,7 @@ void VacationParcs::setParcs(const std::vector<Parcs> &parcs) {
     VacationParcs::parcs = parcs;
 }
 
-const std::vector<Customer> &VacationParcs::getCustomers() const {
+ std::vector<Customer> &VacationParcs::getCustomers()  {
     return customers;
 }
 

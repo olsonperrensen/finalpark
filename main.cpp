@@ -46,7 +46,7 @@ int main() {
     o.createAccommodation(vp,2,anew);
     o.modifyAccommodations(vp,2,vnew);
     o.deleteAccommodation(vp,2,999);
-    if(1){
+    if(0){
         int srv;
         std::cout << "Choose which services to remove:" << R"(
 SUBTROPIC_SWIMMING_POOL=1,
