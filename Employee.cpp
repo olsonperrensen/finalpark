@@ -69,3 +69,12 @@ void Employee::deleteCustomer(VacationParcs &company, int userID) {
     // If the booking is not found, print an error message.
     std::cout << "Error: Customer not found.\n";
 }
+
+void Employee::modifyBooking(VacationParcs &company, int bookingID, const Booking &updatedBooking) {
+    if (Booking* booking = findItemByID(company.getBookings(), bookingID)) {
+        *booking = updatedBooking;
+        std::cout << "Booking " << bookingID << " has been modified successfully." << std::endl;
+        return;
+    }
+    std::cout << "Error: Booking not found.\n";
+}

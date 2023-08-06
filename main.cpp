@@ -60,6 +60,7 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
     }
 //    TODO just as you did with accommodations, remove all consts for customers so Employees can modify them
 //TODO only accept true w/static cast, not 1
+//TODO remove manual IDing
     Booking b(1,c,v,1,1,1,1);
     Employee e("Tom Sawyer","laanbaan 1", "tom@boom.be", "Bancontact",false);
     e.createCustomer(vp,neuc);
@@ -76,11 +77,14 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
     }
 //    TODO update dunder str so vp outputs Bookings as well
     e.createBooking(vp,1,999,b);
-    e.deleteBooking(vp,1);
+    e.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));
+    std::cout << vp.getBookings().at(0);
+//    TODO prevent change ID Booking
+    e.deleteBooking(vp,72);
     e.deleteCustomer(vp,1);
 //TODO find by id Booking
 //   std::cout << b;
-    std::cout << vp;
+//    std::cout << vp;
     return 0;
 //    TODO implement polymorphism -> pointer getting the right call
 }

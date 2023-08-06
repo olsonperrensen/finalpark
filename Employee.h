@@ -28,7 +28,7 @@ public:
     void deleteCustomer(VacationParcs &company, int userID);
 //    Booking MGMT
     void createBooking(VacationParcs &company, int customerID, int accommodationID, const Booking& newBooking);
-    void modifyBooking(VacationParcs &company, int userID, int bookingID, const Booking &updatedBooking);
+    void modifyBooking(VacationParcs &company, int bookingID, const Booking &updatedBooking);
     void deleteBooking(VacationParcs &company, int bookingID);
 
     Employee(std::string name,std::string address, std::string mail, std::string paymentMethod,bool isOnLeave);
