@@ -49,7 +49,8 @@ int main() {
     o.createPark(vp, new Parcs("THE RESORT OF YOUR DREAMS!","Hollandsebaan 2",ss,vnew));
 ////    o.modifyPark(vp, 1, parkupdate);
 //    o.deletePark(vp,3);
-//    o.createAccommodation(vp,1,anew);
+    o.createAccommodation(vp,1,anew);
+    o.createAccommodation(vp,1,anew);
 //    os.modifyAccommodation(vp,1,1,afinal);
 //    o.deleteAccommodation(vp,3,1);
 //    o.deleteAccommodation(vp,1,32);

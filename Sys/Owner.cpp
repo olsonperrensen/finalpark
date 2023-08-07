@@ -22,17 +22,27 @@ void Owner::deletePark(VacationParcs &company, int parkID) {
 }
 
 void Owner::createAccommodation(VacationParcs &company, int parkID, Accommodations *newAccommodation) {
-    std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
+    std::vector<Parcs*>& parcs = company.getParcs();
     for (Parcs* parc : parcs) {
         if (parc->getID() == parkID) {
-            // Add the new accommodation to the park
-            std::cout << "Trying to add new accommodation " << "to Parc (parkID): " << parkID << std::endl;
+            std::cout << "createAccommodation -> Trying to add new accommodation " << "to Parc (parkID): " << parkID << std::endl;
+            // CHECK FOR DUPLICATES
+            std::vector<Accommodations*>& existingAccommodations = parc->getAccommodations();
+            for (Accommodations* existingAccommodation : existingAccommodations) {
+                if (*existingAccommodation == *newAccommodation) { // DEREFERENCE NEEDED OTHERWISE COMPARING by identity (i.e., they are the same object).
+//                    actually need to compare by their data and operator== overloading helps solve this!
+                    std::cout << "createAccommodation -> This accommodation already exists in this park.\n";
+                    return;
+                }
+            }
+            // If no duplicate found, add the new accommodation
             parc->addAccommodation(newAccommodation);
             return;
         }
     }
     std::cout << "createAccommodation -> Your Parc number does not match with our records. Nothing could be found. Using user-given ParcID: " << parkID << "\n";
 }
+
 
 void Owner::modifyAccommodations(VacationParcs &company, int parkID,  std::vector<Accommodations*> &updatedAccommodations) {
     std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
