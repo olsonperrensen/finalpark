@@ -27,10 +27,10 @@ void Owner::createAccommodation(VacationParcs &company, int parkID, Accommodatio
         if (parc->getID() == parkID) {
             // Add the new accommodation to the park
             parc->addAccommodation(newAccommodation);
-        } else {
-            std::cout << "createAccommodation -> Your Parc number does not match with our records. Nothing could be found.\n";
+            return;
         }
     }
+    std::cout << "createAccommodation -> Your Parc number does not match with our records. Nothing could be found. Using user-given ParcID: " << parkID << "\n";
 }
 
 void Owner::modifyAccommodations(VacationParcs &company, int parkID,  std::vector<Accommodations*> &updatedAccommodations) {
