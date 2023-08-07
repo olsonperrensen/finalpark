@@ -15,10 +15,10 @@ int main() {
     LuxuryLevel l(false,false, false, false,"Cabin");
     std::vector<Accommodations*> v;
 //TODO remove manual IDing
-    HotelRoom a(1,"Bahamas",12,false,1,12,32,false,l);
-    Cabin* anew = new Cabin(2,2,2,false,l,3);
-    HotelRoom anewnew(42,"Maldives",12,false,1,12,32,false,l);
-    Cabin* afinal = new Cabin(999,2,2,false,l,3);
+    HotelRoom a(1,"Bahamas",12,false,12,32,false,l);
+    Cabin* anew = new Cabin(2,2,false,l,3);
+    HotelRoom anewnew(42,"Maldives",12,false,12,32,false,l);
+    Cabin* afinal = new Cabin(2,2,false,l,3);
     std::vector<Accommodations*> vnew{&anewnew};
     v.push_back(&a);
 
@@ -51,8 +51,10 @@ int main() {
 //    o.deletePark(vp,3);
     o.createAccommodation(vp,1,anew);
     os.modifyAccommodation(vp,1,1,afinal);
-    o.deleteAccommodation(vp,1,888);
-    if(1){
+    o.deleteAccommodation(vp,3,1);
+    o.deleteAccommodation(vp,1,32);
+    std::cout << vp;
+    if(0){
         int srv,pid;
 //        TODO offer names instead with for-range based loop
         std::cout << "Choose parkID:";

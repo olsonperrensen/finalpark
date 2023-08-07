@@ -4,7 +4,7 @@
 
 #include "User.h"
 // Have no parks at the beginning of the program
-int User::aantalUsers = 0;
+unsigned short int User::aantalUsers = 0;
 
 User::User(std::string name, std::string address, std::string mail): name(name), address(address), mail(mail){
     this->userID = ++User::aantalUsers;
@@ -34,6 +34,6 @@ void User::setMail(const std::string &mail) {
     User::mail = mail;
 }
 
-int User::getID() const {
+unsigned short int User::getID() const {
     return userID;
 }

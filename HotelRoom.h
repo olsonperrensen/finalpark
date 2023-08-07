@@ -13,6 +13,7 @@ private:
     bool childrenBed;
     std::string location;
 public:
+    //TODO also print Base attributes (inc ID)
     friend std::ostream& operator<<(std::ostream& os, const HotelRoom& obj) {
         os << static_cast<const Accommodations&>(obj)  // Print the base class members
            << ", floor: " << obj.floor << ", nrBeds: " << obj.nrBeds
@@ -30,7 +31,7 @@ public:
         return Accommodations::operator==(other) && (this->floor == derivedOther->floor);
     }
     HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed,
-              int ID,int nrPeople,int size,bool bathroomWithBath,LuxuryLevel luxuryLevel);
+              int nrPeople,int size,bool bathroomWithBath,LuxuryLevel luxuryLevel);
 
     int getFloor() const;
 
@@ -49,9 +50,7 @@ public:
     void setLocation(const std::string &location);
 //    De-abstract from parent
 //    De-abstract from parent
-    int getID() const override;
-
-    void setId(int id)  override;
+    unsigned short int getID() const override;
 
     int getNrPeople() const  override;
 

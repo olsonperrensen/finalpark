@@ -11,7 +11,7 @@
 
 class Parcs {
 public:
-    int getID() const;
+    unsigned short int getID() const;
 //NESTED class - careful here
     class ParcServices{
     public:
@@ -116,14 +116,14 @@ public:
 
 private:
 //    own identification to pop it as element from VacationParcs
-    static int aantalParcs;
-    int parcID;
+    static unsigned short int aantalParcs;
+    unsigned short int parcID;
 
 
 public:
 //        Make good use of tempaltes again
     void addAccommodation( Accommodations* accommodation);
-    void removeAccommodation(int id);
+    void removeAccommodation(unsigned short int id);
     Parcs(std::string name, std::string address, ParcServices services, std::vector<Accommodations*> accommodations);
 };
 

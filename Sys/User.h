@@ -9,8 +9,8 @@
 
 class User {
 protected:
-    static int aantalUsers;
-    int userID;
+    static unsigned short int aantalUsers;
+    unsigned short int userID;
     std::string name,address,mail;
 public:
 //    base dunder
@@ -35,7 +35,7 @@ public:
 
     void setMail(const std::string &mail);
 
-    int getID() const;
+    unsigned short int getID() const;
 
 public:
     User(std::string name, std::string address, std::string mail);

@@ -12,20 +12,15 @@ void Cabin::setBedrooms(int bedrooms) {
     Cabin::bedrooms = bedrooms;
 }
 
-Cabin::Cabin(int id, int nrPeople, int size, bool bathroomWithBath, LuxuryLevel luxuryLevel, int bedrooms): bedrooms(bedrooms) {
-    this->ID = ID;
+Cabin::Cabin(int nrPeople, int size, bool bathroomWithBath, LuxuryLevel luxuryLevel, int bedrooms): bedrooms(bedrooms) {
     this->nrPeople = nrPeople;
     this->size = size;
     this->bathroomWithBath = bathroomWithBath;
     this->luxuryLevel = luxuryLevel;
 }
 
-int Cabin::getID() const  {
-    return ID;
-}
-
-void Cabin::setId(int id) {
-    ID = id;
+unsigned short int Cabin::getID() const  {
+    return accommodationID;
 }
 
 int Cabin::getNrPeople() const {

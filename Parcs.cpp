@@ -5,7 +5,7 @@
 #include "Parcs.h"
 
 // Have no parks at the beginning of the program
-int Parcs::aantalParcs = 0;
+unsigned short int Parcs::aantalParcs = 0;
 
 bool Parcs::ParcServices::isSubtropicSwimmingPool() const {
     return subtropicSwimmingPool;
@@ -88,7 +88,7 @@ void Parcs::addAccommodation(Accommodations *accommodation) {
     addItem(accommodations,accommodation);
 }
 
-void Parcs::removeAccommodation(int id) {
+void Parcs::removeAccommodation(unsigned short int id) {
     removeItem(accommodations,id);
 }
 
@@ -100,7 +100,7 @@ Parcs::Parcs(std::string name, std::string address, ParcServices services,
     this->parcID = ++Parcs::aantalParcs;
 }
 
-int Parcs::getID() const {
+unsigned short int Parcs::getID() const {
     return parcID;
 }
 

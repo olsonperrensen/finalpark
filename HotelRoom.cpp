@@ -36,9 +36,8 @@ void HotelRoom::setLocation(const std::string &location) {
     HotelRoom::location = location;
 }
 
-HotelRoom::HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed, int ID, int nrPeople, int size,
+HotelRoom::HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed, int nrPeople, int size,
                      bool bathroomWithBath, LuxuryLevel luxuryLevel):floor(floor),location(location),nrBeds(nrBeds),childrenBed(childrenBed) {
-    this->ID = ID;
     this->nrPeople = nrPeople;
     this->size = size;
     this->bathroomWithBath = bathroomWithBath;
@@ -47,12 +46,8 @@ HotelRoom::HotelRoom(int floor, std::string location, int nrBeds, bool childrenB
 
 // De-abstract from parent
 
-int HotelRoom::getID() const  {
-    return ID;
-}
-
-void HotelRoom::setId(int id) {
-    ID = id;
+unsigned short int HotelRoom::getID() const  {
+    return accommodationID;
 }
 
 int HotelRoom::getNrPeople() const {
