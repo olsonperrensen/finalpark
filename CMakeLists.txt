@@ -29,4 +29,6 @@ add_executable(finalpark main.cpp
         Sys/Employee.h
         Sys/OS.cpp
         Sys/OS.h
-        Accommodations.cpp)
+        Accommodations.cpp
+        Sys/Datum.cpp
+        Sys/Datum.h)

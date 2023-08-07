@@ -7,12 +7,16 @@
 #include <vector>
 #include "Accommodations.h"
 #include "Customer.h"
+#include "Sys/Datum.h"
 
 class Booking {
 private:
     int ID;
     Customer* customer;
     std::vector<Accommodations*> accommodations;
+//    OWN LOGIC
+    Datum beginDate;
+    Datum endDate;
 public:
 
     Customer *getCustomer() const;
@@ -39,7 +43,9 @@ public:
 
         os << "], activityPass: " << obj.activityPass
            << ", sportsPass: " << obj.sportsPass << ", bicycleRent: " << obj.bicycleRent
-           << ", swimmingPass: " << obj.swimmingPass << " ) ";
+           << ", swimmingPass: " << obj.swimmingPass << " ,"
+           << "Begin date: " << obj.beginDate // print beginDate
+           << "End date: " << obj.endDate << " ) ";
 
         return os;
     }
@@ -76,8 +82,16 @@ public:
 
     void setSwimmingPass(bool swimmingPass);
 
+    // Getter methods
+    Datum getBeginDate();
+    Datum getEndDate();
+
+    // Setter methods
+    void setBeginDate(Datum beginDate);
+    void setEndDate(Datum endDate);
+
     Booking(int ID, Customer* customer, std::vector<Accommodations*> accommodations, bool activityPass,
-            bool sportsPass, bool bicycleRent, bool swimmingPass);
+            bool sportsPass, bool bicycleRent, bool swimmingPass,Datum beginDate, Datum endDate);
 };
 
 

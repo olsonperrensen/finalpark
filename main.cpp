@@ -89,7 +89,7 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //        std::cout << std::endl << "Customer ID: " << e->getID() << std::endl;
 //    }
 //
-//    os.bookAccommodation(vp,1,1,b);
+    os.bookAccommodation(vp,1,1,b);
 //    os.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));
 ////    e.deleteBooking(vp,72);
 
@@ -98,3 +98,4 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //    std::cout << vp;
     return 0;
 }
+//TODO file MGMT w/scheider

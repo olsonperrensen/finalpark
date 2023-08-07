@@ -6,8 +6,8 @@
 #include "Customer.h"
 
 Booking::Booking(int ID, Customer* customer, std::vector<Accommodations*> accommodations, bool activityPass,
-                 bool sportsPass, bool bicycleRent, bool swimmingPass): ID(ID), customer(customer), accommodations(accommodations),
-                                                                        activityPass(activityPass){
+                 bool sportsPass, bool bicycleRent, bool swimmingPass,Datum beginDate, Datum endDate): ID(ID), customer(customer), accommodations(accommodations),
+                                                                        activityPass(activityPass),beginDate(beginDate), endDate(endDate){
 
 }
 
@@ -64,4 +64,24 @@ const std::vector<Accommodations *> &Booking::getAccommodations() const {
 
 void Booking::setAccommodations(const std::vector<Accommodations *> &accommodations) {
     Booking::accommodations = accommodations;
+}
+
+Datum Booking::getBeginDate()
+{
+    return beginDate;
+}
+
+Datum Booking::getEndDate()
+{
+    return endDate;
+}
+
+void Booking::setBeginDate(Datum beginDate)
+{
+    this->beginDate = beginDate;
+}
+
+void Booking::setEndDate(Datum endDate)
+{
+    this->endDate = endDate;
 }
