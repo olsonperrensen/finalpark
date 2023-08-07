@@ -50,8 +50,8 @@ int main() {
 ////    o.modifyPark(vp, 1, parkupdate);
 //    o.deletePark(vp,3);
     o.createAccommodation(vp,1,anew);
-    o.modifyAccommodations(vp,2,vnew);
-    o.deleteAccommodation(vp,2,999);
+    os.modifyAccommodation(vp,1,1,afinal);
+    o.deleteAccommodation(vp,1,888);
     if(1){
         int srv,pid;
 //        TODO offer names instead with for-range based loop
@@ -83,8 +83,6 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //    os.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));
 ////    e.deleteBooking(vp,72);
 ////    e.deleteCustomer(vp,1);
-////individual modifying
-//    os.modifyAccommodation(vp,2,1,afinal);
 //    c->modifyData(Customer("Larry Page","Sergeistraat 9", "larry@goo.gl", "Bancontact"));
 //
 //    std::cout << vp;

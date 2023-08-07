@@ -26,6 +26,7 @@ void Owner::createAccommodation(VacationParcs &company, int parkID, Accommodatio
     for (Parcs* parc : parcs) {
         if (parc->getID() == parkID) {
             // Add the new accommodation to the park
+            std::cout << "Trying to add new accommodation " << "to Parc (parkID): " << parkID << std::endl;
             parc->addAccommodation(newAccommodation);
             return;
         }
