@@ -94,5 +94,15 @@ void OS::deleteBooking(VacationParcs &company, int bookingID) {
 }
 
 void OS::createCustomer(VacationParcs &company, Customer* newCustomer) {
+    // CHECK FOR DUPLICATES
+    std::vector<Customer*>& existingCustomers = company.getCustomers();
+    std::cout << "createCustomer -> Attempting to create user ... First checking for duplicates...\n";
+    for (Customer* existingCustomer : existingCustomers) {
+        if (*existingCustomer == *newCustomer) {
+            std::cout << "createCustomer -> This customer is already registered.\n";
+            return;
+        }
+    }
+    // If no duplicate found, register the new customer
     company.registerCustomer(newCustomer);
 }

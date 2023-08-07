@@ -100,7 +100,7 @@ void VacationParcs::addCustomer(Customer* neuCustomer) {
 }
 
 void VacationParcs::registerCustomer(Customer* newCustomer) {
-    // TODO With if checks so all data is valid
+
     addCustomer(newCustomer);
     std::cout << "registerCustomer -> Customer " << newCustomer->getID() << " has registered successfully." << std::endl;
 }

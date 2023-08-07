@@ -73,11 +73,12 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //    Booking* b = new Booking(1,c,v,1,1,1,1);
 //    Employee e("Tom Sawyer","laanbaan 1", "tom@boom.be", "Bancontact",false);
       os.createCustomer(vp,neuc);
-
-    os.modifyCustomer(vp,2,Customer("Bush Anderson","Manhattanweg 33", "mht@work.cn", "Contant Geld"));
-//TODO     FOUND ISSUE! USERID below are not id's but places in vector. First place gets deleted (first Bruce Lee, then Bush)
-    os.deleteCustomer(vp,1);
-    os.deleteCustomer(vp,1);
+      os.createCustomer(vp,neuc);
+//
+//    os.modifyCustomer(vp,2,Customer("Bush Anderson","Manhattanweg 33", "mht@work.cn", "Contant Geld"));
+////TODO     FOUND ISSUE! USERID below are not id's but places in vector. First place gets deleted (first Bruce Lee, then Bush)
+//    os.deleteCustomer(vp,1);
+//    os.deleteCustomer(vp,1);
     std::cout << vp;
 //
 //    std::cout << "Customers present in VP:\n";
