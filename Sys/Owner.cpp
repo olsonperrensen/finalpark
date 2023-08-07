@@ -10,7 +10,7 @@ Owner::Owner(std::string name, std::string address, std::string mail) : User(nam
 
 void Owner::createPark(VacationParcs &company, Parcs* park) {
     company.addPark(park);
-    std::cout << "createPark -> A new parc (" << park->getName() << ") has been created" << std::endl;
+    std::cout << "createPark -> A new parc (ID: " << park->getID() << ", Name: "<< park->getName() <<") has been created" << std::endl;
 }
 
 void Owner::modifyPark(VacationParcs &company, int parkID, const Parcs &updatedPark) {

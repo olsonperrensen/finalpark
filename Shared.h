@@ -25,7 +25,9 @@ template <typename T>
 
 template <typename T>
 void removeItem(std::vector<T*>& vec, int id) {
-    if (id < 0 || id >= vec.size()) {
+//    DEBUG
+//    std::cout << vec.size() << " vs " << id << std::endl;
+    if (id < 0) {
         std::cout << "removeItem -> Invalid ID.\n";
         return;
     }

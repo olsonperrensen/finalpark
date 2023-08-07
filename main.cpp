@@ -48,7 +48,7 @@ int main() {
     Owner o("Bruce","Kennisstraat 13","Lee@Lee.lee");
     o.createPark(vp, new Parcs("THE RESORT OF YOUR DREAMS!","Hollandsebaan 2",ss,vnew));
 //    o.modifyPark(vp, 1, parkupdate);
-////    o.deletePark(vp,1);
+    o.deletePark(vp,3);
 //    o.createAccommodation(vp,2,anew);
 //    o.modifyAccommodations(vp,2,vnew);
 ////    o.deleteAccommodation(vp,2,999);
