@@ -4,8 +4,8 @@
 #include "Datum.h"
 #include "../Shared.h"
 
-Datum::Datum(int datum, int maand, int jaar)
-        : datum(datum),
+Datum::Datum(int dag, int maand, int jaar)
+        : dag(dag),
           maand(maand),
           jaar(jaar)
 {
@@ -25,7 +25,7 @@ int Datum:: countSchrikkeljaar() {
 }
 
 int Datum::countDatum() {
-    int aantalDagen = this->jaar * 365 + this->datum;
+    int aantalDagen = this->jaar * 365 + this->dag;
 
     for(int i = 0; i < this->maand - 1; i++) {
         aantalDagen = aantalDagen + DAG_VSCH_MAAND[i];
@@ -50,7 +50,7 @@ int Datum::operator - (Datum &datum2) {
 
 std::wstring Datum ::datumNaarString() {
     std::wstringstream ss;
-    ss << datum << L"/" << maand << L"/" << jaar;
+    ss << dag << L"/" << maand << L"/" << jaar;
     return ss.str();
 }
 

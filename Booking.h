@@ -9,6 +9,7 @@
 #include "Customer.h"
 #include "Sys/Datum.h"
 
+
 class Booking {
 private:
     int ID;
@@ -43,9 +44,9 @@ public:
 
         os << "], activityPass: " << obj.activityPass
            << ", sportsPass: " << obj.sportsPass << ", bicycleRent: " << obj.bicycleRent
-           << ", swimmingPass: " << obj.swimmingPass << " ,"
-           << "Begin date: " << obj.beginDate // print beginDate
-           << "End date: " << obj.endDate << " ) ";
+           << ", swimmingPass: " << obj.swimmingPass
+           << ", Begin date: " << obj.beginDate // print beginDate
+           << ", End date: " << obj.endDate << " ) ";
 
         return os;
     }
