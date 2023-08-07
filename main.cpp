@@ -25,7 +25,7 @@ int main() {
     Parcs::ParcServices s(true,true, true, true, true, true);
     Parcs::ParcServices ss(false,false, true, true, false, true);
     std::vector<Parcs*>pv;
-    Parcs* p = new Parcs("Destination 1","bloemlaan 7",s,v);
+    Parcs* p = new Parcs("THE FIRST AWESOME PARK","bloemlaan 7",s,v);
     pv.push_back(p);
     Customer* c = new Customer("Bruce Lee","hongkongstraat 178", "blee@hotmail.co.uk", "Bancontact");
     Customer* neuc = new Customer("Mary Manson","Brusselsepoort 2", "mary@manson.no", "Payconiq");
@@ -47,23 +47,26 @@ int main() {
 //    User test
     Owner o("Bruce","Kennisstraat 13","Lee@Lee.lee");
     o.createPark(vp, new Parcs("THE RESORT OF YOUR DREAMS!","Hollandsebaan 2",ss,vnew));
-//    o.modifyPark(vp, 1, parkupdate);
-    o.deletePark(vp,3);
+////    o.modifyPark(vp, 1, parkupdate);
+//    o.deletePark(vp,3);
 //    o.createAccommodation(vp,2,anew);
 //    o.modifyAccommodations(vp,2,vnew);
 ////    o.deleteAccommodation(vp,2,999);
-//    if(0){
-//        int srv;
-//        std::cout << "Choose which services to remove:" << R"(
-//SUBTROPIC_SWIMMING_POOL=1,
-//SPORTS_INFRASTRUCTURE=2,
-//BOWLING_ALLEY=3,
-//BICYCLE_RENT=4,
-//CHILDRENS_PARADISE=5,
-//WATER_BIKES=6)" << std::endl << "Choose: ";
-//        std::cin >> srv;
-//        o.changeService(vp,2,srv,false);
-//    }
+    if(1){
+        int srv,pid;
+//        TODO offer names instead with for-range based loop
+        std::cout << "Choose parkID:";
+        std::cin >> pid;
+        std::cout << "\nChoose which services to remove:" << R"(
+SUBTROPIC_SWIMMING_POOL=1,
+SPORTS_INFRASTRUCTURE=2,
+BOWLING_ALLEY=3,
+BICYCLE_RENT=4,
+CHILDRENS_PARADISE=5,
+WATER_BIKES=6)" << std::endl << "Choose: ";
+        std::cin >> srv;
+        o.changeService(vp,pid,srv,false);
+    }
 ////TODO only accept true w/static cast, not 1
 //    Booking* b = new Booking(1,c,v,1,1,1,1);
 //    Employee e("Tom Sawyer","laanbaan 1", "tom@boom.be", "Bancontact",false);
