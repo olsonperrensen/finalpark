@@ -67,9 +67,9 @@ void OS::bookAccommodation(VacationParcs &company, int customerID, int accommoda
     for (Parcs* parc : parcs) {
         std::vector<Accommodations*>& accommodations = parc->getAccommodations();  // MUST reference otherwise copy-work :(
 //        DEBUG
-//        for (auto e:accommodations) {
-//            std::cout << "bookAccommodation -> GETTING ID: " << *e << std::endl;
-//        }
+        for (auto e:accommodations) {
+            std::cout << "bookAccommodation -> GETTING ID: " << *e << std::endl;
+        }
         Accommodations* accommodation = findItemByID(accommodations, accommodationID);
         if (accommodation) {
             // Add the new booking to the list of bookings.

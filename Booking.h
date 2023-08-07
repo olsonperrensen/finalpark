@@ -29,7 +29,7 @@ private:
 public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, const Booking& obj) {
-        os << "Booking ( ID: " << obj.getID() << ", customer: " << obj.getCustomer()
+        os << "Booking ( ID: " << obj.getID() << ", customer: " << *obj.getCustomer()
            << ", accommodations: [";
 
         const std::vector<Accommodations*>& accommodations = obj.getAccommodations();

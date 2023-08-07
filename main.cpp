@@ -17,7 +17,7 @@ int main() {
 //TODO remove manual IDing
     HotelRoom a(1,"Bahamas",12,false,12,32,false,l);
     Cabin* anew = new Cabin(2,2,false,l,3);
-    HotelRoom anewnew(42,"Maldives",12,false,12,32,false,l);
+    HotelRoom anewnew(42,"Maldives",12,false,12,456,false,l);
     Cabin* afinal = new Cabin(2,2,false,l,3);
     std::vector<Accommodations*> vnew{&anewnew};
     v.push_back(&a);
@@ -47,8 +47,8 @@ int main() {
 //    User test
     Owner o("Bruce","Kennisstraat 13","Lee@Lee.lee");
 //    TODO skip id==id in class operator overloading when using new keyword so real data check (not on-the-fly iding) can trully compare the objects
-    o.createPark(vp, new Parcs("THE RESORT OF YOUR DREAMS!","Hollandsebaan 2",ss,vnew));
-    o.createPark(vp, new Parcs("THE RESORT OF YOUR DREAMS!","Hollandsebaan 2",ss,vnew));
+//    o.createPark(vp, new Parcs("THE RESORT OF YOUR DREAMS!","Hollandsebaan 2",ss,vnew));
+//    o.createPark(vp, new Parcs("THE RESORT OF YOUR DREAMS!","Hollandsebaan 2",ss,vnew));
 ////    o.modifyPark(vp, 1, parkupdate);
 //    o.deletePark(vp,3);
 //    o.createAccommodation(vp,1,anew);
@@ -88,10 +88,10 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //        std::cout << std::endl << "Customer ID: " << e->getID() << std::endl;
 //    }
 //
-//TODO fix
-//    os.bookAccommodation(vp,1,1,b);
+//TODO possible ID f* up fix would be by calling getid by their instances!
+    os.bookAccommodation(vp,c->getID(),a.getID(),b);
 
-    std::cout << *b;
+    std::cout << vp;
 //    os.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));
 ////    e.deleteBooking(vp,72);
 
