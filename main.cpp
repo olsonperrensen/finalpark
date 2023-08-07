@@ -46,11 +46,13 @@ int main() {
 //    vp.removePark(1);
 //    User test
     Owner o("Bruce","Kennisstraat 13","Lee@Lee.lee");
+//    TODO skip id==id in class operator overloading when using new keyword so real data check (not on-the-fly iding) can trully compare the objects
+    o.createPark(vp, new Parcs("THE RESORT OF YOUR DREAMS!","Hollandsebaan 2",ss,vnew));
     o.createPark(vp, new Parcs("THE RESORT OF YOUR DREAMS!","Hollandsebaan 2",ss,vnew));
 ////    o.modifyPark(vp, 1, parkupdate);
 //    o.deletePark(vp,3);
-    o.createAccommodation(vp,1,anew);
-    o.createAccommodation(vp,1,anew);
+//    o.createAccommodation(vp,1,anew);
+//    o.createAccommodation(vp,1,anew);
 //    os.modifyAccommodation(vp,1,1,afinal);
 //    o.deleteAccommodation(vp,3,1);
 //    o.deleteAccommodation(vp,1,32);
@@ -72,8 +74,8 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 ////TODO only accept true w/static cast, not 1
 //    Booking* b = new Booking(1,c,v,1,1,1,1);
 //    Employee e("Tom Sawyer","laanbaan 1", "tom@boom.be", "Bancontact",false);
-      os.createCustomer(vp,neuc);
-      os.createCustomer(vp,neuc);
+//      os.createCustomer(vp,neuc);
+//      os.createCustomer(vp,neuc);
 //
 //    os.modifyCustomer(vp,2,Customer("Bush Anderson","Manhattanweg 33", "mht@work.cn", "Contant Geld"));
 ////TODO     FOUND ISSUE! USERID below are not id's but places in vector. First place gets deleted (first Bruce Lee, then Bush)

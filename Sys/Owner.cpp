@@ -9,6 +9,16 @@ Owner::Owner(std::string name, std::string address, std::string mail) : User(nam
 }
 
 void Owner::createPark(VacationParcs &company, Parcs* park) {
+    // CHECK FOR DUPLICATES
+    std::cout << "createPark -> Attempting to add park. First checking against duplicates.\n";
+    std::vector<Parcs*>& existingParks = company.getParcs();
+    for (Parcs* existingPark : existingParks) {
+        if (existingPark == park) { // Adapt this comparison to match your needs.
+            std::cout << "createPark -> This park is already registered.\n";
+            return;
+        }
+    }
+    // If no duplicate found, add the new park
     company.addPark(park);
     std::cout << "createPark -> A new parc (ID: " << park->getID() << ", Name: "<< park->getName() <<") has been created" << std::endl;
 }
