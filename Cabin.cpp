@@ -12,7 +12,7 @@ void Cabin::setBedrooms(int bedrooms) {
     Cabin::bedrooms = bedrooms;
 }
 
-Cabin::Cabin(int bedrooms,int nrPeople, int size, bool bathroomWithBath, LuxuryLevel* luxuryLevel): bedrooms(bedrooms) {
+Cabin::Cabin(int nrPeople, int size, bool bathroomWithBath, LuxuryLevel* luxuryLevel,int bedrooms): bedrooms(bedrooms) {
     this->nrPeople = nrPeople;
     this->size = size;
     this->bathroomWithBath = bathroomWithBath;

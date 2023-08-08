@@ -30,8 +30,8 @@ public:
         // Compare base class members and derived class members.
         return Accommodations::operator==(other) && (this->floor == derivedOther->floor);
     }
-    HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed,
-              int nrPeople,int size,bool bathroomWithBath,LuxuryLevel* luxuryLevel);
+    HotelRoom(int nrPeople,int size,bool bathroomWithBath,LuxuryLevel* luxuryLevel,bool childrenBed,
+              int floor, std::string location, int nrBeds);
     int getFloor() const;
 
     void setFloor(int floor);
