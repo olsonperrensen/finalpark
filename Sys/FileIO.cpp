@@ -1050,8 +1050,10 @@ inline void FileIO::inputParkToSys() {
         services = new Parcs::ParcServices(ServicesBoolLijst[0],ServicesBoolLijst[1],ServicesBoolLijst[2],ServicesBoolLijst[3],ServicesBoolLijst[4],ServicesBoolLijst[5]);
 //        TEMP SOLUTION : ADD INVENTED DATA
         std::cout << "Loading accommodations into parc...\n";
-        accommodations.push_back(new HotelRoom(2, "Brooklyn", 2, 1,
-                3,500,1,new LuxuryLevel(1,1,1,1,"HotelRoom")));
+        accommodations.push_back(
+                new Cabin(2,2,100,0,
+                          new LuxuryLevel(1,1,1,1,
+                                          "Cabin")));
 //        accommodations.push_back(new Cabin(2,2,100,0,new LuxuryLevel(1,1,1,1,"Cabin")));
 //        accommodations.push_back(new HotelRoom(22, "Manhattan", 5, 1,
 //                                               6,900,1,new LuxuryLevel(1,1,1,1,"HotelRoom")));
@@ -1244,8 +1246,7 @@ inline void FileIO::outputParkNaarBestand() {
         return;
     }
     for (Parcs *park: parkVector) {
-        bestandSchrijven << park->getID() << SCHEIDER
-                         << park->getName() << SCHEIDER
+        bestandSchrijven << park->getName() << SCHEIDER
                          << park->getServices() << SCHEIDER;
         for (auto e:park->getAccommodations()) {
             bestandSchrijven << e << SCHEIDER;

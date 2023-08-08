@@ -20,7 +20,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Accommodations& obj) {
         os << "Accommodations ( ID: " << obj.accommodationID << ", nrPeople: " << obj.nrPeople
            << ", size: " << obj.size<< ", bathroomWithBath: " << obj.bathroomWithBath
-           << ", luxuryLevel: " << obj.luxuryLevel << " ) ";
+           << ", luxuryLevel: " << *obj.luxuryLevel << " ) ";
         return os;
     }
 // No Accommodations should be initialized
