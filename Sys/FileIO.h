@@ -40,16 +40,16 @@ public:
     Park *huidigUserPark;
     std::vector<Park *> abonneeSuitableParkLijst;
     FileIO();
-    static inline std::wstring strSnijden(std::wstring &str);
-    inline static std::vector<std::wstring> mijnStrTok(const std::wstring& str, wchar_t sep);
-    inline static bool isNumGeldig(std::wstring &inputStr);
-    inline static bool isDouble(std::wstring &inputStr);
-    inline static bool isWachtGeldig(std::wstring &wachtwoord);
-    inline bool isGebrGeldig(std::wstring &gebruikersnaam);
-    inline static bool geldigeMail(std::wstring &umail);
+    static inline std::string strSnijden(std::string &str);
+    inline static std::vector<std::string> mijnStrTok(const std::string& str, char sep);
+    inline static bool isNumGeldig(std::string &inputStr);
+    inline static bool isDouble(std::string &inputStr);
+    inline static bool isWachtGeldig(std::string &wachtwoord);
+    inline bool isGebrGeldig(std::string &gebruikersnaam);
+    inline static bool geldigeMail(std::string &umail);
     inline static bool isValidKrediet(Abonnee *abn, Park *park);
     inline static bool isValidLuxuryLevel(Abonnee *abn, Park *park);
-    inline static bool isDatumGeldig(std::wstring datum);
+    inline static bool isDatumGeldig(std::string datum);
     inline static bool isJuisteDatumOrder(Datum* begin, Datum *eind);
     inline static int menuKeuze(int begin, int eind);
     inline void hoofdScherm();
@@ -64,17 +64,17 @@ public:
     inline void rateTenantMenu(int leaveID);
     inline bool getInfoLijstParkMenu();
     inline bool enterParkInfo();
-    inline void validParkMenu(Datum *begin, Datum *eind, std::wstring locatie);
+    inline void validParkMenu(Datum *begin, Datum *eind, std::string locatie);
     inline void searchValidParkMenu();
     inline bool abnBookingPark(Datum *beginDatum, Datum *eindDatum, int parkId);
     inline void zieBookingMenu();
     inline void actionBookingMenu(int bookingID);
     inline void gehuurdeParkTonen();
     inline void cancelBookingMenu(int ID);
-    inline bool isValidBeginParks(Datum *begin, Abonnee *abn, Park *park, std::wstring locatie);
-    inline bool isValidEndParks(Datum *eind, Abonnee *abn, Park *park, std::wstring locatie);
-    inline bool getGeldigeBeginParks(Datum *begin, std::wstring locatie);
-    inline bool getGeldigeEndParks(Datum *eind, std::wstring locatie);
+    inline bool isValidBeginParks(Datum *begin, Abonnee *abn, Park *park, std::string locatie);
+    inline bool isValidEndParks(Datum *eind, Abonnee *abn, Park *park, std::string locatie);
+    inline bool getGeldigeBeginParks(Datum *begin, std::string locatie);
+    inline bool getGeldigeEndParks(Datum *eind, std::string locatie);
     inline bool deleteInRentPark();
     inline void inputParkToSys();
     inline void inputBeheerderToSys();
@@ -90,7 +90,7 @@ public:
     //    FUN OVERLOADING!
     inline void outputAbonneeNaarBestand(std::vector<Abonnee *> newabonnee);
     inline void abonneeRegistreren();
-    inline bool abonneeInloggen(std::wstring gebruikersnaam, std::wstring wachtwoord);
-    inline Datum *stringToDatum(std::wstring &datum);
+    inline bool abonneeInloggen(std::string gebruikersnaam, std::string wachtwoord);
+    inline Datum *stringToDatum(std::string &datum);
 };
 #endif //FINALPARK_FileIO_H

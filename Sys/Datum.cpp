@@ -42,15 +42,15 @@ bool Datum::operator < (Datum &datum2) {
 
 int Datum::operator - (Datum &datum2) {
     // Get the difference between two datums
-    std::wcout << this->countDatum() << L"\n";
-    std::wcout << datum2.countDatum() << L"\n";
+    std::cout << this->countDatum() << "\n";
+    std::cout << datum2.countDatum() << "\n";
 
     return this->countDatum() - datum2.countDatum();
 }
 
-std::wstring Datum ::datumNaarString() {
-    std::wstringstream ss;
-    ss << dag << L"/" << maand << L"/" << jaar;
+std::string Datum ::datumNaarString() {
+    std::stringstream ss;
+    ss << dag << "/" << maand << "/" << jaar;
     return ss.str();
 }
 

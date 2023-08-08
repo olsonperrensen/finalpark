@@ -32,7 +32,7 @@ class Datum {
         os << obj.dag << "/" << obj.maand << "/" << obj.jaar;
         return os;
     }
-        std::wstring datumNaarString();
+        std::string datumNaarString();
 };
 #endif
 
