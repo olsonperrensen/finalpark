@@ -87,10 +87,10 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
     os.bookAccommodation(vp,c->getID(),a.getID(),b);
 //    os.bookAccommodation(vp,c->getID(),a.getID(),b);
     os.modifyBooking(vp,b->getID(),new Booking(1,c,v,1,1,1,1,Datum(1,12,2019),Datum(31,12,2019)));
-////    e.deleteBooking(vp,72);
+    os.deleteBooking(vp,b->getID());
     os.modifyCustomer(vp,c->getID(),new Customer("Bush Anderson","Manhattanweg 33", "mht@work.cn", "Contant Geld"));
 //    c->modifyData(Customer("Larry Page","Sergeistraat 9", "larry@goo.gl", "Bancontact"));
-    os.deleteCustomer(vp,c->getID()+11);
+    os.deleteCustomer(vp,c->getID());
 //    TODO move deletepark + deleteaccommodation to OS
 //    o.deleteAccommodation(vp,p->getID(),a.getID());
     o.deletePark(vp,p->getID());
