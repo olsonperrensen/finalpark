@@ -1047,9 +1047,9 @@ inline void FileIO::inputParkToSys() {
         std::vector<bool> LuxBoolLijst;
         gegLijst = mijnStrTok(gegLijn, SCHEIDER);
         //DEBUG
-        for (int i = 0; i < gegLijst.size(); ++i) {
-            std::cout << i << ":" << gegLijst[i] << "\n";
-        }
+//        for (int i = 0; i < gegLijst.size(); ++i) {
+//            std::cout << i << ":" << gegLijst[i] << "\n";
+//        }
         name = gegLijst[0];
         address = gegLijst[1];
         //      i starts at 2 bc name and address come first and are not booleans and ends 2+6 bc Accommodations should only be
@@ -1175,7 +1175,7 @@ inline void FileIO::inputParkToSys() {
                 accommodations.push_back(h2);
             }
         }
-        else if (gegLijst.size()<=emptyParkLen+oneCabinArgs*3){
+        else if (gegLijst.size()<=emptyParkLen+oneCabinArgs*3||gegLijst.size()<=emptyParkLen+oneHRArgs*3){
             if (gegLijst.size()<=emptyParkLen+oneCabinArgs*3){
 //                3CABS
                 std::cout << "Exactly 3 Cabins found in parc...\n";
@@ -1220,12 +1220,57 @@ inline void FileIO::inputParkToSys() {
                 accommodations.push_back(c3);
             }
             else if (gegLijst.size()<=emptyParkLen+oneHRArgs*3){
-                std::cout << "Exactly three HotelRooms found in parc...\n";
+                //                3HRs
+                std::cout << "Exactly 3 HotelRooms found in parc...\n";
+                //        +2 = Start at the end of emptyParkLen:
+                //        skip n start @ bool bathroomWithBath
+                //        plus grab LuxuryLevel* luxuryLevel (4 bools + 1 str... skip str part)
+                for (size_t i = emptyParkLen+2; i < 15; ++i) {
+                    LuxBoolLijst.push_back(stringToBool(gegLijst[i]));
+                }
+                for (size_t i = emptyParkLen+oneHRArgs+2; i < 24; ++i) {
+                    LuxBoolLijst.push_back(stringToBool(gegLijst[i]));
+                }
+                for (size_t i = emptyParkLen+oneHRArgs*2+2; i < 33; ++i) {
+                    LuxBoolLijst.push_back(stringToBool(gegLijst[i]));
+                }
+                std::cout << "Loading 3HRs into parc...\n";
+                HotelRoom* h1 = new HotelRoom(std::stoi(gegLijst[8]),std::stoi(gegLijst[9]),
+                                              LuxBoolLijst[0],
+                                              new LuxuryLevel(
+                                                      LuxBoolLijst[1],LuxBoolLijst[2],
+                                                      LuxBoolLijst[3],LuxBoolLijst[4],
+                                                      gegLijst[15]), stringToBool(gegLijst[16]),std::stoi(gegLijst[17]),gegLijst[18],
+                                              std::stoi(gegLijst[19]));
+
+                HotelRoom* h2 = new HotelRoom(std::stoi(gegLijst[20]),std::stoi(gegLijst[21]),
+                                              LuxBoolLijst[5],
+                                              new LuxuryLevel(
+                                                      LuxBoolLijst[6],LuxBoolLijst[7],
+                                                      LuxBoolLijst[8],LuxBoolLijst[9],
+                                                      gegLijst[27]), stringToBool(gegLijst[28]),std::stoi(gegLijst[29]),gegLijst[30],
+                                              std::stoi(gegLijst[31]));
+
+                HotelRoom* h3 = new HotelRoom(std::stoi(gegLijst[32]),std::stoi(gegLijst[33]),
+                                      LuxBoolLijst[10],
+                                      new LuxuryLevel(
+                                              LuxBoolLijst[11],LuxBoolLijst[12],
+                                              LuxBoolLijst[13],LuxBoolLijst[14],
+                                              gegLijst[39]), stringToBool(gegLijst[40]),std::stoi(gegLijst[41]),gegLijst[42],
+                                               std::stoi(gegLijst[43]));
+                h1->setAccommodationId(++idGenerator);
+                h2->setAccommodationId(++idGenerator);
+                h3->setAccommodationId(++idGenerator);
+                accommodations.push_back(h1);
+                accommodations.push_back(h2);
+                accommodations.push_back(h3);
             }
         }
         else if (gegLijst.size()>44){
             throw std::invalid_argument("You can't have more than 3 Accommodations per Parc! Getting " + std::to_string(gegLijst.size()) + " as len\n");
         }
+//        DEBUG
+//        std::cout << gegLijst.size() << " AND "<< emptyParkLen+oneHRArgs*3 << std::endl;
         std::cout << "Putting services + accommodations into parc...\n";
 //        Happens regardless of n nr acco's
         auto *park = new Parcs(name, address, *services,accommodations);
