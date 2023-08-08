@@ -43,6 +43,8 @@ void Accommodations::setLuxuryLevel(LuxuryLevel *luxuryLevel) {
 }
 
 Accommodations::Accommodations(int nrPeople, int size, bool bathroomWithBath, LuxuryLevel* luxuryLevel):
-       nrPeople(nrPeople),size(size),bathroomWithBath(bathroomWithBath),luxuryLevel(luxuryLevel){
+       nrPeople(nrPeople),size(size),bathroomWithBath(bathroomWithBath){
+
+    this->luxuryLevel = luxuryLevel;
     this->accommodationID = ++Accommodations::aantalAccommodations;
 }

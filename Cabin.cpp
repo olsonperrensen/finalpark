@@ -16,7 +16,7 @@ Cabin::Cabin(int bedrooms,int nrPeople, int size, bool bathroomWithBath, LuxuryL
     this->nrPeople = nrPeople;
     this->size = size;
     this->bathroomWithBath = bathroomWithBath;
-    *this->luxuryLevel = *luxuryLevel;
+    this->luxuryLevel = luxuryLevel;
 }
 
 unsigned short int Cabin::getID() const  {

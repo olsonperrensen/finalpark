@@ -41,8 +41,7 @@ HotelRoom::HotelRoom(int floor, std::string location, int nrBeds, bool childrenB
     this->nrPeople = nrPeople;
     this->size = size;
     this->bathroomWithBath = bathroomWithBath;
-//    BOTH MUST DEREF OTHERWISE COMPLAIN
-    *this->luxuryLevel = *luxuryLevel;
+    this->luxuryLevel = luxuryLevel;
 }
 
 // De-abstract from parent

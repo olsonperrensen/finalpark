@@ -196,7 +196,7 @@ inline void FileIO::inputBeheerderToSys() {
     if (!bestandLezen.is_open()) {
         std::cerr << "Kan bestand " << OWNER_BESTAND << " niet openen. Probeer het eens opnnieuw.\n";
         return;  //  Als 't bestand iets problematisch heeft
-    } else std::cout << "\nAan het laden...\n";
+    } else std::cout << "Beheerder aan het laden...\n";
 
     if (std::getline(bestandLezen, gegLijn)) {
         gegLijst = mijnStrTok(gegLijn, SCHEIDER);
@@ -215,6 +215,7 @@ inline void FileIO::inputBeheerderToSys() {
     password = gegLijst[3];
 
 //    CANNOT DO Owner* bc declared at top Classe
+    std::cout << "Assigning owner...\n";
     owner = new Owner(name, address,mail,password);
 }
 //
@@ -1033,7 +1034,7 @@ inline void FileIO::inputParkToSys() {
     if (!bestandLezen.is_open()) {
         std::cerr << "Kan bestand " << PARCS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 
-    }
+    } else std::cout << "Loading park...\n";
     while (std::getline(bestandLezen, gegLijn)) {
         std::vector<std::string> gegLijst;
         std::vector<bool> ServicesBoolLijst;
@@ -1045,13 +1046,16 @@ inline void FileIO::inputParkToSys() {
         for (size_t i = 2; i < 8; ++i) {
             ServicesBoolLijst.push_back(stringToBool(gegLijst[i]));
         }
+        std::cout << "Loading Parc Services into parc...\n";
         services = new Parcs::ParcServices(ServicesBoolLijst[0],ServicesBoolLijst[1],ServicesBoolLijst[2],ServicesBoolLijst[3],ServicesBoolLijst[4],ServicesBoolLijst[5]);
 //        TEMP SOLUTION : ADD INVENTED DATA
+        std::cout << "Loading accommodations into parc...\n";
         accommodations.push_back(new HotelRoom(2, "Brooklyn", 2, 1,
                 3,500,1,new LuxuryLevel(1,1,1,1,"HotelRoom")));
-        accommodations.push_back(new Cabin(2,2,100,0,new LuxuryLevel(1,1,1,1,"Cabin")));
-        accommodations.push_back(new HotelRoom(22, "Manhattan", 5, 1,
-                                               6,900,1,new LuxuryLevel(1,1,1,1,"HotelRoom")));
+//        accommodations.push_back(new Cabin(2,2,100,0,new LuxuryLevel(1,1,1,1,"Cabin")));
+//        accommodations.push_back(new HotelRoom(22, "Manhattan", 5, 1,
+//                                               6,900,1,new LuxuryLevel(1,1,1,1,"HotelRoom")));
+        std::cout << "Putting services + accommodations into parc...\n";
         auto *park = new Parcs(name, address, *services,accommodations);
         parkVector.push_back(park);
     }
