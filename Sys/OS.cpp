@@ -11,7 +11,7 @@ void OS::modifyCustomer(VacationParcs &company, int userID,  Customer* updatedCu
         std::cout << "modifyCustomer -> Customer " << userID << " has been modified successfully." << std::endl;
         return;
     }
-    std::cout << "modifyCustomer -> Error: Customer not found.\n";
+    std::cout << "modifyCustomer -> Error: Customer " << userID << " not found.\n";
 }
 
 void OS::modifyBooking(VacationParcs &company, int bookingID,  Booking* updatedBooking) {
@@ -52,7 +52,7 @@ void OS::deleteCustomer(VacationParcs &company, int userID) {
         return;
     }
     // If the booking is not found, print an error message.
-    std::cout << "deleteCustomer -> Error: Customer not found.\n";
+    std::cout << "deleteCustomer -> Error: Customer " << userID << " not found.\n";
 }
 
 void OS::bookAccommodation(VacationParcs &company, int customerID, int accommodationID,  Booking* newBooking) {
@@ -60,7 +60,7 @@ void OS::bookAccommodation(VacationParcs &company, int customerID, int accommoda
     std::vector<Customer*>& customers = company.getCustomers();
     Customer* customer = findItemByID(customers, customerID);
     if (!customer) {
-        std::cout << "bookAccommodation -> Error: Customer not found.\n";
+        std::cout << "bookAccommodation -> Error: Customer " << customerID << " not found.\n";
         return;
     }
 
