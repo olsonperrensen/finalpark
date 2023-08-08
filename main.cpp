@@ -89,7 +89,8 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //    }
 //
 //TODO possible ID f* up fix would be by calling getid by their instances!
-    os.bookAccommodation(vp,c->getID(),a.getID(),b);
+//    os.bookAccommodation(vp,c->getID(),a.getID(),b);
+//    os.bookAccommodation(vp,c->getID(),a.getID(),b);
 
     std::cout << vp;
 //    os.modifyBooking(vp,1,Booking(72,neuc,v,0,1,0,1));

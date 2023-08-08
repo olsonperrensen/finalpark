@@ -54,20 +54,28 @@ void OS::deleteCustomer(VacationParcs &company, int userID) {
 }
 
 void OS::bookAccommodation(VacationParcs &company, int customerID, int accommodationID,  Booking* newBooking) {
-    // Find the customer with the given ID in the list of customers.
-    std::vector<Customer*>& customers = company.getCustomers();  // MUST reference otherwise copy-work :(
+    // MUST reference otherwise copy-work :(.
+    std::vector<Customer*>& customers = company.getCustomers();
     Customer* customer = findItemByID(customers, customerID);
     if (!customer) {
         std::cout << "bookAccommodation -> Error: Customer not found.\n";
         return;
     }
 
+    // CHECK FOR DUPLICATE BOOKINGS
+    std::vector<Booking*>& existingBookings = company.getBookings();
+    for (Booking* existingBooking : existingBookings) {
+        if (existingBooking == newBooking) { // Adapt this comparison to match your needs.
+            std::cout << "This booking is already registered.\n";
+            return;
+        }
+    }
+
     // Find the accommodation with the given ID in the list of accommodations.
-    std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
+    std::vector<Parcs*>& parcs = company.getParcs();
     for (Parcs* parc : parcs) {
-        std::vector<Accommodations*>& accommodations = parc->getAccommodations();  // MUST reference otherwise copy-work :(
-//        DEBUG
-        for (auto e:accommodations) {
+        std::vector<Accommodations*>& accommodations = parc->getAccommodations();
+        for (auto e: accommodations) {
             std::cout << "bookAccommodation -> GETTING ID: " << *e << std::endl;
         }
         Accommodations* accommodation = findItemByID(accommodations, accommodationID);
@@ -81,6 +89,7 @@ void OS::bookAccommodation(VacationParcs &company, int customerID, int accommoda
 
     std::cout << "bookAccommodation -> Error: Accommodation not found.\n";
 }
+
 
 void OS::deleteBooking(VacationParcs &company, int bookingID) {
     // Find the booking with the given ID in the list of bookings.
