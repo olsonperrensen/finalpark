@@ -59,6 +59,7 @@ template<typename T>
 void setBooleans(T& object, void(T::*setter)(bool), bool value) {
     static_assert(std::is_same<decltype(setter), void(T::*)(bool)>::value, "\tsetBooleans-> All setter methods should take a single bool argument.");
     (object.*setter)(value);
+    std::cout << "\tsetBooleans -> Boolean set.\n";
 }
 
 // Recursive case: multiple name-value pairs.
@@ -75,6 +76,7 @@ template <typename T>
 T* findItemByID(std::vector<T*>& vec, int id) {
     for (T* item : vec) {
         if (item->getID() == id) {
+            std::cout << "\tfindItemByID -> Item " << id << " found.\n";
             return item;  // Return the found item
         }
     }
