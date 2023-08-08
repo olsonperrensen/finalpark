@@ -27,16 +27,28 @@ template <typename T>
 
 template <typename T>
 void removeItem(std::vector<T*>& vec, int id) {
-//    DEBUG
-//    std::cout << vec.size() << " vs " << id << std::endl;
-    if (id < 0) {
-        std::cout << "\tremoveItem -> Invalid ID.\n";
-        return;
-    }
+    bool deleted = false;
 
-    vec.erase(vec.begin() + id);
-    std::cout << "\tremoveItem -> The item with ID " << id << " has been removed successfully.\n";
+    // Use the erase-remove idiom to remove the item from the vector
+    vec.erase(std::remove_if(vec.begin(), vec.end(),
+                             [&deleted, id](T* e) {
+                                 if (e->getID() == id) {
+                                     deleted = true;
+                                     delete e;  // If you're managing memory, you should delete the pointer
+                                     return true;
+                                 }
+                                 return false;
+                             }), vec.end());
+
+    if (deleted) {
+        std::cout << "\tremoveItem -> The item with ID " << id << " has been removed successfully.\n";
+    } else if (id < 0) {
+        std::cout << "\tremoveItem -> Invalid ID.\n";
+    } else {
+        std::cout << "\tremoveItem -> Sorry, your item (ID: " << id << " ) couldn't be deleted.\n";
+    }
 }
+
 // Base case: single name-value pair.
 template<typename T>
 void printBooleans(const std::string& name, T value) {

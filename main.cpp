@@ -51,12 +51,11 @@ int main() {
 //    o.createPark(vp, new Parcs("THE RESORT OF YOUR DREAMS!","Hollandsebaan 2",ss,vnew));
 //    o.createPark(vp, new Parcs("THE RESORT OF YOUR DREAMS!","Hollandsebaan 2",ss,vnew));
 ////    o.modifyPark(vp, 1, parkupdate);
-//    o.deletePark(vp,3);
+
 //    o.createAccommodation(vp,1,anew);
 //    o.createAccommodation(vp,1,anew);
 //    os.modifyAccommodation(vp,1,1,afinal);
-//    o.deleteAccommodation(vp,3,1);
-//    o.deleteAccommodation(vp,1,32);
+
     if(0){
         int srv,pid;
 //        TODO offer names instead with for-range based loop
@@ -77,11 +76,7 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 //    Employee e("Tom Sawyer","laanbaan 1", "tom@boom.be", "Bancontact",false);
 //      os.createCustomer(vp,neuc);
 //      os.createCustomer(vp,neuc);
-//
-////TODO     FOUND ISSUE! USERID below are not id's but places in vector. First place gets deleted (first Bruce Lee, then Bush)
-//    os.deleteCustomer(vp,1);
-//    os.deleteCustomer(vp,1);
-//
+
 //    std::cout << "Customers present in VP:\n";
 //    for (auto e:vp.getCustomers()) {
 ////        TODO fix ID being replaced on all modify methods!
@@ -95,6 +90,11 @@ WATER_BIKES=6)" << std::endl << "Choose: ";
 ////    e.deleteBooking(vp,72);
     os.modifyCustomer(vp,c->getID(),new Customer("Bush Anderson","Manhattanweg 33", "mht@work.cn", "Contant Geld"));
 //    c->modifyData(Customer("Larry Page","Sergeistraat 9", "larry@goo.gl", "Bancontact"));
+    os.deleteCustomer(vp,c->getID());
+//    TODO move deletepark + deleteaccommodation to OS
+//    o.deleteAccommodation(vp,p->getID(),a.getID());
+    o.deletePark(vp,p->getID());
+
     std::cout << vp;
     return 0;
 }

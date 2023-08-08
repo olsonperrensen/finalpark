@@ -21,6 +21,7 @@ void VacationParcs::addPark(Parcs* park) {
 }
 
 void VacationParcs::removePark(int id) {
+    std::cout << "removePark -> Attempting to delete parc " << id << std::endl;
     removeItem(parcs, id);
 }
 
