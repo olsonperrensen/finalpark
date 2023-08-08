@@ -1023,31 +1023,35 @@ inline void FileIO::beheerderLoginMenu() {
 //        return false;
 //    }
 //}
-// TODO inputVacationParkToSys + split attribute of type Class in separate .dat files
 inline void FileIO::inputParkToSys() {
     parkVector.clear();
     std::string gegLijn,name,address;
     Parcs::ParcServices* services;
     std::vector<Accommodations*> accommodations;
     std::ifstream bestandLezen{PARCS_BESTAND};
+
     if (!bestandLezen.is_open()) {
         std::cerr << "Kan bestand " << PARCS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 
     }
     while (std::getline(bestandLezen, gegLijn)) {
         std::vector<std::string> gegLijst;
-        std::vector<bool> boolLijst;
+        std::vector<bool> ServicesBoolLijst;
         gegLijst = mijnStrTok(gegLijn, SCHEIDER);
-
-//      i starts at 2 bc name and address come first and are not booleans
-        for (size_t i = 2; i < gegLijst.size(); ++i) {
-            boolLijst.push_back(stringToBool(gegLijst[i]));
-        }
         name = gegLijst[0];
         address = gegLijst[1];
-//        TODO fix complex types when reading - do something  like inputServicesToSys(gegLijst[2]);
-        services = new Parcs::ParcServices(boolLijst[0],boolLijst[1],boolLijst[2],boolLijst[3],boolLijst[4],boolLijst[5]);
-//        accommodations = gegLijst[3];
+//      i starts at 2 bc name and address come first and are not booleans and ends 2+6 bc Accommodations should only be
+// init with 6 boolean values.
+        for (size_t i = 2; i < 8; ++i) {
+            ServicesBoolLijst.push_back(stringToBool(gegLijst[i]));
+        }
+        services = new Parcs::ParcServices(ServicesBoolLijst[0],ServicesBoolLijst[1],ServicesBoolLijst[2],ServicesBoolLijst[3],ServicesBoolLijst[4],ServicesBoolLijst[5]);
+//        TEMP SOLUTION : ADD INVENTED DATA
+        accommodations.push_back(new HotelRoom(2, "Brooklyn", 2, 1,
+                3,500,1,new LuxuryLevel(1,1,1,1,"HotelRoom")));
+        accommodations.push_back(new Cabin(2,2,100,0,new LuxuryLevel(1,1,1,1,"Cabin")));
+        accommodations.push_back(new HotelRoom(22, "Manhattan", 5, 1,
+                                               6,900,1,new LuxuryLevel(1,1,1,1,"HotelRoom")));
         auto *park = new Parcs(name, address, *services,accommodations);
         parkVector.push_back(park);
     }

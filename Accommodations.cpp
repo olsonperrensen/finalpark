@@ -34,15 +34,15 @@ void Accommodations::setBathroomWithBath(bool bathroomWithBath) {
     Accommodations::bathroomWithBath = bathroomWithBath;
 }
 
-const LuxuryLevel &Accommodations::getLuxuryLevel() const {
+LuxuryLevel *Accommodations::getLuxuryLevel() const {
     return luxuryLevel;
 }
 
-void Accommodations::setLuxuryLevel(const LuxuryLevel &luxuryLevel) {
+void Accommodations::setLuxuryLevel(LuxuryLevel *luxuryLevel) {
     Accommodations::luxuryLevel = luxuryLevel;
 }
 
-Accommodations::Accommodations(int nrPeople, int size, bool bathroomWithBath, LuxuryLevel luxuryLevel):
+Accommodations::Accommodations(int nrPeople, int size, bool bathroomWithBath, LuxuryLevel* luxuryLevel):
        nrPeople(nrPeople),size(size),bathroomWithBath(bathroomWithBath),luxuryLevel(luxuryLevel){
     this->accommodationID = ++Accommodations::aantalAccommodations;
 }

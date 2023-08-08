@@ -31,8 +31,7 @@ public:
         return Accommodations::operator==(other) && (this->floor == derivedOther->floor);
     }
     HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed,
-              int nrPeople,int size,bool bathroomWithBath,LuxuryLevel luxuryLevel);
-
+              int nrPeople,int size,bool bathroomWithBath,LuxuryLevel* luxuryLevel);
     int getFloor() const;
 
     void setFloor(int floor);
@@ -64,9 +63,9 @@ public:
 
     void setBathroomWithBath(bool bathroomWithBath) override;
 
-    const LuxuryLevel &getLuxuryLevel() const override;
+    LuxuryLevel *getLuxuryLevel() const override;
 
-    void setLuxuryLevel(const LuxuryLevel &luxuryLevel) override;
+    void setLuxuryLevel(LuxuryLevel *luxuryLevel) override;
 };
 
 

@@ -14,7 +14,7 @@ protected:
     unsigned short int accommodationID;
     int nrPeople,size;
     bool bathroomWithBath;
-    LuxuryLevel luxuryLevel;
+    LuxuryLevel* luxuryLevel;
 public:
 //    Python-like str-dunder method
     friend std::ostream& operator<<(std::ostream& os, const Accommodations& obj) {
@@ -31,7 +31,7 @@ public:
 //NO full constructor!! Never initialize since abstract. I prefer copying list initialization values in the derived classes
 // than providing a fake constructor here.
     Accommodations()=default;
-    Accommodations(int nrPeople, int size, bool bathroomWithBath, LuxuryLevel luxuryLevel);
+    Accommodations(int nrPeople, int size, bool bathroomWithBath, LuxuryLevel* luxuryLevel);
     virtual unsigned short int getID() const =0;
 
     virtual int getNrPeople() const =0;
@@ -46,9 +46,9 @@ public:
 
     virtual void setBathroomWithBath(bool bathroomWithBath)=0;
 
-    virtual const LuxuryLevel &getLuxuryLevel() const=0;
+    virtual LuxuryLevel *getLuxuryLevel() const = 0;
 
-    virtual void setLuxuryLevel(const LuxuryLevel &luxuryLevel)=0;
+    virtual void setLuxuryLevel(LuxuryLevel *luxuryLevel) = 0 ;
 };
 
 

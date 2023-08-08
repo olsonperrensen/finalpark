@@ -12,11 +12,11 @@ void Cabin::setBedrooms(int bedrooms) {
     Cabin::bedrooms = bedrooms;
 }
 
-Cabin::Cabin(int nrPeople, int size, bool bathroomWithBath, LuxuryLevel luxuryLevel, int bedrooms): bedrooms(bedrooms) {
+Cabin::Cabin(int bedrooms,int nrPeople, int size, bool bathroomWithBath, LuxuryLevel* luxuryLevel): bedrooms(bedrooms) {
     this->nrPeople = nrPeople;
     this->size = size;
     this->bathroomWithBath = bathroomWithBath;
-    this->luxuryLevel = luxuryLevel;
+    *this->luxuryLevel = *luxuryLevel;
 }
 
 unsigned short int Cabin::getID() const  {
@@ -47,10 +47,10 @@ void Cabin::setBathroomWithBath(bool bathroomWithBath) {
     Cabin::bathroomWithBath = bathroomWithBath;
 }
 
-const LuxuryLevel &Cabin::getLuxuryLevel() const {
+LuxuryLevel *Cabin::getLuxuryLevel() const {
     return luxuryLevel;
 }
 
-void Cabin::setLuxuryLevel(const LuxuryLevel &luxuryLevel) {
+void Cabin::setLuxuryLevel(LuxuryLevel *luxuryLevel) {
     Cabin::luxuryLevel = luxuryLevel;
 }

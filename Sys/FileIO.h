@@ -12,6 +12,9 @@
 #include "Datum.h"
 #include "../Customer.h"
 #include "../Booking.h"
+#include "../Accommodations.h"
+#include "../Cabin.h"
+#include "../HotelRoom.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>

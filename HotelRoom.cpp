@@ -37,11 +37,12 @@ void HotelRoom::setLocation(const std::string &location) {
 }
 
 HotelRoom::HotelRoom(int floor, std::string location, int nrBeds, bool childrenBed, int nrPeople, int size,
-                     bool bathroomWithBath, LuxuryLevel luxuryLevel):floor(floor),location(location),nrBeds(nrBeds),childrenBed(childrenBed) {
+                     bool bathroomWithBath, LuxuryLevel* luxuryLevel):floor(floor),location(location),nrBeds(nrBeds),childrenBed(childrenBed) {
     this->nrPeople = nrPeople;
     this->size = size;
     this->bathroomWithBath = bathroomWithBath;
-    this->luxuryLevel = luxuryLevel;
+//    BOTH MUST DEREF OTHERWISE COMPLAIN
+    *this->luxuryLevel = *luxuryLevel;
 }
 
 // De-abstract from parent
@@ -74,10 +75,10 @@ void HotelRoom::setBathroomWithBath(bool bathroomWithBath) {
     HotelRoom::bathroomWithBath = bathroomWithBath;
 }
 
-const LuxuryLevel &HotelRoom::getLuxuryLevel() const {
+LuxuryLevel *HotelRoom::getLuxuryLevel() const {
     return luxuryLevel;
 }
 
-void HotelRoom::setLuxuryLevel(const LuxuryLevel &luxuryLevel) {
+void  HotelRoom::setLuxuryLevel(LuxuryLevel *luxuryLevel) {
     HotelRoom::luxuryLevel = luxuryLevel;
 }
