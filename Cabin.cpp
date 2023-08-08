@@ -54,3 +54,7 @@ LuxuryLevel *Cabin::getLuxuryLevel() const {
 void Cabin::setLuxuryLevel(LuxuryLevel *luxuryLevel) {
     Cabin::luxuryLevel = luxuryLevel;
 }
+
+void Cabin::setAccommodationId(unsigned short accommodationId) {
+    accommodationID = accommodationId;
+}

@@ -37,6 +37,8 @@ public:
 //    De-abstract from parent
     unsigned short int getID() const override;
 
+    void setAccommodationId(unsigned short accommodationId) override;
+
      int getNrPeople() const  override;
 
      void setNrPeople(int nrPeople) override;

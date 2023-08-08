@@ -38,6 +38,7 @@ class Parcs;
 
 class FileIO {
 public:
+    inline static unsigned short int idGenerator=0;
     std::vector<Abonnee *> abonnees;
     Owner *owner;
     std::vector<Parcs *> parkVector;

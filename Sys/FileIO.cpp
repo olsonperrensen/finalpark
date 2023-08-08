@@ -1075,13 +1075,14 @@ inline void FileIO::inputParkToSys() {
                     LuxBoolLijst.push_back(stringToBool(gegLijst[i]));
                 }
                 std::cout << "Loading 1Cab into parc...\n";
-                accommodations.push_back(
-                        new Cabin(std::stoi(gegLijst[8]),std::stoi(gegLijst[9]),
-                                  LuxBoolLijst[0],
-                                  new LuxuryLevel(
-                                          LuxBoolLijst[1],LuxBoolLijst[2],
-                                          LuxBoolLijst[3],LuxBoolLijst[4],
-                                          gegLijst[15]),std::stoi(gegLijst[16])));
+                Cabin* c1 = new Cabin(std::stoi(gegLijst[8]),std::stoi(gegLijst[9]),
+                                      LuxBoolLijst[0],
+                                      new LuxuryLevel(
+                                              LuxBoolLijst[1],LuxBoolLijst[2],
+                                              LuxBoolLijst[3],LuxBoolLijst[4],
+                                              gegLijst[15]),std::stoi(gegLijst[16]));
+                accommodations.push_back(c1);
+                c1->setAccommodationId(++idGenerator);
             }
             else if (gegLijst.size()<=emptyParkLen+oneHRArgs){
                 //                1 HR
@@ -1093,14 +1094,16 @@ inline void FileIO::inputParkToSys() {
                     LuxBoolLijst.push_back(stringToBool(gegLijst[i]));
                 }
                 std::cout << "Loading 1HR into parc...\n";
-                accommodations.push_back(
-                        new HotelRoom(std::stoi(gegLijst[8]),std::stoi(gegLijst[9]),
-                                  LuxBoolLijst[0],
-                                  new LuxuryLevel(
-                                          LuxBoolLijst[1],LuxBoolLijst[2],
-                                          LuxBoolLijst[3],LuxBoolLijst[4],
-                                          gegLijst[15]), stringToBool(gegLijst[16]),std::stoi(gegLijst[17]),gegLijst[18],
-                                      std::stoi(gegLijst[19])));
+                HotelRoom* h1 = new HotelRoom(std::stoi(gegLijst[8]),std::stoi(gegLijst[9]),
+                                              LuxBoolLijst[0],
+                                              new LuxuryLevel(
+                                                      LuxBoolLijst[1],LuxBoolLijst[2],
+                                                      LuxBoolLijst[3],LuxBoolLijst[4],
+                                                      gegLijst[15]), stringToBool(gegLijst[16]),std::stoi(gegLijst[17]),gegLijst[18],
+                                              std::stoi(gegLijst[19]));
+                h1->setAccommodationId(++idGenerator);
+                accommodations.push_back(h1);
+
             }
         }
         else if (gegLijst.size()<=emptyParkLen+oneCabinArgs*2||gegLijst.size()<=emptyParkLen+oneHRArgs*2){
@@ -1129,6 +1132,8 @@ inline void FileIO::inputParkToSys() {
                                                  LuxBoolLijst[6],LuxBoolLijst[7],
                                                  LuxBoolLijst[8],LuxBoolLijst[9],
                                                  gegLijst[24]),std::stoi(gegLijst[25]));
+                c1->setAccommodationId(++idGenerator);
+                c2->setAccommodationId(++idGenerator);
                 accommodations.push_back(c1);
                 accommodations.push_back(c2);
             }

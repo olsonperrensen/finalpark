@@ -16,6 +16,7 @@ protected:
     bool bathroomWithBath;
     LuxuryLevel* luxuryLevel;
 public:
+
 //    Python-like str-dunder method
     friend std::ostream& operator<<(std::ostream& os, const Accommodations& obj) {
         os << "Accommodations ( ID: " << obj.accommodationID << ", nrPeople: " << obj.nrPeople
@@ -33,6 +34,7 @@ public:
     Accommodations()=default;
     Accommodations(int nrPeople, int size, bool bathroomWithBath, LuxuryLevel* luxuryLevel);
     virtual unsigned short int getID() const =0;
+    virtual void setAccommodationId(unsigned short accommodationId)=0;
 
     virtual int getNrPeople() const =0;
 

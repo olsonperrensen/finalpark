@@ -82,3 +82,7 @@ LuxuryLevel *HotelRoom::getLuxuryLevel() const {
 void  HotelRoom::setLuxuryLevel(LuxuryLevel *luxuryLevel) {
     HotelRoom::luxuryLevel = luxuryLevel;
 }
+
+void HotelRoom::setAccommodationId(unsigned short accommodationId) {
+    accommodationID = accommodationId;
+}

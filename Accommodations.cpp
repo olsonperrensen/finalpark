@@ -48,3 +48,7 @@ Accommodations::Accommodations(int nrPeople, int size, bool bathroomWithBath, Lu
     this->luxuryLevel = luxuryLevel;
     this->accommodationID = ++Accommodations::aantalAccommodations;
 }
+
+void Accommodations::setAccommodationId(unsigned short accommodationId) {
+    accommodationID = accommodationId;
+}
