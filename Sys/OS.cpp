@@ -21,7 +21,7 @@ void OS::modifyBooking(VacationParcs &company, int bookingID,  Booking* updatedB
         std::cout << "modifyBooking -> Booking " << bookingID << " has been modified successfully." << std::endl;
         return;
     }
-    std::cout << "modifyBooking -> Error: Booking not found.\n";
+    std::cout << "modifyBooking -> Error: Booking " << bookingID << " not found.\n";
 }
 
 void OS::modifyAccommodation(VacationParcs &company, int parkID, int accommodationID,Accommodations* updatedAccommodation) {
@@ -38,10 +38,10 @@ void OS::modifyAccommodation(VacationParcs &company, int parkID, int accommodati
             std::cout << "modifyAccommodation -> Accommodation " << accommodationID << " has been modified successfully." << std::endl;
             return;
         }
-        std::cout << "modifyAccommodation -> Error: Accommodation not found.\n";
+        std::cout << "modifyAccommodation -> Error: Accommodation " << accommodationID << " not found.\n";
         return;
     }
-    std::cout << "modifyAccommodation -> Error: Park not found.\n";
+    std::cout << "modifyAccommodation -> Error: Park " << parkID << "not found.\n";
 }
 
 void OS::deleteCustomer(VacationParcs &company, int userID) {
@@ -89,7 +89,7 @@ void OS::bookAccommodation(VacationParcs &company, int customerID, int accommoda
         }
     }
 
-    std::cout << "bookAccommodation -> Error: Accommodation not found.\n";
+    std::cout << "bookAccommodation -> Error: Accommodation " << accommodationID << " not found.\n";
 }
 
 
@@ -101,7 +101,7 @@ void OS::deleteBooking(VacationParcs &company, int bookingID) {
         return;
     }
     // If the booking is not found, print an error message.
-    std::cout << "deleteBooking -> Error: Booking not found.\n";
+    std::cout << "deleteBooking -> Error: Booking " << bookingID << " not found.\n";
 }
 
 void OS::createCustomer(VacationParcs &company, Customer* newCustomer) {

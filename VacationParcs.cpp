@@ -38,7 +38,7 @@ void VacationParcs::modifyPark(int parkID, const Parcs &updatedPark) {
         }
 
     // If the park is not found, print an error message.
-    std::cout << "modifyPark -> Error: Park not found.\n";
+    std::cout << "modifyPark -> Error: Park " << parkID << " not found.\n";
 }
 
 const std::string &VacationParcs::getBizName() const {
