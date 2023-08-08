@@ -33,12 +33,12 @@ void VacationParcs::modifyPark(int parkID, const Parcs &updatedPark) {
             // If the park is found, modify its attributes.
 //            IMPORTANT: Derenfece pointer otherwise your only changing where it points to!
             *parc = updatedPark;
-            std::cout << "modifyPark -> Park " << parkID <<" has been modified successfully." << std::endl;
+            std::cout << "modifyPark -> Parcs " << parkID <<" has been modified successfully." << std::endl;
             return;
         }
 
     // If the park is not found, print an error message.
-    std::cout << "modifyPark -> Error: Park " << parkID << " not found.\n";
+    std::cout << "modifyPark -> Error: Parcs " << parkID << " not found.\n";
 }
 
 const std::string &VacationParcs::getBizName() const {

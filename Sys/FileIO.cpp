@@ -7,7 +7,7 @@
 FileIO::FileIO() {
     inputBeheerderToSys();
 //    inputAbonneeToSys();
-//    inputParkToSys();
+    inputParkToSys();
 //    inputAbnParkToSys();
 //    inputParkLijstToSys();
 //    inputBookingToSys();
@@ -26,6 +26,17 @@ inline std::string FileIO::strSnijden(std::string &str) {
     }
     return goeieStr;
 
+}
+
+inline bool FileIO::stringToBool(const std::string& s) {
+    std::string lowerStr = s;
+    std::transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), ::tolower);
+
+    if (lowerStr == "true" || lowerStr == "1" || lowerStr == "yes") return true;
+    if (lowerStr == "false" || lowerStr == "0" || lowerStr == "no") return false;
+
+    // Handle other cases as desired (e.g., throw an exception)
+    throw std::invalid_argument("CAN'T PARSE FILE PROPERLY\n");
 }
 
 inline std::vector<std::string> FileIO::mijnStrTok(const std::string& str, char sep) {
@@ -127,7 +138,7 @@ inline bool FileIO::isNumGeldig(std::string &iStr) {
 //    }
 //}
 ////TODO remove
-//inline bool FileIO::isValidKrediet(Abonnee *abn, Park *park) {
+//inline bool FileIO::isValidKrediet(Abonnee *abn, Parcs *park) {
 //    if (abn->krediet <
 //        (park->consumingPointsPerDag * (park->eindDatum->countDatum() - park->beginDatum->countDatum()))) {
 //        return false;
@@ -135,7 +146,7 @@ inline bool FileIO::isNumGeldig(std::string &iStr) {
 //    return true;
 //}
 //
-//inline bool FileIO::isValidLuxuryLevel(Abonnee *abn, Park *park) {
+//inline bool FileIO::isValidLuxuryLevel(Abonnee *abn, Parcs *park) {
 //    if (abn->user_requested_luxury_level < park->minLuxuryLevel) {
 //        return false;
 //    }
@@ -183,19 +194,19 @@ inline void FileIO::inputBeheerderToSys() {
     std::string gegLijn,name,address,mail,password;
 
     if (!bestandLezen.is_open()) {
-        std::wcerr << "Kan bestand " << OWNER_BESTAND << " niet openen. Probeer het eens opnnieuw.\n";
+        std::cerr << "Kan bestand " << OWNER_BESTAND << " niet openen. Probeer het eens opnnieuw.\n";
         return;  //  Als 't bestand iets problematisch heeft
     } else std::cout << "\nAan het laden...\n";
 
     if (std::getline(bestandLezen, gegLijn)) {
         gegLijst = mijnStrTok(gegLijn, SCHEIDER);
     } else {
-        std::wcerr << "Kon uw beheerdergegevens niet lezen.\n";
+        std::cerr << "Kon uw beheerdergegevens niet lezen.\n";
         return; // Als je een foutieve lijn krijgt
     }
 
     if (static_cast<int>(gegLijst.size()) < 2) {
-        std::wcerr << "Data is in an incorrect format\n";
+        std::cerr << "Data is in an incorrect format\n";
         return; // Return immediately if the necessary data is not present
     }
     name = gegLijst[0];
@@ -257,10 +268,9 @@ inline void FileIO::hoofdScherm() {
             break;
 //        case 3:
 //            TODO
-//        case 4:
+        case 4:
 //            outputAbonneeNaarBestand();
-//            outputParkNaarBestand();
-//            outputParkLijstNaarBestand();
+            outputParkNaarBestand();
 //            outputBeheerderNaarBestand();
 //            outputBookingNaarBestand();
 //            break;
@@ -272,25 +282,24 @@ inline void FileIO::beheerderMenu() {
     std::cout << R"(
 *****************************************
               BEHEERDER MENU
-            1.Zie Abonnee Lijst
-            2.Zie Park Lijst
-            3.Park te huur openbaar maken
-            4.Back to main menu
+            1.(C)reate (R)ead (U)pdate or (D)elete Parcs
+            2.(C)reate (R)ead (U)pdate or (D)elete Accommodations
+            3.Back to main menu
 *****************************************
 )" << std::endl;
 
     keuze = menuKeuze(1, 3);
     switch (keuze) {
+        case 1:
+            beheerderZieParkMenu();
+            break;
 //        case 1:
 //            beheerderZieAbonneeMenu();
-//            break;
-//        case 2:
-//            beheerderZieParkMenu();
 //            break;
 //        case 3:
 //            parkHuurvrijMenu();
 //            break;
-        case 4:
+        case 3:
             hoofdScherm();
             break;
     }
@@ -390,123 +399,27 @@ inline void FileIO::beheerderMenu() {
 //    }
 //}
 //
-//inline void FileIO::beheerderZieParkMenu() {
-//    int index = 1;
-//    std::cout  << "All park of the systeem: " << "\n" ;
-//    std::cout
-//            << std::left
-//            << std::setw(10)
-//            << "Index"
-//            << std::left
-//            << std::setw(8)
-//            << "ParkID"
-//            << std::left
-//            << std::setw(15)
-//            << "BeheerderID"
-//            << std::left
-//            << std::setw(15)
-//            << "Locatie"
-//            << std::left
-//            << std::setw(35)
-//            << "Description"
-//            << "\n" ;
-//    for (auto i: parkVector) {
-//        std::cout
-//                << std::left
-//                << std::setw(10)
-//                << index
-//                << std::left
-//                << std::setw(8)
-//                << i->parkID
-//                << std::left
-//                << std::setw(15)
-//                << i->owner->abonneeId
-//                << std::left
-//                << std::setw(15)
-//                << i->locatie
-//                << std::left
-//                << std::setw(35)
-//                << i->parkDescription
-//                << "\n" ;
-//        index++;
-//    }
-//    std::cout << "\n";
-//    std::cout  << "\t---1.Zie Park Detail---\n" << "\t---2.Back to owner menu---\n" ;
-//    int keuze = menuKeuze(1, 2);
-//    switch (keuze) {
-//        case 1:
-//            std::cout
-//                    << std::left
-//                    << std::setw(10)
-//                    << "Index"
-//                    << std::left
-//                    << std::setw(10)
-//                    << "ParkID"
-//                    << std::left
-//                    << std::setw(10)
-//                    << "BeheerderID"
-//                    << std::left
-//                    << std::setw(20)
-//                    << "Begin Datum"
-//                    << std::left
-//                    << std::setw(20)
-//                    << "End Datum"
-//                    << std::left
-//                    << std::setw(25)
-//                    << "KredietPerDag"
-//                    << std::left
-//                    << std::setw(15)
-//                    << "minScore"
-//                    << std::left
-//                    << std::setw(20)
-//                    << "Locatie"
-//                    << std::left
-//                    << std::setw(35)
-//                    << "Description"
-//                    << "\n" ;
-//            for (int j = 0; j < parkVector.size(); j++) {
-//                std::cout
-//                        << std::left
-//                        << std::setw(10)
-//                        << j + 1
-//                        << std::left
-//                        << std::setw(10)
-//                        << parkVector[j]->parkID
-//                        << std::left
-//                        << std::setw(10)
-//                        << parkVector[j]->owner->abonneeId
-//                        << std::left
-//                        << std::setw(20)
-//                        << parkVector[j]->beginDatum->datumNaarString()
-//                        << std::left
-//                        << std::setw(20)
-//                        << parkVector[j]->eindDatum->datumNaarString()
-//                        << std::left
-//                        << std::setw(25)
-//                        << parkVector[j]->consumingPointsPerDag
-//                        << std::left
-//                        << std::setw(15)
-//                        << parkVector[j]->minLuxuryLevel
-//                        << std::left
-//                        << std::setw(20)
-//                        << parkVector[j]->locatie
-//                        << std::left
-//                        << std::setw(35)
-//                        << parkVector[j]->parkDescription
-//                        << "\n" ;
-//            }
-//            std::cout << "\n";
-//            std::cout  << parkVector.size() + 1 << ".Back to owner menu\n" ;
-//            menuKeuze(parkVector.size() + 1, parkVector.size() + 1);
-//            beheerderMenu();
-//            break;
-//        case 2:
-//            beheerderMenu();
-//            break;
-//    }
-//
-//
-//}
+inline void FileIO::beheerderZieParkMenu() {
+    std::cout << R"(
+            *****************************************
+            ALL PARCS OF THE SYSTEM ARE READILY AVAILABLE :)" << std::endl;
+//    TODO refactor
+    for (auto i: parkVector) {
+        std::cout<< std::endl<< std::left<< std::setw(12)
+//                Derefence otherwise 0x mem pointer to screeen!
+                << *i
+                << "\n" ;
+    }
+    std::cout << R"(
+            *****************************************
+            1. Back to owner menu)";
+    int keuze = menuKeuze(1, 1);
+    switch (keuze) {
+        case 1:
+            beheerderMenu();
+            break;
+    }
+}
 //
 //inline void FileIO::loginAbnMenu() {
 //    std::string gebruikersnaam, wachtwoord;
@@ -647,7 +560,7 @@ inline void FileIO::beheerderLoginMenu() {
 //            switch (menuKeuze(1, 2)) {
 //                case 1:
 //                    getInfoLijstParkMenu();
-//                    std::cout  << "\nPark toegevoegd\n\n" ;
+//                    std::cout  << "\nParcs toegevoegd\n\n" ;
 //                    parkHuurvrijMenu();
 //                    break;
 //                case 2:
@@ -715,7 +628,7 @@ inline void FileIO::beheerderLoginMenu() {
 //    std::cin.ignore();
 //    std::cout  << "\tEnter the description for your park: \n" ;
 //    std::getline(std::cin, description);
-//    auto *createdPark = new Park("PRK" + std::to_string(parkVector.size() + 1), locatie, description);
+//    auto *createdPark = new Parcs("PRK" + std::to_string(parkVector.size() + 1), locatie, description);
 //    parkVector.push_back(createdPark);
 //    huidigUser->createPark(createdPark);
 //    return true;
@@ -743,7 +656,7 @@ inline void FileIO::beheerderLoginMenu() {
 //    switch (newKeuze) {
 //        case 1:
 //            huidigUser->checkout(keuze - 1);
-//            std::cout  << "\n\t\tLeft Park\n" ;
+//            std::cout  << "\n\t\tLeft Parcs\n" ;
 //            rateTenantMenu(keuze - 1);
 //            break;
 //        case 2:
@@ -985,7 +898,7 @@ inline void FileIO::beheerderLoginMenu() {
 //
 //}
 //
-//inline bool FileIO::isValidBeginParks(Datum *begin, Abonnee *abn, Park *park, std::string locatie) {
+//inline bool FileIO::isValidBeginParks(Datum *begin, Abonnee *abn, Parcs *park, std::string locatie) {
 //
 //    int count = 0;
 //    if (!park->isToegevoegd) {
@@ -1018,7 +931,7 @@ inline void FileIO::beheerderLoginMenu() {
 //
 //}
 //
-//inline bool FileIO::isValidEndParks(Datum *eind, Abonnee *abn, Park *park, std::string locatie) {
+//inline bool FileIO::isValidEndParks(Datum *eind, Abonnee *abn, Parcs *park, std::string locatie) {
 //    if (!park->isToegevoegd) {
 //        return false;
 //    }
@@ -1066,7 +979,7 @@ inline void FileIO::beheerderLoginMenu() {
 //    std::cout  << "\nThe suitable park lijst:\n\n" ;
 //    for (int i = 0; i < abonneeSuitableParkLijst.size(); i++) {
 //        std::cout  << "--> " << i + 1 << ". " ;
-//        std::cout  << "Park Id: " << abonneeSuitableParkLijst[i]->parkID << "\tLocatie: "
+//        std::cout  << "Parcs Id: " << abonneeSuitableParkLijst[i]->parkID << "\tLocatie: "
 //                    << abonneeSuitableParkLijst[i]->locatie << "\tLuxury level: "
 //                    << abonneeSuitableParkLijst[i]->getLuxuryLevel() << "\n" ;
 //    }
@@ -1092,7 +1005,7 @@ inline void FileIO::beheerderLoginMenu() {
 //    std::cout  << "\nThe suitable park lijst:\n\n" ;
 //    for (int i = 0; i < abonneeSuitableParkLijst.size(); i++) {
 //        std::cout << "--> " << i + 1 << ". ";
-//        std::cout  << "Park Id: " << abonneeSuitableParkLijst[i]->parkID << "\tLocatie: "
+//        std::cout  << "Parcs Id: " << abonneeSuitableParkLijst[i]->parkID << "\tLocatie: "
 //                    << abonneeSuitableParkLijst[i]->locatie << "\tLuxury level: "
 //                    << abonneeSuitableParkLijst[i]->getLuxuryLevel() << "\n" ;
 //    }
@@ -1110,30 +1023,43 @@ inline void FileIO::beheerderLoginMenu() {
 //        return false;
 //    }
 //}
-//
-//inline void FileIO::inputParkToSys() {
-//    parkVector.clear();
-//    std::string gegLijn;
-//    std::ifstream bestandLezen{VACATIONPARKS_BESTAND};
-//    if (!bestandLezen.is_open()) {
-//        std::wcerr << "Kan bestand " << VACATIONPARKS_BESTAND << "niet openen. Doe eens opnieuw\n" "\n";
-//
-//    }
-//    while (std::getline(bestandLezen, gegLijn)) {
-//        std::vector<std::string> gegLijst;
-//        gegLijst = mijnStrTok(gegLijn, SCHEIDER);
-//        auto *park = new Park(gegLijst[0], gegLijst[2], gegLijst[3]);
-//        parkVector.push_back(park);
-//    }
-//    bestandLezen.close();
-//}
-//
-//
+// TODO inputVacationParkToSys + split attribute of type Class in separate .dat files
+inline void FileIO::inputParkToSys() {
+    parkVector.clear();
+    std::string gegLijn,name,address;
+    Parcs::ParcServices* services;
+    std::vector<Accommodations*> accommodations;
+    std::ifstream bestandLezen{PARCS_BESTAND};
+    if (!bestandLezen.is_open()) {
+        std::cerr << "Kan bestand " << PARCS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
+
+    }
+    while (std::getline(bestandLezen, gegLijn)) {
+        std::vector<std::string> gegLijst;
+        std::vector<bool> boolLijst;
+        gegLijst = mijnStrTok(gegLijn, SCHEIDER);
+
+//      i starts at 2 bc name and address come first and are not booleans
+        for (size_t i = 2; i < gegLijst.size(); ++i) {
+            boolLijst.push_back(stringToBool(gegLijst[i]));
+        }
+        name = gegLijst[0];
+        address = gegLijst[1];
+//        TODO fix complex types when reading - do something  like inputServicesToSys(gegLijst[2]);
+        services = new Parcs::ParcServices(boolLijst[0],boolLijst[1],boolLijst[2],boolLijst[3],boolLijst[4],boolLijst[5]);
+//        accommodations = gegLijst[3];
+        auto *park = new Parcs(name, address, *services,accommodations);
+        parkVector.push_back(park);
+    }
+    bestandLezen.close();
+}
+
+
 //inline void FileIO::inputParkLijstToSys() {
 //    std::string gegLijn;
 //    std::ifstream bestandLezen{PARCS_BESTAND};
 //    if (!bestandLezen.is_open()) {
-//        std::wcerr << "Kan bestand " << PARCS_BESTAND << "niet openen. Doe eens opnieuw\n" "\n";
+//        std::cerr << "Kan bestand " << PARCS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 //    }
 //    Abonnee *owner;
 //    while (std::getline(bestandLezen, gegLijn)) {
@@ -1159,16 +1085,16 @@ inline void FileIO::beheerderLoginMenu() {
 //    std::string gegLijn;
 //    std::ifstream bestandLezen{VACATIONPARKS_BESTAND};
 //    Abonnee *targetAbn;
-//    Park *abnPark;
+//    Parcs *abnPark;
 //
 //    if (!bestandLezen.is_open()) {
-//        std::wcerr << "Kan bestand " << VACATIONPARKS_BESTAND << "niet openen. Doe eens opnieuw\n" "\n";
+//        std::cerr << "Kan bestand " << VACATIONPARKS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 //    }
 //
 //    while (std::getline(bestandLezen, gegLijn)) {
 //        std::vector<std::string> gegLijst;
 //        gegLijst = mijnStrTok(gegLijn, SCHEIDER);
-//        for (Park *park: parkVector) {
+//        for (Parcs *park: parkVector) {
 //            if (gegLijst[0] == park->parkID) {
 //                abnPark = park;
 //            }
@@ -1190,7 +1116,7 @@ inline void FileIO::beheerderLoginMenu() {
 //    std::ifstream bestandLezen{CUSTOMERS_BESTAND};
 //
 //    if (!bestandLezen.is_open()) {
-//        std::wcerr << "Kan bestand " << CUSTOMERS_BESTAND << "niet openen. Doe eens opnieuw\n" "\n";
+//        std::cerr << "Kan bestand " << CUSTOMERS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 //    }
 //
 //    while (std::getline(bestandLezen, gegLijn)) {
@@ -1207,16 +1133,16 @@ inline void FileIO::beheerderLoginMenu() {
 //    std::string gegLijn;
 //    std::ifstream bestandLezen{BOOKINGS_BESTAND};
 //    Abonnee *targetAbn;
-//    Park *targetPark;
+//    Parcs *targetPark;
 //
 //    if (!bestandLezen.is_open()) {
-//        std::wcerr << "Kan bestand " << BOOKINGS_BESTAND << "niet openen. Doe eens opnieuw\n" "\n";
+//        std::cerr << "Kan bestand " << BOOKINGS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 //    }
 //
 //    while (std::getline(bestandLezen, gegLijn)) {
 //        std::vector<std::string> gegLijst;
 //        gegLijst = mijnStrTok(gegLijn, SCHEIDER);
-//        for (Park *park: parkVector) {
+//        for (Parcs *park: parkVector) {
 //            if (gegLijst[1] == park->parkID) {
 //                targetPark = park;
 //            }
@@ -1239,7 +1165,7 @@ inline void FileIO::beheerderLoginMenu() {
 //    std::ofstream bestandSchrijven{OWNER_BESTAND};
 //
 //    if (!bestandSchrijven.is_open()) {
-//        std::wcerr << "Kan bestand " << OWNER_BESTAND << "niet openen. Doe eens opnieuw\n" "\n";
+//        std::cerr << "Kan bestand " << OWNER_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 //    }
 //
 //    bestandSchrijven << owner->gebruikersnaam << SCHEIDER
@@ -1250,7 +1176,7 @@ inline void FileIO::beheerderLoginMenu() {
 //    std::ofstream bestandSchrijven{BOOKINGS_BESTAND};
 //
 //    if (!bestandSchrijven.is_open()) {
-//        std::wcerr << "Kan bestand " << BOOKINGS_BESTAND << "niet openen. Doe eens opnieuw\n" "\n";
+//        std::cerr << "Kan bestand " << BOOKINGS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 //    }
 //
 //    for (auto &park: parkVector) {
@@ -1265,36 +1191,10 @@ inline void FileIO::beheerderLoginMenu() {
 //    bestandSchrijven.close();
 //}
 //
-//inline void FileIO::outputParkLijstNaarBestand() {
-//    std::ofstream bestandSchrijven{PARCS_BESTAND};
-//    if (!bestandSchrijven.is_open()) {
-//        std::wcerr << "Kan bestand " << PARCS_BESTAND << "niet openen. Doe eens opnieuw\n" "\n";
-//        return;
-//    }
-//
-//    for (auto abn: abonnees) {
-//        if (abn->parkBeheerder == nullptr) {
-//            continue;
-//        }
-//        if (!abn->parkBeheerder->isToegevoegd) {
-//            continue;
-//        }
-//
-//        bestandSchrijven << abn->parkBeheerder->parkID << SCHEIDER
-//                         << abn->abonneeId << SCHEIDER
-//                         << abn->parkBeheerder->beginDatum->datumNaarString() << SCHEIDER
-//                         << abn->parkBeheerder->eindDatum->datumNaarString() << SCHEIDER
-//                         << abn->parkBeheerder->consumingPointsPerDag << SCHEIDER
-//                         << abn->parkBeheerder->minLuxuryLevel << SCHEIDER
-//                         << abn->parkBeheerder->parkStatus << "\n";
-//    }
-//    bestandSchrijven.close();
-//}
-//
 //inline void FileIO::outputAbonneeNaarBestand() {
 //    std::ofstream bestandSchrijven{CUSTOMERS_BESTAND, std::ios::app}; // Append mode
 //    if (!bestandSchrijven.is_open()) {
-//        std::wcerr << "Kan bestand " << CUSTOMERS_BESTAND << "niet openen. Doe eens opnieuw\n" "\n";
+//        std::cerr << "Kan bestand " << CUSTOMERS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 //        return;
 //    }
 //
@@ -1314,7 +1214,7 @@ inline void FileIO::beheerderLoginMenu() {
 //inline void FileIO::outputAbonneeNaarBestand(std::vector<Abonnee *> newabonnee) {
 //    std::ofstream bestandSchrijven{CUSTOMERS_BESTAND, std::ios::app}; // Append mode
 //    if (!bestandSchrijven.is_open()) {
-//        std::wcerr << "Kan bestand " << CUSTOMERS_BESTAND << "niet openen. Doe eens opnieuw\n" "\n";
+//        std::cerr << "Kan bestand " << CUSTOMERS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 //        return;
 //    }
 //
@@ -1329,25 +1229,25 @@ inline void FileIO::beheerderLoginMenu() {
 //    bestandSchrijven.close();
 //}
 //
-//inline void FileIO::outputParkNaarBestand() {
-//    std::ofstream bestandSchrijven{VACATIONPARKS_BESTAND};
-//    if (!bestandSchrijven.is_open()) {
-//        std::wcerr << "Kan bestand " << VACATIONPARKS_BESTAND << "niet openen. Doe eens opnieuw\n" "\n";
-//        return;
-//    }
-//    for (Park *park: parkVector) {
-//        bestandSchrijven << park->parkID << SCHEIDER
-//                         << park->owner->abonneeId << SCHEIDER
-//                         << park->locatie << SCHEIDER
-//                         << park->parkDescription << SCHEIDER
-//                         << park->getLuxuryLevel() << "\n";
-//    }
-//    bestandSchrijven.close();
-//
-//
-//}
-//
-//
+inline void FileIO::outputParkNaarBestand() {
+    std::ofstream bestandSchrijven{PARCS_BESTAND};
+    if (!bestandSchrijven.is_open()) {
+        std::cerr << "Kan bestand " << PARCS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
+        return;
+    }
+    for (Parcs *park: parkVector) {
+        bestandSchrijven << park->getID() << SCHEIDER
+                         << park->getName() << SCHEIDER
+                         << park->getServices() << SCHEIDER;
+        for (auto e:park->getAccommodations()) {
+            bestandSchrijven << e << SCHEIDER;
+        }
+        bestandSchrijven << "\n";
+    }
+    bestandSchrijven.close();
+}
+
+
 //inline bool FileIO::abonneeInloggen(std::string gebruikersnaam, std::string wachtwoord) {
 //    int count = 0;
 //    for (Abonnee *abn: abonnees) {

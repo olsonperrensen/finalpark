@@ -41,7 +41,7 @@ void OS::modifyAccommodation(VacationParcs &company, int parkID, int accommodati
         std::cout << "modifyAccommodation -> Error: Accommodation " << accommodationID << " not found.\n";
         return;
     }
-    std::cout << "modifyAccommodation -> Error: Park " << parkID << "not found.\n";
+    std::cout << "modifyAccommodation -> Error: Parcs " << parkID << "not found.\n";
 }
 
 void OS::deleteCustomer(VacationParcs &company, int userID) {
