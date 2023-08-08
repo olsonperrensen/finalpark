@@ -18,23 +18,25 @@
 #include "../Shared.h"
 #include <sstream>
 #include "OS.h"
+#include <filesystem>
 
 class Datum;
 class User;
-class Beheerder;
+class Owner;
 class Abonnee;
 class Park;
 
-#define CUSTOMERS_BESTAND R"(Data/customers.dat)"
-#define PARCS_BESTAND R"(Data/parcs.dat)"
-#define BOOKINGS_BESTAND R"(Data/bookings.dat)"
+//     ADAPT TO WHERE PROGRAM IS BEING EXECUTED
+#define CUSTOMERS_BESTAND R"(C:\Users\Admin\CLionProjects\finalpark\Sys\Data\customers.dat)"
+#define PARCS_BESTAND R"(C:\Users\Admin\CLionProjects\finalpark\Sys\Data\park.dat)"
+#define BOOKINGS_BESTAND R"(C:\Users\Admin\CLionProjects\finalpark\Sys\Data\booking.dat)"
 #define VACATIONPARKS_BESTAND R"(Data/.vacationparcs.dat)"
-#define OWNER_BESTAND R"(Data/owner.dat)"
+#define OWNER_BESTAND R"(C:\Users\Admin\CLionProjects\finalpark\Sys\Data\owner.dat)"
 
 class FileIO {
 public:
     std::vector<Abonnee *> abonnees;
-    Beheerder *beheerder;
+    Owner *owner;
     std::vector<Park *> parkVector;
     Abonnee *huidigUser = nullptr;
     Park *huidigUserPark;
