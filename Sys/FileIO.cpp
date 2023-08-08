@@ -1038,6 +1038,7 @@ inline void FileIO::inputParkToSys() {
     while (std::getline(bestandLezen, gegLijn)) {
         std::vector<std::string> gegLijst;
         std::vector<bool> ServicesBoolLijst;
+        std::vector<bool> LuxBoolLijst;
         gegLijst = mijnStrTok(gegLijn, SCHEIDER);
         name = gegLijst[0];
         address = gegLijst[1];
@@ -1046,14 +1047,20 @@ inline void FileIO::inputParkToSys() {
         for (size_t i = 2; i < 8; ++i) {
             ServicesBoolLijst.push_back(stringToBool(gegLijst[i]));
         }
+        for (size_t i = 11; i < 16; ++i) {
+            LuxBoolLijst.push_back(stringToBool(gegLijst[i]));
+        }
         std::cout << "Loading Parc Services into parc...\n";
         services = new Parcs::ParcServices(ServicesBoolLijst[0],ServicesBoolLijst[1],ServicesBoolLijst[2],ServicesBoolLijst[3],ServicesBoolLijst[4],ServicesBoolLijst[5]);
 //        TEMP SOLUTION : ADD INVENTED DATA
         std::cout << "Loading accommodations into parc...\n";
         accommodations.push_back(
-                new Cabin(2,2,100,0,
-                          new LuxuryLevel(1,1,1,1,
-                                          "Cabin")));
+                new Cabin(std::stoi(gegLijst[8]),std::stoi(gegLijst[9]),
+                          std::stoi(gegLijst[10]),LuxBoolLijst[0],
+                          new LuxuryLevel(
+                                  LuxBoolLijst[0],LuxBoolLijst[1],
+                                  LuxBoolLijst[2],LuxBoolLijst[3],
+                                          gegLijst[16])));
 //        accommodations.push_back(new Cabin(2,2,100,0,new LuxuryLevel(1,1,1,1,"Cabin")));
 //        accommodations.push_back(new HotelRoom(22, "Manhattan", 5, 1,
 //                                               6,900,1,new LuxuryLevel(1,1,1,1,"HotelRoom")));
