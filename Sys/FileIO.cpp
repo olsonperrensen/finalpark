@@ -1175,12 +1175,54 @@ inline void FileIO::inputParkToSys() {
                 accommodations.push_back(h2);
             }
         }
-//        else if (gegLijst.size()<=emptyParkLen+oneCabinArgs*3){
-//            std::cout << "Exactly three Cabins found in parc...\n";
-//        }
-//        else if (gegLijst.size()<=emptyParkLen+oneHRArgs*3){
-//            std::cout << "Exactly three HotelRooms found in parc...\n";
-//        }
+        else if (gegLijst.size()<=emptyParkLen+oneCabinArgs*3){
+            if (gegLijst.size()<=emptyParkLen+oneCabinArgs*3){
+//                3CABS
+                std::cout << "Exactly 3 Cabins found in parc...\n";
+                //        +2 = Start at the end of emptyParkLen:
+                //        skip n start @ bool bathroomWithBath
+                //        plus grab LuxuryLevel* luxuryLevel (4 bools + 1 str... skip str part)
+                for (size_t i = emptyParkLen+2; i < 15; ++i) {
+                    LuxBoolLijst.push_back(stringToBool(gegLijst[i]));
+                }
+                for (size_t i = emptyParkLen+oneCabinArgs+2; i < 24; ++i) {
+                    LuxBoolLijst.push_back(stringToBool(gegLijst[i]));
+                }
+                for (size_t i = emptyParkLen+oneCabinArgs*2+2; i < 33; ++i) {
+                    LuxBoolLijst.push_back(stringToBool(gegLijst[i]));
+                }
+                std::cout << "Loading 3Cabs into parc...\n";
+                Cabin* c1 = new Cabin(std::stoi(gegLijst[8]),std::stoi(gegLijst[9]),
+                                      LuxBoolLijst[0],
+                                      new LuxuryLevel(
+                                              LuxBoolLijst[1],LuxBoolLijst[2],
+                                              LuxBoolLijst[3],LuxBoolLijst[4],
+                                              gegLijst[15]),std::stoi(gegLijst[16]));
+
+                Cabin* c2 = new Cabin(std::stoi(gegLijst[17]),std::stoi(gegLijst[18]),
+                                      LuxBoolLijst[5],
+                                      new LuxuryLevel(
+                                              LuxBoolLijst[6],LuxBoolLijst[7],
+                                              LuxBoolLijst[8],LuxBoolLijst[9],
+                                              gegLijst[24]),std::stoi(gegLijst[25]));
+
+                Cabin* c3 = new Cabin(std::stoi(gegLijst[26]),std::stoi(gegLijst[27]),
+                                      LuxBoolLijst[10],
+                                      new LuxuryLevel(
+                                              LuxBoolLijst[11],LuxBoolLijst[12],
+                                              LuxBoolLijst[13],LuxBoolLijst[14],
+                                              gegLijst[33]),std::stoi(gegLijst[34]));
+                c1->setAccommodationId(++idGenerator);
+                c2->setAccommodationId(++idGenerator);
+                c3->setAccommodationId(++idGenerator);
+                accommodations.push_back(c1);
+                accommodations.push_back(c2);
+                accommodations.push_back(c3);
+            }
+            else if (gegLijst.size()<=emptyParkLen+oneHRArgs*3){
+                std::cout << "Exactly three HotelRooms found in parc...\n";
+            }
+        }
         else if (gegLijst.size()>44){
             throw std::invalid_argument("You can't have more than 3 Accommodations per Parc! Getting " + std::to_string(gegLijst.size()) + " as len\n");
         }
