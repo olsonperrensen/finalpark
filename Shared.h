@@ -16,8 +16,9 @@ const std::vector<std::string> SERVICES = {"Subtropic Swimming Pool","Sports Inf
 enum class ESERVICES:int{SUBTROPIC_SWIMMING_POOL=1,SPORTS_INFRASTRUCTURE=2,BOWLING_ALLEY=3,BICYCLE_RENT=4,CHILDRENS_PARADISE=5,WATER_BIKES=6};
 const std::vector<std::string> PAYMENT_METHODS = {"Bancontact","Payconiq","Contant Geld"};
 const std::vector<std::string> ACCO_KINDS = {"HotelRoom","Cabin"};
+const std::vector<std::string> ALLOWED_STATUS = {"ACCEPTED","DECLINED"};
 const int DAG_VSCH_MAAND[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
+const wchar_t SCHEIDER = L'_';
 
 template <typename T>
     void addItem(std::vector<T*>& vec, T* item) {

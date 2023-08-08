@@ -6,9 +6,11 @@
 #include "Customer.h"
 
 Booking::Booking(int ID, Customer* customer, std::vector<Accommodations*> accommodations, bool activityPass,
-                 bool sportsPass, bool bicycleRent, bool swimmingPass,Datum beginDate, Datum endDate): ID(ID), customer(customer), accommodations(accommodations),
+                 bool sportsPass, bool bicycleRent, bool swimmingPass,Datum beginDate, Datum endDate, std::string status): ID(ID), customer(customer), accommodations(accommodations),
                                                                         activityPass(activityPass),beginDate(beginDate), endDate(endDate){
-
+    if (status == ALLOWED_STATUS[0] || status == ALLOWED_STATUS[1]){
+        this->status = status;
+    }
 }
 
 int Booking::getID() const {
@@ -84,4 +86,12 @@ void Booking::setBeginDate(Datum beginDate)
 void Booking::setEndDate(Datum endDate)
 {
     this->endDate = endDate;
+}
+
+const std::string &Booking::getStatus() const {
+    return status;
+}
+
+void Booking::setStatus(const std::string &status) {
+    Booking::status = status;
 }

@@ -31,4 +31,6 @@ add_executable(finalpark main.cpp
         Sys/OS.h
         Accommodations.cpp
         Sys/Datum.cpp
-        Sys/Datum.h)
+        Sys/Datum.h
+        Sys/FileIO.cpp
+        Sys/FileIO.h)

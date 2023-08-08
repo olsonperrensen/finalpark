@@ -8,7 +8,7 @@
 #include "Accommodations.h"
 #include "Customer.h"
 #include "Sys/Datum.h"
-
+#include "Shared.h"
 
 class Booking {
 private:
@@ -18,6 +18,12 @@ private:
 //    OWN LOGIC
     Datum beginDate;
     Datum endDate;
+    std::string status;
+public:
+    const std::string &getStatus() const;
+
+    void setStatus(const std::string &status);
+
 public:
 
     Customer *getCustomer() const;
@@ -46,7 +52,8 @@ public:
            << ", sportsPass: " << obj.sportsPass << ", bicycleRent: " << obj.bicycleRent
            << ", swimmingPass: " << obj.swimmingPass
            << ", Begin date: " << obj.beginDate // print beginDate
-           << ", End date: " << obj.endDate << " ) ";
+           << ", End date: " << obj.endDate
+           << ", status: " << obj.status << " ) ";
 
         return os;
     }
@@ -92,7 +99,7 @@ public:
     void setEndDate(Datum endDate);
 
     Booking(int ID, Customer* customer, std::vector<Accommodations*> accommodations, bool activityPass,
-            bool sportsPass, bool bicycleRent, bool swimmingPass,Datum beginDate, Datum endDate);
+            bool sportsPass, bool bicycleRent, bool swimmingPass,Datum beginDate, Datum endDate,std::string status);
 };
 
 
