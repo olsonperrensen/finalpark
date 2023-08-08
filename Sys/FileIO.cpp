@@ -31,12 +31,14 @@ inline std::string FileIO::strSnijden(std::string &str) {
 inline bool FileIO::stringToBool(const std::string& s) {
     std::string lowerStr = s;
     std::transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), ::tolower);
-
+//    DEBUG
+//    std::cout << lowerStr;
     if (lowerStr == "true" || lowerStr == "1" || lowerStr == "yes") return true;
     if (lowerStr == "false" || lowerStr == "0" || lowerStr == "no") return false;
 
     // Handle other cases as desired (e.g., throw an exception)
-    throw std::invalid_argument("\tstringToBool-> CAN'T PARSE FILE PROPERLY\n");
+    throw std::invalid_argument("\tstringToBool-> CAN'T PARSE FILE PROPERLY... TRYING TO PARSE " + s + " WITH INCORRECT VALUES\n");
+
 }
 
 inline std::vector<std::string> FileIO::mijnStrTok(const std::string& str, char sep) {
@@ -1027,21 +1029,22 @@ inline void FileIO::beheerderLoginMenu() {
 //}
 inline void FileIO::inputParkToSys() {
     parkVector.clear();
-    std::string gegLijn,name,address;
-    Parcs::ParcServices* services;
-    std::vector<Accommodations*> accommodations;
+    std::string gegLijn;
     std::ifstream bestandLezen{PARCS_BESTAND};
-    int emptyParkLen = 8, oneCabinArgs = 9, oneHRArgs = 12;
+    const int emptyParkLen = 8, oneCabinArgs = 9, oneHRArgs = 12;
 
     if (!bestandLezen.is_open()) {
         std::cerr << "Kan bestand " << PARCS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 
-    } else std::cout << "Loading park...\n";
+    } else std::cout << "Loading data...\n";
     while (std::getline(bestandLezen, gegLijn)) {
+        std::string name,address;
+        Parcs::ParcServices* services;
+        std::vector<Accommodations*> accommodations;
+        std::cout << "Loading park...\n";
         std::vector<std::string> gegLijst;
         std::vector<bool> ServicesBoolLijst;
         std::vector<bool> LuxBoolLijst;
-
         gegLijst = mijnStrTok(gegLijn, SCHEIDER);
         name = gegLijst[0];
         address = gegLijst[1];
@@ -1100,24 +1103,51 @@ inline void FileIO::inputParkToSys() {
                                       std::stoi(gegLijst[19])));
             }
         }
-//        else if (gegLijst.size()<=emptyParkLen+oneCabinArgs*2){
-//            std::cout << "Exactly two Cabins found in parc...\n";
-//            pendingAccommodationLinesToRead = oneCabinArgs*2;
-//        }
-//        else if (gegLijst.size()<=emptyParkLen+oneHRArgs*2){
-//            std::cout << "Exactly two HotelRooms found in parc...\n";
-//            pendingAccommodationLinesToRead = oneHRArgs*2;
-//        }
+        else if (gegLijst.size()<=emptyParkLen+oneCabinArgs*2||gegLijst.size()<=emptyParkLen+oneHRArgs*2){
+            //            GETS HERE WHENEVER THERE ARE 2 CABINS | 2 HRS | 1 CAB+1HR
+            if (gegLijst.size()<=emptyParkLen+oneCabinArgs*2){
+                std::cout << "Exactly two Cabins found in parc...\n";
+                //        +2 = Start at the end of emptyParkLen:
+                //        skip n start @ bool bathroomWithBath
+                //        plus grab LuxuryLevel* luxuryLevel (4 bools + 1 str... skip str part)
+                for (size_t i = emptyParkLen+2; i < 15; ++i) {
+                    LuxBoolLijst.push_back(stringToBool(gegLijst[i]));
+                }
+                for (size_t i = emptyParkLen+oneCabinArgs+2; i < 24; ++i) {
+                    LuxBoolLijst.push_back(stringToBool(gegLijst[i]));
+                }
+                std::cout << "Loading 2Cabs into parc...\n";
+                Cabin* c1 = new Cabin(std::stoi(gegLijst[8]),std::stoi(gegLijst[9]),
+                                      LuxBoolLijst[0],
+                                      new LuxuryLevel(
+                                              LuxBoolLijst[1],LuxBoolLijst[2],
+                                              LuxBoolLijst[3],LuxBoolLijst[4],
+                                              gegLijst[15]),std::stoi(gegLijst[16]));
+                Cabin* c2 = new Cabin(std::stoi(gegLijst[17]),std::stoi(gegLijst[18]),
+                                         LuxBoolLijst[5],
+                                         new LuxuryLevel(
+                                                 LuxBoolLijst[6],LuxBoolLijst[7],
+                                                 LuxBoolLijst[8],LuxBoolLijst[9],
+                                                 gegLijst[24]),std::stoi(gegLijst[25]));
+                accommodations.push_back(c1);
+                accommodations.push_back(c2);
+            }
+            else if (gegLijst.size()<=emptyParkLen+oneHRArgs*2){
+                std::cout << "Exactly two HotelRooms found in parc...\n";
+            }
+        }
 //        else if (gegLijst.size()<=emptyParkLen+oneCabinArgs*3){
 //            std::cout << "Exactly three Cabins found in parc...\n";
-//            pendingAccommodationLinesToRead = oneCabinArgs*3;
 //        }
 //        else if (gegLijst.size()<=emptyParkLen+oneHRArgs*3){
 //            std::cout << "Exactly three HotelRooms found in parc...\n";
-//            pendingAccommodationLinesToRead = oneHRArgs*3;
 //        }
-//        else if (gegLijst.size()>44){
-//            throw std::invalid_argument("You can't have more than 3 Accommodations per Parc!\n");
+        else if (gegLijst.size()>44){
+            throw std::invalid_argument("You can't have more than 3 Accommodations per Parc! Getting " + std::to_string(gegLijst.size()) + " as len\n");
+        }
+        //DEBUG
+//        for (int i = 0; i < gegLijst.size(); ++i) {
+//            std::cout << i << ":" << gegLijst[i] << "\n";
 //        }
         std::cout << "Putting services + accommodations into parc...\n";
 //        Happens regardless of n nr acco's
