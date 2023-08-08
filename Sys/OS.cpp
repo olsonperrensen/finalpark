@@ -4,18 +4,20 @@
 
 #include "OS.h"
 
-void OS::modifyCustomer(VacationParcs &company, int userID, const Customer &updatedCustomer) {
+void OS::modifyCustomer(VacationParcs &company, int userID,  Customer* updatedCustomer) {
     if (Customer* customer = findItemByID(company.getCustomers(), userID)) {
-        *customer = updatedCustomer;
+//        MUST DEREFERENCE OTHERWISE DOESN'T WORK...
+        *customer = *updatedCustomer;
         std::cout << "modifyCustomer -> Customer " << userID << " has been modified successfully." << std::endl;
         return;
     }
     std::cout << "modifyCustomer -> Error: Customer not found.\n";
 }
 
-void OS::modifyBooking(VacationParcs &company, int bookingID, const Booking &updatedBooking) {
+void OS::modifyBooking(VacationParcs &company, int bookingID,  Booking* updatedBooking) {
     if (Booking* booking = findItemByID(company.getBookings(), bookingID)) {
-        *booking = updatedBooking;
+        //        MUST DEREFERENCE OTHERWISE DOESN'T WORK...
+        *booking = *updatedBooking;
         std::cout << "modifyBooking -> Booking " << bookingID << " has been modified successfully." << std::endl;
         return;
     }
@@ -33,7 +35,7 @@ void OS::modifyAccommodation(VacationParcs &company, int parkID, int accommodati
 //        NESTED var init (again) so mem doesn't get wasted
         if (Accommodations* accommodation = findItemByID(parc->getAccommodations(), accommodationID)) {
             *accommodation = *updatedAccommodation;
-            std::cout << "Accommodation " << accommodationID << " has been modified successfully." << std::endl;
+            std::cout << "modifyAccommodation -> Accommodation " << accommodationID << " has been modified successfully." << std::endl;
             return;
         }
         std::cout << "modifyAccommodation -> Error: Accommodation not found.\n";

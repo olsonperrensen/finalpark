@@ -17,8 +17,8 @@ private:
 
     std::vector<VacationParcs> parks;
 public:
-    void modifyCustomer(VacationParcs &company, int userID, const Customer &updatedCustomer);
-    void modifyBooking(VacationParcs &company, int bookingID, const Booking &updatedBooking);
+    void modifyCustomer(VacationParcs &company, int userID, Customer* updatedCustomer);
+    void modifyBooking(VacationParcs &company, int bookingID,  Booking* updatedBooking);
     //    Acc MGMT
     void modifyAccommodation(VacationParcs &company, int parkID, int accommodationID,Accommodations* updatedAccommodation);
 // Usr MGMT
