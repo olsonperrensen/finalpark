@@ -487,8 +487,6 @@ inline void FileIO::abonneeMenu() {
   1.Zie Account's Information
   2.Zie Available Parks
   3.Handle Bookings
-  4.Toon gehuurde menu
-  5.Toon Booking Sent
   6.Logout
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 )" << std::endl;
@@ -505,12 +503,6 @@ inline void FileIO::abonneeMenu() {
             break;
 //        case 3:
 //            zieBookingMenu();
-//            break;
-//        case 4:
-//            gehuurdeParkTonen();
-//            break;
-//        case 5:
-//            toonBookingSent();
 //            break;
         case 6:
             huidigUser = nullptr;
@@ -624,82 +616,7 @@ inline void FileIO::abonneeMenu() {
 //    huidigUser->createPark(createdPark);
 //    return true;
 //}
-////TODO convert naar BookingTonen
-//inline void FileIO::gehuurdeParkTonen() {
-//    //Check if huidig abonnee ocupying any park
-//    if (huidigUser->tenantLijst.empty()) {
-//        std::cout  << "\n\t\tThere are no park you are renting\n\n\t\tBack To Customer Menu\n" ;
-//        abonneeMenu();
-//    }
-//    std::cout  << "\nThe lijst of park you occupied:\n" ;
-//    huidigUser->zieTenant();
-//    std::cout << "\n---" << huidigUser->tenantLijst.size() + 1 << ".Back to menu\n";
-//    int keuze = menuKeuze(1, huidigUser->tenantLijst.size() + 1);
-//    if (keuze == huidigUser->tenantLijst.size() + 1) {
-//        abonneeMenu();
-//    }
-//    auto tenantPark = huidigUser->tenantLijst[keuze - 1]->occupyPark;
-//    tenantPark->zieParkInfo();
-//    std::cout  << "\n"
-//                << "\t\t1.Checkout\n"
-//                << "\t\t2.Back to menu\n" ;
-//    int newKeuze = menuKeuze(1, 2);
-//    switch (newKeuze) {
-//        case 1:
-//            huidigUser->checkout(keuze - 1);
-//            std::cout  << "\n\t\tLeft Parcs\n" ;
-//            rateTenantMenu(keuze - 1);
-//            break;
-//        case 2:
-//            abonneeMenu();
-//            break;
-//    }
-//
-//}
-//
-//inline void FileIO::rateTenantMenu(int leaveID) {
-//    std::cout  << "\n\t\t1.Press 1 to rate the park: " ;
-//
-//    int keuze = menuKeuze(1, 1);
-//    if (keuze == 1) {
-//        auto leaveAbonnee = huidigUser->tenantLijst[leaveID];
-//        std::string luxury_level;
-//
-//        while (true) {
-//            std::cout  << "\n\t\tPlease leave a luxury_level: " ;
-//            std::cin >> luxury_level;
-//            if (!isNumGeldig(luxury_level)) {
-//                continue;
-//            }
-//            if (std::stoi(luxury_level) < -10 || std::stoi(luxury_level) > 10) {
-//                std::cout  << "The luxury level scores can only be van -10 to 10: " ;
-//                continue;
-//            }else{
-//                break;
-//            }
-//        }
-//        std::cout  << "\nPress 2 to back to the abonnee Menu: " ;
-//        if (menuKeuze(2, 2) == 2) {
-//            abonneeMenu();
-//        }
-//
-//    }
-//}
-//
-//inline void FileIO::toonBookingSent() {
-//    std::cout  << "\nEnter the index of booking that you want to cancel:\n" ;
-//    std::cout  << "Lijst of the booking you have sent: \n" ;
-//    huidigUser->toonBookingSent();
-//    std::cout  << huidigUser->bookingLijst.size() + 1 << ".Back to Customer Menu\n" ;
-//    int keuze = menuKeuze(1, huidigUser->bookingLijst.size() + 1);
-//    if (keuze == huidigUser->bookingLijst.size() + 1) {
-//        abonneeMenu();
-//    } else {
-//        cancelBookingMenu(keuze);
-//    }
-//
-//}
-//
+
 //inline void FileIO::cancelBookingMenu(int ID) {
 //    std::cout  << "\nPress 1 to cancel the booking\n" ;
 //    std::cout  << "\nPress 2 to back to toon booking sent menu\n" ;
@@ -901,13 +818,8 @@ inline bool FileIO::getGeldigeParks(std::string locatie) {
         return false;
     }
     std::cout  << "\nThe suitable park lijst:\n\n" ;
-    for (int i = 0; i < parkVector.size(); i++) {
-        std::cout  << "--> " << i + 1 << ". " ;
-        std::cout  << "Parcs Id: " << parkVector[i]->getID() << "\tAdress: "
-                    << parkVector[i]->getAddress() << "\tAccommodation(s): ";
-        for (auto* e:parkVector[i]->getAccommodations()) {
-           std::cout << *e << "\n" ;
-        }
+    for (auto e:parkVector) {
+        std::cout << *e << std::endl << std::endl;
     }
     std::cout << "\n\n";
 
