@@ -4,13 +4,15 @@
 
 #include "FileIO.h"
 
-FileIO::FileIO() {
+FileIO::FileIO(VacationParcs vp) : vp(vp) {
     inputBeheerderToSys();
     inputAbonneeToSys();
     inputParkToSys();
 //    inputAbnParkToSys();
 //    inputParkLijstToSys();
 //    inputBookingToSys();
+    vp.setParcs(parkVector);
+    vp.setCustomers(abonnees);
     hoofdScherm();
 }
 
@@ -477,6 +479,33 @@ inline void FileIO::beheerderLoginMenu() {
     }
 }
 
+inline void FileIO::changeCustomer(){
+    OS o;
+    std::string nname,naddress,nmail,npassword,nlocation,npaymentmethod;
+    std::cout << R"(Enter the following information to update customer:)" << std::endl;
+    std::cout << "new name: ";
+    std::cin >> nname;
+    std::cin.ignore();
+    std::cout << "new address: ";
+    std::cin >> naddress;
+    std::cin.ignore();
+    std::cout << "new mail:";
+    std::cin >> nmail;
+    std::cin.ignore();
+    std::cout << "new password: ";
+    std::cin >> npassword;
+    std::cin.ignore();
+    std::cout << "new location: ";
+    std::cin >> nlocation;
+    std::cin.ignore();
+    std::cout << "new paymentMethod: ";
+    std::cin >> npaymentmethod;
+    std::cin.ignore();
+    Customer* updatedCustomer = new Customer(nname, naddress, nmail, npassword, nlocation, npaymentmethod);
+//    o.modifyCustomer(vp, huidigUser->getID(), updatedCustomer);
+    *huidigUser = *updatedCustomer;
+    std::cout << "changeCustomer-> information has been changed...\n";
+}
 
 inline void FileIO::abonneeMenu() {
 //    TODO Customers can edit their gegevens
@@ -494,9 +523,17 @@ inline void FileIO::abonneeMenu() {
     switch (keuze) {
         case 1:
             std::cout << *huidigUser << std::endl;
-            std::cout  << "1. Back to menu...\n" ;
-            menuKeuze(1, 1);
-            abonneeMenu();
+            std::cout  << "1.Change your information\n2. Back to menu...\n" ;
+            keuze = menuKeuze(1, 2);
+            switch (keuze) {
+                case 1:
+                    changeCustomer();
+                    abonneeMenu();
+                    break;
+                case 2:
+                    abonneeMenu();
+                    break;
+            }
             break;
         case 2:
             searchValidParkMenu();

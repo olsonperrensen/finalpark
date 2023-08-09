@@ -8,6 +8,7 @@
 #include <regex>
 #include <vector>
 #include "../Parcs.h"
+#include "../VacationParcs.h"
 #include "Owner.h"
 #include "Datum.h"
 #include "../Customer.h"
@@ -42,10 +43,11 @@ public:
     std::vector<Customer *> abonnees;
     Owner *owner;
     std::vector<Parcs *> parkVector;
+    VacationParcs vp;
     Customer *huidigUser = nullptr;
     Parcs *huidigUserPark;
     std::vector<Parcs *> abonneeSuitableParkLijst;
-    FileIO();
+    FileIO(VacationParcs vp);
     static inline std::string strSnijden(std::string &str);
     static inline bool stringToBool(const std::string& s);
     inline static std::vector<std::string> mijnStrTok(const std::string& str, char sep);
@@ -67,6 +69,7 @@ public:
     inline void beheerderZieParkMenu();
     inline void loginAbnMenu();
     inline void abonneeMenu();
+    inline void changeCustomer();
     inline void parkHuurvrijMenu();
     inline void rateTenantMenu(int leaveID);
     inline bool getInfoLijstParkMenu();

@@ -11,6 +11,8 @@
 #include <vector>
 
 int main(){
-    FileIO os;
+    VacationParcs vp = VacationParcs("Owner's Vacation Park", "Brusselsesteenweg 80J 2800 Mechelen",
+                       "BE280030045567", *new std::vector<Parcs*>, *new std::vector<Customer*>);
+    FileIO os(vp);
 }
 //TODO see vorige todo-s before pushing new main.cpp
