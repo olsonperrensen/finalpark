@@ -64,6 +64,7 @@ public:
     inline void hoofdScherm();
     inline void beheerderMenu();
     inline void beheerderLoginMenu();
+    inline void employeeLoginMenu();
     inline void toonBookingSent();
     inline void employeeZieAbonneeMenu();
     inline void beheerderZieParkMenu();

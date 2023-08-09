@@ -248,7 +248,7 @@ inline void FileIO::hoofdScherm() {
    |''|"'||'"| |' '||
    `""`""))""`"`""""        created by r0834721 for a summer retake. All rights reserved)---";
     std::cout  << std::endl << std::endl << "~ means WIP" << std::endl << std::endl ;
-    std::cout  << " Use the app as:    1. Customer   2. Owner  ~3. Staff 4.I've had enough (quit) \n" ;
+    std::cout  << " Use the app as:    1. Customer   2. Owner  3. Staff 4.I've had enough (quit) \n" ;
     std::cout  << "----------------------------------------------------------\n\n" ;
 
     keuze = menuKeuze(1, 4);
@@ -259,8 +259,8 @@ inline void FileIO::hoofdScherm() {
         case 2:
             beheerderLoginMenu();
             break;
-//        case 3:
-//            TODO
+        case 3:
+            employeeLoginMenu();
         case 4:
             outputAbonneeNaarBestand();
             outputParkNaarBestand();
@@ -498,6 +498,35 @@ inline void FileIO::beheerderLoginMenu() {
 
 
     }
+}
+
+inline void FileIO::employeeLoginMenu() {
+    std::string gebruikersnaam, wachtwoord;
+
+    std::cout << R"(
+=======================================
+              EMPLOYEE MENU
+     1.Login As Employee
+     2.Back to main menu
+=======================================
+)" << std::endl;
+    switch (menuKeuze(1, 2)) {
+        case 1:
+            std::cin.ignore();
+            std::cout  << R"(Uw gebruikersnaam invoeren:   )" ;
+            std::getline(std::cin, gebruikersnaam);
+            std::cout  << R"(Uw wachtwoord invoeren:   )" ;
+            std::getline(std::cin, wachtwoord);
+            if (employeeInloggen(gebruikersnaam, wachtwoord)) {
+                employeeMenu();
+                break;
+            }
+        case 2:
+            hoofdScherm();
+            break;
+    }
+
+
 }
 
 inline void FileIO::changeCustomer(){
