@@ -651,15 +651,15 @@ inline void FileIO::searchValidParkMenu() {
     switch (keuze) {
         case 1:
             locatie = PLEKKEN[0];
-            std::cout << "Assigned " << locatie << " to you...";
+            std::cout << "Assigned " << locatie << " to you...\n";
             break;
         case 2:
             locatie = PLEKKEN[1];
-            std::cout << "Assigned " << locatie << " to you...";
+            std::cout << "Assigned " << locatie << " to you...\n";
             break;
         case 3:
             locatie = PLEKKEN[2];
-            std::cout << "Assigned " << locatie << " to you...";
+            std::cout << "Assigned " << locatie << " to you...\n";
             break;
     }
 
@@ -772,23 +772,6 @@ inline void FileIO::validParkMenu(std::string locatie) {
 //
 //}
 
-inline bool FileIO::isValidCityParks(std::string locatie) {
-//    TODO look for it INSIDE parcs.dat
-    std::cout << "isValidCityParks-> looking for compatible city...\n";
-    int count = 0;
-    std::string pattern = R"(\b(BOOM|Boom|boom|WILLEBROEK|Willebroek|willebroek|RUMST|Rumst|rumst)\b)";
-    std::regex cityRegex(pattern);
-
-    std::smatch match;
-    if (std::regex_search(locatie, match, cityRegex)) {
-        std::cout << "isValidCityParks-> City found: " << match[0] << std::endl;
-        return true;
-    } else {
-        std::cout << "isValidCityParks-> No city found in the address." << std::endl;
-        return false;
-    }
-}
-
 //inline bool FileIO::isValidEndParks(Datum *eind, Customer *abn, Parcs *park, std::string locatie) {
 //    if (!park->isToegevoegd) {
 //        return false;
@@ -811,19 +794,30 @@ inline bool FileIO::isValidCityParks(std::string locatie) {
 //}
 
 inline bool FileIO::getGeldigeParks(std::string locatie) {
+    //    TODO look for it INSIDE parcs.dat
+    std::cout << "isValidCityParks-> looking for compatible city...\n";
+    int count = 0;
     std::cout << "getGeldigeParks-> Looking... for valid parcs\n";
     abonneeSuitableParkLijst.clear();
-    if (!isValidCityParks(locatie)) {
-        std::cout  << "\nAsjemenou! Wij konden geen park vinden die voldoet aan uw criteria :(\n" ;
-        return false;
-    }
-    std::cout  << "\nThe suitable park lijst:\n\n" ;
-    for (auto e:parkVector) {
-        std::cout << *e << std::endl << std::endl;
+    for (auto* e:parkVector) {
+        std::istringstream iss(e->getAddress());
+        std::string word;
+        std::string last;
+        while (std::getline(iss, word, ' ')) {
+            last = word;
+        }
+        std::cout << "Comparing " << locatie << " with " << last << std::endl;
+        if (locatie==last) {
+            std::cout << "isValidCityParks-> City found: " << e->getAddress() << std::endl;
+            std::cout  << "\nThe suitable park lijst:\n\n" ;
+            std::cout << *e << std::endl << std::endl;
+            return true;
+        }
     }
     std::cout << "\n\n";
-
-    return true;
+    std::cout  << "\nAsjemenou! Wij konden geen park vinden die voldoet aan uw criteria :(\n" ;
+    std::cout << "isValidCityParks-> No city found in the address." << std::endl;
+    return false;
 }
 
 //inline bool FileIO::deleteInRentPark() {
@@ -1258,6 +1252,7 @@ inline void FileIO::outputParkNaarBestand() {
     for (Parcs *park: parkVector) {
         auto p = park->getServices();
         bestandSchrijven << park->getName() << SCHEIDER
+                        << park->getAddress() << SCHEIDER
                          << p.isSubtropicSwimmingPool() << SCHEIDER
                 << p.isSportsInfrastructure() << SCHEIDER
                 << p.isSubtropicSwimmingPool() << SCHEIDER
