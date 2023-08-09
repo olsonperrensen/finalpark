@@ -65,8 +65,9 @@ public:
     inline void beheerderMenu();
     inline void beheerderLoginMenu();
     inline void toonBookingSent();
-    inline void beheerderZieAbonneeMenu();
+    inline void employeeZieAbonneeMenu();
     inline void beheerderZieParkMenu();
+    inline void beheerderZieAccMenu();
     inline void loginAbnMenu();
     inline void abonneeMenu();
     inline void changeCustomer();

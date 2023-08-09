@@ -286,12 +286,9 @@ inline void FileIO::beheerderMenu() {
         case 1:
             beheerderZieParkMenu();
             break;
-//        case 1:
-//            beheerderZieAbonneeMenu();
-//            break;
-//        case 3:
-//            parkHuurvrijMenu();
-//            break;
+        case 2:
+            beheerderZieAccMenu();
+            break;
         case 3:
             hoofdScherm();
             break;
@@ -300,7 +297,7 @@ inline void FileIO::beheerderMenu() {
 
 }
 //
-//inline void FileIO::beheerderZieAbonneeMenu() {
+//inline void FileIO::employeeZieAbonneeMenu() {
 //    int index = 1;
 //    std::cout  << "All the abonnee of the systeem: " << "\n" ;
 //    std::cout
@@ -402,6 +399,30 @@ inline void FileIO::beheerderZieParkMenu() {
 //                Derefence otherwise 0x mem pointer to screeen!
                 << *i
                 << "\n" ;
+    }
+    std::cout << R"(
+*****************************************
+            1. Back to owner menu)" << std::endl;
+    int keuze = menuKeuze(1, 1);
+    switch (keuze) {
+        case 1:
+            beheerderMenu();
+            break;
+    }
+}
+
+inline void FileIO::beheerderZieAccMenu() {
+    std::cout << R"(
+*****************************************
+            ALL ACCOMMODATIONS OF THE SYSTEM ARE READILY AVAILABLE :)" << std::endl;
+//    TODO refactor
+    for (auto i: parkVector) {
+        for (auto acco:i->getAccommodations()) {
+            std::cout<< std::endl<< std::left<< std::setw(12)
+                     //                Derefence otherwise 0x mem pointer to screeen!
+                     << *acco
+                     << "\n" ;
+        }
     }
     std::cout << R"(
 *****************************************
