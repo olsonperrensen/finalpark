@@ -66,79 +66,79 @@ inline bool FileIO::isNumGeldig(std::string &iStr) {
     }
     return true;
 }
-//
-//inline bool FileIO::isDouble(std::string &iStr) {
-//    int aantaalPuntjes = 0;
-//    for (int i = 0; i < iStr.length(); i++) {
-//        if (i == 0) {
-//            if (iStr[i] == L'.') {
-//                aantaalPuntjes++;
-//                continue;
-//            }
-//        }
-//        if (iStr[i] == L'.') {
-//            aantaalPuntjes++;
-//            continue;
-//        }
-//
-//        if (!std::isdigit(iStr[i])) {
-//            std::cout  << "Is geen nummer!!! :( Nogeens: " ;
-//            return false;
-//        }
-//        if (aantaalPuntjes > 1) {
-//            std::cout  << "Is geen nummer :( Nogeens" ;
-//            return false;
-//        }
-//    }
-//    return true;
-//}
-//
-//inline bool FileIO::isWachtGeldig(std::string &wachtwoord) {
-//    //nw: min8-10 tekens, één hletter + kleine letter, cijfer + symbol:
-//    // w: doorgaan
-//    std::regex regu("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{8,10}$");
-//    wachtwoord = strSnijden(wachtwoord);
-//    if (std::regex_match(wachtwoord, regu)) {
-//        return true;
-//    } else {
-//        std::cout
-//
-//                << "min8-10 tekens, één hletter + kleine letter, cijfer + symbol, doe nog eens: \n";
-//        return false;
-//    }
-//}
-//
-//inline bool FileIO::isGebrGeldig(std::string &gebruikersnaam) {
-//    std::regex regu("\\s");
-//    if (std::regex_match(gebruikersnaam, regu)) {
-//        std::cout  << "Geen spaties toegelaten... Opnieuw \n" ;
-//        return false;
-//    } else {
-//        if (8 > gebruikersnaam.length() || gebruikersnaam.length() > 16) {
-//            std::cout  << "Tussen 8/16 tekens. Opnieuw? \n" ;
-//            return false;
-//        } else {
-//            for (auto abonnee: abonnees) {
-//                if (abonnee->gebruikersnaam == gebruikersnaam ) {
-//                    std::cout  << "Duplicaat. Probeer het opnieuw met een andere gebruiker: \n" ;
-//                    return false;
-//                }
-//            }
-//            return true;
-//        }
-//    }
-//}
-//
-//inline bool FileIO::geldigeMail(std::string &umail) {
-//    std::regex regul("^[a-zA-Z0-9._%+-]{1,10}@[a-zA-Z0-9.-]{1,10}\\.[a-zA-Z]{2,}$");
-//    umail = strSnijden(umail);
-//    if (std::regex_match(umail, regul)) {
-//        return true;
-//    } else {
-//        std::cout  << "Tot 10 chars voor en na @\n" ;
-//        return false;
-//    }
-//}
+
+inline bool FileIO::isDouble(std::string &iStr) {
+    int aantaalPuntjes = 0;
+    for (int i = 0; i < iStr.length(); i++) {
+        if (i == 0) {
+            if (iStr[i] == L'.') {
+                aantaalPuntjes++;
+                continue;
+            }
+        }
+        if (iStr[i] == L'.') {
+            aantaalPuntjes++;
+            continue;
+        }
+
+        if (!std::isdigit(iStr[i])) {
+            std::cout  << "Is geen nummer!!! :( Nogeens: " ;
+            return false;
+        }
+        if (aantaalPuntjes > 1) {
+            std::cout  << "Is geen nummer :( Nogeens" ;
+            return false;
+        }
+    }
+    return true;
+}
+
+inline bool FileIO::isWachtGeldig(std::string &wachtwoord) {
+    //nw: min8-10 tekens, één hletter + kleine letter, cijfer + symbol:
+    // w: doorgaan
+    std::regex regu("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{8,10}$");
+    wachtwoord = strSnijden(wachtwoord);
+    if (std::regex_match(wachtwoord, regu)) {
+        return true;
+    } else {
+        std::cout
+
+                << "min8-10 tekens, één hletter + kleine letter, cijfer + symbol, doe nog eens: \n";
+        return false;
+    }
+}
+
+inline bool FileIO::isGebrGeldig(std::string &gebruikersnaam) {
+    std::regex regu("\\s");
+    if (std::regex_match(gebruikersnaam, regu)) {
+        std::cout  << "Geen spaties toegelaten... Opnieuw \n" ;
+        return false;
+    } else {
+        if (8 > gebruikersnaam.length() || gebruikersnaam.length() > 16) {
+            std::cout  << "Tussen 8/16 tekens. Opnieuw? \n" ;
+            return false;
+        } else {
+            for (auto abonnee: abonnees) {
+                if (abonnee->getName() == gebruikersnaam ) {
+                    std::cout  << "Duplicaat. Probeer het opnieuw met een andere gebruiker: \n" ;
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+}
+
+inline bool FileIO::geldigeMail(std::string &umail) {
+    std::regex regul("^[a-zA-Z0-9._%+-]{1,10}@[a-zA-Z0-9.-]{1,10}\\.[a-zA-Z]{2,}$");
+    umail = strSnijden(umail);
+    if (std::regex_match(umail, regul)) {
+        return true;
+    } else {
+        std::cout  << "Tot 10 chars voor en na @\n" ;
+        return false;
+    }
+}
 ////TODO remove
 //inline bool FileIO::isValidKrediet(Customer *abn, Parcs *park) {
 //    if (abn->krediet <
@@ -215,6 +215,7 @@ inline void FileIO::inputBeheerderToSys() {
     address = gegLijst[1];
     mail = gegLijst[2];
     password = gegLijst[3];
+    location = gegLijst[4];
 
 //    CANNOT DO Owner* bc declared at top Classe
     std::cout << "Assigning owner...\n";
@@ -273,9 +274,9 @@ inline void FileIO::hoofdScherm() {
 //        case 3:
 //            TODO
         case 4:
-//            outputAbonneeNaarBestand();
+            outputAbonneeNaarBestand();
             outputParkNaarBestand();
-//            outputBeheerderNaarBestand();
+            outputBeheerderNaarBestand();
 //            outputBookingNaarBestand();
 //            break;
     }
@@ -437,9 +438,9 @@ inline void FileIO::loginAbnMenu() {
 )" << std::endl;
 
     switch (menuKeuze(1, 2)) {
-//        case 1:
-//            abonneeRegistreren();
-//            break;
+        case 1:
+            abonneeRegistreren();
+            break;
         case 2:
             std::cin.ignore();
             std::cout  << R"(Uw gebruikersnaam invoeren:   )" ;
@@ -1399,7 +1400,8 @@ inline void FileIO::outputBeheerderNaarBestand() {
     bestandSchrijven << owner->getName() << SCHEIDER
                      << owner->getAddress() << SCHEIDER
                      << owner->getMail() << SCHEIDER
-                     << owner->getPassword() << "\n";
+                    << owner->getPassword() << SCHEIDER
+                     << owner->getLocation() << "\n";
 }
 
 //inline void FileIO::outputBookingNaarBestand() {
@@ -1421,44 +1423,25 @@ inline void FileIO::outputBeheerderNaarBestand() {
 //    bestandSchrijven.close();
 //}
 //
-//inline void FileIO::outputAbonneeNaarBestand() {
-//    std::ofstream bestandSchrijven{CUSTOMERS_BESTAND, std::ios::app}; // Append mode
-//    if (!bestandSchrijven.is_open()) {
-//        std::cerr << "Kan bestand " << CUSTOMERS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
-//        return;
-//    }
-//
-//    for (auto &abn: abonnees) {
-//        bestandSchrijven << abn->abonneeId << SCHEIDER
-//                         << abn->mail << SCHEIDER
-//                         << abn->gebruikersnaam << SCHEIDER
-//                         << abn->wachtwoord << SCHEIDER
-//                         << abn->locatie << SCHEIDER
-//                         << abn->krediet << SCHEIDER
-//                         << abn->getLuxuryLevel() << "\n";
-//    }
-//
-//    bestandSchrijven.close();
-//}
-////FUN OVER
-//inline void FileIO::outputAbonneeNaarBestand(std::vector<Customer *> newabonnee) {
-//    std::ofstream bestandSchrijven{CUSTOMERS_BESTAND, std::ios::app}; // Append mode
-//    if (!bestandSchrijven.is_open()) {
-//        std::cerr << "Kan bestand " << CUSTOMERS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
-//        return;
-//    }
-//
-//    bestandSchrijven << "\n" << newabonnee[0]->abonneeId << SCHEIDER
-//                     << newabonnee[0]->mail << SCHEIDER
-//                     << newabonnee[0]->gebruikersnaam << SCHEIDER
-//                     << newabonnee[0]->wachtwoord << SCHEIDER
-//                     << newabonnee[0]->locatie << SCHEIDER
-//                     << newabonnee[0]->krediet << SCHEIDER
-//                     << newabonnee[0]->getLuxuryLevel();
-//
-//    bestandSchrijven.close();
-//}
-//
+inline void FileIO::outputAbonneeNaarBestand() {
+    std::ofstream bestandSchrijven{CUSTOMERS_BESTAND};
+    if (!bestandSchrijven.is_open()) {
+        std::cerr << "Kan bestand " << CUSTOMERS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
+        return;
+    } std::cout << "Saving customer changes to file...\n";
+
+    for (auto* abn: abonnees) {
+        bestandSchrijven << abn->getName() << SCHEIDER
+                         << abn->getAddress() << SCHEIDER
+                         << abn->getMail() << SCHEIDER
+                         << abn->getPassword() << SCHEIDER
+                         << abn->getLocation() << SCHEIDER
+                         << abn->getPaymentMethod() << SCHEIDER
+                          << "\n";
+    }
+
+    bestandSchrijven.close();
+}
 inline void FileIO::outputParkNaarBestand() {
     std::ofstream bestandSchrijven{PARCS_BESTAND};
     if (!bestandSchrijven.is_open()) {
@@ -1532,64 +1515,64 @@ inline bool FileIO::abonneeInloggen(std::string gebruikersnaam, std::string wach
     return false;
 }
 
-//inline void FileIO::abonneeRegistreren() {
-//    int keuze;
-//    int subKeuze;
-//    std::string gebruikersnaam, wachtwoord, umail, locatie;
-//    std::vector<Customer*> newlyRegisteredAbnVector{};
-//    std::cout  << "\t---ABONNEE REGISTRATIE---\n" ;
-//    std::cin.ignore();
-//    do {
-//        std::cout  << R"(Uw gebruikersnaam invoeren:   )" ;
-//        getline(std::cin, gebruikersnaam);
-//    } while (!isGebrGeldig(gebruikersnaam));
-//
-//    do {
-//        std::cout  << R"(Uw wachtwoord invoeren:   )" ;
-//        getline(std::cin, wachtwoord);
-//    } while (!isWachtGeldig(wachtwoord));
-//// TODO implement email ipv umail
-//    do {
-//        std::cout  << R"(Uw e-mail invoeren:   )" ;
-//        getline(std::cin, umail);
-//    } while (!geldigeMail(umail));
-//
-//
-//    std::cout  << "1. Kies the locaties the app support \n" ;
-//    std::cout  << "2. Enter the locatie yourself \n" ;
-//    keuze = menuKeuze(1, 2);
-//    switch (keuze) {
-//        case 1:
-//            std::cout  << "Kies een van de volgende locaties: \n" ;
-//            std::cout  << "1.BOOM\t2.WILLEBROEK\t3.RUMST\n" ;
-//            subKeuze = menuKeuze(1, 3);
-//            switch (subKeuze) {
-//                case 1:
-//                    locatie = PLEKKEN[0];
-//                    break;
-//                case 2:
-//                    locatie = PLEKKEN[1];
-//                    break;
-//                case 3:
-//                    locatie = PLEKKEN[2];
-//                    break;
-//            }
-//            break;
-//        case 2:
-//            std::cin.ignore();
-//            std::cout  << R"(Uw locatie invoeren:   )" ;
-//            getline(std::cin, locatie);
-//            break;
-//    }
-//    Customer *newAbn = new Customer(gebruikersnaam, wachtwoord, "ABN" + std::to_string(abonnees.size() + 1), umail,
-//                                  OORSPRONKELIJKE_KREDIETEN, OORSPRONKELIJKE_SCORES, locatie);
-//    newlyRegisteredAbnVector.push_back(newAbn);
-////    flush ASAP w fun overloading
-//    outputAbonneeNaarBestand(newlyRegisteredAbnVector);
-//    std::cout  << "Registratie ging oke.\n" ;
-//    hoofdScherm();
-//}
-//
+inline void FileIO::abonneeRegistreren() {
+    int keuze;
+    int subKeuze;
+    std::string gebruikersnaam, adress, umail,wachtwoord, locatie,paymentMethod;
+    std::cout  << "\t---ABONNEE REGISTRATIE---\n" ;
+    std::cin.ignore();
+    do {
+        std::cout  << R"(Uw gebruikersnaam invoeren:   )" ;
+        getline(std::cin, gebruikersnaam);
+    } while (!isGebrGeldig(gebruikersnaam));
+    std::cout  << R"(Uw adress invoeren:   )" ;
+    getline(std::cin, adress);
+    do {
+        std::cout  << R"(Uw wachtwoord invoeren:   )" ;
+        getline(std::cin, wachtwoord);
+    } while (!isWachtGeldig(wachtwoord));
+// TODO implement email ipv umail
+    do {
+        std::cout  << R"(Uw e-mail invoeren:   )" ;
+        getline(std::cin, umail);
+    } while (!geldigeMail(umail));
+    std::cout  << R"(Uw payment method invoeren:   )" ;
+    getline(std::cin, paymentMethod);
+
+    std::cout  << "1. Kies the locaties the app support \n" ;
+    std::cout  << "2. Enter the locatie yourself \n" ;
+    keuze = menuKeuze(1, 2);
+    switch (keuze) {
+        case 1:
+            std::cout  << "Kies een van de volgende locaties: \n" ;
+            std::cout  << "1.BOOM\t2.WILLEBROEK\t3.RUMST\n" ;
+            subKeuze = menuKeuze(1, 3);
+            switch (subKeuze) {
+                case 1:
+                    locatie = PLEKKEN[0];
+                    break;
+                case 2:
+                    locatie = PLEKKEN[1];
+                    break;
+                case 3:
+                    locatie = PLEKKEN[2];
+                    break;
+            }
+            break;
+        case 2:
+            std::cin.ignore();
+            std::cout  << R"(Uw locatie invoeren:   )" ;
+            getline(std::cin, locatie);
+            break;
+    }
+//    std::string name,std::string address, std::string mail,std::string password,std::string location, std::string paymentMethod
+    Customer *newAbn = new Customer(gebruikersnaam, adress, umail,
+                                  wachtwoord, locatie, paymentMethod);
+    abonnees.push_back(newAbn);
+    std::cout  << "Registratie ging oke.\n" ;
+    hoofdScherm();
+}
+
 //inline Datum *FileIO::stringToDatum(std::string &datum) {
 //    std::vector<std::string> gegLijst = mijnStrTok(datum, '/');
 //    Datum *geconverteerdeDatum = new Datum(std::stoi(gegLijst[0]), std::stoi(gegLijst[1]), std::stoi(gegLijst[2]));
