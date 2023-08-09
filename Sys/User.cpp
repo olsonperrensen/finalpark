@@ -6,7 +6,8 @@
 // Have no parks at the beginning of the program
 unsigned short int User::aantalUsers = 0;
 
-User::User(std::string name, std::string address, std::string mail): name(name), address(address), mail(mail){
+User::User(std::string name, std::string address, std::string mail,std::string password,std::string location):
+name(name), address(address), mail(mail),password(password),location(location){
     this->userID = ++User::aantalUsers;
 }
 
@@ -36,4 +37,20 @@ void User::setMail(const std::string &mail) {
 
 unsigned short int User::getID() const {
     return userID;
+}
+
+const std::string &User::getPassword() const {
+    return password;
+}
+
+void User::setPassword(const std::string &password) {
+    User::password = password;
+}
+
+const std::string &User::getLocation() const {
+    return location;
+}
+
+void User::setLocation(const std::string &location) {
+    User::location = location;
 }

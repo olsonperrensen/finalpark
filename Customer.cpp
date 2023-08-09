@@ -19,7 +19,8 @@ void Customer::setPaymentMethod(const std::string &paymentMethod) {
 }
 
 Customer::Customer(std::string name,
-                   std::string address, std::string mail, std::string paymentMethod) : User(name, address, mail){
+                   std::string address, std::string mail, std::string password,std::string location,std::string paymentMethod) :
+                   User(name, address, mail,password,location){
 //    Idem as with accomodationKind, can't list init due to check
     setPaymentMethod(paymentMethod);
 }

@@ -15,7 +15,8 @@ public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, const Customer& obj) {
         os << "Customer ( ID: " << obj.getID() << ", name: " << obj.getName() << ", address: " << obj.getAddress()
-           << ", mail: " << obj.getMail() << ", paymentMethod: " << obj.paymentMethod<<" ) ";
+           << ", mail: " << obj.getMail() <<
+           ", password: " << "**********"<<", paymentMethod: " << obj.paymentMethod<<" ) ";
         return os;
     }
     bool operator==(const User& other) const override {
@@ -28,7 +29,7 @@ public:
         // Compare base class members and derived class members.
         return User::operator==(other) && (this->paymentMethod==derivedOther->paymentMethod);
     }
-    Customer(std::string name,std::string address, std::string mail, std::string paymentMethod);
+    Customer(std::string name,std::string address, std::string mail,std::string password,std::string location, std::string paymentMethod);
     const std::string &getPaymentMethod() const;
 
     void setPaymentMethod(const std::string &paymentMethod);

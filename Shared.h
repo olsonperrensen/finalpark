@@ -17,6 +17,7 @@ enum class ESERVICES:int{SUBTROPIC_SWIMMING_POOL=1,SPORTS_INFRASTRUCTURE=2,BOWLI
 const std::vector<std::string> PAYMENT_METHODS = {"Bancontact","Payconiq","Contant Geld"};
 const std::vector<std::string> ACCO_KINDS = {"HotelRoom","Cabin"};
 const std::vector<std::string> ALLOWED_STATUS = {"ACCEPTED","DECLINED"};
+const std::string PLEKKEN[3] = {"BOOM", "WILLEBROEK", "RUMST"};
 const int DAG_VSCH_MAAND[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 const char SCHEIDER = L'_';
 

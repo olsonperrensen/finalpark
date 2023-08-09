@@ -11,13 +11,6 @@
 #include "../VacationParcs.h"
 
 class Owner: public User{
-private:
-    std::string password;
-public:
-    const std::string &getPassword() const;
-
-    void setPassword(const std::string &password);
-
 public:
 //    dunder normally comes from User but output is also User, so I prefer making custom overloading
     friend std::ostream& operator<<(std::ostream& os, const Owner& obj) {
@@ -25,7 +18,7 @@ public:
                 << ", password: " << "**********" << " ) ";
         return os;
     }
-    Owner(std::string name, std::string address, std::string mail,std::string password);
+    Owner(std::string name, std::string address, std::string mail,std::string password,std::string location);
 
 // Parc-related own funs for MGMT
     static void createPark(VacationParcs& company, Parcs* park);

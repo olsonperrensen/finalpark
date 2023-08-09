@@ -16,7 +16,8 @@ public:
     //    dunder
     friend std::ostream& operator<<(std::ostream& os, const Employee& obj) {
         os << "Employee ( ID: " << obj.getID() << ", name: " << obj.getName() << ", address: " << obj.getAddress()
-           << ", mail: " << obj.getMail() << ", isOnLeave: " << obj.isOnLeave<<" ) ";
+           << ", mail: " << obj.getMail() <<
+           ", password: " << "**********" << ", isOnLeave: " << obj.isOnLeave<<" ) ";
         return os;
     }
 //    doing cd ../../
@@ -30,7 +31,7 @@ public:
         // Compare base class members and derived class members.
         return Customer::operator==(other) && (this->isOnLeave==derivedOther->isOnLeave);
     }
-    Employee(std::string name,std::string address, std::string mail, std::string paymentMethod,bool isOnLeave);
+    Employee(std::string name,std::string address, std::string mail, std::string password,std::string location,std::string paymentMethod,bool isOnLeave);
 private:
     bool isOnLeave;
 };

@@ -26,7 +26,7 @@
 class Datum;
 class User;
 class Owner;
-class Abonnee;
+class Customer;
 class Parcs;
 
 //     ADAPT TO WHERE PROGRAM IS BEING EXECUTED
@@ -39,10 +39,10 @@ class Parcs;
 class FileIO {
 public:
     inline static unsigned short int idGenerator=0;
-    std::vector<Abonnee *> abonnees;
+    std::vector<Customer *> abonnees;
     Owner *owner;
     std::vector<Parcs *> parkVector;
-    Abonnee *huidigUser = nullptr;
+    Customer *huidigUser = nullptr;
     Parcs *huidigUserPark;
     std::vector<Parcs *> abonneeSuitableParkLijst;
     FileIO();
@@ -54,8 +54,8 @@ public:
     inline static bool isWachtGeldig(std::string &wachtwoord);
     inline bool isGebrGeldig(std::string &gebruikersnaam);
     inline static bool geldigeMail(std::string &umail);
-    inline static bool isValidKrediet(Abonnee *abn, Parcs *park);
-    inline static bool isValidLuxuryLevel(Abonnee *abn, Parcs *park);
+    inline static bool isValidKrediet(Customer *abn, Parcs *park);
+    inline static bool isValidLuxuryLevel(Customer *abn, Parcs *park);
     inline static bool isDatumGeldig(std::string datum);
     inline static bool isJuisteDatumOrder(Datum* begin, Datum *eind);
     inline static int menuKeuze(int begin, int eind);
@@ -78,8 +78,8 @@ public:
     inline void actionBookingMenu(int bookingID);
     inline void gehuurdeParkTonen();
     inline void cancelBookingMenu(int ID);
-    inline bool isValidBeginParks(Datum *begin, Abonnee *abn, Parcs *park, std::string locatie);
-    inline bool isValidEndParks(Datum *eind, Abonnee *abn, Parcs *park, std::string locatie);
+    inline bool isValidBeginParks(Datum *begin, Customer *abn, Parcs *park, std::string locatie);
+    inline bool isValidEndParks(Datum *eind, Customer *abn, Parcs *park, std::string locatie);
     inline bool getGeldigeBeginParks(Datum *begin, std::string locatie);
     inline bool getGeldigeEndParks(Datum *eind, std::string locatie);
     inline bool deleteInRentPark();
@@ -94,7 +94,7 @@ public:
     inline void outputParkNaarBestand();
     inline void outputAbonneeNaarBestand();
     //    FUN OVERLOADING!
-    inline void outputAbonneeNaarBestand(std::vector<Abonnee *> newabonnee);
+    inline void outputAbonneeNaarBestand(std::vector<Customer *> newabonnee);
     inline void abonneeRegistreren();
     inline bool abonneeInloggen(std::string gebruikersnaam, std::string wachtwoord);
     inline Datum *stringToDatum(std::string &datum);

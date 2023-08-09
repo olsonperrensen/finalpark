@@ -4,8 +4,8 @@
 
 #include "Owner.h"
 
-Owner::Owner(std::string name, std::string address, std::string mail,std::string password) :
-User(name, address, mail),password(password) {}
+Owner::Owner(std::string name, std::string address, std::string mail,std::string password,std::string location) :
+User(name, address, mail,password,location) {}
 
 void Owner::createPark(VacationParcs &company, Parcs* park) {
     // CHECK FOR DUPLICATES
@@ -78,12 +78,4 @@ void Owner::deleteAccommodation(VacationParcs &company, int parkID, int accommod
 
 void Owner::changeService(VacationParcs &company, int parkID, const int srvToBeChanged, const bool state) {
     company.changeParkSrv(parkID,srvToBeChanged,state);
-}
-
-const std::string &Owner::getPassword() const {
-    return password;
-}
-
-void Owner::setPassword(const std::string &password) {
-    Owner::password = password;
 }

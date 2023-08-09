@@ -6,7 +6,7 @@
 
 FileIO::FileIO() {
     inputBeheerderToSys();
-//    inputAbonneeToSys();
+    inputAbonneeToSys();
     inputParkToSys();
 //    inputAbnParkToSys();
 //    inputParkLijstToSys();
@@ -140,7 +140,7 @@ inline bool FileIO::isNumGeldig(std::string &iStr) {
 //    }
 //}
 ////TODO remove
-//inline bool FileIO::isValidKrediet(Abonnee *abn, Parcs *park) {
+//inline bool FileIO::isValidKrediet(Customer *abn, Parcs *park) {
 //    if (abn->krediet <
 //        (park->consumingPointsPerDag * (park->eindDatum->countDatum() - park->beginDatum->countDatum()))) {
 //        return false;
@@ -148,7 +148,7 @@ inline bool FileIO::isNumGeldig(std::string &iStr) {
 //    return true;
 //}
 //
-//inline bool FileIO::isValidLuxuryLevel(Abonnee *abn, Parcs *park) {
+//inline bool FileIO::isValidLuxuryLevel(Customer *abn, Parcs *park) {
 //    if (abn->user_requested_luxury_level < park->minLuxuryLevel) {
 //        return false;
 //    }
@@ -193,7 +193,7 @@ inline void FileIO::inputBeheerderToSys() {
 
     std::ifstream bestandLezen{OWNER_BESTAND};
     std::vector<std::string> gegLijst{};
-    std::string gegLijn,name,address,mail,password;
+    std::string gegLijn,name,address,mail,password,location;
     std::cout << R"---(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )---" << std::endl;
     if (!bestandLezen.is_open()) {
         std::cerr << "Kan bestand " << OWNER_BESTAND << " niet openen. Probeer het eens opnnieuw.\n";
@@ -218,7 +218,7 @@ inline void FileIO::inputBeheerderToSys() {
 
 //    CANNOT DO Owner* bc declared at top Classe
     std::cout << "Assigning owner...\n";
-    owner = new Owner(name, address,mail,password);
+    owner = new Owner(name, address,mail,password,location);
 }
 //
 inline int FileIO::menuKeuze(int begin, int eind) {
@@ -259,14 +259,14 @@ inline void FileIO::hoofdScherm() {
    |''|"'||'"| |' '||
    `""`""))""`"`""""        created by r0834721 for a summer retake. All rights reserved)---";
     std::cout  << std::endl << std::endl << std::endl << std::endl ;
-    std::cout  << " Use the app as:    1. Abonnee   2. Owner  3. Staff 4.I've had enough (quit) \n" ;
+    std::cout  << " Use the app as:    1. Customer   2. Owner  3. Staff 4.I've had enough (quit) \n" ;
     std::cout  << "----------------------------------------------------------\n\n" ;
 
     keuze = menuKeuze(1, 4);
     switch (keuze) {
-//        case 1:
-//            loginAbnMenu();
-//            break;
+        case 1:
+            loginAbnMenu();
+            break;
         case 2:
             beheerderLoginMenu();
             break;
@@ -340,7 +340,7 @@ inline void FileIO::beheerderMenu() {
 //        index++;
 //    }
 //    std::cout << "\n";
-//    std::cout  << "\t---1.Zie Abonnee Detail---\n" << "\t---2.Back to owner menu---\n" ;
+//    std::cout  << "\t---1.Zie Customer Detail---\n" << "\t---2.Back to owner menu---\n" ;
 //    int keuze = menuKeuze(1, 2);
 //    switch (keuze) {
 //        case 1:
@@ -424,40 +424,40 @@ inline void FileIO::beheerderZieParkMenu() {
             break;
     }
 }
-//
-//inline void FileIO::loginAbnMenu() {
-//    std::string gebruikersnaam, wachtwoord;
-//    std::cout << R"(
-//|||||||||||||||||||||||||||||||||||||||||
-//            | ABONNEE PORTAL |
-//        1. Register as a new abonnee
-//        2. Login as abonnee
-//        3. Back to main menu
-//|||||||||||||||||||||||||||||||||||||||||
-//)" << std::endl;
-//
-//    switch (menuKeuze(1, 2)) {
+
+inline void FileIO::loginAbnMenu() {
+    std::string gebruikersnaam, wachtwoord;
+    std::cout << R"(
+|||||||||||||||||||||||||||||||||||||||||
+            | ABONNEE PORTAL |
+        1. Register as a new abonnee
+        2. Login as abonnee
+        3. Back to main menu
+|||||||||||||||||||||||||||||||||||||||||
+)" << std::endl;
+
+    switch (menuKeuze(1, 2)) {
 //        case 1:
 //            abonneeRegistreren();
 //            break;
-//        case 2:
-//            std::cin.ignore();
-//            std::cout  << R"(Uw gebruikersnaam invoeren:   )" ;
-//            std::getline(std::cin, gebruikersnaam);
-//            std::cout  << R"(Uw wachtwoord invoeren:   )" ;
-//            std::getline(std::cin, wachtwoord);
-//            if (abonneeInloggen(gebruikersnaam, wachtwoord)) {
-//                abonneeMenu();
-//                break;
-//            }
-//        case 3:
-//            hoofdScherm();
-//            break;
-//    }
-//
-//
-//}
-//
+        case 2:
+            std::cin.ignore();
+            std::cout  << R"(Uw gebruikersnaam invoeren:   )" ;
+            std::getline(std::cin, gebruikersnaam);
+            std::cout  << R"(Uw wachtwoord invoeren:   )" ;
+            std::getline(std::cin, wachtwoord);
+            if (abonneeInloggen(gebruikersnaam, wachtwoord)) {
+                abonneeMenu();
+                break;
+            }
+        case 3:
+            hoofdScherm();
+            break;
+    }
+
+
+}
+
 inline void FileIO::beheerderLoginMenu() {
     std::string gebruikersnaam, wachtwoord;
 
@@ -489,30 +489,30 @@ inline void FileIO::beheerderLoginMenu() {
 
     }
 }
-//
-//
-//inline void FileIO::abonneeMenu() {
-////    TODO Customers can edit their gegevens
-//    int keuze;
-//    std::cout << R"(
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-//          @@@ABONNEE MENU@@@
-//  1.Zie Account's Information
-//  2.Zie Available Parks
-//  3.Handle Bookings
-//  4.Toon gehuurde menu
-//  5.Toon Booking Sent
-//  6.Logout
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-//)" << std::endl;
-//    keuze = menuKeuze(1, 8);
-//    switch (keuze) {
-//        case 1:
-//            huidigUser->toonAccountInfo();
-//            std::cout  << "1. Back to menu...\n" ;
-//            menuKeuze(1, 1);
-//            abonneeMenu();
-//            break;
+
+
+inline void FileIO::abonneeMenu() {
+//    TODO Customers can edit their gegevens
+    int keuze;
+    std::cout << R"(
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+          @@@ABONNEE MENU@@@
+  1.Zie Account's Information
+  2.Zie Available Parks
+  3.Handle Bookings
+  4.Toon gehuurde menu
+  5.Toon Booking Sent
+  6.Logout
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+)" << std::endl;
+    keuze = menuKeuze(1, 8);
+    switch (keuze) {
+        case 1:
+            std::cout << *huidigUser << std::endl;
+            std::cout  << "1. Back to menu...\n" ;
+            menuKeuze(1, 1);
+            abonneeMenu();
+            break;
 //        case 2:
 //            searchValidParkMenu();
 //            break;
@@ -525,15 +525,15 @@ inline void FileIO::beheerderLoginMenu() {
 //        case 5:
 //            toonBookingSent();
 //            break;
-//        case 6:
-//            huidigUser = nullptr;
-//            hoofdScherm();
-//            break;
-//    }
-//
-//
-//}
-//
+        case 6:
+            huidigUser = nullptr;
+            hoofdScherm();
+            break;
+    }
+
+
+}
+
 //inline void FileIO::parkHuurvrijMenu() {
 //    std::cout  << "\t---UP park FOR RENT MENU ---\n" ;
 //    if (huidigUser->parkBeheerder != nullptr) {
@@ -641,7 +641,7 @@ inline void FileIO::beheerderLoginMenu() {
 //inline void FileIO::gehuurdeParkTonen() {
 //    //Check if huidig abonnee ocupying any park
 //    if (huidigUser->tenantLijst.empty()) {
-//        std::cout  << "\n\t\tThere are no park you are renting\n\n\t\tBack To Abonnee Menu\n" ;
+//        std::cout  << "\n\t\tThere are no park you are renting\n\n\t\tBack To Customer Menu\n" ;
 //        abonneeMenu();
 //    }
 //    std::cout  << "\nThe lijst of park you occupied:\n" ;
@@ -703,7 +703,7 @@ inline void FileIO::beheerderLoginMenu() {
 //    std::cout  << "\nEnter the index of booking that you want to cancel:\n" ;
 //    std::cout  << "Lijst of the booking you have sent: \n" ;
 //    huidigUser->toonBookingSent();
-//    std::cout  << huidigUser->bookingLijst.size() + 1 << ".Back to Abonnee Menu\n" ;
+//    std::cout  << huidigUser->bookingLijst.size() + 1 << ".Back to Customer Menu\n" ;
 //    int keuze = menuKeuze(1, huidigUser->bookingLijst.size() + 1);
 //    if (keuze == huidigUser->bookingLijst.size() + 1) {
 //        abonneeMenu();
@@ -902,7 +902,7 @@ inline void FileIO::beheerderLoginMenu() {
 //
 //}
 //
-//inline bool FileIO::isValidBeginParks(Datum *begin, Abonnee *abn, Parcs *park, std::string locatie) {
+//inline bool FileIO::isValidBeginParks(Datum *begin, Customer *abn, Parcs *park, std::string locatie) {
 //
 //    int count = 0;
 //    if (!park->isToegevoegd) {
@@ -935,7 +935,7 @@ inline void FileIO::beheerderLoginMenu() {
 //
 //}
 //
-//inline bool FileIO::isValidEndParks(Datum *eind, Abonnee *abn, Parcs *park, std::string locatie) {
+//inline bool FileIO::isValidEndParks(Datum *eind, Customer *abn, Parcs *park, std::string locatie) {
 //    if (!park->isToegevoegd) {
 //        return false;
 //    }
@@ -1288,7 +1288,7 @@ inline void FileIO::inputParkToSys() {
 //    if (!bestandLezen.is_open()) {
 //        std::cerr << "Kan bestand " << PARCS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
 //    }
-//    Abonnee *owner;
+//    Customer *owner;
 //    while (std::getline(bestandLezen, gegLijn)) {
 //        std::vector<std::string> gegLijst;
 //        gegLijst = mijnStrTok(gegLijn, SCHEIDER);
@@ -1298,7 +1298,7 @@ inline void FileIO::inputParkToSys() {
 //        double scores = std::stod(gegLijst[5]);
 //        std::string status = gegLijst[6];
 //        std::string beheerderId = gegLijst[1];
-//        for (Abonnee *abn: abonnees) {
+//        for (Customer *abn: abonnees) {
 //            if (beheerderId == abn->abonneeId) {
 //                owner = abn;
 //            }
@@ -1311,7 +1311,7 @@ inline void FileIO::inputParkToSys() {
 //inline void FileIO::inputAbnParkToSys() {
 //    std::string gegLijn;
 //    std::ifstream bestandLezen{VACATIONPARKS_BESTAND};
-//    Abonnee *targetAbn;
+//    Customer *targetAbn;
 //    Parcs *abnPark;
 //
 //    if (!bestandLezen.is_open()) {
@@ -1326,7 +1326,7 @@ inline void FileIO::inputParkToSys() {
 //                abnPark = park;
 //            }
 //        }
-//        for (Abonnee *abn: abonnees) {
+//        for (Customer *abn: abonnees) {
 //            if (gegLijst[1] == abn->abonneeId) {
 //                targetAbn = abn;
 //            }
@@ -1336,30 +1336,31 @@ inline void FileIO::inputParkToSys() {
 //    bestandLezen.close();
 //
 //}
-//
-//inline void FileIO::inputAbonneeToSys() {
-//    abonnees.clear();
-//    std::string gegLijn;
-//    std::ifstream bestandLezen{CUSTOMERS_BESTAND};
-//
-//    if (!bestandLezen.is_open()) {
-//        std::cerr << "Kan bestand " << CUSTOMERS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
-//    }
-//
-//    while (std::getline(bestandLezen, gegLijn)) {
-//        std::vector<std::string> gegLijst;
-//        gegLijst = mijnStrTok(gegLijn, SCHEIDER);
-//        auto *abonnee = new Abonnee(gegLijst[2], gegLijst[3], gegLijst[0], gegLijst[1],
-//                                    std::stod(gegLijst[5]), std::stod(gegLijst[6]), gegLijst[4]);
-//        abonnees.push_back(abonnee);
-//    }
-//    bestandLezen.close();
-//}
-//
+
+inline void FileIO::inputAbonneeToSys() {
+    abonnees.clear();
+    std::string gegLijn;
+    std::ifstream bestandLezen{CUSTOMERS_BESTAND};
+
+    if (!bestandLezen.is_open()) {
+        std::cerr << "Kan bestand " << CUSTOMERS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
+    } else std::cout << "Loading customers...\n";
+
+    while (std::getline(bestandLezen, gegLijn)) {
+        std::vector<std::string> gegLijst;
+        gegLijst = mijnStrTok(gegLijn, SCHEIDER);
+//        calvinjharris_BOOMSESTEENWEG 77H 2800 MECHELEN_charris@london.com_Cosmic@123_BOOM_Bancontact
+        auto *abonnee = new Customer(
+                gegLijst[0], gegLijst[1], gegLijst[2], gegLijst[3], gegLijst[4], gegLijst[5]);
+        abonnees.push_back(abonnee);
+    }
+    bestandLezen.close();
+}
+
 //inline void FileIO::inputBookingToSys() {
 //    std::string gegLijn;
 //    std::ifstream bestandLezen{BOOKINGS_BESTAND};
-//    Abonnee *targetAbn;
+//    Customer *targetAbn;
 //    Parcs *targetPark;
 //
 //    if (!bestandLezen.is_open()) {
@@ -1374,7 +1375,7 @@ inline void FileIO::inputParkToSys() {
 //                targetPark = park;
 //            }
 //        }
-//        for (Abonnee *abn: abonnees) {
+//        for (Customer *abn: abonnees) {
 //            if (gegLijst[0] == abn->abonneeId) {
 //                targetAbn = abn;
 //            }
@@ -1440,7 +1441,7 @@ inline void FileIO::outputBeheerderNaarBestand() {
 //    bestandSchrijven.close();
 //}
 ////FUN OVER
-//inline void FileIO::outputAbonneeNaarBestand(std::vector<Abonnee *> newabonnee) {
+//inline void FileIO::outputAbonneeNaarBestand(std::vector<Customer *> newabonnee) {
 //    std::ofstream bestandSchrijven{CUSTOMERS_BESTAND, std::ios::app}; // Append mode
 //    if (!bestandSchrijven.is_open()) {
 //        std::cerr << "Kan bestand " << CUSTOMERS_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
@@ -1505,36 +1506,37 @@ inline void FileIO::outputParkNaarBestand() {
 }
 
 
-//inline bool FileIO::abonneeInloggen(std::string gebruikersnaam, std::string wachtwoord) {
-//    int count = 0;
-//    for (Abonnee *abn: abonnees) {
-////        std::cout << (abn->gebruikersnaam == gebruikersnaam) << (abn->wachtwoord == wachtwoord);
-//        if (abn->gebruikersnaam == gebruikersnaam && abn->wachtwoord == wachtwoord) {
-//            huidigUser = abn;
-//            for (std::string loc: PLEKKEN) {
-//                if (loc == huidigUser->locatie) {
-//                    count++;
-//                    break;
-//                }
-//            }
-//            if (count == 0) {
-//                std::cout  << "The app do not support you in your region! \n" ;
-//                hoofdScherm();
-//                return false;
-//            }
-//            std::cout  << "U bent in het systeem...laden...\n\n" ;
-//            return true;
-//        }
-//    }
-//    std::cout  << "\n\nWrong gebruikersnaam or wachtwoord!!! \n" ;
-//    return false;
-//}
-//
+inline bool FileIO::abonneeInloggen(std::string gebruikersnaam, std::string wachtwoord) {
+    int count = 0;
+    for (Customer *abn: abonnees) {
+//        DEBUG
+//        std::cout << (abn->gebruikersnaam == gebruikersnaam) << (abn->wachtwoord == wachtwoord);
+        if (abn->getName() == gebruikersnaam && abn->getPassword() == wachtwoord) {
+            huidigUser = abn;
+            for (std::string loc: PLEKKEN) {
+                if (loc == huidigUser->getLocation()) {
+                    count++;
+                    break;
+                }
+            }
+            if (count == 0) {
+                std::cout  << "The app do not support you in your region! \n" ;
+                hoofdScherm();
+                return false;
+            }
+            std::cout  << "U bent in het systeem...laden...\n\n" ;
+            return true;
+        }
+    }
+    std::cout  << "\n\nWrong gebruikersnaam or wachtwoord!!! \n" ;
+    return false;
+}
+
 //inline void FileIO::abonneeRegistreren() {
 //    int keuze;
 //    int subKeuze;
 //    std::string gebruikersnaam, wachtwoord, umail, locatie;
-//    std::vector<Abonnee*> newlyRegisteredAbnVector{};
+//    std::vector<Customer*> newlyRegisteredAbnVector{};
 //    std::cout  << "\t---ABONNEE REGISTRATIE---\n" ;
 //    std::cin.ignore();
 //    do {
@@ -1579,7 +1581,7 @@ inline void FileIO::outputParkNaarBestand() {
 //            getline(std::cin, locatie);
 //            break;
 //    }
-//    Abonnee *newAbn = new Abonnee(gebruikersnaam, wachtwoord, "ABN" + std::to_string(abonnees.size() + 1), umail,
+//    Customer *newAbn = new Customer(gebruikersnaam, wachtwoord, "ABN" + std::to_string(abonnees.size() + 1), umail,
 //                                  OORSPRONKELIJKE_KREDIETEN, OORSPRONKELIJKE_SCORES, locatie);
 //    newlyRegisteredAbnVector.push_back(newAbn);
 ////    flush ASAP w fun overloading

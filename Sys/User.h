@@ -8,6 +8,18 @@
 #include <iostream>
 
 class User {
+private:
+    std::string password,location;
+public:
+    const std::string &getLocation() const;
+
+    void setLocation(const std::string &location);
+
+public:
+    const std::string &getPassword() const;
+
+    void setPassword(const std::string &password);
+
 protected:
     static unsigned short int aantalUsers;
     unsigned short int userID;
@@ -38,7 +50,7 @@ public:
     unsigned short int getID() const;
 
 public:
-    User(std::string name, std::string address, std::string mail);
+    User(std::string name, std::string address, std::string mail,std::string password,std::string location);
     virtual ~User() {}
 };
 
