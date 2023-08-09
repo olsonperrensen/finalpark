@@ -139,55 +139,41 @@ inline bool FileIO::geldigeMail(std::string &umail) {
         return false;
     }
 }
-////TODO remove
-//inline bool FileIO::isValidKrediet(Customer *abn, Parcs *park) {
-//    if (abn->krediet <
-//        (park->consumingPointsPerDag * (park->eindDatum->countDatum() - park->beginDatum->countDatum()))) {
-//        return false;
-//    }
-//    return true;
-//}
-//
-//inline bool FileIO::isValidLuxuryLevel(Customer *abn, Parcs *park) {
-//    if (abn->user_requested_luxury_level < park->minLuxuryLevel) {
-//        return false;
-//    }
-//    return true;
-//}
-//
-//inline bool FileIO::isDatumGeldig(std::string datum) {
-//    std::string dag = datum.substr(0, 2);
-//    std::string maand = datum.substr(3, 2);
-//    std::string jaar = datum.substr(6, 4);
-//
-//    for (int i = 0; i < datum.length(); i++) {
-//        if (i == 2 || i == 5) {
-//            if (datum[i] != L'/') {
-//                std::cout  << "xx/xx/xxxx Datum format aub. Opnieuw proberen \n" ;
-//                return false;
-//            }
-//        } else if (!std::isdigit(datum[i])) {
-//            std::cout  << "Niet geldig. Opnieuw \n" ;
-//            return false;
-//        } else if (std::stoi(maand) > 13 || std::stoi(maand) < 1) {
-//            std::cout  << "Niet geldig. Opnieuw \n" ;
-//            return false;
-//        } else if (std::stoi(dag) > DAG_VSCH_MAAND[std::stoi(maand) - 1]) {
-//            std::cout  << "Niet geldig. Opnieuw \n" ;
-//            return false;
-//        }
-//    }
-//    return true;
-//}
-//
-//inline bool FileIO::isJuisteDatumOrder(Datum *begin, Datum *eind) {
-//    if (eind->countDatum() - begin->countDatum() > 0) {
-//        return true;
-//    } else {
-//        return false;
-//    }
-//}
-//
+
+inline bool FileIO::isDatumGeldig(std::string datum) {
+    std::cout << "isDatumGeldig-> Checking...\n";
+    std::string dag = datum.substr(0, 2);
+    std::string maand = datum.substr(3, 2);
+    std::string jaar = datum.substr(6, 4);
+
+    for (int i = 0; i < datum.length(); i++) {
+        if (i == 2 || i == 5) {
+            if (datum[i] != L'/') {
+                std::cout  << "xx/xx/xxxx Datum format aub. Opnieuw proberen \n" ;
+                return false;
+            }
+        } else if (!std::isdigit(datum[i])) {
+            std::cout  << "Niet geldig. Opnieuw \n" ;
+            return false;
+        } else if (std::stoi(maand) > 13 || std::stoi(maand) < 1) {
+            std::cout  << "Niet geldig. Opnieuw \n" ;
+            return false;
+        } else if (std::stoi(dag) > DAG_VSCH_MAAND[std::stoi(maand) - 1]) {
+            std::cout  << "Niet geldig. Opnieuw \n" ;
+            return false;
+        }
+    }
+    return true;
+}
+
+inline bool FileIO::isJuisteDatumOrder(Datum *begin, Datum *eind) {
+    if (eind->countDatum() - begin->countDatum() > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 inline void FileIO::inputBeheerderToSys() {
 
@@ -514,9 +500,9 @@ inline void FileIO::abonneeMenu() {
             menuKeuze(1, 1);
             abonneeMenu();
             break;
-//        case 2:
-//            searchValidParkMenu();
-//            break;
+        case 2:
+            searchValidParkMenu();
+            break;
 //        case 3:
 //            zieBookingMenu();
 //            break;
@@ -738,83 +724,49 @@ inline void FileIO::abonneeMenu() {
 //    }
 //}
 //
-//inline void FileIO::searchValidParkMenu() {
-//    std::string beginDatum;
-//    std::string eindDatum;
-//    std::string locatie;
-//    Datum *eind, *begin;
-//    int keuze;
-//    std::cout  << "\tSearch for suitable parks: \n" ;
-//    std::cout  << "\t---1. Search by your begin dag ---\n" << "\t---2. Search by your eind dag ---\n" ;
-//    switch (menuKeuze(1, 2)) {
-//        case 1:
-//            std::cin.ignore();
-//            do {
-//                std::cout  << "Enter when you want to rent (dd/mm/yyyy): " ;
-//                std::getline(std::cin, beginDatum);
-//            } while (!isDatumGeldig(beginDatum));
-//            std::cout << beginDatum << "\n";
-//            break;
-//
-//        case 2:
-//            std::cin.ignore();
-//            do {
-//                std::cout  << "Enter when you want to eind renting (dd/mm/yyyy): " ;
-//                std::getline(std::cin, eindDatum);
-//            } while (!isDatumGeldig(eindDatum));
-//            break;
-//    }
-//
-//    std::cout  << "\tKies the city you want to stay: \n\n" ;
-//    std::cout  << "\t1. BOOM \t2.WILLEBROEK \t3.RUMST\n" ;
-//    keuze = menuKeuze(1, 3);
-//    switch (keuze) {
-//        case 1:
-//            locatie = PLEKKEN[0];
-//            break;
-//        case 2:
-//            locatie = PLEKKEN[1];
-//            break;
-//        case 3:
-//            locatie = PLEKKEN[2];
-//            break;
-//    }
-//
-//    if (eindDatum.length() == 0) {
-//        eind = nullptr;
-//    } else {
-//        eind = stringToDatum(eindDatum);
-//    }
-//
-//    if (beginDatum.length() == 0) {
-//        begin = nullptr;
-//    } else {
-//        begin = stringToDatum(beginDatum);
-//    }
-//
-//    validParkMenu(begin, eind, locatie);
-//
-//}
-//
-//inline void FileIO::validParkMenu(Datum *begin, Datum *eind, std::string locatie) {
-//    abonneeSuitableParkLijst.clear();
-//    Booking *booking;
-//    int keuze;
-//    if (eind == nullptr) {
-//        getGeldigeBeginParks(begin, locatie);
-//    } else {
-//        getGeldigeEndParks(eind, locatie);
-//    }
-//    std::cout  << abonneeSuitableParkLijst.size() + 1 << ". Back to abonnee menu\n" ;
-//    keuze = menuKeuze(1, abonneeSuitableParkLijst.size() + 1);
-//    if (keuze == abonneeSuitableParkLijst.size() + 1) {
-//
-//        abonneeMenu();
-//    } else {
-//        abonneeSuitableParkLijst[keuze - 1]->zieParkInfo();
-//        std::cout  << "\n\n--> 1.\tBooking to rent this park\n\n"
-//                    << "--> 3.\tBack to park lijst\n" ;
-//        switch (menuKeuze(1, 3)) {
+inline void FileIO::searchValidParkMenu() {
+    std::string locatie;
+    int keuze;
+    std::cout  << "\tSearch for suitable parks: \n" ;
+    std::cout  << "\tKies the city you want to stay: \n\n" ;
+    std::cout  << "\t1. BOOM \t2.WILLEBROEK \t3.RUMST\n" ;
+    keuze = menuKeuze(1, 3);
+    switch (keuze) {
+        case 1:
+            locatie = PLEKKEN[0];
+            std::cout << "Assigned " << locatie << " to you...";
+            break;
+        case 2:
+            locatie = PLEKKEN[1];
+            std::cout << "Assigned " << locatie << " to you...";
+            break;
+        case 3:
+            locatie = PLEKKEN[2];
+            std::cout << "Assigned " << locatie << " to you...";
+            break;
+    }
+
+    validParkMenu(locatie);
+
+}
+
+inline void FileIO::validParkMenu(std::string locatie) {
+    std::cout << "validParkMenu-> looking...\n";
+    abonneeSuitableParkLijst.clear();
+    Booking *booking;
+    int keuze;
+    getGeldigeParks(locatie);
+    std::cout  << abonneeSuitableParkLijst.size() + 1 << ". Back to abonnee menu\n" ;
+//    stop the printing
+    keuze = menuKeuze(1, abonneeSuitableParkLijst.size() + 1);
+    if (keuze == abonneeSuitableParkLijst.size() + 1) {
+
+        abonneeMenu();
+    } else {
+         std::cout << *abonneeSuitableParkLijst[keuze - 1];
+        std::cout  << "\n\n--> 1.\tBooking to rent this park\n\n"
+                    << "--> 3.\tBack to park lijst\n" ;
+        switch (menuKeuze(1, 3)) {
 //            case 1: {
 //                if (eind == nullptr) {
 //                    booking = new Booking(begin, abonneeSuitableParkLijst[keuze - 1]->eindDatum, huidigUser,
@@ -829,13 +781,13 @@ inline void FileIO::abonneeMenu() {
 //                abonneeMenu();
 //                break; //function send bookings
 //            }
-//            case 3:
-//                validParkMenu(begin, eind, locatie);
-//                break;
-//        }
-//    }
-//}
-//
+            case 3:
+                validParkMenu(locatie);
+                break;
+        }
+    }
+}
+
 //inline void FileIO::actionBookingMenu(int bookingID) {
 //    std::cout  << "\n\n1.Accept Booking\n2.Decline Booking\n" ;
 //    switch (menuKeuze(1, 3)) {
@@ -902,57 +854,30 @@ inline void FileIO::abonneeMenu() {
 //    }
 //
 //}
-//
-//inline bool FileIO::isValidBeginParks(Datum *begin, Customer *abn, Parcs *park, std::string locatie) {
-//
-//    int count = 0;
-//    if (!park->isToegevoegd) {
-//        return false;
-//    }
-//
-//    if (park->parkStatus == STATUS[1]) {
-//        return false;
-//    }
-//
-//    if (park == abn->parkBeheerder) {
-//        return false;
-//    }
-//
-//    if (!isValidLuxuryLevel(abn, park)) {
-//        return false;
-//    }
-//    if (!isValidKrediet(abn, park)) {
-//        return false;
-//    }
-//
-//    if (locatie != park->locatie) {
-//        return false;
-//    }
-//
-//    if (park->beginDatum->datumNaarString() == begin->datumNaarString()) {
-//        return true;
-//    }
-//    return false;
-//
-//}
-//
+
+inline bool FileIO::isValidCityParks(std::string locatie) {
+//    TODO look for it INSIDE parcs.dat
+    std::cout << "isValidCityParks-> looking for compatible city...\n";
+    int count = 0;
+    std::string pattern = R"(\b(BOOM|Boom|boom|WILLEBROEK|Willebroek|willebroek|RUMST|Rumst|rumst)\b)";
+    std::regex cityRegex(pattern);
+
+    std::smatch match;
+    if (std::regex_search(locatie, match, cityRegex)) {
+        std::cout << "isValidCityParks-> City found: " << match[0] << std::endl;
+        return true;
+    } else {
+        std::cout << "isValidCityParks-> No city found in the address." << std::endl;
+        return false;
+    }
+}
+
 //inline bool FileIO::isValidEndParks(Datum *eind, Customer *abn, Parcs *park, std::string locatie) {
 //    if (!park->isToegevoegd) {
 //        return false;
 //    }
 //
-//    if (park->parkStatus == STATUS[1]) {
-//        return false;
-//    }
-//
 //    if (park == abn->parkBeheerder) {
-//        return false;
-//    }
-//
-//    if (!isValidLuxuryLevel(abn, park)) {
-//        return false;
-//    }
-//    if (!isValidKrediet(abn, park)) {
 //        return false;
 //    }
 //
@@ -967,58 +892,28 @@ inline void FileIO::abonneeMenu() {
 //
 //    return false;
 //}
-//
-//inline bool FileIO::getGeldigeBeginParks(Datum *begin, std::string locatie) {
-//    abonneeSuitableParkLijst.clear();
-//    for (auto &park: parkVector) {
-//        if (isValidBeginParks(begin, huidigUser, park, locatie)) {
-//            abonneeSuitableParkLijst.push_back(park);
-//        }
-//    }
-//
-//    if (abonneeSuitableParkLijst.empty()) {
-//        std::cout  << "\nAsjemenou! Wij konden geen park vinden die voldoet aan uw criteria :(\n" ;
-//        return false;
-//    }
-//
-//    std::cout  << "\nThe suitable park lijst:\n\n" ;
-//    for (int i = 0; i < abonneeSuitableParkLijst.size(); i++) {
-//        std::cout  << "--> " << i + 1 << ". " ;
-//        std::cout  << "Parcs Id: " << abonneeSuitableParkLijst[i]->parkID << "\tLocatie: "
-//                    << abonneeSuitableParkLijst[i]->locatie << "\tLuxury level: "
-//                    << abonneeSuitableParkLijst[i]->getLuxuryLevel() << "\n" ;
-//    }
-//    std::cout << "\n\n";
-//
-//    return true;
-//}
-//
-//inline bool FileIO::getGeldigeEndParks(Datum *eind, std::string locatie) {
-//    abonneeSuitableParkLijst.clear();
-//    for (auto &park: parkVector) {
-//        if (isValidEndParks(eind, huidigUser, park, locatie)) {
-//
-//            abonneeSuitableParkLijst.push_back(park);
-//        }
-//    }
-//
-//    if (abonneeSuitableParkLijst.empty()) {
-//        std::cout  << "\nAsjemenou! Wij konden geen park vinden die voldoet aan uw criteria :(\n" ;
-//        return false;
-//    }
-//
-//    std::cout  << "\nThe suitable park lijst:\n\n" ;
-//    for (int i = 0; i < abonneeSuitableParkLijst.size(); i++) {
-//        std::cout << "--> " << i + 1 << ". ";
-//        std::cout  << "Parcs Id: " << abonneeSuitableParkLijst[i]->parkID << "\tLocatie: "
-//                    << abonneeSuitableParkLijst[i]->locatie << "\tLuxury level: "
-//                    << abonneeSuitableParkLijst[i]->getLuxuryLevel() << "\n" ;
-//    }
-//    std::cout << "\n\n";
-//
-//    return true;
-//}
-//
+
+inline bool FileIO::getGeldigeParks(std::string locatie) {
+    std::cout << "getGeldigeParks-> Looking... for valid parcs\n";
+    abonneeSuitableParkLijst.clear();
+    if (!isValidCityParks(locatie)) {
+        std::cout  << "\nAsjemenou! Wij konden geen park vinden die voldoet aan uw criteria :(\n" ;
+        return false;
+    }
+    std::cout  << "\nThe suitable park lijst:\n\n" ;
+    for (int i = 0; i < parkVector.size(); i++) {
+        std::cout  << "--> " << i + 1 << ". " ;
+        std::cout  << "Parcs Id: " << parkVector[i]->getID() << "\tAdress: "
+                    << parkVector[i]->getAddress() << "\tAccommodation(s): ";
+        for (auto* e:parkVector[i]->getAccommodations()) {
+           std::cout << *e << "\n" ;
+        }
+    }
+    std::cout << "\n\n";
+
+    return true;
+}
+
 //inline bool FileIO::deleteInRentPark() {
 //    if (huidigUser->deletePark()) {
 //        std::cout  << "\nSuccessfully omit the park\n" ;
@@ -1573,9 +1468,9 @@ inline void FileIO::abonneeRegistreren() {
     hoofdScherm();
 }
 
-//inline Datum *FileIO::stringToDatum(std::string &datum) {
-//    std::vector<std::string> gegLijst = mijnStrTok(datum, '/');
-//    Datum *geconverteerdeDatum = new Datum(std::stoi(gegLijst[0]), std::stoi(gegLijst[1]), std::stoi(gegLijst[2]));
-//    return geconverteerdeDatum;
-//
-//}
+inline Datum *FileIO::stringToDatum(std::string &datum) {
+    std::vector<std::string> gegLijst = mijnStrTok(datum, '/');
+    Datum *geconverteerdeDatum = new Datum(std::stoi(gegLijst[0]), std::stoi(gegLijst[1]), std::stoi(gegLijst[2]));
+    return geconverteerdeDatum;
+
+}
