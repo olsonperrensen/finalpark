@@ -1028,6 +1028,8 @@ inline void FileIO::beheerderLoginMenu() {
 //    }
 //}
 inline void FileIO::inputParkToSys() {
+    //cab = 9 args
+    //hr = 12 args
     parkVector.clear();
     std::string gegLijn;
     std::ifstream bestandLezen{PARCS_BESTAND};
@@ -1386,17 +1388,19 @@ inline void FileIO::inputParkToSys() {
 //    }
 //    bestandLezen.close();
 //}
-//inline void FileIO::outputBeheerderNaarBestand() {
-//    std::ofstream bestandSchrijven{OWNER_BESTAND};
-//
-//    if (!bestandSchrijven.is_open()) {
-//        std::cerr << "Kan bestand " << OWNER_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
-//    }
-//
-//    bestandSchrijven << owner->gebruikersnaam << SCHEIDER
-//                     << owner->wachtwoord << "\n";
-//}
-//
+inline void FileIO::outputBeheerderNaarBestand() {
+    std::ofstream bestandSchrijven{OWNER_BESTAND};
+
+    if (!bestandSchrijven.is_open()) {
+        std::cerr << "Kan bestand " << OWNER_BESTAND << " niet openen. Doe eens opnieuw\n" "\n";
+    }
+
+    bestandSchrijven << owner->getName() << SCHEIDER
+                     << owner->getAddress() << SCHEIDER
+                     << owner->getMail() << SCHEIDER
+                     << owner->getPassword() << "\n";
+}
+
 //inline void FileIO::outputBookingNaarBestand() {
 //    std::ofstream bestandSchrijven{BOOKINGS_BESTAND};
 //
@@ -1461,10 +1465,39 @@ inline void FileIO::outputParkNaarBestand() {
         return;
     }
     for (Parcs *park: parkVector) {
+        auto p = park->getServices();
         bestandSchrijven << park->getName() << SCHEIDER
-                         << park->getServices() << SCHEIDER;
-        for (auto e:park->getAccommodations()) {
-            bestandSchrijven << e << SCHEIDER;
+                         << p.isSubtropicSwimmingPool() << SCHEIDER
+                << p.isSportsInfrastructure() << SCHEIDER
+                << p.isSubtropicSwimmingPool() << SCHEIDER
+                << p.isBowlingAlley() << SCHEIDER
+                << p.isBicycleRent() << SCHEIDER
+                << p.isChildrensParadise() << SCHEIDER
+                << p.isWaterBikes() << SCHEIDER;
+        for (auto* e:park->getAccommodations()) {
+            bestandSchrijven << e->getNrPeople() << SCHEIDER;
+            bestandSchrijven << e->getSize() << SCHEIDER;
+            bestandSchrijven << e->isBathroomWithBath() << SCHEIDER;
+            bestandSchrijven << e->getLuxuryLevel()->isBBQ() << SCHEIDER;
+            bestandSchrijven << e->getLuxuryLevel()->isSurroundSystem() << SCHEIDER;
+            bestandSchrijven << e->getLuxuryLevel()->isBreakfastService() << SCHEIDER;
+            bestandSchrijven << e->getLuxuryLevel()->isCleaningService() << SCHEIDER;
+            bestandSchrijven << e->getLuxuryLevel()->getAccommodationKind() << SCHEIDER;
+            if(e->getLuxuryLevel()->getAccommodationKind()=="Cabin")
+            {
+                // From base to derived? !static but dynamic cast !
+                Cabin* c = dynamic_cast<Cabin*>(e);
+                bestandSchrijven << c->getBedrooms() << SCHEIDER;
+            }
+            else if(e->getLuxuryLevel()->getAccommodationKind()=="HotelRoom")
+            {
+                // From base to derived? !static but dynamic cast !
+                HotelRoom* h = dynamic_cast<HotelRoom*>(e);
+                bestandSchrijven << h->isChildrenBed() << SCHEIDER;
+                bestandSchrijven << h->getFloor() << SCHEIDER;
+                bestandSchrijven << h->getLocation() << SCHEIDER;
+                bestandSchrijven << h->getNrBeds() << SCHEIDER;
+            }
         }
         bestandSchrijven << "\n";
     }
