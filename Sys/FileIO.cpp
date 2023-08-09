@@ -245,8 +245,8 @@ inline void FileIO::hoofdScherm() {
 ---/__|" '' "| /___/\----   Your Dream: Getaway | Our Mission: Manage
    |''|"'||'"| |' '||
    `""`""))""`"`""""        created by r0834721 for a summer retake. All rights reserved)---";
-    std::cout  << std::endl << std::endl << std::endl << std::endl ;
-    std::cout  << " Use the app as:    1. Customer   2. Owner  3. Staff 4.I've had enough (quit) \n" ;
+    std::cout  << std::endl << std::endl << "~ means WIP" << std::endl << std::endl ;
+    std::cout  << " Use the app as:    1. Customer   2. Owner  ~3. Staff 4.I've had enough (quit) \n" ;
     std::cout  << "----------------------------------------------------------\n\n" ;
 
     keuze = menuKeuze(1, 4);
@@ -1255,7 +1255,6 @@ inline void FileIO::outputParkNaarBestand() {
                         << park->getAddress() << SCHEIDER
                          << p.isSubtropicSwimmingPool() << SCHEIDER
                 << p.isSportsInfrastructure() << SCHEIDER
-                << p.isSubtropicSwimmingPool() << SCHEIDER
                 << p.isBowlingAlley() << SCHEIDER
                 << p.isBicycleRent() << SCHEIDER
                 << p.isChildrensParadise() << SCHEIDER
@@ -1327,7 +1326,7 @@ inline void FileIO::abonneeRegistreren() {
         std::cout  << R"(Uw gebruikersnaam invoeren:   )" ;
         getline(std::cin, gebruikersnaam);
     } while (!isGebrGeldig(gebruikersnaam));
-    std::cout  << R"(Uw adress invoeren:   )" ;
+    std::cout  << R"(Uw adress invoeren (street nr zip city):   )" ;
     getline(std::cin, adress);
     do {
         std::cout  << R"(Uw wachtwoord invoeren:   )" ;
@@ -1340,9 +1339,10 @@ inline void FileIO::abonneeRegistreren() {
     } while (!geldigeMail(umail));
     std::cout  << R"(Uw payment method invoeren:   )" ;
     getline(std::cin, paymentMethod);
-
-    std::cout  << "1. Kies the locaties the app support \n" ;
-    std::cout  << "2. Enter the locatie yourself \n" ;
+    std::cout  << R"(
+        Attention! The following apply for the Accommodation places YOU are interested in renting, not where you live!
+    1. Kies the locaties the app supports
+    2. Enter the locatie yourself )" ;
     keuze = menuKeuze(1, 2);
     switch (keuze) {
         case 1:
