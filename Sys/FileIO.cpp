@@ -508,18 +508,17 @@ inline void FileIO::changeCustomer(){
 }
 
 inline void FileIO::abonneeMenu() {
-//    TODO Customers can edit their gegevens
     int keuze;
     std::cout << R"(
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
           @@@ABONNEE MENU@@@
   1.Zie Account's Information
   2.Zie Available Parks
-  3.Handle Bookings
-  6.Logout
+  ~3.Handle Bookings
+  4.Logout
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 )" << std::endl;
-    keuze = menuKeuze(1, 8);
+    keuze = menuKeuze(1, 4);
     switch (keuze) {
         case 1:
             std::cout << *huidigUser << std::endl;
@@ -541,7 +540,7 @@ inline void FileIO::abonneeMenu() {
 //        case 3:
 //            zieBookingMenu();
 //            break;
-        case 6:
+        case 4:
             huidigUser = nullptr;
             hoofdScherm();
             break;
@@ -843,7 +842,8 @@ inline bool FileIO::getGeldigeParks(std::string locatie) {
         while (std::getline(iss, word, ' ')) {
             last = word;
         }
-        std::cout << "Comparing " << locatie << " with " << last << std::endl;
+//        DEBUG
+//        std::cout << "Comparing " << locatie << " with " << last << std::endl;
         if (locatie==last) {
             std::cout << "isValidCityParks-> City found: " << e->getAddress() << std::endl;
             std::cout  << "\nThe suitable park lijst:\n\n" ;
