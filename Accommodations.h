@@ -19,7 +19,7 @@ public:
 
 //    Python-like str-dunder method
     friend std::ostream& operator<<(std::ostream& os, const Accommodations& obj) {
-        os << "Accommodations ( ID: " << obj.accommodationID << ", nrPeople: " << obj.nrPeople
+        os << "Accommodations ( ID: " << std::to_string(obj.accommodationID) << ", nrPeople: " << obj.nrPeople
            << ", size: " << obj.size<< ", bathroomWithBath: " << obj.bathroomWithBath
            << ", luxuryLevel: " << *obj.luxuryLevel << " ) ";
         return os;

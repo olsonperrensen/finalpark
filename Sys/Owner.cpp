@@ -28,7 +28,7 @@ void Owner::createPark(VacationParcs* company, Parcs* park) {
 //}
 
 void Owner::deletePark(VacationParcs* company, int parkID) {
-    std::cout << "deletePark -> Attempting to delete parc " << parkID << std::endl;
+    std::cout << "deletePark -> Attempting to delete parc " << std::to_string(parkID) << std::endl;
     company->removePark(parkID);
 }
 
@@ -36,7 +36,7 @@ void Owner::createAccommodation(VacationParcs* company, int parkID, Accommodatio
     std::vector<Parcs*>& parcs = company->getParcs();
     for (Parcs* parc : parcs) {
         if (parc->getID() == parkID) {
-            std::cout << "createAccommodation -> Trying to add new accommodation " << "to Parc (parkID): " << parkID << std::endl;
+            std::cout << "createAccommodation -> Trying to add new accommodation " << "to Parc (parkID): " << std::to_string(parkID) << std::endl;
             // CHECK FOR DUPLICATES
             std::vector<Accommodations*>& existingAccommodations = parc->getAccommodations();
             for (Accommodations* existingAccommodation : existingAccommodations) {
@@ -51,7 +51,7 @@ void Owner::createAccommodation(VacationParcs* company, int parkID, Accommodatio
             return;
         }
     }
-    std::cout << "createAccommodation -> Your Parc number does not match with our records. Nothing could be found. Using user-given ParcID: " << parkID << "\n";
+    std::cout << "createAccommodation -> Your Parc number does not match with our records. Nothing could be found. Using user-given ParcID: " << std::to_string(parkID) << "\n";
 }
 
 

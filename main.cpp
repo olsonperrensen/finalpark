@@ -511,7 +511,7 @@ void displayCustomerMenu() {
                     if (accommodation) {
                         std::cout << "Accommodation found: " << *accommodation << std::endl;
                         // Display more details about the accommodation if needed
-                    } else std::cout << "No Accommodation exists with ID " << accommodationID << std::endl;
+                    } else std::cout << "No Accommodation exists with ID " << std::to_string(accommodationID) << std::endl;
                 }
                 break;
             }

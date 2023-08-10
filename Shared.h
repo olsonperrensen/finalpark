@@ -122,11 +122,11 @@ void removeItem(std::vector<T*>& vec, int id) {
                              }), vec.end());
 
     if (deleted) {
-        std::cout << "\tremoveItem -> The item with ID " << id << " has been removed successfully.\n";
+        std::cout << "\tremoveItem -> The item with ID " << std::to_string(id) << " has been removed successfully.\n";
     } else if (id < 0) {
         std::cout << "\tremoveItem -> Invalid ID.\n";
     } else {
-        std::cout << "\tremoveItem -> Sorry, your item (ID: " << id << " ) couldn't be deleted.\n";
+        std::cout << "\tremoveItem -> Sorry, your item (ID: " << std::to_string(id) << " ) couldn't be deleted.\n";
     }
 }
 
@@ -169,7 +169,7 @@ template <typename T>
 T* findItemByID(std::vector<T*>& vec, int id) {
     for (T* item : vec) {
         if (item->getID() == id) {
-            std::cout << "\tfindItemByID -> Item " << id << " found.\n";
+            std::cout << "\tfindItemByID -> Item " << std::to_string(id) << " found.\n";
             return item;  // Return the found item
         }
     }
