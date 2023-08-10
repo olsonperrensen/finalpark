@@ -37,70 +37,70 @@ int main() {
         LuxuryLevel* luxury;
         // Gather data for VacationParcs
         std::cout << "Enter details for the VacationParcs company:\n";
-        std::cout << "Name: ";
+        std::cout << "\tName: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();
         std::getline(std::cin, name);
 
-        std::cout << "Address: ";
+        std::cout << "\tAddress: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();
         std::getline(std::cin, address);
-        std::cout << "VAT: ";
+        std::cout << "\tVAT: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();  // Discard any leftover characters in the buffer
         std::getline(std::cin, VAT);
 
 
         // Gather data for Parcs
-        std::cout << "Enter details for a Parc:\n";
-        std::cout << "Name: ";
+        std::cout << "\tEnter details for a Parc:\n";
+        std::cout << "\t\tName: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();  // Discard any leftover characters in the buffer
         std::getline(std::cin, parcName);
 
-        std::cout << "Address: ";
+        std::cout << "\t\tAddress: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();  // Discard any leftover characters in the buffer
         std::getline(std::cin, parcAddress);
 
 
 
-        std::cout << "Enter details for Parc Services:\n";
-        std::cout << "Subtropic Swimming Pool ";
+        std::cout << "\t\tEnter details for Parc Services:\n";
+        std::cout << "\t\t\tSubtropic Swimming Pool ";
         subtropicSwimmingPool= getBool();
-        std::cout << "Sports Infrastructure ";
+        std::cout << "\t\t\tSports Infrastructure ";
         sportsInfrastructure = getBool();
-        std::cout << "Bowling Alley ";
+        std::cout << "\t\t\tBowling Alley ";
         bowlingAlley= getBool();
-        std::cout << "Bicycle Rent ";
+        std::cout << "\t\t\tBicycle Rent ";
          bicycleRent= getBool();
-        std::cout << "Children's Paradise ";
+        std::cout << "\t\t\tChildren's Paradise ";
         childrensParadise= getBool();
-        std::cout << "Water Bikes ";
+        std::cout << "\t\t\tWater Bikes ";
          waterBikes= getBool();
 
         services = new Parcs::ParcServices(subtropicSwimmingPool, sportsInfrastructure, bowlingAlley, bicycleRent, childrensParadise, waterBikes);
 
-        std::cout << "Enter accommodation details: ";
+        std::cout << "\t\t\tEnter accommodation details: ";
 //        shared attr
-        std::cout << "Number of People: ";
+        std::cout << "\t\t\t\tNumber of People: ";
         nrPeople=getInt(1,22);
-        std::cout << "Size: ";
+        std::cout << "\t\t\t\tSize: ";
         size=getInt(1,22);
-        std::cout << "Bathroom with Bath ";
+        std::cout << "\t\t\t\tBathroom with Bath ";
         bathroomWithBath= getBool();
 // Gather data for LuxuryLevel
-        std::cout << "Enter details for Luxury Level:\n";
-        std::cout << "BBQ ";
+        std::cout << "\t\t\t\tEnter details for Luxury Level:\n";
+        std::cout << "\t\t\t\t\tBBQ ";
         BBQ= getBool();
-        std::cout << "Surround System ";
+        std::cout << "\t\t\t\t\tSurround System ";
         surroundSystem= getBool();
-        std::cout << "Breakfast Service ";
+        std::cout << "\t\t\t\t\tBreakfast Service ";
         breakfastService= getBool();
-        std::cout << "Cleaning Service ";
+        std::cout << "\t\t\t\t\tCleaning Service ";
         cleaningService= getBool();
-        std::cout << "Accommodation Kind: ";
+        std::cout << "\t\t\t\t\tAccommodation Kind: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();  // Discard any leftover characters in the buffer
         std::getline(std::cin, accommodationKind);
@@ -108,16 +108,16 @@ int main() {
             int floor, nrBeds;
             bool childrenBed;
 
-            std::cout << "Enter details for HotelRoom:\n";
-            std::cout << "Children Bed ";
+            std::cout << "\t\t\t\t\tEnter details for HotelRoom:\n";
+            std::cout << "\t\t\t\t\t\tChildren Bed ";
             childrenBed= getBool();
-            std::cout << "Floor: ";
+            std::cout << "\t\t\t\t\t\tFloor: ";
             floor=getInt(1,22);
-            std::cout << "Location: ";
+            std::cout << "\t\t\t\t\t\tLocation: ";
             std::cin.clear();  // Clear any errors
             conditionalIgnore();  // Discard any leftover characters in the buffer
             std::getline(std::cin, location);
-            std::cout << "Number of Beds: ";
+            std::cout << "\t\t\t\t\t\tNumber of Beds: ";
             nrBeds=getInt(1,22);
 
             luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
@@ -127,8 +127,8 @@ int main() {
         } else if (accommodationKind == "Cabin") {
             int bedrooms;
 
-            std::cout << "Enter details for Cabin:\n";
-            std::cout << "Number of Bedrooms: ";
+            std::cout << "\t\t\t\t\tEnter details for Cabin:\n";
+            std::cout << "\t\t\t\t\t\tNumber of Bedrooms: ";
             bedrooms=getInt(1,22);
 
             luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
@@ -136,34 +136,34 @@ int main() {
             accommodations.push_back(cabin);
 
         } else {
-            std::cout << "Invalid choice for accommodation type.\n";
+            std::cout << "\t\t\t\t\tInvalid choice for accommodation type.\n";
         }
 
         Parcs* newParc = new Parcs(parcName, parcAddress, services, accommodations);
 
         // Gather data for Customer
-        std::cout << "Enter details for a Customer:\n";
-        std::cout << "Name: ";
+        std::cout << "\tEnter details for a Customer:\n";
+        std::cout << "\t\tName: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();  // Discard any leftover characters in the buffer
         std::getline(std::cin, customerName);
-        std::cout << "Address: ";
+        std::cout << "\t\tAddress: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();  // Discard any leftover characters in the buffer
         std::getline(std::cin, customerAddress);
-        std::cout << "Mail: ";
+        std::cout << "\t\tMail: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();  // Discard any leftover characters in the buffer
         std::getline(std::cin, mail);
-        std::cout << "Password: ";
+        std::cout << "\t\tPassword: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();  // Discard any leftover characters in the buffer
         std::getline(std::cin, password);
-        std::cout << "Location: ";
+        std::cout << "\t\tLocation: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();  // Discard any leftover characters in the buffer
         std::getline(std::cin, location);
-        std::cout << "Payment Method: ";
+        std::cout << "\t\tPayment Method: ";
         std::cin.clear();  // Clear any errors
         conditionalIgnore();  // Discard any leftover characters in the buffer
         std::getline(std::cin, paymentMethod);

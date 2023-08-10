@@ -30,6 +30,8 @@ inline auto getBool = []() -> bool {
     std::cout << "(true/1 or false/0): ";
     std::getline(std::cin, input);
     std::transform(input.begin(), input.end(), input.begin(), ::tolower);  // Convert string to lowercase
+//    DEBUG
+//    std::cout << "converted to: " << (input == "true" || input == "1") << std::endl;
     return (input == "true" || input == "1");
 };
 
