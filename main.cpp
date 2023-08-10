@@ -15,6 +15,7 @@
 Parcs* cliNewPark();
 Parcs::ParcServices* cliNewSrv();
 Accommodations* cliNewAcc();
+Customer* cliNewCust();
 
 void displayMainMenu();
 void displayOwnerMenu();
@@ -33,7 +34,6 @@ int main() {
 
     if (choice == 1) {
         std::string name, address, VAT;
-        std::string customerName, customerAddress, mail, password, location, paymentMethod;
         // Gather data for VacationParcs
         std::cout << "Enter details for the VacationParcs company:\n";
         std::cout << "\tName: ";
@@ -51,35 +51,7 @@ int main() {
         std::getline(std::cin, VAT);
 
         Parcs* newParc = cliNewPark();
-
-        // Gather data for Customer
-        std::cout << "\tEnter details for a Customer:\n";
-        std::cout << "\t\tName: ";
-        std::cin.clear();  // Clear any errors
-        conditionalIgnore();  // Discard any leftover characters in the buffer
-        std::getline(std::cin, customerName);
-        std::cout << "\t\tAddress: ";
-        std::cin.clear();  // Clear any errors
-        conditionalIgnore();  // Discard any leftover characters in the buffer
-        std::getline(std::cin, customerAddress);
-        std::cout << "\t\tMail: ";
-        std::cin.clear();  // Clear any errors
-        conditionalIgnore();  // Discard any leftover characters in the buffer
-        std::getline(std::cin, mail);
-        std::cout << "\t\tPassword: ";
-        std::cin.clear();  // Clear any errors
-        conditionalIgnore();  // Discard any leftover characters in the buffer
-        std::getline(std::cin, password);
-        std::cout << "\t\tLocation: ";
-        std::cin.clear();  // Clear any errors
-        conditionalIgnore();  // Discard any leftover characters in the buffer
-        std::getline(std::cin, location);
-        std::cout << "\t\tPayment Method: ";
-        std::cin.clear();  // Clear any errors
-        conditionalIgnore();  // Discard any leftover characters in the buffer
-        std::getline(std::cin, paymentMethod);
-
-        Customer* newCustomer = new Customer(customerName, customerAddress, mail, password, location, paymentMethod);
+        Customer* newCustomer = cliNewCust();
 
         // Create the VacationParcs company with the gathered data
         company = new VacationParcs(name, address, VAT, {newParc}, {newCustomer});
@@ -205,7 +177,36 @@ Parcs::ParcServices* cliNewSrv(){
     waterBikes= getBool();
     return new Parcs::ParcServices(subtropicSwimmingPool, sportsInfrastructure, bowlingAlley, bicycleRent, childrensParadise, waterBikes);
 }
-
+Customer* cliNewCust(){
+    std::string customerName, customerAddress, mail, password, location, paymentMethod;
+    // Gather data for Customer
+    std::cout << "\tEnter details for a Customer:\n";
+    std::cout << "\t\tName: ";
+    std::cin.clear();  // Clear any errors
+    conditionalIgnore();  // Discard any leftover characters in the buffer
+    std::getline(std::cin, customerName);
+    std::cout << "\t\tAddress: ";
+    std::cin.clear();  // Clear any errors
+    conditionalIgnore();  // Discard any leftover characters in the buffer
+    std::getline(std::cin, customerAddress);
+    std::cout << "\t\tMail: ";
+    std::cin.clear();  // Clear any errors
+    conditionalIgnore();  // Discard any leftover characters in the buffer
+    std::getline(std::cin, mail);
+    std::cout << "\t\tPassword: ";
+    std::cin.clear();  // Clear any errors
+    conditionalIgnore();  // Discard any leftover characters in the buffer
+    std::getline(std::cin, password);
+    std::cout << "\t\tLocation: ";
+    std::cin.clear();  // Clear any errors
+    conditionalIgnore();  // Discard any leftover characters in the buffer
+    std::getline(std::cin, location);
+    std::cout << "\t\tPayment Method: ";
+    std::cin.clear();  // Clear any errors
+    conditionalIgnore();  // Discard any leftover characters in the buffer
+    std::getline(std::cin, paymentMethod);
+    return new Customer(customerName, customerAddress, mail, password, location, paymentMethod);
+}
 //TODO see vorige todo-s before pushing new main.cpp
 void displayMainMenu() {
     int choice;
@@ -371,7 +372,8 @@ void displayCustomerMenu() {
 
         switch (choice) {
             case 1:
-                // Handle registration
+                Customer* newCustomer = cliNewCust();
+                company->registerCustomer(newCustomer);
                 break;
             case 2:
                 // Handle change customer data
