@@ -9,6 +9,8 @@
 #include "Customer.h"
 #include "Sys/Datum.h"
 #include "Shared.h"
+#include "HotelRoom.h"
+#include "Cabin.h"
 
 class Booking {
 private:
@@ -48,17 +50,22 @@ public:
         os << "Booking ( ID: " << obj.getID() << ", customer: " << *obj.getCustomer()
            << ", accommodations: [";
 
-        const std::vector<Accommodations*>& accommodations = obj.getAccommodations();
-        for (size_t i = 0; i < accommodations.size(); ++i) {
-            os << *accommodations[i];
+        const std::vector<Accommodations*>& dunderAccommodations = obj.getAccommodations();
+        for (size_t i = 0; i < dunderAccommodations.size(); ++i) {
+            // Dynamic casting to determine the type of Accommodations
+            if (HotelRoom* hotelRoom = dynamic_cast<HotelRoom*>(dunderAccommodations[i])) {
+                os << *hotelRoom;
+            } else if (Cabin* cabin = dynamic_cast<Cabin*>(dunderAccommodations[i])) {
+                os << *cabin;
+            }
 
             // If not the last element, add a comma and a space
-            if (i != accommodations.size() - 1) {
+            if (i != dunderAccommodations.size() - 1) {
                 os << ", ";
             }
         }
 
-        os << "], activityPass: " << obj.activityPass
+        os << "] , activityPass: " << obj.activityPass
            << ", sportsPass: " << obj.sportsPass << ", bicycleRent: " << obj.bicycleRent
            << ", swimmingPass: " << obj.swimmingPass
            << ", Begin date: " << *obj.beginDate // print beginDate

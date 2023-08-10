@@ -33,7 +33,7 @@ Parcs* VacationParcs::findParcByID(int parkID) {
         }
 
     // If the park is not found, print an error message.
-    std::cout << "modifyPark -> Error: Parcs " << parkID << " not found.\n";
+    std::cout << "modifyPark -> Error: Parcs " << std::to_string(parkID) << " not found.\n";
 }
 
 const std::string &VacationParcs::getBizName() const {
