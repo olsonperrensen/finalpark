@@ -79,6 +79,7 @@ int main() {
         std::cout << "Thank you. Loading rest of data...\n";
         loadFromFile(cv,CUSTOMERS_BESTAND);
         loadFromFile(pv,PARCS_BESTAND);
+//        trouwens use of Constructor Overloading
         company = new VacationParcs(name, address, VAT, pv, cv,bv);
     } else {
         std::cout << "Invalid choice. Exiting...\n";
