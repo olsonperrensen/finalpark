@@ -90,9 +90,10 @@ void loadFromFile(std::vector<T*>& items, const std::string& filename) {
     std::string line;
     while (std::getline(inFile, line)) {
         T* item = new T();
-        std::cout << "loadFromFile-> decoding data...\n";
+//        DEBUG
+//        std::cout << "loadFromFile-> decoding data...\n";
         item->deserialize(line);
-        std::cout << "loadFromFile-> populating...\n";
+//        std::cout << "loadFromFile-> populating...\n";
         items.push_back(item);
     }
     inFile.close();

@@ -61,8 +61,8 @@ public:
         os << "], activityPass: " << obj.activityPass
            << ", sportsPass: " << obj.sportsPass << ", bicycleRent: " << obj.bicycleRent
            << ", swimmingPass: " << obj.swimmingPass
-           << ", Begin date: " << obj.beginDate // print beginDate
-           << ", End date: " << obj.endDate
+           << ", Begin date: " << *obj.beginDate // print beginDate
+           << ", End date: " << *obj.endDate
            << ", status: " << obj.status << " ) ";
 
         return os;

@@ -79,8 +79,12 @@ int main() {
         std::cout << "Thank you. Loading rest of data...\n";
         loadFromFile(cv,CUSTOMERS_BESTAND);
         loadFromFile(pv,PARCS_BESTAND);
+
 //        trouwens use of Constructor Overloading
         company = new VacationParcs(name, address, VAT, pv, cv,bv);
+        //        simulating booking
+        company->addBooking(new Booking(1, cv.at(0), pv.at(0)->getAccommodations(), 1,
+                                        1, 0, 1,new Datum(1,7,2003), new Datum(2,7,2003),"ACCEPTED"));
     } else {
         std::cout << "Invalid choice. Exiting...\n";
         return 0;
