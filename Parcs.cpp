@@ -170,10 +170,9 @@ void Parcs::deserialize(const std::string& data) {
     if (!this->services) {
         this->services = new ParcServices();
     }
-    if (this->accommodations.empty()) {
-        this->accommodations.push_back(new Cabin());  // or the derived class you want to initialize
-        this->accommodations[0]->setLuxuryLevel(new LuxuryLevel());
-    }
+//    if (this->accommodations.empty()) {
+//        this->accommodations.push_back(new Cabin());  // or the derived class you want to initialize
+//    }
     std::stringstream ss(data);
     std::string tmp;
 
@@ -203,35 +202,82 @@ void Parcs::deserialize(const std::string& data) {
     std::getline(ss, tmp, '_');
 //    std::cout << "deserialize -> reading " << tmp << " ...\n";
     this->services->setWaterBikes(tmp == "1");
-    std::getline(ss, tmp, '_');
+    for (int i = 0; i < 3; ++i) {
+        char type;
+        ss >> type;  // Read the type identifier
+        ss.ignore();  // Ignore the following delimiter
+
+        if (ss.eof()) {
+            break;  // Exit if we've reached the end of the stream
+        }
+
+        Accommodations* accommodation = nullptr;
+        HotelRoom* hotelRoom = nullptr;
+        Cabin* cabin = nullptr;
+        if (type == 'H') {
+            hotelRoom = new HotelRoom();
+            accommodation = hotelRoom;
+        } else if (type == 'C') {
+            cabin = new Cabin();
+            accommodation = cabin;
+        } else {
+            // Handle unexpected type identifier
+            std::cerr << "Unexpected type identifier: " << type << std::endl;
+            continue;
+        }
+            accommodation->setLuxuryLevel(new LuxuryLevel());
+
+        // Deserialize the accommodation data
+//            std::cout << "deserialize -> reading " << tmp << " ...\n";
+        std::getline(ss, tmp, '_');
+        accommodation->setAccommodationId(std::stoi(tmp));
+        std::getline(ss, tmp, '_');
 
 //    std::cout << "deserialize -> reading " << tmp << " ...\n";
-    this->accommodations[0]->setAccommodationId(std::stoi(tmp));
+        accommodation->setNrPeople(std::stoi(tmp));
+        std::getline(ss, tmp, '_');
+//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+        accommodation->setSize(std::stoi(tmp));
+        std::getline(ss, tmp, '_');
+//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+        accommodation->setBathroomWithBath((tmp == "1"));
+        std::getline(ss, tmp, '_');
+//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+        accommodation->getLuxuryLevel()->setBBQ((tmp == "1"));
+        std::getline(ss, tmp, '_');
+//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+        accommodation->getLuxuryLevel()->setSurroundSystem((tmp == "1"));
+        std::getline(ss, tmp, '_');
+//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+        accommodation->getLuxuryLevel()->setBreakfastService(tmp == "1");
+//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+        std::getline(ss, tmp, '_');
+//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+        accommodation->getLuxuryLevel()->setCleaningService(tmp == "1");
+        std::getline(ss, tmp, '_');
+//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+        accommodation->getLuxuryLevel()->setAccommodationKind(tmp);
+        
+//        manage special derived classes
+        if (hotelRoom) {
+            // Call HotelRoom-specific methods
+//            bool childrenBed,
+//              int floor, std::string location, int nrBeds
+            std::getline(ss, tmp, '_');
+            hotelRoom->setChildrenBed(tmp == "1");
+            std::getline(ss, tmp, '_');
+            hotelRoom->setFloor(std::stoi(tmp));
+            std::getline(ss, tmp, '_');
+            hotelRoom->setLocation(tmp);
+            std::getline(ss, tmp, '_');
+            hotelRoom->setNrBeds(std::stoi(tmp));
+        } else if (cabin) {
+            // Call Cabin-specific methods
+            std::getline(ss, tmp, '_');
+            cabin->setBedrooms(std::stoi(tmp));
+        }
+        this->accommodations.push_back(accommodation);
+    }
     std::getline(ss, tmp, '_');
-
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
-    this->accommodations[0]->setNrPeople(std::stoi(tmp));
-    std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
-    this->accommodations[0]->setSize(std::stoi(tmp));
-    std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
-    this->accommodations[0]->setBathroomWithBath((tmp == "1"));
-    std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
-    this->accommodations[0]->getLuxuryLevel()->setBBQ((tmp == "1"));
-    std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
-    this->accommodations[0]->getLuxuryLevel()->setSurroundSystem((tmp == "1"));
-    std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
-    this->accommodations[0]->getLuxuryLevel()->setBreakfastService(tmp == "1");
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
-    std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
-    this->accommodations[0]->getLuxuryLevel()->setCleaningService(tmp == "1");
-    std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
-    this->accommodations[0]->getLuxuryLevel()->setAccommodationKind(tmp);
 }
 
