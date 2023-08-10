@@ -127,10 +127,10 @@ std::vector<Accommodations *> &Parcs::getAccommodations() {
 void Parcs::setAccommodation(int accommodationID,Accommodations* updatedAccommodation) {
     if (Accommodations* accommodation = findItemByID(accommodations, accommodationID)) {
         *accommodation = *updatedAccommodation;
-        std::cout << "modifyAccommodation -> Accommodation " << accommodationID << " has been modified successfully." << std::endl;
+        std::cout << "modifyAccommodation -> Accommodation " << std::to_string(accommodationID) << " has been modified successfully." << std::endl;
         return;
     }
-    std::cout << "modifyAccommodation -> Error: Accommodation " << accommodationID << " not found.\n";
+    std::cout << "modifyAccommodation -> Error: Accommodation " << std::to_string(accommodationID) << " not found.\n";
     return;
 }
 

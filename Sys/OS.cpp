@@ -8,31 +8,31 @@ void OS::modifyCustomer(VacationParcs* company, int userID,  Customer* updatedCu
     if (Customer* customer = findItemByID(company->getCustomers(), userID)) {
 //        MUST DEREFERENCE OTHERWISE DOESN'T WORK...
         *customer = *updatedCustomer;
-        std::cout << "modifyCustomer -> Customer " << userID << " has been modified successfully." << std::endl;
+        std::cout << "modifyCustomer -> Customer " << std::to_string(userID) << " has been modified successfully." << std::endl;
         return;
     }
-    std::cout << "modifyCustomer -> Error: Customer " << userID << " not found.\n";
+    std::cout << "modifyCustomer -> Error: Customer " << std::to_string(userID) << " not found.\n";
 }
 
 void OS::modifyBooking(VacationParcs* company, int bookingID,  Booking* updatedBooking) {
     if (Booking* booking = findItemByID(company->getBookings(), bookingID)) {
         //        MUST DEREFERENCE OTHERWISE DOESN'T WORK...
         *booking = *updatedBooking;
-        std::cout << "modifyBooking -> Booking " << bookingID << " has been modified successfully." << std::endl;
+        std::cout << "modifyBooking -> Booking " << std::to_string(bookingID) << " has been modified successfully." << std::endl;
         return;
     }
-    std::cout << "modifyBooking -> Error: Booking " << bookingID << " not found.\n";
+    std::cout << "modifyBooking -> Error: Booking " << std::to_string(bookingID) << " not found.\n";
 }
 
 void OS::deleteCustomer(VacationParcs* company, int userID) {
     // Find the booking with the given ID in the list of bookings.
     if (Customer* c = findItemByID(company->getCustomers(), userID)) {
         removeItem(company->getCustomers(),userID);
-        std::cout << "deleteCustomer -> Customer " << userID << " has been deleted successfully." << std::endl;
+        std::cout << "deleteCustomer -> Customer " << std::to_string(userID) << " has been deleted successfully." << std::endl;
         return;
     }
     // If the booking is not found, print an error message.
-    std::cout << "deleteCustomer -> Error: Customer " << userID << " not found.\n";
+    std::cout << "deleteCustomer -> Error: Customer " << std::to_string(userID) << " not found.\n";
 }
 
 void OS::bookAccommodation(VacationParcs* company, int customerID, int accommodationID,  Booking* newBooking) {
@@ -40,7 +40,7 @@ void OS::bookAccommodation(VacationParcs* company, int customerID, int accommoda
     std::vector<Customer*>& customers = company->getCustomers();
     Customer* customer = findItemByID(customers, customerID);
     if (!customer) {
-        std::cout << "bookAccommodation -> Error: Customer " << customerID << " not found.\n";
+        std::cout << "bookAccommodation -> Error: Customer " << std::to_string(customerID) << " not found.\n";
         return;
     }
 
@@ -69,7 +69,7 @@ void OS::bookAccommodation(VacationParcs* company, int customerID, int accommoda
         }
     }
 
-    std::cout << "bookAccommodation -> Error: Accommodation " << accommodationID << " not found.\n";
+    std::cout << "bookAccommodation -> Error: Accommodation " << std::to_string(accommodationID) << " not found.\n";
 }
 
 
@@ -77,11 +77,11 @@ void OS::deleteBooking(VacationParcs* company, int bookingID) {
     // Find the booking with the given ID in the list of bookings.
     if (Booking* booking = findItemByID(company->getBookings(), bookingID)) {
         removeItem(company->getBookings(),bookingID);
-        std::cout << "deleteBooking -> Booking " << bookingID << " has been deleted successfully." << std::endl;
+        std::cout << "deleteBooking -> Booking " << std::to_string(bookingID) << " has been deleted successfully." << std::endl;
         return;
     }
     // If the booking is not found, print an error message.
-    std::cout << "deleteBooking -> Error: Booking " << bookingID << " not found.\n";
+    std::cout << "deleteBooking -> Error: Booking " << std::to_string(bookingID) << " not found.\n";
 }
 
 void OS::createCustomer(VacationParcs* company, Customer* newCustomer) {

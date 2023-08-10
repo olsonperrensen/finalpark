@@ -255,7 +255,7 @@ Booking* cliNewBkn(){
     customerID = getInt(1,std::numeric_limits<int>::max());
     customer = findItemByID(company->getCustomers(), customerID);
     if (!customer) {
-        std::cout << "Customer not found. Exiting...\n";
+        std::cout << "Customer "<< std::to_string(customerID) << " not found. Exiting...\n";
         return nullptr;
     }
 
@@ -275,7 +275,7 @@ Booking* cliNewBkn(){
         if (accommodation) {
             accommodations.push_back(accommodation);
         } else {
-            std::cout << "Accommodation with ID " << accommodationID << " not found.\n";
+            std::cout << "Accommodation with ID " << std::to_string(accommodationID) << " not found.\n";
         }
     }
 
@@ -390,7 +390,7 @@ void displayOwnerMenu() {
                 if (selectedParc) {
                     manageParc(selectedParc);
                 } else {
-                    std::cout << "Parc not found.\n";
+                    std::cout << "Parc " << std::to_string(parcID) << " not found.\n";
                 }
             }
                 break;
