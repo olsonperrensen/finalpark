@@ -32,24 +32,24 @@ int main() {
     std::cout << "Is this your first time using the app (1) or would you like to load from a file (2) ?"<< std::endl;
     int choice;
     choice= getInt(1,2);
-
+    std::string name, address, VAT;
     if (choice == 1) {
-        std::string name, address, VAT;
-        // Gather data for VacationParcs
-        std::cout << "Enter details for the VacationParcs company:\n";
-        std::cout << "\tName: ";
-        std::cin.clear();  // Clear any errors
-        conditionalIgnore();
-        std::getline(std::cin, name);
+        {// Gather data for VacationParcs
+            std::cout << "Enter details for the VacationParcs company:\n";
+            std::cout << "\tName: ";
+            std::cin.clear();  // Clear any errors
+            conditionalIgnore();
+            std::getline(std::cin, name);
 
-        std::cout << "\tAddress: ";
-        std::cin.clear();  // Clear any errors
-        conditionalIgnore();
-        std::getline(std::cin, address);
-        std::cout << "\tVAT: ";
-        std::cin.clear();  // Clear any errors
-        conditionalIgnore();  // Discard any leftover characters in the buffer
-        std::getline(std::cin, VAT);
+            std::cout << "\tAddress: ";
+            std::cin.clear();  // Clear any errors
+            conditionalIgnore();
+            std::getline(std::cin, address);
+            std::cout << "\tVAT: ";
+            std::cin.clear();  // Clear any errors
+            conditionalIgnore();  // Discard any leftover characters in the buffer
+            std::getline(std::cin, VAT);
+        }
 
         Parcs* newParc = cliNewPark();
         Customer* newCustomer = cliNewCust();
@@ -59,11 +59,27 @@ int main() {
     } else if (choice == 2) {
         std::vector<Customer*>cv;
         std::vector<Parcs*>pv;
-//        loadFromFile(cv,CUSTOMERS_BESTAND);
-        loadFromFile(pv,PARCS_BESTAND);
-        for (auto e:pv) {
-            std::cout << *e << std::endl;
+        std::vector<Booking*>bv;
+        {// Gather data for VacationParcs
+            std::cout << "Due to security reasons, please provide us with the following information of your VacationParc:\n";
+            std::cout << "\tName: ";
+            std::cin.clear();  // Clear any errors
+            conditionalIgnore();
+            std::getline(std::cin, name);
+
+            std::cout << "\tAddress: ";
+            std::cin.clear();  // Clear any errors
+            conditionalIgnore();
+            std::getline(std::cin, address);
+            std::cout << "\tVAT: ";
+            std::cin.clear();  // Clear any errors
+            conditionalIgnore();  // Discard any leftover characters in the buffer
+            std::getline(std::cin, VAT);
         }
+        std::cout << "Thank you. Loading rest of data...\n";
+        loadFromFile(cv,CUSTOMERS_BESTAND);
+        loadFromFile(pv,PARCS_BESTAND);
+        company = new VacationParcs(name, address, VAT, pv, cv,bv);
     } else {
         std::cout << "Invalid choice. Exiting...\n";
         return 0;

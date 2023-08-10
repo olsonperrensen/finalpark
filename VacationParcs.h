@@ -115,6 +115,9 @@ public:
     VacationParcs(std::string name, std::string address,
                   std::string VAT, std::vector<Parcs*> parcs,
                   std::vector<Customer*> customers);
+    VacationParcs(std::string name, std::string address,
+                  std::string VAT, std::vector<Parcs*> parcs,
+                  std::vector<Customer*> customers,std::vector<Booking*>bookings);
 
 // CRUD for Parc
 //    Make good use of templates

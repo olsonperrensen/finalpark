@@ -128,3 +128,9 @@ void VacationParcs::setBookings(const std::vector<Booking *> &bookings) {
 void VacationParcs::setCustomers(const std::vector<Customer *> &customers) {
     VacationParcs::customers = customers;
 }
+
+VacationParcs::VacationParcs(std::string name, std::string address, std::string VAT, std::vector<Parcs *> parcs,
+                             std::vector<Customer *> customers, std::vector<Booking *> bookings)
+                             :bizName(name),bizAddress(address),VAT(VAT),parcs(parcs),customers(customers),bookings(bookings){
+
+}
