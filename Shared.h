@@ -4,6 +4,13 @@
 #ifndef FINALPARK_SHARED_H
 #define FINALPARK_SHARED_H
 
+////TODO     ADAPT TO WHERE PROGRAM IS BEING EXECUTED\
+
+#define CUSTOMERS_BESTAND R"(C:\Users\Admin\CLionProjects\finalpark\Sys\Data\customers.dat)"
+#define PARCS_BESTAND R"(C:\Users\Admin\CLionProjects\finalpark\Sys\Data\parcs.dat)"
+#define BOOKINGS_BESTAND R"(C:\Users\Admin\CLionProjects\finalpark\Sys\Data\booking.dat)"
+#define VACATIONPARKS_BESTAND R"(Data/.vacationparcs.dat)"
+#define OWNER_BESTAND R"(C:\Users\Admin\CLionProjects\finalpark\Sys\Data\owner.dat)"
 
 #include <vector>
 #include <cstdio>
@@ -83,7 +90,9 @@ void loadFromFile(std::vector<T*>& items, const std::string& filename) {
     std::string line;
     while (std::getline(inFile, line)) {
         T* item = new T();
+        std::cout << "loadFromFile-> decoding data...\n";
         item->deserialize(line);
+        std::cout << "loadFromFile-> populating...\n";
         items.push_back(item);
     }
     inFile.close();

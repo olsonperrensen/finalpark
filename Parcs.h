@@ -8,6 +8,7 @@
 #include <vector>
 #include "Accommodations.h"
 #include "Shared.h"
+#include "Cabin.h"
 
 class Parcs {
 public:
@@ -72,7 +73,7 @@ public:
     };
 private:
     std::string name,address;
-    ParcServices* services;
+    ParcServices* services{};
 public:
     ParcServices *getServices() const;
 
@@ -120,7 +121,7 @@ public:
 private:
 //    own identification to pop it as element from VacationParcs
     static unsigned short int aantalParcs;
-    unsigned short int parcID;
+    unsigned short int parcID{};
 
 
 public:
@@ -128,6 +129,9 @@ public:
     void addAccommodation( Accommodations* accommodation);
     void removeAccommodation(unsigned short int id);
     Parcs(std::string name, std::string address, ParcServices* services, std::vector<Accommodations*> accommodations);
+    Parcs()=default;
+    std::string serialize() const;
+    void deserialize(const std::string& data);
 };
 
 

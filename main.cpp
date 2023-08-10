@@ -58,8 +58,10 @@ int main() {
         company = new VacationParcs(name, address, VAT, {newParc}, {newCustomer});
     } else if (choice == 2) {
         std::vector<Customer*>cv;
-        loadFromFile(cv,"C:\\Users\\Admin\\CLionProjects\\finalpark\\Sys\\Data\\customers.dat");
-        for (auto e:cv) {
+        std::vector<Parcs*>pv;
+//        loadFromFile(cv,CUSTOMERS_BESTAND);
+        loadFromFile(pv,PARCS_BESTAND);
+        for (auto e:pv) {
             std::cout << *e << std::endl;
         }
     } else {
