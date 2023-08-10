@@ -236,6 +236,7 @@ Customer* cliNewCust(){
     return new Customer(customerName, customerAddress, mail, password, location, paymentMethod);
 }
 Booking* cliNewBkn(){
+    static int bookingID{0};
     int ID,jaar,maand,dag;
     Customer* customer;
     std::vector<Accommodations*> accommodations;
@@ -244,6 +245,7 @@ Booking* cliNewBkn(){
     std::string status;
 
     // Ask for ID
+    //    ID = ++bookingID;
     std::cout << "Enter Booking ID: ";
     ID = getInt(1,std::numeric_limits<int>::max());
 
@@ -278,9 +280,13 @@ Booking* cliNewBkn(){
     }
 
     // Ask for other details
+    std::cout << "Enter activityPass:";
     activityPass = getBool();
+    std::cout << "Enter sportsPass:";
     sportsPass = getBool();
+    std::cout << "Enter bicycleRent:";
     bicycleRent = getBool();
+    std::cout << "Enter swimmingPass:";
     swimmingPass = getBool();
 
     // Assuming Datum has a constructor that takes a string in the format "YYYY-MM-DD"
