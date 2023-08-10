@@ -33,11 +33,25 @@ inline auto getBool = []() -> bool {
     return (input == "true" || input == "1");
 };
 
-inline auto getInt = []() -> int {
+inline auto getInt = [](int minValue, int maxValue) -> int {
     std::string input;
-    std::cout << "Enter an integer: ";
-    std::getline(std::cin, input);
-    return std::stoi(input);
+    int value;
+
+    while (true) {
+        std::cout << "Choose bt ("<< minValue << ")(" << maxValue << "): ";
+        std::getline(std::cin, input);
+
+        try {
+            value = std::stoi(input);
+            if (value >= minValue && value <= maxValue) {
+                return value;
+            } else {
+                std::cout << "Value out of range. Try again." << std::endl;
+            }
+        } catch (const std::exception& e) {
+            std::cout << "Invalid input. Try again." << std::endl;
+        }
+    }
 };
 
 template <typename T>

@@ -23,9 +23,9 @@ VacationParcs* company = nullptr;
 
 int main() {
     std::cout << "Welcome to VacationParcs Management System! " << std::endl;
-    std::cout << "Is this your first time using the app or would you like to load from a file? (1 for First Time, 2 for Load from File): ";
+    std::cout << "Is this your first time using the app (1) or would you like to load from a file (2) ?"<< std::endl;
     int choice;
-    choice= getInt();
+    choice= getInt(1,2);
 
     if (choice == 1) {
         std::string name, address, VAT, parcName, parcAddress, customerName, customerAddress, mail, password, location, paymentMethod,accommodationKind;
@@ -85,9 +85,9 @@ int main() {
         std::cout << "Enter accommodation details: ";
 //        shared attr
         std::cout << "Number of People: ";
-        std::cin >> nrPeople;
+        nrPeople=getInt(1,22);
         std::cout << "Size: ";
-        std::cin >> size;
+        size=getInt(1,22);
         std::cout << "Bathroom with Bath ";
         bathroomWithBath= getBool();
 // Gather data for LuxuryLevel
@@ -112,13 +112,13 @@ int main() {
             std::cout << "Children Bed ";
             childrenBed= getBool();
             std::cout << "Floor: ";
-            std::cin >> floor;
+            floor=getInt(1,22);
             std::cout << "Location: ";
             std::cin.clear();  // Clear any errors
             conditionalIgnore();  // Discard any leftover characters in the buffer
             std::getline(std::cin, location);
             std::cout << "Number of Beds: ";
-            std::cin >> nrBeds;
+            nrBeds=getInt(1,22);
 
             luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
             HotelRoom* hotelRoom = new HotelRoom(nrPeople, size, bathroomWithBath, luxury, childrenBed, floor, location, nrBeds);
@@ -129,7 +129,7 @@ int main() {
 
             std::cout << "Enter details for Cabin:\n";
             std::cout << "Number of Bedrooms: ";
-            std::cin >> bedrooms;
+            bedrooms=getInt(1,22);
 
             luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
             Cabin* cabin = new Cabin(nrPeople, size, bathroomWithBath, luxury, bedrooms);
@@ -200,7 +200,7 @@ void displayMainMenu() {
         std::cout << "3. Login as Employee\n";
         std::cout << "4. Exit\n";
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        choice=getInt(1,4);
 
         switch (choice) {
             case 1:
@@ -231,7 +231,7 @@ void displayOwnerMenu() {
         std::cout << "4. Display Entire VacationParc\n";
         std::cout << "5. Logout\n";
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        choice=getInt(1,22);
 
         switch (choice) {
             case 1:
@@ -247,7 +247,7 @@ void displayOwnerMenu() {
             {
                 int parcID;
                 std::cout << "Enter the ID of the parc to delete: ";
-                std::cin >> parcID;
+                parcID=getInt(1,999);
                 company->removePark(parcID);
             }
                 break;
@@ -256,7 +256,7 @@ void displayOwnerMenu() {
             {
                 int parcID;
                 std::cout << "Enter the ID of the parc to manage: ";
-                std::cin >> parcID;
+                parcID=getInt(1,999);
                 Parcs* selectedParc = company->findParcByID(parcID);
                 if (selectedParc) {
                     manageParc(selectedParc);
@@ -287,7 +287,7 @@ void manageParc(Parcs* selectedParc) {
         std::cout << "4. Change Accommodation\n";
         std::cout << "5. Return to Owner Menu\n";
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        choice=getInt(1,5);
 
         switch (choice) {
             case 1:
@@ -302,10 +302,10 @@ void manageParc(Parcs* selectedParc) {
                 std::cout << "Enter details for the accommodation:\n";
 
                 std::cout << "Number of People: ";
-                std::cin >> nrPeople;
+                nrPeople=getInt(1,22);
 
                 std::cout << "Size: ";
-                std::cin >> size;
+                size=getInt(1,22);
 
                 std::cout << "Bathroom with Bath ";
                 bathroomWithBath= getBool();
@@ -324,7 +324,9 @@ void manageParc(Parcs* selectedParc) {
                cleaningService= getBool();
 
                 std::cout << "Accommodation Kind (HotelRoom or Cabin): ";
-                std::cin >> accommodationKind;
+                std::cin.clear();  // Clear any errors
+                conditionalIgnore();  // Discard any leftover characters in the buffer
+                std::getline(std::cin, accommodationKind);
 
                 LuxuryLevel* luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
 
@@ -335,18 +337,20 @@ void manageParc(Parcs* selectedParc) {
                      childrenBed= getBool();
 
                     std::cout << "Floor: ";
-                    std::cin >> floor;
+                    floor=getInt(1,22);
 
                     std::cout << "Location: ";
-                    std::cin >> location;
+                    std::cin.clear();  // Clear any errors
+                    conditionalIgnore();  // Discard any leftover characters in the buffer
+                    std::getline(std::cin, location);
 
                     std::cout << "Number of Beds: ";
-                    std::cin >> nrBeds;
+                    nrBeds=getInt(1,22);
 
                     newAccommodation = new HotelRoom(nrPeople, size, bathroomWithBath, luxury, childrenBed, floor, location, nrBeds);
                 } else if (accommodationKind == "Cabin") {
                     std::cout << "Number of Bedrooms: ";
-                    std::cin >> bedrooms;
+                    bedrooms=getInt(1,22);
 
                     newAccommodation = new Cabin(nrPeople, size, bathroomWithBath, luxury, bedrooms);
                 } else {
@@ -365,7 +369,7 @@ void manageParc(Parcs* selectedParc) {
             {
                 int accommodationID;
                 std::cout << "Enter the ID of the accommodation to delete: ";
-                std::cin >> accommodationID;
+                accommodationID=getInt(1,999);
                 selectedParc->removeAccommodation(accommodationID);
             }
                 break;
@@ -414,7 +418,7 @@ void manageParc(Parcs* selectedParc) {
             {
                 int accommodationID;
                 std::cout << "Enter the ID of the accommodation to change: ";
-                std::cin >> accommodationID;
+                accommodationID=getInt(1,999);
 
                 // Inside the case where you manage a specific parc:
 
@@ -425,10 +429,10 @@ void manageParc(Parcs* selectedParc) {
                 std::cout << "Enter details for the updated accommodation:\n";
 
                 std::cout << "Number of People: ";
-                std::cin >> nrPeople;
+                nrPeople=getInt(1,22);
 
                 std::cout << "Size: ";
-                std::cin >> size;
+                size=getInt(1,22);
 
                 std::cout << "Bathroom with Bath ";
                bathroomWithBath= getBool();
@@ -447,7 +451,9 @@ void manageParc(Parcs* selectedParc) {
                 cleaningService= getBool();
 
                 std::cout << "Accommodation Kind (HotelRoom or Cabin): ";
-                std::cin >> accommodationKind;
+                std::cin.clear();  // Clear any errors
+                conditionalIgnore();  // Discard any leftover characters in the buffer
+                std::getline(std::cin, accommodationKind);
 
                 LuxuryLevel* luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
 
@@ -458,18 +464,20 @@ void manageParc(Parcs* selectedParc) {
                      childrenBed= getBool();
 
                     std::cout << "Floor: ";
-                    std::cin >> floor;
+                    floor=getInt(1,22);
 
                     std::cout << "Location: ";
-                    std::cin >> location;
+                    std::cin.clear();  // Clear any errors
+                    conditionalIgnore();  // Discard any leftover characters in the buffer
+                    std::getline(std::cin, location);
 
                     std::cout << "Number of Beds: ";
-                    std::cin >> nrBeds;
+                    nrBeds=getInt(1,22);
 
                     updatedAccommodation = new HotelRoom(nrPeople, size, bathroomWithBath, luxury, childrenBed, floor, location, nrBeds);
                 } else if (accommodationKind == "Cabin") {
                     std::cout << "Number of Bedrooms: ";
-                    std::cin >> bedrooms;
+                    bedrooms=getInt(1,22);
 
                     updatedAccommodation = new Cabin(nrPeople, size, bathroomWithBath, luxury, bedrooms);
                 } else {
@@ -504,7 +512,7 @@ void displayCustomerMenu() {
         std::cout << "5. Change Booking\n";
         std::cout << "6. Logout\n";
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        choice=getInt(1,6);
 
         switch (choice) {
             case 1:
@@ -541,7 +549,7 @@ void displayEmployeeMenu() {
         std::cout << "3. Delete Booking\n";
         std::cout << "4. Logout\n";
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        choice=getInt(1,4);
 
         switch (choice) {
             case 1:
