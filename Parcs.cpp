@@ -140,4 +140,5 @@ Parcs::ParcServices *Parcs::getServices() const {
 
 void Parcs::setServices(Parcs::ParcServices *services) {
     Parcs::services = services;
+    std::cout << "setServices -> services set successfully." << std::endl;
 }
