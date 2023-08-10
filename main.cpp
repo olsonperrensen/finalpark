@@ -280,13 +280,13 @@ Booking* cliNewBkn(){
     }
 
     // Ask for other details
-    std::cout << "Enter activityPass:";
+    std::cout << "Enter activityPass ";
     activityPass = getBool();
-    std::cout << "Enter sportsPass:";
+    std::cout << "Enter sportsPass ";
     sportsPass = getBool();
-    std::cout << "Enter bicycleRent:";
+    std::cout << "Enter bicycleRent ";
     bicycleRent = getBool();
-    std::cout << "Enter swimmingPass:";
+    std::cout << "Enter swimmingPass ";
     swimmingPass = getBool();
 
     // Assuming Datum has a constructor that takes a string in the format "YYYY-MM-DD"
