@@ -36,6 +36,10 @@ public:
     void setPaymentMethod(const std::string &paymentMethod);
 //    Meta
     void modifyData(const Customer &updatedCustomer);
+    std::string serialize() const;
+    void deserialize(const std::string& data);
+
+
 };
 
 

@@ -8,6 +8,8 @@
 #include <vector>
 #include <cstdio>
 #include <algorithm>
+#include <fstream>
+#include <sstream>
 //    Own methods needed for the program to work
 // Universal benefit of using template functions! No need for boilerplate repetition anymore.
 const std::vector<std::string> LUXURIES = {"BBQ","Surround System","Breakfast Service","Cleaning Service"};
@@ -55,6 +57,38 @@ inline auto getInt = [](int minValue, int maxValue) -> int {
         }
     }
 };
+
+template <typename T, typename ValueType>
+void setValue(T& object, void(T::*setter)(ValueType), ValueType value) {
+    (object.*setter)(value);
+}
+
+template <typename T, typename ValueType>
+ValueType getValue(const T& object, ValueType(T::*getter)() const) {
+    return (object.*getter)();
+}
+
+template <typename T>
+void saveToFile(const std::vector<T*>& items, const std::string& filename) {
+    std::ofstream outFile(filename, std::ios::app);
+    for (const T* item : items) {
+        outFile << item->serialize() << "\n";
+    }
+    outFile.close();
+}
+
+template <typename T>
+void loadFromFile(std::vector<T*>& items, const std::string& filename) {
+    std::ifstream inFile(filename);
+    std::string line;
+    while (std::getline(inFile, line)) {
+        T* item = new T();
+        item->deserialize(line);
+        items.push_back(item);
+    }
+    inFile.close();
+}
+
 
 template <typename T>
     void addItem(std::vector<T*>& vec, T* item) {

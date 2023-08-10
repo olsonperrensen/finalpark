@@ -8,8 +8,6 @@
 #include <iostream>
 
 class User {
-private:
-    std::string password,location;
 public:
     const std::string &getLocation() const;
 
@@ -24,6 +22,8 @@ protected:
     static unsigned short int aantalUsers;
     unsigned short int userID;
     std::string name,address,mail;
+    std::string password;
+    std::string location;
 public:
 //    base dunder
     friend std::ostream& operator<<(std::ostream& os, const User& obj) {
@@ -51,6 +51,7 @@ public:
 
 public:
     User(std::string name, std::string address, std::string mail,std::string password,std::string location);
+    User()=default;
     virtual ~User() {}
 };
 

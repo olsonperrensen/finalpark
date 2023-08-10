@@ -26,7 +26,6 @@ void displayEmployeeMenu();
 void manageParc(Parcs *selectedParc);
 
 VacationParcs* company = nullptr;
-OS os;
 
 int main() {
     std::cout << "Welcome to VacationParcs Management System! " << std::endl;
@@ -58,10 +57,11 @@ int main() {
         // Create the VacationParcs company with the gathered data
         company = new VacationParcs(name, address, VAT, {newParc}, {newCustomer});
     } else if (choice == 2) {
-//        TODO
-        // Load data from file
-        // Placeholder, you should implement the logic to read data from a file and create the company object
-        // company = loadFromFile();
+        std::vector<Customer*>cv;
+        loadFromFile(cv,"C:\\Users\\Admin\\CLionProjects\\finalpark\\Sys\\Data\\customers.dat");
+        for (auto e:cv) {
+            std::cout << *e << std::endl;
+        }
     } else {
         std::cout << "Invalid choice. Exiting...\n";
         return 0;
@@ -75,6 +75,9 @@ int main() {
 
     return 0;
 }
+
+
+
 
 Parcs* cliNewPark(){
     std::string parcName, parcAddress;

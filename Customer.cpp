@@ -32,3 +32,20 @@ void Customer::modifyData(const Customer &updatedCustomer) {
     *this = updatedCustomer;
     std::cout << "Customer " << this->getID() << " has updated their data successfully." << std::endl;
 }
+
+std::string Customer::serialize() const {
+    return std::to_string(userID) + "_" + name + "_" + address + "_" + mail + "_" + password + "_" + location + "_" + paymentMethod;
+}
+
+void Customer::deserialize(const std::string& data) {
+    std::stringstream ss(data);
+    std::string tmp;
+    std::getline(ss, tmp, '_');
+    userID = std::stoi(tmp);
+    std::getline(ss, name, '_');
+    std::getline(ss, address, '_');
+    std::getline(ss, mail, '_');
+    std::getline(ss, password, '_');
+    std::getline(ss, location, '_');
+    std::getline(ss, paymentMethod, '_');
+}
