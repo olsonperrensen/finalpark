@@ -231,7 +231,7 @@ void displayOwnerMenu() {
         std::cout << "4. Display Entire VacationParc\n";
         std::cout << "5. Logout\n";
         std::cout << "Enter your choice: ";
-        choice=getInt(1,22);
+        choice=getInt(1,5);
 
         switch (choice) {
             case 1:
@@ -274,7 +274,7 @@ void displayOwnerMenu() {
             default:
                 std::cout << "Invalid choice. Please try again.\n";
         }
-    } while (choice != 4);
+    } while (choice != 5);
 }
 
 void manageParc(Parcs* selectedParc) {
