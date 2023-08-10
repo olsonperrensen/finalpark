@@ -512,30 +512,52 @@ void displayCustomerMenu() {
 void displayEmployeeMenu() {
     int choice;
     do {
-        std::cout << "\nEmployee Menu:\n";
+        std::cout << "\n--- Employee Menu ---\n";
         std::cout << "1. Delete Customer\n";
         std::cout << "2. Change Accommodation\n";
         std::cout << "3. Delete Booking\n";
-        std::cout << "4. Logout\n";
+        std::cout << "4. Exit\n";
         std::cout << "Enter your choice: ";
-        choice=getInt(1,4);
+        choice = getInt(1,4);
 
         switch (choice) {
-            case 1:
-                // Handle delete customer
+            case 1: {
+                // Delete Customer
+                int customerID;
+                std::cout << "Enter Customer ID to delete: ";
+                customerID = getInt(1,std::numeric_limits<int>::max());
+                OS::deleteCustomer(company,customerID);
                 break;
-            case 2:
-                // Handle change accommodation
+            }
+            case 2: {
+                // Change Accommodation
+                int accommodationID;
+                std::cout << "Enter Accommodation ID to modify: ";
+                accommodationID = getInt(1,std::numeric_limits<int>::max());
+                for (Parcs* parc : company->getParcs()) {
+                    Accommodations* accommodation = findItemByID(parc->getAccommodations(), accommodationID);
+                    if (accommodation) {
+                        parc->setAccommodation(accommodationID, accommodation);
+                        break;}
+                }
                 break;
-            case 3:
-                // Handle delete booking
+            }
+            case 3: {
+                // Delete Booking
+                int bookingID;
+                std::cout << "Enter Booking ID to delete: ";
+                bookingID = getInt(1,std::numeric_limits<int>::max());
+                OS::deleteBooking(company,bookingID);
                 break;
+            }
             case 4:
-                std::cout << "Logging out...\n";
+                std::cout << "Exiting Employee Menu...\n";
                 break;
             default:
                 std::cout << "Invalid choice. Please try again.\n";
+                break;
         }
     } while (choice != 4);
 }
+
 

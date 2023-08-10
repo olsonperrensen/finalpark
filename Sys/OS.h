@@ -22,11 +22,11 @@ public:
 // Usr MGMT
     void createCustomer(VacationParcs* company, Customer* newCustomer);
 
-    void deleteCustomer(VacationParcs* company, int userID);
+    static void deleteCustomer(VacationParcs* company, int userID);
 //    Booking MGMT
     static void bookAccommodation(VacationParcs* company, int customerID, int accommodationID, Booking* newBooking);
 
-    void deleteBooking(VacationParcs* company, int bookingID);
+    static void deleteBooking(VacationParcs* company, int bookingID);
 };
 
 
