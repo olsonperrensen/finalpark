@@ -8,7 +8,9 @@
 #include "HotelRoom.h"
 #include "Cabin.h"
 #include "Sys/FileIO.h"
+#include "Shared.h"
 #include <vector>
+#include <limits>
 
 void displayMainMenu();
 void displayOwnerMenu();
@@ -20,10 +22,10 @@ void manageParc(Parcs *selectedParc);
 VacationParcs* company = nullptr;
 
 int main() {
-    std::cout << "Welcome to VacationParcs Management System!" << std::endl;
+    std::cout << "Welcome to VacationParcs Management System! " << std::endl;
     std::cout << "Is this your first time using the app or would you like to load from a file? (1 for First Time, 2 for Load from File): ";
     int choice;
-    std::cin >> choice;
+    choice= getInt();
 
     if (choice == 1) {
         std::string name, address, VAT, parcName, parcAddress, customerName, customerAddress, mail, password, location, paymentMethod,accommodationKind;
@@ -36,101 +38,98 @@ int main() {
         // Gather data for VacationParcs
         std::cout << "Enter details for the VacationParcs company:\n";
         std::cout << "Name: ";
-        std::cin >> name;
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();
+        std::getline(std::cin, name);
+
         std::cout << "Address: ";
-        std::cin >> address;
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();
+        std::getline(std::cin, address);
         std::cout << "VAT: ";
-        std::cin >> VAT;
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();  // Discard any leftover characters in the buffer
+        std::getline(std::cin, VAT);
+
 
         // Gather data for Parcs
         std::cout << "Enter details for a Parc:\n";
         std::cout << "Name: ";
-        std::cin >> parcName;
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();  // Discard any leftover characters in the buffer
+        std::getline(std::cin, parcName);
+
         std::cout << "Address: ";
-        std::cin >> parcAddress;
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();  // Discard any leftover characters in the buffer
+        std::getline(std::cin, parcAddress);
+
 
 
         std::cout << "Enter details for Parc Services:\n";
-        std::cout << "Subtropic Swimming Pool (1 for Yes, 0 for No): ";
-        std::cin >> subtropicSwimmingPool;
-        std::cout << "Sports Infrastructure (1 for Yes, 0 for No): ";
-        std::cin >> sportsInfrastructure;
-        std::cout << "Bowling Alley (1 for Yes, 0 for No): ";
-        std::cin >> bowlingAlley;
-        std::cout << "Bicycle Rent (1 for Yes, 0 for No): ";
-        std::cin >> bicycleRent;
-        std::cout << "Children's Paradise (1 for Yes, 0 for No): ";
-        std::cin >> childrensParadise;
-        std::cout << "Water Bikes (1 for Yes, 0 for No): ";
-        std::cin >> waterBikes;
+        std::cout << "Subtropic Swimming Pool ";
+        subtropicSwimmingPool= getBool();
+        std::cout << "Sports Infrastructure ";
+        sportsInfrastructure = getBool();
+        std::cout << "Bowling Alley ";
+        bowlingAlley= getBool();
+        std::cout << "Bicycle Rent ";
+         bicycleRent= getBool();
+        std::cout << "Children's Paradise ";
+        childrensParadise= getBool();
+        std::cout << "Water Bikes ";
+         waterBikes= getBool();
 
         services = new Parcs::ParcServices(subtropicSwimmingPool, sportsInfrastructure, bowlingAlley, bicycleRent, childrensParadise, waterBikes);
-        int accommodationChoice;
-        std::cout << "Choose type of Accommodation (1 for HotelRoom, 2 for Cabin): ";
-        std::cin >> accommodationChoice;
 
-        if (accommodationChoice == 1) {
+        std::cout << "Enter accommodation details: ";
+//        shared attr
+        std::cout << "Number of People: ";
+        std::cin >> nrPeople;
+        std::cout << "Size: ";
+        std::cin >> size;
+        std::cout << "Bathroom with Bath ";
+        bathroomWithBath= getBool();
+// Gather data for LuxuryLevel
+        std::cout << "Enter details for Luxury Level:\n";
+        std::cout << "BBQ ";
+        BBQ= getBool();
+        std::cout << "Surround System ";
+        surroundSystem= getBool();
+        std::cout << "Breakfast Service ";
+        breakfastService= getBool();
+        std::cout << "Cleaning Service ";
+        cleaningService= getBool();
+        std::cout << "Accommodation Kind: ";
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();  // Discard any leftover characters in the buffer
+        std::getline(std::cin, accommodationKind);
+        if (accommodationKind == "HotelRoom") {
             int floor, nrBeds;
             bool childrenBed;
 
             std::cout << "Enter details for HotelRoom:\n";
-            std::cout << "Number of People: ";
-            std::cin >> nrPeople;
-            std::cout << "Size: ";
-            std::cin >> size;
-            std::cout << "Bathroom with Bath (1 for Yes, 0 for No): ";
-            std::cin >> bathroomWithBath;
-            std::cout << "Children Bed (1 for Yes, 0 for No): ";
-            std::cin >> childrenBed;
+            std::cout << "Children Bed ";
+            childrenBed= getBool();
             std::cout << "Floor: ";
             std::cin >> floor;
             std::cout << "Location: ";
-            std::cin >> location;
+            std::cin.clear();  // Clear any errors
+            conditionalIgnore();  // Discard any leftover characters in the buffer
+            std::getline(std::cin, location);
             std::cout << "Number of Beds: ";
             std::cin >> nrBeds;
-
-            // Gather data for LuxuryLevel
-            std::cout << "Enter details for Luxury Level:\n";
-            std::cout << "BBQ (1 for Yes, 0 for No): ";
-            std::cin >> BBQ;
-            std::cout << "Surround System (1 for Yes, 0 for No): ";
-            std::cin >> surroundSystem;
-            std::cout << "Breakfast Service (1 for Yes, 0 for No): ";
-            std::cin >> breakfastService;
-            std::cout << "Cleaning Service (1 for Yes, 0 for No): ";
-            std::cin >> cleaningService;
-            std::cout << "Accommodation Kind: ";
-            std::cin >> accommodationKind;
 
             luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
             HotelRoom* hotelRoom = new HotelRoom(nrPeople, size, bathroomWithBath, luxury, childrenBed, floor, location, nrBeds);
             accommodations.push_back(hotelRoom);
 
-        } else if (accommodationChoice == 2) {
+        } else if (accommodationKind == "Cabin") {
             int bedrooms;
 
             std::cout << "Enter details for Cabin:\n";
-            std::cout << "Number of People: ";
-            std::cin >> nrPeople;
-            std::cout << "Size: ";
-            std::cin >> size;
-            std::cout << "Bathroom with Bath (1 for Yes, 0 for No): ";
-            std::cin >> bathroomWithBath;
             std::cout << "Number of Bedrooms: ";
             std::cin >> bedrooms;
-
-            // Gather data for LuxuryLevel
-            std::cout << "Enter details for Luxury Level:\n";
-            std::cout << "BBQ (1 for Yes, 0 for No): ";
-            std::cin >> BBQ;
-            std::cout << "Surround System (1 for Yes, 0 for No): ";
-            std::cin >> surroundSystem;
-            std::cout << "Breakfast Service (1 for Yes, 0 for No): ";
-            std::cin >> breakfastService;
-            std::cout << "Cleaning Service (1 for Yes, 0 for No): ";
-            std::cin >> cleaningService;
-            std::cout << "Accommodation Kind: ";
-            std::cin >> accommodationKind;
 
             luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
             Cabin* cabin = new Cabin(nrPeople, size, bathroomWithBath, luxury, bedrooms);
@@ -145,17 +144,29 @@ int main() {
         // Gather data for Customer
         std::cout << "Enter details for a Customer:\n";
         std::cout << "Name: ";
-        std::cin >> customerName;
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();  // Discard any leftover characters in the buffer
+        std::getline(std::cin, customerName);
         std::cout << "Address: ";
-        std::cin >> customerAddress;
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();  // Discard any leftover characters in the buffer
+        std::getline(std::cin, customerAddress);
         std::cout << "Mail: ";
-        std::cin >> mail;
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();  // Discard any leftover characters in the buffer
+        std::getline(std::cin, mail);
         std::cout << "Password: ";
-        std::cin >> password;
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();  // Discard any leftover characters in the buffer
+        std::getline(std::cin, password);
         std::cout << "Location: ";
-        std::cin >> location;
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();  // Discard any leftover characters in the buffer
+        std::getline(std::cin, location);
         std::cout << "Payment Method: ";
-        std::cin >> paymentMethod;
+        std::cin.clear();  // Clear any errors
+        conditionalIgnore();  // Discard any leftover characters in the buffer
+        std::getline(std::cin, paymentMethod);
 
         Customer* newCustomer = new Customer(customerName, customerAddress, mail, password, location, paymentMethod);
 
@@ -255,7 +266,7 @@ void displayOwnerMenu() {
             }
                 break;
             case 4:
-                std::cout << company << "\n";
+                std::cout << *company << "\n";
                 break;
             case 5:
                 std::cout << "Logging out...\n";
@@ -296,21 +307,21 @@ void manageParc(Parcs* selectedParc) {
                 std::cout << "Size: ";
                 std::cin >> size;
 
-                std::cout << "Bathroom with Bath (1 for Yes, 0 for No): ";
-                std::cin >> bathroomWithBath;
+                std::cout << "Bathroom with Bath ";
+                bathroomWithBath= getBool();
 
                 // LuxuryLevel details
-                std::cout << "BBQ (1 for Yes, 0 for No): ";
-                std::cin >> BBQ;
+                std::cout << "BBQ ";
+               BBQ= getBool();
 
-                std::cout << "Surround System (1 for Yes, 0 for No): ";
-                std::cin >> surroundSystem;
+                std::cout << "Surround System ";
+                surroundSystem= getBool();
 
-                std::cout << "Breakfast Service (1 for Yes, 0 for No): ";
-                std::cin >> breakfastService;
+                std::cout << "Breakfast Service ";
+                 breakfastService= getBool();
 
-                std::cout << "Cleaning Service (1 for Yes, 0 for No): ";
-                std::cin >> cleaningService;
+                std::cout << "Cleaning Service ";
+               cleaningService= getBool();
 
                 std::cout << "Accommodation Kind (HotelRoom or Cabin): ";
                 std::cin >> accommodationKind;
@@ -320,8 +331,8 @@ void manageParc(Parcs* selectedParc) {
                 Accommodations* newAccommodation = nullptr;
 
                 if (accommodationKind == "HotelRoom") {
-                    std::cout << "Children Bed (1 for Yes, 0 for No): ";
-                    std::cin >> childrenBed;
+                    std::cout << "Children Bed ";
+                     childrenBed= getBool();
 
                     std::cout << "Floor: ";
                     std::cin >> floor;
@@ -367,23 +378,23 @@ void manageParc(Parcs* selectedParc) {
 
                 std::cout << "Enter details for the parc services:\n";
 
-                std::cout << "Subtropic Swimming Pool (1 for Yes, 0 for No): ";
-                std::cin >> subtropicSwimmingPool;
+                std::cout << "Subtropic Swimming Pool ";
+               subtropicSwimmingPool= getBool();
 
-                std::cout << "Sports Infrastructure (1 for Yes, 0 for No): ";
-                std::cin >> sportsInfrastructure;
+                std::cout << "Sports Infrastructure ";
+              sportsInfrastructure= getBool();
 
-                std::cout << "Bowling Alley (1 for Yes, 0 for No): ";
-                std::cin >> bowlingAlley;
+                std::cout << "Bowling Alley ";
+                bowlingAlley= getBool();
 
-                std::cout << "Bicycle Rent (1 for Yes, 0 for No): ";
-                std::cin >> bicycleRent;
+                std::cout << "Bicycle Rent ";
+               bicycleRent= getBool();
 
-                std::cout << "Children's Paradise (1 for Yes, 0 for No): ";
-                std::cin >> childrensParadise;
+                std::cout << "Children's Paradise ";
+                 childrensParadise= getBool();
 
-                std::cout << "Water Bikes (1 for Yes, 0 for No): ";
-                std::cin >> waterBikes;
+                std::cout << "Water Bikes ";
+                waterBikes= getBool();
 
                 // Create a new Parcs::ParcServices pointer
                 Parcs::ParcServices* newServices = new Parcs::ParcServices{
@@ -419,21 +430,21 @@ void manageParc(Parcs* selectedParc) {
                 std::cout << "Size: ";
                 std::cin >> size;
 
-                std::cout << "Bathroom with Bath (1 for Yes, 0 for No): ";
-                std::cin >> bathroomWithBath;
+                std::cout << "Bathroom with Bath ";
+               bathroomWithBath= getBool();
 
                 // LuxuryLevel details
-                std::cout << "BBQ (1 for Yes, 0 for No): ";
-                std::cin >> BBQ;
+                std::cout << "BBQ ";
+                 BBQ= getBool();
 
-                std::cout << "Surround System (1 for Yes, 0 for No): ";
-                std::cin >> surroundSystem;
+                std::cout << "Surround System ";
+               surroundSystem= getBool();
 
-                std::cout << "Breakfast Service (1 for Yes, 0 for No): ";
-                std::cin >> breakfastService;
+                std::cout << "Breakfast Service ";
+                breakfastService= getBool();
 
-                std::cout << "Cleaning Service (1 for Yes, 0 for No): ";
-                std::cin >> cleaningService;
+                std::cout << "Cleaning Service ";
+                cleaningService= getBool();
 
                 std::cout << "Accommodation Kind (HotelRoom or Cabin): ";
                 std::cin >> accommodationKind;
@@ -443,8 +454,8 @@ void manageParc(Parcs* selectedParc) {
                 Accommodations* updatedAccommodation = nullptr;
 
                 if (accommodationKind == "HotelRoom") {
-                    std::cout << "Children Bed (1 for Yes, 0 for No): ";
-                    std::cin >> childrenBed;
+                    std::cout << "Children Bed ";
+                     childrenBed= getBool();
 
                     std::cout << "Floor: ";
                     std::cin >> floor;

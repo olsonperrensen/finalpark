@@ -1,7 +1,6 @@
 //
 // Created by Admin on 8/4/2023.
 //
-
 #ifndef FINALPARK_SHARED_H
 #define FINALPARK_SHARED_H
 
@@ -20,6 +19,26 @@ const std::vector<std::string> ALLOWED_STATUS = {"ACCEPTED","DECLINED"};
 const std::string PLEKKEN[3] = {"BOOM", "WILLEBROEK", "RUMST"};
 const int DAG_VSCH_MAAND[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 const char SCHEIDER = L'_';
+
+inline void conditionalIgnore() {
+    if (std::cin.peek() == '\n') {
+        std::cin.ignore();
+    }
+}
+inline auto getBool = []() -> bool {
+    std::string input;
+    std::cout << "(true/1 or false/0): ";
+    std::getline(std::cin, input);
+    std::transform(input.begin(), input.end(), input.begin(), ::tolower);  // Convert string to lowercase
+    return (input == "true" || input == "1");
+};
+
+inline auto getInt = []() -> int {
+    std::string input;
+    std::cout << "Enter an integer: ";
+    std::getline(std::cin, input);
+    return std::stoi(input);
+};
 
 template <typename T>
     void addItem(std::vector<T*>& vec, T* item) {
