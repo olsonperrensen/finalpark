@@ -305,15 +305,15 @@ Booking* cliNewBkn(){
 
     std::cout << "Enter end date (YYYY-MM-DD): ";
     std::string endDateString;
-    std::getline(std::cin, beginDateString);
+    std::getline(std::cin, endDateString);
 
 // Split the string into day, month, and year
-     jaar = std::stoi(beginDateString.substr(0, 4));
-     maand = std::stoi(beginDateString.substr(5, 2));
-     dag = std::stoi(beginDateString.substr(8, 2));
+     jaar = std::stoi(endDateString.substr(0, 4));
+     maand = std::stoi(endDateString.substr(5, 2));
+     dag = std::stoi(endDateString.substr(8, 2));
 
 // Use the split values to construct the Datum object
-    beginDate = new Datum(dag, maand, jaar);
+    endDate = new Datum(dag, maand, jaar);
     std::cout << "Enter booking status: ";
     std::getline(std::cin, status);
 
