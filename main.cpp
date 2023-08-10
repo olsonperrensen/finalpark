@@ -439,6 +439,7 @@ void manageParc(Parcs* selectedParc) {
 
 
 void displayCustomerMenu() {
+    Customer* huidigG;
     int choice;
     do {
         std::cout << "\nCustomer Menu:\n";
@@ -456,6 +457,7 @@ void displayCustomerMenu() {
             {
                 Customer* newCustomer = cliNewCust();
                 company->registerCustomer(newCustomer);
+                huidigG = company->getCustomers().back();
                 break;
             }
             case 2: {
@@ -477,18 +479,16 @@ void displayCustomerMenu() {
                     if (accommodation) {
                         std::cout << "Accommodation found: " << *accommodation << std::endl;
                         // Display more details about the accommodation if needed
-                    }
+                    } else std::cout << "No Accommodation exists with ID " << accommodationID << std::endl;
                 }
                 break;
             }
             case 4: {
-                int customerID, accommodationID;
-                std::cout << "Enter your customer ID: ";
-                customerID = getInt(1,std::numeric_limits<int>::max());
+                int accommodationID;
                 std::cout << "Enter the ID of the accommodation you want to book: ";
                 accommodationID = getInt(1,std::numeric_limits<int>::max());
                 Booking* newBooking = cliNewBkn();
-                OS::bookAccommodation(company, customerID, accommodationID, newBooking);
+                OS::bookAccommodation(company, huidigG->getID(), accommodationID, newBooking);
                 break;
             }
             case 5: {
