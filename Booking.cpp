@@ -6,7 +6,7 @@
 #include "Customer.h"
 
 Booking::Booking(int ID, Customer* customer, std::vector<Accommodations*> accommodations, bool activityPass,
-                 bool sportsPass, bool bicycleRent, bool swimmingPass,Datum beginDate, Datum endDate, std::string status): ID(ID), customer(customer), accommodations(accommodations),
+                 bool sportsPass, bool bicycleRent, bool swimmingPass,Datum* beginDate, Datum* endDate, std::string status): ID(ID), customer(customer), accommodations(accommodations),
                                                                         activityPass(activityPass),beginDate(beginDate), endDate(endDate){
     if (status == ALLOWED_STATUS[0] || status == ALLOWED_STATUS[1]){
         this->status = status;
@@ -68,25 +68,6 @@ void Booking::setAccommodations(const std::vector<Accommodations *> &accommodati
     Booking::accommodations = accommodations;
 }
 
-Datum Booking::getBeginDate()
-{
-    return beginDate;
-}
-
-Datum Booking::getEndDate()
-{
-    return endDate;
-}
-
-void Booking::setBeginDate(Datum beginDate)
-{
-    this->beginDate = beginDate;
-}
-
-void Booking::setEndDate(Datum endDate)
-{
-    this->endDate = endDate;
-}
 
 const std::string &Booking::getStatus() const {
     return status;
@@ -94,4 +75,20 @@ const std::string &Booking::getStatus() const {
 
 void Booking::setStatus(const std::string &status) {
     Booking::status = status;
+}
+
+Datum *Booking::getBeginDate() const {
+    return beginDate;
+}
+
+void Booking::setBeginDate(Datum *beginDate) {
+    Booking::beginDate = beginDate;
+}
+
+Datum *Booking::getEndDate() const {
+    return endDate;
+}
+
+void Booking::setEndDate(Datum *endDate) {
+    Booking::endDate = endDate;
 }

@@ -7,10 +7,10 @@
 Owner::Owner(std::string name, std::string address, std::string mail,std::string password,std::string location) :
 User(name, address, mail,password,location) {}
 
-void Owner::createPark(VacationParcs &company, Parcs* park) {
+void Owner::createPark(VacationParcs* company, Parcs* park) {
     // CHECK FOR DUPLICATES
     std::cout << "createPark -> Attempting to add park. First checking against duplicates.\n";
-    std::vector<Parcs*>& existingParks = company.getParcs();
+    std::vector<Parcs*>& existingParks = company->getParcs();
     for (Parcs* existingPark : existingParks) {
         if (existingPark == park) { // Adapt this comparison to match your needs.
             std::cout << "createPark -> This park is already registered.\n";
@@ -18,22 +18,22 @@ void Owner::createPark(VacationParcs &company, Parcs* park) {
         }
     }
     // If no duplicate found, add the new park
-    company.addPark(park);
+    company->addPark(park);
     std::cout << "createPark -> A new parc (ID: " << park->getID() << ", Name: "<< park->getName() <<") has been created" << std::endl;
 }
 
 // LEGACY CODE
-//void Owner::modifyPark(VacationParcs &company, int parkID, const Parcs &updatedPark) {
-//    company.modifyPark(parkID, updatedPark);
+//void Owner::modifyPark(VacationParcs* company, int parkID, const Parcs &updatedPark) {
+//    company->modifyPark(parkID, updatedPark);
 //}
 
-void Owner::deletePark(VacationParcs &company, int parkID) {
+void Owner::deletePark(VacationParcs* company, int parkID) {
     std::cout << "deletePark -> Attempting to delete parc " << parkID << std::endl;
-    company.removePark(parkID);
+    company->removePark(parkID);
 }
 
-void Owner::createAccommodation(VacationParcs &company, int parkID, Accommodations *newAccommodation) {
-    std::vector<Parcs*>& parcs = company.getParcs();
+void Owner::createAccommodation(VacationParcs* company, int parkID, Accommodations *newAccommodation) {
+    std::vector<Parcs*>& parcs = company->getParcs();
     for (Parcs* parc : parcs) {
         if (parc->getID() == parkID) {
             std::cout << "createAccommodation -> Trying to add new accommodation " << "to Parc (parkID): " << parkID << std::endl;
@@ -55,8 +55,8 @@ void Owner::createAccommodation(VacationParcs &company, int parkID, Accommodatio
 }
 
 
-//void Owner::modifyAccommodations(VacationParcs &company, int parkID,  std::vector<Accommodations*> &updatedAccommodations) {
-//    std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
+//void Owner::modifyAccommodations(VacationParcs* company, int parkID,  std::vector<Accommodations*> &updatedAccommodations) {
+//    std::vector<Parcs*>& parcs = company->getParcs();  // MUST reference otherwise copy-work :(
 //            // Add the new accommodationS IN BULK to the park
 //            //             for one modification only ipv bulk... check modifyAccommodation
 //    if (Parcs* parc = findItemByID(parcs, parkID))
@@ -68,8 +68,8 @@ void Owner::createAccommodation(VacationParcs &company, int parkID, Accommodatio
 //        std::cout << "modifyAccommodations -> Your Parc number does not match with our records. Nothing could be found.\n";
 //}
 
-void Owner::deleteAccommodation(VacationParcs &company, int parkID, int accommodationID) {
-    std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
+void Owner::deleteAccommodation(VacationParcs* company, int parkID, int accommodationID) {
+    std::vector<Parcs*>& parcs = company->getParcs();  // MUST reference otherwise copy-work :(
 
     if (Parcs* parc = findItemByID(parcs, parkID))
         parc->removeAccommodation(accommodationID);
@@ -77,6 +77,6 @@ void Owner::deleteAccommodation(VacationParcs &company, int parkID, int accommod
         std::cout << "deleteAccommodation -> Your Parc number does not match with our records. Nothing could be found.\n";
 }
 
-void Owner::changeService(VacationParcs &company, int parkID, const int srvToBeChanged, const bool state) {
-    company.changeParkSrv(parkID,srvToBeChanged,state);
+void Owner::changeService(VacationParcs* company, int parkID, const int srvToBeChanged, const bool state) {
+    company->changeParkSrv(parkID,srvToBeChanged,state);
 }

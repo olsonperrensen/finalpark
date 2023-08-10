@@ -16,8 +16,18 @@ private:
     Customer* customer;
     std::vector<Accommodations*> accommodations;
 //    OWN LOGIC
-    Datum beginDate;
-    Datum endDate;
+    Datum* beginDate;
+public:
+    Datum *getBeginDate() const;
+
+    void setBeginDate(Datum *beginDate);
+
+    Datum *getEndDate() const;
+
+    void setEndDate(Datum *endDate);
+
+private:
+    Datum* endDate;
     std::string status;
 public:
     const std::string &getStatus() const;
@@ -90,16 +100,8 @@ public:
 
     void setSwimmingPass(bool swimmingPass);
 
-    // Getter methods
-    Datum getBeginDate();
-    Datum getEndDate();
-
-    // Setter methods
-    void setBeginDate(Datum beginDate);
-    void setEndDate(Datum endDate);
-
     Booking(int ID, Customer* customer, std::vector<Accommodations*> accommodations, bool activityPass,
-            bool sportsPass, bool bicycleRent, bool swimmingPass,Datum beginDate, Datum endDate,std::string status);
+            bool sportsPass, bool bicycleRent, bool swimmingPass,Datum* beginDate, Datum* endDate,std::string status);
     Booking()=default;
 };
 

@@ -16,6 +16,7 @@ Parcs* cliNewPark();
 Parcs::ParcServices* cliNewSrv();
 Accommodations* cliNewAcc();
 Customer* cliNewCust();
+Booking* cliNewBkn();
 
 void displayMainMenu();
 void displayOwnerMenu();
@@ -25,6 +26,7 @@ void displayEmployeeMenu();
 void manageParc(Parcs *selectedParc);
 
 VacationParcs* company = nullptr;
+OS os;
 
 int main() {
     std::cout << "Welcome to VacationParcs Management System! " << std::endl;
@@ -207,6 +209,85 @@ Customer* cliNewCust(){
     std::getline(std::cin, paymentMethod);
     return new Customer(customerName, customerAddress, mail, password, location, paymentMethod);
 }
+Booking* cliNewBkn(){
+    int ID,jaar,maand,dag;
+    Customer* customer;
+    std::vector<Accommodations*> accommodations;
+    bool activityPass, sportsPass, bicycleRent, swimmingPass;
+    Datum* beginDate, *endDate;
+    std::string status;
+
+    // Ask for ID
+    std::cout << "Enter Booking ID: ";
+    ID = getInt(1,std::numeric_limits<int>::max());
+
+    // Ask for Customer
+    int customerID;
+    std::cout << "Enter Customer ID: ";
+    customerID = getInt(1,std::numeric_limits<int>::max());
+    customer = findItemByID(company->getCustomers(), customerID);
+    if (!customer) {
+        std::cout << "Customer not found. Exiting...\n";
+        return nullptr;
+    }
+
+    // Ask for Accommodations
+    int numAccommodations;
+    std::cout << "How many accommodations for this booking? ";
+    numAccommodations = getInt(1,std::numeric_limits<int>::max());
+    for (int i = 0; i < numAccommodations; i++) {
+        int accommodationID;
+        std::cout << "Enter ID of accommodation " << (i + 1) << ": ";
+        accommodationID = getInt(1,std::numeric_limits<int>::max());
+        Accommodations* accommodation = nullptr;
+        for (Parcs* parc : company->getParcs()) {
+            accommodation = findItemByID(parc->getAccommodations(), accommodationID);
+            if (accommodation) break;
+        }
+        if (accommodation) {
+            accommodations.push_back(accommodation);
+        } else {
+            std::cout << "Accommodation with ID " << accommodationID << " not found.\n";
+        }
+    }
+
+    // Ask for other details
+    activityPass = getBool();
+    sportsPass = getBool();
+    bicycleRent = getBool();
+    swimmingPass = getBool();
+
+    // Assuming Datum has a constructor that takes a string in the format "YYYY-MM-DD"
+    std::cout << "Enter begin date (YYYY-MM-DD): ";
+    std::string beginDateString;
+    std::getline(std::cin, beginDateString);
+
+// Split the string into day, month, and year
+     jaar = std::stoi(beginDateString.substr(0, 4));
+     maand = std::stoi(beginDateString.substr(5, 2));
+     dag = std::stoi(beginDateString.substr(8, 2));
+
+// Use the split values to construct the Datum object
+    beginDate = new Datum(dag, maand, jaar);
+
+
+    std::cout << "Enter end date (YYYY-MM-DD): ";
+    std::string endDateString;
+    std::getline(std::cin, beginDateString);
+
+// Split the string into day, month, and year
+     jaar = std::stoi(beginDateString.substr(0, 4));
+     maand = std::stoi(beginDateString.substr(5, 2));
+     dag = std::stoi(beginDateString.substr(8, 2));
+
+// Use the split values to construct the Datum object
+    beginDate = new Datum(dag, maand, jaar);
+    std::cout << "Enter booking status: ";
+    std::getline(std::cin, status);
+
+    // Create the Booking object and return its pointer
+    return new Booking(ID, customer, accommodations, activityPass, sportsPass, bicycleRent, swimmingPass, beginDate, endDate, status);
+}
 //TODO see vorige todo-s before pushing new main.cpp
 void displayMainMenu() {
     int choice;
@@ -263,7 +344,7 @@ void displayOwnerMenu() {
             {
                 int parcID;
                 std::cout << "Enter the ID of the parc to delete: ";
-                parcID=getInt(1,999);
+                parcID=getInt(1,std::numeric_limits<int>::max());
                 company->removePark(parcID);
             }
                 break;
@@ -272,7 +353,7 @@ void displayOwnerMenu() {
             {
                 int parcID;
                 std::cout << "Enter the ID of the parc to manage: ";
-                parcID=getInt(1,999);
+                parcID=getInt(1,std::numeric_limits<int>::max());
                 Parcs* selectedParc = company->findParcByID(parcID);
                 if (selectedParc) {
                     manageParc(selectedParc);
@@ -319,7 +400,7 @@ void manageParc(Parcs* selectedParc) {
             {
                 int accommodationID;
                 std::cout << "Enter the ID of the accommodation to delete: ";
-                accommodationID=getInt(1,999);
+                accommodationID=getInt(1,std::numeric_limits<int>::max());
                 selectedParc->removeAccommodation(accommodationID);
             }
                 break;
@@ -339,7 +420,7 @@ void manageParc(Parcs* selectedParc) {
             {
                 int accommodationID;
                 std::cout << "Enter the ID of the accommodation to change: ";
-                accommodationID=getInt(1,999);
+                accommodationID=getInt(1,std::numeric_limits<int>::max());
                 Accommodations* updatedAccommodation;
                 updatedAccommodation = cliNewAcc();
                 // Now, you can add the updatedAccommodation to the selected parc's accommodations list
@@ -372,21 +453,52 @@ void displayCustomerMenu() {
 
         switch (choice) {
             case 1:
+            {
                 Customer* newCustomer = cliNewCust();
                 company->registerCustomer(newCustomer);
                 break;
-            case 2:
-                // Handle change customer data
+            }
+            case 2: {
+                int userID;
+                std::cout << "Enter your user ID: ";
+                userID = getInt(1,std::numeric_limits<int>::max());
+                Customer* updatedCustomer = cliNewCust();
+                OS::modifyCustomer(company, userID, updatedCustomer);
                 break;
-            case 3:
-                // Handle search accommodations
+            }
+            case 3: {
+                int accommodationID;
+                std::cout << "Enter the ID of the accommodation you're looking for: ";
+                accommodationID = getInt(1,std::numeric_limits<int>::max());
+                std::vector<Parcs*>& parcs = company->getParcs();
+                for (Parcs* parc : parcs) {
+                    std::vector<Accommodations*>& accommodations = parc->getAccommodations();
+                    Accommodations* accommodation = findItemByID(accommodations, accommodationID);
+                    if (accommodation) {
+                        std::cout << "Accommodation found: " << *accommodation << std::endl;
+                        // Display more details about the accommodation if needed
+                    }
+                }
                 break;
-            case 4:
-                // Handle create booking
+            }
+            case 4: {
+                int customerID, accommodationID;
+                std::cout << "Enter your customer ID: ";
+                customerID = getInt(1,std::numeric_limits<int>::max());
+                std::cout << "Enter the ID of the accommodation you want to book: ";
+                accommodationID = getInt(1,std::numeric_limits<int>::max());
+                Booking* newBooking = cliNewBkn();
+                OS::bookAccommodation(company, customerID, accommodationID, newBooking);
                 break;
-            case 5:
-                // Handle change booking
+            }
+            case 5: {
+                int bookingID;
+                std::cout << "Enter the ID of the booking you want to change: ";
+                bookingID = getInt(1,std::numeric_limits<int>::max());
+                Booking* updatedBooking = cliNewBkn();
+                OS::modifyBooking(company, bookingID, updatedBooking);
                 break;
+            }
             case 6:
                 std::cout << "Logging out...\n";
                 break;

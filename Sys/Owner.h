@@ -25,12 +25,12 @@ public:
 //    void modifyPark(VacationParcs& company, int parkID, const Parcs& updatedPark);
     void deletePark(VacationParcs& company, int parkID);
 //    Service-related own funs for MGMT
-    void changeService(VacationParcs &company, int parkID, const int srvToBeChanged,bool state);
+    void changeService(VacationParcs* company, int parkID, const int srvToBeChanged,bool state);
 
 //    Accommodation-related own funs for MGMT
-    void createAccommodation(VacationParcs &company, int parkID,  Accommodations *newAccommodation);
-    void modifyAccommodations(VacationParcs &company, int parkID,  std::vector<Accommodations*> &updatedAccommodations);
-    void deleteAccommodation(VacationParcs &company, int parkID, int accommodationID);
+    void createAccommodation(VacationParcs* company, int parkID,  Accommodations *newAccommodation);
+    void modifyAccommodations(VacationParcs* company, int parkID,  std::vector<Accommodations*> &updatedAccommodations);
+    void deleteAccommodation(VacationParcs* company, int parkID, int accommodationID);
 };
 
 
