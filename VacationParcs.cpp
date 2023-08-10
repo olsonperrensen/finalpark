@@ -25,16 +25,11 @@ void VacationParcs::removePark(int id) {
     removeItem(parcs, id);
 }
 
-void VacationParcs::modifyPark(int parkID, const Parcs &updatedPark) {
+Parcs* VacationParcs::findParcByID(int parkID) {
     // Find the park with the given ID in the list of parks.
-
-//        std::cout << "preivous id: " << park.getID() << " checking with given ID" << parkID;
         if (Parcs* parc = findItemByID(parcs, parkID)) {
-            // If the park is found, modify its attributes.
-//            IMPORTANT: Derenfece pointer otherwise your only changing where it points to!
-            *parc = updatedPark;
-            std::cout << "modifyPark -> Parcs " << parkID <<" has been modified successfully." << std::endl;
-            return;
+            // If the park is found.
+            return parc;
         }
 
     // If the park is not found, print an error message.
@@ -62,27 +57,27 @@ void VacationParcs::changeParkSrv(int parcID,int srvToBeChanged,bool state) {
         switch (srvToBeChanged) {
             using enum ESERVICES;
             case static_cast<int>(SUBTROPIC_SWIMMING_POOL):
-                parc->getServices().setSubtropicSwimmingPool(state);
+                parc->getServices()->setSubtropicSwimmingPool(state);
                 std::cout << "changeParkSrv -> Subtropic swimming pool service has been turned "<< (state?"on":"off") << ".";
                 break;
             case static_cast<int>(SPORTS_INFRASTRUCTURE):
-                parc->getServices().setSportsInfrastructure(state);
+                parc->getServices()->setSportsInfrastructure(state);
                 std::cout << "changeParkSrv -> Sports infrastructure service has been turned "<< (state?"on":"off") << ".";
                 break;
             case static_cast<int>(BOWLING_ALLEY):
-                parc->getServices().setBowlingAlley(state);
+                parc->getServices()->setBowlingAlley(state);
                 std::cout << "changeParkSrv -> Bowling alley service has been turned "<< (state?"on":"off") << ".";
                 break;
             case static_cast<int>(BICYCLE_RENT):
-                parc->getServices().setBicycleRent(state);
+                parc->getServices()->setBicycleRent(state);
                 std::cout << "changeParkSrv -> Bicycle rent service has been turned "<< (state?"on":"off") << ".";
                 break;
             case static_cast<int>(CHILDRENS_PARADISE):
-                parc->getServices().setChildrensParadise(state);
+                parc->getServices()->setChildrensParadise(state);
                 std::cout << "changeParkSrv -> Children's paradise service has been turned "<< (state?"on":"off") << ".";
                 break;
             case static_cast<int>(WATER_BIKES):
-                parc->getServices().setWaterBikes(state);
+                parc->getServices()->setWaterBikes(state);
                 std::cout << "changeParkSrv -> Water bikes service has been turned off "<< (state?"on":"off") << ".";
                 break;
             default:

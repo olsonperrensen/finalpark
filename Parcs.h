@@ -34,7 +34,8 @@ public:
 //        Idem as other default bc it is being used by another class otherwise it complains;
         ParcServices()=default;
         ParcServices(bool subtropicSwimmingPool,
-                     bool sportsInfrastructure, bool bowlingAlley,bool bicycleRent,bool childrensParadise,bool waterBikes);
+                     bool sportsInfrastructure, bool bowlingAlley,bool bicycleRent,bool childrensParadise,
+                     bool waterBikes);
 
         bool isSubtropicSwimmingPool() const;
 
@@ -71,18 +72,24 @@ public:
     };
 private:
     std::string name,address;
-    ParcServices services;
+    ParcServices* services;
+public:
+    ParcServices *getServices() const;
+
+    void setServices(ParcServices *services);
+
+private:
     std::vector<Accommodations*> accommodations;
 public:
      std::vector<Accommodations *> &getAccommodations();
 
-    void setAccommodations(const std::vector<Accommodations *> &accommodations);
+    void setAccommodation(int accommodationID,Accommodations* updatedAccommodation);
 
 public:
 //    dunder
     friend std::ostream& operator<<(std::ostream& os, Parcs obj) {
         os << "Parcs ( ID: " << obj.getID() << ", name: " << obj.getName() << ", address: " << obj.getAddress() <<
-           ", services: " << obj.getServices() << ", accommodations: [";
+           ", services: " << *obj.getServices() << ", accommodations: [";
 
         const std::vector<Accommodations*>& dunderAccommodations = obj.getAccommodations();
         for (size_t i = 0; i < dunderAccommodations.size(); ++i) {
@@ -110,10 +117,6 @@ public:
 
     void setAddress(const std::string &address);
 
-     ParcServices &getServices();
-
-    void setServices(const ParcServices &services);
-
 private:
 //    own identification to pop it as element from VacationParcs
     static unsigned short int aantalParcs;
@@ -124,7 +127,7 @@ public:
 //        Make good use of tempaltes again
     void addAccommodation( Accommodations* accommodation);
     void removeAccommodation(unsigned short int id);
-    Parcs(std::string name, std::string address, ParcServices services, std::vector<Accommodations*> accommodations);
+    Parcs(std::string name, std::string address, ParcServices* services, std::vector<Accommodations*> accommodations);
 };
 
 

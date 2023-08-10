@@ -27,7 +27,8 @@ public:
         return (this->BBQ == other.BBQ)&&(this->surroundSystem==other.surroundSystem)&&(this->breakfastService==other.breakfastService)
         &&(this->cleaningService==other.cleaningService)&&(this->accommodationKind==other.accommodationKind);
     }
-    LuxuryLevel(bool BBQ, bool surroundSystem,bool breakfastService, bool cleaningService,std::string accommodationKind);
+    LuxuryLevel(bool BBQ, bool surroundSystem,bool breakfastService, bool cleaningService,
+                std::string accommodationKind);
 //    Accommodations needs a default for this class otherwise complains.
     LuxuryLevel()=default;
 

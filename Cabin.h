@@ -13,6 +13,7 @@ class Cabin: public Accommodations {
 public:
 //    Avoid Class = int (implicit conversion) and make births curly-brace mandatory Class(int) ie->xplicit
     explicit Cabin(int nrPeople, int size, bool bathroomWithBath, LuxuryLevel* luxuryLevel,int bedrooms);
+    Cabin()=default;
 // dunder
     friend std::ostream& operator<<(std::ostream& os, const Cabin& obj) {
         //TODO also print Base attributes (inc ID)

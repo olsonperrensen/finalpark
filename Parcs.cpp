@@ -93,7 +93,7 @@ void Parcs::removeAccommodation(unsigned short int id) {
 }
 
 
-Parcs::Parcs(std::string name, std::string address, ParcServices services,
+Parcs::Parcs(std::string name, std::string address, ParcServices* services,
              std::vector<Accommodations*> accommodations): name(name), address(address), services(services),
                                               accommodations(accommodations) {
 // have IDs get some value at birth based on previous born and dead instances
@@ -120,18 +120,24 @@ void Parcs::setAddress(const std::string &address) {
     Parcs::address = address;
 }
 
- Parcs::ParcServices &Parcs::getServices()  {
-    return services;
-}
-
-void Parcs::setServices(const Parcs::ParcServices &services) {
-    Parcs::services = services;
-}
-
 std::vector<Accommodations *> &Parcs::getAccommodations() {
     return accommodations;
 }
 
-void Parcs::setAccommodations(const std::vector<Accommodations *> &accommodations) {
-    Parcs::accommodations = accommodations;
+void Parcs::setAccommodation(int accommodationID,Accommodations* updatedAccommodation) {
+    if (Accommodations* accommodation = findItemByID(accommodations, accommodationID)) {
+        *accommodation = *updatedAccommodation;
+        std::cout << "modifyAccommodation -> Accommodation " << accommodationID << " has been modified successfully." << std::endl;
+        return;
+    }
+    std::cout << "modifyAccommodation -> Error: Accommodation " << accommodationID << " not found.\n";
+    return;
+}
+
+Parcs::ParcServices *Parcs::getServices() const {
+    return services;
+}
+
+void Parcs::setServices(Parcs::ParcServices *services) {
+    Parcs::services = services;
 }

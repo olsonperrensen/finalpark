@@ -22,9 +22,10 @@ void Owner::createPark(VacationParcs &company, Parcs* park) {
     std::cout << "createPark -> A new parc (ID: " << park->getID() << ", Name: "<< park->getName() <<") has been created" << std::endl;
 }
 
-void Owner::modifyPark(VacationParcs &company, int parkID, const Parcs &updatedPark) {
-    company.modifyPark(parkID, updatedPark);
-}
+// LEGACY CODE
+//void Owner::modifyPark(VacationParcs &company, int parkID, const Parcs &updatedPark) {
+//    company.modifyPark(parkID, updatedPark);
+//}
 
 void Owner::deletePark(VacationParcs &company, int parkID) {
     std::cout << "deletePark -> Attempting to delete parc " << parkID << std::endl;
@@ -54,18 +55,18 @@ void Owner::createAccommodation(VacationParcs &company, int parkID, Accommodatio
 }
 
 
-void Owner::modifyAccommodations(VacationParcs &company, int parkID,  std::vector<Accommodations*> &updatedAccommodations) {
-    std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
-            // Add the new accommodationS IN BULK to the park
-            //             for one modification only ipv bulk... check modifyAccommodation
-    if (Parcs* parc = findItemByID(parcs, parkID))
-    {
-        parc->setAccommodations(updatedAccommodations);
-        std::cout << "modifyAccommodations -> Bulk accommodation modification completed!\n";
-    }
-     else
-        std::cout << "modifyAccommodations -> Your Parc number does not match with our records. Nothing could be found.\n";
-}
+//void Owner::modifyAccommodations(VacationParcs &company, int parkID,  std::vector<Accommodations*> &updatedAccommodations) {
+//    std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
+//            // Add the new accommodationS IN BULK to the park
+//            //             for one modification only ipv bulk... check modifyAccommodation
+//    if (Parcs* parc = findItemByID(parcs, parkID))
+//    {
+//        parc->setAccommodations(updatedAccommodations);
+//        std::cout << "modifyAccommodations -> Bulk accommodation modification completed!\n";
+//    }
+//     else
+//        std::cout << "modifyAccommodations -> Your Parc number does not match with our records. Nothing could be found.\n";
+//}
 
 void Owner::deleteAccommodation(VacationParcs &company, int parkID, int accommodationID) {
     std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(

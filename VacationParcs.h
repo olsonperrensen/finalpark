@@ -111,6 +111,7 @@ public:
     return (this->VAT==other.VAT)&&(this->parcs==other.parcs)&&(this->customers==other.customers)&&
     (this->bizName==other.bizName)&&(this->bizAddress==other.bizAddress);
 }
+    VacationParcs()=default;
     VacationParcs(std::string name, std::string address,
                   std::string VAT, std::vector<Parcs*> parcs,
                   std::vector<Customer*> customers);
@@ -123,8 +124,7 @@ public:
 //    Partial removal -> Service removal inside of Parc, not Parc itself!
     void changeParkSrv(int parcID,int srvToBeChanged,bool state);
     //    Own logic for MGMT
-// REPLACES entire object with completely new park! NOt individual pieces.
-    void modifyPark(int parkID, const Parcs &updatedPark);
+    Parcs* findParcByID(int parkID);
 // Solved by using changeParkSrv instead
 
     const std::string &getVAT() const;

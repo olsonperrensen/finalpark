@@ -100,6 +100,7 @@ public:
 
     Booking(int ID, Customer* customer, std::vector<Accommodations*> accommodations, bool activityPass,
             bool sportsPass, bool bicycleRent, bool swimmingPass,Datum beginDate, Datum endDate,std::string status);
+    Booking()=default;
 };
 
 

@@ -30,6 +30,7 @@ public:
         return User::operator==(other) && (this->paymentMethod==derivedOther->paymentMethod);
     }
     Customer(std::string name,std::string address, std::string mail,std::string password,std::string location, std::string paymentMethod);
+    Customer()=default;
     const std::string &getPaymentMethod() const;
 
     void setPaymentMethod(const std::string &paymentMethod);

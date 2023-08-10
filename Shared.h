@@ -25,7 +25,7 @@ template <typename T>
     void addItem(std::vector<T*>& vec, T* item) {
         vec.push_back(item);
         std::cout << "\taddItem -> A new " << typeid(T).name() << " has been added successfully.\n";
-    }
+}
 
 template <typename T>
 void removeItem(std::vector<T*>& vec, int id) {

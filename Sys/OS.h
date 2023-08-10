@@ -19,8 +19,6 @@ private:
 public:
     void modifyCustomer(VacationParcs &company, int userID, Customer* updatedCustomer);
     void modifyBooking(VacationParcs &company, int bookingID,  Booking* updatedBooking);
-    //    Acc MGMT
-    void modifyAccommodation(VacationParcs &company, int parkID, int accommodationID,Accommodations* updatedAccommodation);
 // Usr MGMT
     void createCustomer(VacationParcs &company, Customer* newCustomer);
 

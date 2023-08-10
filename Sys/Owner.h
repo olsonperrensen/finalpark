@@ -22,7 +22,7 @@ public:
 
 // Parc-related own funs for MGMT
     static void createPark(VacationParcs& company, Parcs* park);
-    void modifyPark(VacationParcs& company, int parkID, const Parcs& updatedPark);
+//    void modifyPark(VacationParcs& company, int parkID, const Parcs& updatedPark);
     void deletePark(VacationParcs& company, int parkID);
 //    Service-related own funs for MGMT
     void changeService(VacationParcs &company, int parkID, const int srvToBeChanged,bool state);

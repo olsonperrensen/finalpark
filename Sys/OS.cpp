@@ -24,26 +24,6 @@ void OS::modifyBooking(VacationParcs &company, int bookingID,  Booking* updatedB
     std::cout << "modifyBooking -> Error: Booking " << bookingID << " not found.\n";
 }
 
-void OS::modifyAccommodation(VacationParcs &company, int parkID, int accommodationID,Accommodations* updatedAccommodation) {
-//    POLYMORPHISM happens right here. It is here that the pointer is getting the right call to which function to execute
-// based on the right derived class (HotelRoom) or (Cabin) the pointer is pointing to
-    // Find the park with the given ID in the list of parks.
-    std::vector<Parcs*>& parcs = company.getParcs();  // MUST reference otherwise copy-work :(
-
-    if (Parcs* parc = findItemByID(parcs, parkID)) {
-        // Find the accommodation with the given ID in the list of accommodations.
-//        NESTED var init (again) so mem doesn't get wasted
-        if (Accommodations* accommodation = findItemByID(parc->getAccommodations(), accommodationID)) {
-            *accommodation = *updatedAccommodation;
-            std::cout << "modifyAccommodation -> Accommodation " << accommodationID << " has been modified successfully." << std::endl;
-            return;
-        }
-        std::cout << "modifyAccommodation -> Error: Accommodation " << accommodationID << " not found.\n";
-        return;
-    }
-    std::cout << "modifyAccommodation -> Error: Parcs " << parkID << "not found.\n";
-}
-
 void OS::deleteCustomer(VacationParcs &company, int userID) {
     // Find the booking with the given ID in the list of bookings.
     if (Customer* c = findItemByID(company.getCustomers(), userID)) {
