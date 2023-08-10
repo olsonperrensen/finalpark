@@ -9,6 +9,8 @@
 #include "Accommodations.h"
 #include "Shared.h"
 #include "Cabin.h"
+#include "HotelRoom.h"
+#include "Cabin.h"
 
 class Parcs {
 public:
@@ -94,7 +96,12 @@ public:
 
         const std::vector<Accommodations*>& dunderAccommodations = obj.getAccommodations();
         for (size_t i = 0; i < dunderAccommodations.size(); ++i) {
-            os << *dunderAccommodations[i];
+            // Dynamic casting to determine the type of Accommodations
+            if (HotelRoom* hotelRoom = dynamic_cast<HotelRoom*>(dunderAccommodations[i])) {
+                os << *hotelRoom;
+            } else if (Cabin* cabin = dynamic_cast<Cabin*>(dunderAccommodations[i])) {
+                os << *cabin;
+            }
 
             // If not the last element, add a comma and a space
             if (i != dunderAccommodations.size() - 1) {

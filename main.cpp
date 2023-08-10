@@ -14,7 +14,7 @@
 
 Parcs* cliNewPark();
 Parcs::ParcServices* cliNewSrv();
-Accommodations* cliNewAcc();
+Accommodations* cliNewAccommo();
 Customer* cliNewCust();
 Booking* cliNewBkn();
 
@@ -105,7 +105,7 @@ int main() {
 Parcs* cliNewPark(){
     std::string parcName, parcAddress;
     std::vector<Accommodations*> accommodations;
-    Accommodations* acc;
+    Accommodations* accommo;
     Parcs::ParcServices* services;
 
     // Gather data for Parcs
@@ -121,12 +121,12 @@ Parcs* cliNewPark(){
     std::getline(std::cin, parcAddress);
 
     services = cliNewSrv();
-    acc = cliNewAcc();
-    accommodations.push_back(acc);
+    accommo = cliNewAccommo();
+    accommodations.push_back(accommo);
     return new Parcs(parcName, parcAddress, services, accommodations);
 }
 
-Accommodations* cliNewAcc(){
+Accommodations* cliNewAccommo(){
     std::string accommodationKind;
     bool bathroomWithBath,
             BBQ, surroundSystem, breakfastService, cleaningService;
@@ -423,7 +423,7 @@ void manageParc(Parcs* selectedParc) {
                 // Handle create accommodation
             {
                 Accommodations* newAccommodation;
-                newAccommodation = cliNewAcc();
+                newAccommodation = cliNewAccommo();
                 selectedParc->addAccommodation(newAccommodation);
             }
                 break;
@@ -454,7 +454,7 @@ void manageParc(Parcs* selectedParc) {
                 std::cout << "Enter the ID of the accommodation to change: ";
                 accommodationID=getInt(1,std::numeric_limits<int>::max());
                 Accommodations* updatedAccommodation;
-                updatedAccommodation = cliNewAcc();
+                updatedAccommodation = cliNewAccommo();
                 // Now, you can add the updatedAccommodation to the selected parc's accommodations list
                 selectedParc->setAccommodation(accommodationID,updatedAccommodation);
             }

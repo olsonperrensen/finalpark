@@ -53,7 +53,7 @@ LuxuryLevel::LuxuryLevel(bool BBQ, bool surroundSystem, bool breakfastService, b
                          std::string accommodationKind):BBQ(BBQ),
 surroundSystem(surroundSystem),
 breakfastService(breakfastService),cleaningService(cleaningService){
-//    Can't list init acc kind since no checking happens. Must be in body block
+//    Can't list init accommo kind since no checking happens. Must be in body block
     setAccommodationKind(accommodationKind);
 }
 
