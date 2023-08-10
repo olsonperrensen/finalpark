@@ -13,6 +13,8 @@
 #include <limits>
 
 Parcs* cliNewPark();
+Parcs::ParcServices* cliNewSrv();
+Accommodations* cliNewAcc();
 
 void displayMainMenu();
 void displayOwnerMenu();
@@ -101,13 +103,10 @@ int main() {
 }
 
 Parcs* cliNewPark(){
-    std::string parcName, parcAddress,accommodationKind;
-    bool subtropicSwimmingPool, sportsInfrastructure, bowlingAlley, bicycleRent, childrensParadise, waterBikes,bathroomWithBath,
-            BBQ, surroundSystem, breakfastService, cleaningService;
-    int nrPeople, size;
+    std::string parcName, parcAddress;
     std::vector<Accommodations*> accommodations;
+    Accommodations* acc;
     Parcs::ParcServices* services;
-    LuxuryLevel* luxury;
 
     // Gather data for Parcs
     std::cout << "\tEnter details for a Parc:\n";
@@ -121,24 +120,18 @@ Parcs* cliNewPark(){
     conditionalIgnore();  // Discard any leftover characters in the buffer
     std::getline(std::cin, parcAddress);
 
+    services = cliNewSrv();
+    acc = cliNewAcc();
+    accommodations.push_back(acc);
+    return new Parcs(parcName, parcAddress, services, accommodations);
+}
 
-
-    std::cout << "\t\tEnter details for Parc Services:\n";
-    std::cout << "\t\t\tSubtropic Swimming Pool ";
-    subtropicSwimmingPool= getBool();
-    std::cout << "\t\t\tSports Infrastructure ";
-    sportsInfrastructure = getBool();
-    std::cout << "\t\t\tBowling Alley ";
-    bowlingAlley= getBool();
-    std::cout << "\t\t\tBicycle Rent ";
-    bicycleRent= getBool();
-    std::cout << "\t\t\tChildren's Paradise ";
-    childrensParadise= getBool();
-    std::cout << "\t\t\tWater Bikes ";
-    waterBikes= getBool();
-
-    services = new Parcs::ParcServices(subtropicSwimmingPool, sportsInfrastructure, bowlingAlley, bicycleRent, childrensParadise, waterBikes);
-
+Accommodations* cliNewAcc(){
+    std::string accommodationKind;
+    bool bathroomWithBath,
+            BBQ, surroundSystem, breakfastService, cleaningService;
+    int nrPeople, size;
+    LuxuryLevel* luxury;
     std::cout << "\t\t\tEnter accommodation details: ";
 //        shared attr
     std::cout << "\t\t\t\tNumber of People: ";
@@ -179,8 +172,8 @@ Parcs* cliNewPark(){
         nrBeds=getInt(1,22);
 
         luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
-        HotelRoom* hotelRoom = new HotelRoom(nrPeople, size, bathroomWithBath, luxury, childrenBed, floor, hotelRoomLocation, nrBeds);
-        accommodations.push_back(hotelRoom);
+        return new HotelRoom(nrPeople, size, bathroomWithBath, luxury, childrenBed, floor, hotelRoomLocation, nrBeds);
+
 
     } else if (accommodationKind == "Cabin") {
         int bedrooms;
@@ -190,14 +183,27 @@ Parcs* cliNewPark(){
         bedrooms=getInt(1,22);
 
         luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
-        Cabin* cabin = new Cabin(nrPeople, size, bathroomWithBath, luxury, bedrooms);
-        accommodations.push_back(cabin);
-
+        return new Cabin(nrPeople, size, bathroomWithBath, luxury, bedrooms);
     } else {
-        std::cout << "\t\t\t\t\tInvalid choice for accommodation type.\n";
+        throw std::invalid_argument("Invalid choice for accommodation type.\n");
     }
-
-    return new Parcs(parcName, parcAddress, services, accommodations);
+}
+Parcs::ParcServices* cliNewSrv(){
+    bool subtropicSwimmingPool, sportsInfrastructure, bowlingAlley, bicycleRent, childrensParadise, waterBikes;
+    std::cout << "\t\tEnter details for Parc Services:\n";
+    std::cout << "\t\t\tSubtropic Swimming Pool ";
+    subtropicSwimmingPool= getBool();
+    std::cout << "\t\t\tSports Infrastructure ";
+    sportsInfrastructure = getBool();
+    std::cout << "\t\t\tBowling Alley ";
+    bowlingAlley= getBool();
+    std::cout << "\t\t\tBicycle Rent ";
+    bicycleRent= getBool();
+    std::cout << "\t\t\tChildren's Paradise ";
+    childrensParadise= getBool();
+    std::cout << "\t\t\tWater Bikes ";
+    waterBikes= getBool();
+    return new Parcs::ParcServices(subtropicSwimmingPool, sportsInfrastructure, bowlingAlley, bicycleRent, childrensParadise, waterBikes);
 }
 
 //TODO see vorige todo-s before pushing new main.cpp
@@ -302,75 +308,9 @@ void manageParc(Parcs* selectedParc) {
             case 1:
                 // Handle create accommodation
             {
-                // Inside the case where you manage a specific parc:
-
-                int nrPeople, size, bedrooms, floor, nrBeds;
-                bool bathroomWithBath, childrenBed, BBQ, surroundSystem, breakfastService, cleaningService;
-                std::string accommodationKind, location;
-
-                std::cout << "Enter details for the accommodation:\n";
-
-                std::cout << "Number of People: ";
-                nrPeople=getInt(1,22);
-
-                std::cout << "Size: ";
-                size=getInt(1,22);
-
-                std::cout << "Bathroom with Bath ";
-                bathroomWithBath= getBool();
-
-                // LuxuryLevel details
-                std::cout << "BBQ ";
-               BBQ= getBool();
-
-                std::cout << "Surround System ";
-                surroundSystem= getBool();
-
-                std::cout << "Breakfast Service ";
-                 breakfastService= getBool();
-
-                std::cout << "Cleaning Service ";
-               cleaningService= getBool();
-
-                std::cout << "Accommodation Kind (HotelRoom or Cabin): ";
-                std::cin.clear();  // Clear any errors
-                conditionalIgnore();  // Discard any leftover characters in the buffer
-                std::getline(std::cin, accommodationKind);
-
-                LuxuryLevel* luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
-
-                Accommodations* newAccommodation = nullptr;
-
-                if (accommodationKind == "HotelRoom") {
-                    std::cout << "Children Bed ";
-                     childrenBed= getBool();
-
-                    std::cout << "Floor: ";
-                    floor=getInt(1,22);
-
-                    std::cout << "Location: ";
-                    std::cin.clear();  // Clear any errors
-                    conditionalIgnore();  // Discard any leftover characters in the buffer
-                    std::getline(std::cin, location);
-
-                    std::cout << "Number of Beds: ";
-                    nrBeds=getInt(1,22);
-
-                    newAccommodation = new HotelRoom(nrPeople, size, bathroomWithBath, luxury, childrenBed, floor, location, nrBeds);
-                } else if (accommodationKind == "Cabin") {
-                    std::cout << "Number of Bedrooms: ";
-                    bedrooms=getInt(1,22);
-
-                    newAccommodation = new Cabin(nrPeople, size, bathroomWithBath, luxury, bedrooms);
-                } else {
-                    std::cout << "Invalid accommodation kind. Please enter either HotelRoom or Cabin.\n";
-                    delete luxury; // Clean up the dynamically allocated memory
-                    return;
-                }
-
-                // Now, you can add the newAccommodation to the selected parc's accommodations list
+                Accommodations* newAccommodation;
+                newAccommodation = cliNewAcc();
                 selectedParc->addAccommodation(newAccommodation);
-
             }
                 break;
             case 2:
@@ -385,38 +325,10 @@ void manageParc(Parcs* selectedParc) {
             case 3:
                 // Handle change parc services
             {
-                // Inside the case where you manage a specific parc:
-
-                bool subtropicSwimmingPool, sportsInfrastructure, bowlingAlley, bicycleRent, childrensParadise, waterBikes;
-
-                std::cout << "Enter details for the parc services:\n";
-
-                std::cout << "Subtropic Swimming Pool ";
-               subtropicSwimmingPool= getBool();
-
-                std::cout << "Sports Infrastructure ";
-              sportsInfrastructure= getBool();
-
-                std::cout << "Bowling Alley ";
-                bowlingAlley= getBool();
-
-                std::cout << "Bicycle Rent ";
-               bicycleRent= getBool();
-
-                std::cout << "Children's Paradise ";
-                 childrensParadise= getBool();
-
-                std::cout << "Water Bikes ";
-                waterBikes= getBool();
-
-                // Create a new Parcs::ParcServices pointer
-                Parcs::ParcServices* newServices = new Parcs::ParcServices{
-                        subtropicSwimmingPool, sportsInfrastructure, bowlingAlley, bicycleRent, childrensParadise, waterBikes
-                };
-
+                Parcs::ParcServices* newServices;
+                newServices = cliNewSrv();
                 // Set the services for the selected parc
                 selectedParc->setServices(newServices);
-
                 // Optionally, if you don't need the newServices pointer anymore, you can delete it to free the memory
                 // delete newServices;
             }
@@ -427,73 +339,8 @@ void manageParc(Parcs* selectedParc) {
                 int accommodationID;
                 std::cout << "Enter the ID of the accommodation to change: ";
                 accommodationID=getInt(1,999);
-
-                // Inside the case where you manage a specific parc:
-
-                int nrPeople, size, bedrooms, floor, nrBeds;
-                bool bathroomWithBath, childrenBed, BBQ, surroundSystem, breakfastService, cleaningService;
-                std::string accommodationKind, location;
-
-                std::cout << "Enter details for the updated accommodation:\n";
-
-                std::cout << "Number of People: ";
-                nrPeople=getInt(1,22);
-
-                std::cout << "Size: ";
-                size=getInt(1,22);
-
-                std::cout << "Bathroom with Bath ";
-               bathroomWithBath= getBool();
-
-                // LuxuryLevel details
-                std::cout << "BBQ ";
-                 BBQ= getBool();
-
-                std::cout << "Surround System ";
-               surroundSystem= getBool();
-
-                std::cout << "Breakfast Service ";
-                breakfastService= getBool();
-
-                std::cout << "Cleaning Service ";
-                cleaningService= getBool();
-
-                std::cout << "Accommodation Kind (HotelRoom or Cabin): ";
-                std::cin.clear();  // Clear any errors
-                conditionalIgnore();  // Discard any leftover characters in the buffer
-                std::getline(std::cin, accommodationKind);
-
-                LuxuryLevel* luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
-
-                Accommodations* updatedAccommodation = nullptr;
-
-                if (accommodationKind == "HotelRoom") {
-                    std::cout << "Children Bed ";
-                     childrenBed= getBool();
-
-                    std::cout << "Floor: ";
-                    floor=getInt(1,22);
-
-                    std::cout << "Location: ";
-                    std::cin.clear();  // Clear any errors
-                    conditionalIgnore();  // Discard any leftover characters in the buffer
-                    std::getline(std::cin, location);
-
-                    std::cout << "Number of Beds: ";
-                    nrBeds=getInt(1,22);
-
-                    updatedAccommodation = new HotelRoom(nrPeople, size, bathroomWithBath, luxury, childrenBed, floor, location, nrBeds);
-                } else if (accommodationKind == "Cabin") {
-                    std::cout << "Number of Bedrooms: ";
-                    bedrooms=getInt(1,22);
-
-                    updatedAccommodation = new Cabin(nrPeople, size, bathroomWithBath, luxury, bedrooms);
-                } else {
-                    std::cout << "Invalid accommodation kind. Please enter either HotelRoom or Cabin.\n";
-                    delete luxury; // Clean up the dynamically allocated memory
-                    return;
-                }
-
+                Accommodations* updatedAccommodation;
+                updatedAccommodation = cliNewAcc();
                 // Now, you can add the updatedAccommodation to the selected parc's accommodations list
                 selectedParc->setAccommodation(accommodationID,updatedAccommodation);
             }
