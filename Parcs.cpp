@@ -145,26 +145,48 @@ void Parcs::setServices(Parcs::ParcServices *services) {
 
 std::string Parcs::serialize() const {
     std::string res;
-    res =  std::to_string(parcID) + "_" + name + "_" + address + "_" +
-           std::to_string(this->services->isSubtropicSwimmingPool()) + "_" +
-           std::to_string(this->services->isSportsInfrastructure()) + "_" +
-           std::to_string(this->services->isBowlingAlley()) + "_" +
-           std::to_string(this->services->isBicycleRent()) + "_" +
-           std::to_string(this->services->isChildrensParadise()) + "_" +
-           std::to_string(this->services->isWaterBikes()) + "_";
-    for (auto* e:this->accommodations) {
-        res+= std::to_string(e->getID()) + "_" +
-                std::to_string(e->getNrPeople()) + "_" +
-        std::to_string(e->getSize()) + "_" +
-        std::to_string(e->isBathroomWithBath()) + "_" +
-        std::to_string(e->getLuxuryLevel()->isBBQ()) + "_" +
-        std::to_string(e->getLuxuryLevel()->isSurroundSystem()) + "_" +
-        std::to_string(e->getLuxuryLevel()->isBreakfastService()) + "_" +
-        std::to_string(e->getLuxuryLevel()->isCleaningService()) + "_" +
-                e->getLuxuryLevel()->getAccommodationKind();
+    res = std::to_string(parcID) + "_" + name + "_" + address + "_" +
+          std::to_string(this->services->isSubtropicSwimmingPool()) + "_" +
+          std::to_string(this->services->isSportsInfrastructure()) + "_" +
+          std::to_string(this->services->isBowlingAlley()) + "_" +
+          std::to_string(this->services->isBicycleRent()) + "_" +
+          std::to_string(this->services->isChildrensParadise()) + "_" +
+          std::to_string(this->services->isWaterBikes()) + "_";
+
+    for (auto* e : this->accommodations) {
+        // Serialize common attributes for all accommodations
+        res += std::to_string(e->getID()) + "_" +
+               std::to_string(e->getNrPeople()) + "_" +
+               std::to_string(e->getSize()) + "_" +
+               std::to_string(e->isBathroomWithBath()) + "_" +
+               std::to_string(e->getLuxuryLevel()->isBBQ()) + "_" +
+               std::to_string(e->getLuxuryLevel()->isSurroundSystem()) + "_" +
+               std::to_string(e->getLuxuryLevel()->isBreakfastService()) + "_" +
+               std::to_string(e->getLuxuryLevel()->isCleaningService()) + "_" +
+               e->getLuxuryLevel()->getAccommodationKind() + "_";
+
+        // Check for derived class and serialize accordingly
+        HotelRoom* hotelRoom = dynamic_cast<HotelRoom*>(e);
+        Cabin* cabin = dynamic_cast<Cabin*>(e);
+
+        if (hotelRoom) {
+            res += "H_";  // Type identifier for HotelRoom
+            res += std::to_string(hotelRoom->isChildrenBed()) + "_" +
+                   std::to_string(hotelRoom->getFloor()) + "_" +
+                   hotelRoom->getLocation() + "_" +
+                   std::to_string(hotelRoom->getNrBeds()) + "_";
+        } else if (cabin) {
+            res += "C_";  // Type identifier for Cabin
+            res += std::to_string(cabin->getBedrooms()) + "_";
+        } else {
+            // Handle unknown derived class or base class
+            std::cerr << "serialize -> Unknown derived class for accommodation.\n";
+        }
     }
+
     return res;
 }
+
 
 void Parcs::deserialize(const std::string& data) {
     if (!this->services) {

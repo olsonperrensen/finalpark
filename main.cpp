@@ -28,6 +28,9 @@ void manageParc(Parcs *selectedParc);
 VacationParcs* company = nullptr;
 
 int main() {
+    std::vector<Customer*>cv;
+    std::vector<Parcs*>pv;
+    std::vector<Booking*>bv;
     std::cout << "Welcome to VacationParcs Management System! " << std::endl;
     std::cout << "Is this your first time using the app (1) or would you like to load from a file (2) ?"<< std::endl;
     int choice;
@@ -57,9 +60,6 @@ int main() {
         // Create the VacationParcs company with the gathered data
         company = new VacationParcs(name, address, VAT, {newParc}, {newCustomer});
     } else if (choice == 2) {
-        std::vector<Customer*>cv;
-        std::vector<Parcs*>pv;
-        std::vector<Booking*>bv;
         {// Gather data for VacationParcs
             std::cout << "Due to security reasons, please provide us with the following information of your VacationParc:\n";
             std::cout << "\tName: ";
@@ -92,7 +92,8 @@ int main() {
 
     // Now, you can display the main menu and work with the company object
     displayMainMenu();
-
+    saveToFile(cv,CUSTOMERS_BESTAND);
+    saveToFile(pv,PARCS_BESTAND);
     // Don't forget to clean up any dynamically allocated memory before exiting
     delete company;
 
