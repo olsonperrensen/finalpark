@@ -154,7 +154,12 @@ std::string Parcs::serialize() const {
           std::to_string(this->services->isWaterBikes()) + "_";
 
     for (auto* e : this->accommodations) {
-        // Serialize common attributes for all accommodations
+        // Check for derived class and serialize accordingly
+        HotelRoom* hotelRoom = dynamic_cast<HotelRoom*>(e);
+        Cabin* cabin = dynamic_cast<Cabin*>(e);
+        if (hotelRoom)res += "H_";
+        else if (cabin)res += "C_";
+            // Serialize common attributes for all accommodations
         res += std::to_string(e->getID()) + "_" +
                std::to_string(e->getNrPeople()) + "_" +
                std::to_string(e->getSize()) + "_" +
@@ -165,18 +170,12 @@ std::string Parcs::serialize() const {
                std::to_string(e->getLuxuryLevel()->isCleaningService()) + "_" +
                e->getLuxuryLevel()->getAccommodationKind() + "_";
 
-        // Check for derived class and serialize accordingly
-        HotelRoom* hotelRoom = dynamic_cast<HotelRoom*>(e);
-        Cabin* cabin = dynamic_cast<Cabin*>(e);
-
         if (hotelRoom) {
-            res += "H_";  // Type identifier for HotelRoom
             res += std::to_string(hotelRoom->isChildrenBed()) + "_" +
                    std::to_string(hotelRoom->getFloor()) + "_" +
                    hotelRoom->getLocation() + "_" +
                    std::to_string(hotelRoom->getNrBeds()) + "_";
         } else if (cabin) {
-            res += "C_";  // Type identifier for Cabin
             res += std::to_string(cabin->getBedrooms()) + "_";
         } else {
             // Handle unknown derived class or base class
