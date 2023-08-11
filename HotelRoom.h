@@ -16,8 +16,8 @@ public:
     //TODO also print Base attributes (inc ID)
     friend std::ostream& operator<<(std::ostream& os, const HotelRoom& obj) {
         os << static_cast<const Accommodations&>(obj)  // Print the base class members
-           << ", floor: " << obj.floor << ", nrBeds: " << obj.nrBeds
-           << ", childrenBed: " << obj.childrenBed << ", location: " << obj.location << " ) ";
+                << ", childrenBed: " << obj.childrenBed << ", floor: " << obj.floor
+            << ", location: " << obj.location << ", nrBeds: " << obj.nrBeds << " ) ";
         return os;
     }
     bool operator==(const Accommodations& other) const override {
