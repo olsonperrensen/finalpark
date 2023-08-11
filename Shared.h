@@ -77,7 +77,7 @@ ValueType getValue(const T& object, ValueType(T::*getter)() const) {
 
 template <typename T>
 void saveToFile(const std::vector<T*>& items, const std::string& filename) {
-    std::ofstream outFile(filename, std::ios::app);
+    std::ofstream outFile(filename);
     for (const T* item : items) {
         outFile << item->serialize() << "\n";
     }

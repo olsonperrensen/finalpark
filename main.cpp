@@ -344,6 +344,7 @@ void displayMainMenu() {
                 displayEmployeeMenu();
                 break;
             case 4:
+//                 FILE I/O could also happen here trouwens...
                 std::cout << "Goodbye!\n";
                 break;
             default:
