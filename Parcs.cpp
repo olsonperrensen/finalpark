@@ -199,29 +199,29 @@ void Parcs::deserialize(const std::string& data) {
 
     std::getline(ss, tmp, '_');
 //    DEBUG
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+//    // std::cout << "deserialize -> reading " << tmp << " ...\n";
     parcID = std::stoi(tmp);
     std::getline(ss, name, '_');
 //    std::cout << "deserialize -> reading " << name << " ...\n";
     std::getline(ss, address, '_');
 //    std::cout << "deserialize -> reading " << address << " ...\n";
     std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+//    // std::cout << "deserialize -> reading " << tmp << " ...\n";
     this->services->setSubtropicSwimmingPool(std::stoi(tmp));
     std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+//    // std::cout << "deserialize -> reading " << tmp << " ...\n";
     this->services->setSportsInfrastructure(tmp == "1");
     std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+//    // std::cout << "deserialize -> reading " << tmp << " ...\n";
     this->services->setBowlingAlley(tmp == "1");
     std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+//    // std::cout << "deserialize -> reading " << tmp << " ...\n";
     this->services->setBicycleRent(tmp == "1");
     std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+//    // std::cout << "deserialize -> reading " << tmp << " ...\n";
     this->services->setChildrensParadise(tmp == "1");
     std::getline(ss, tmp, '_');
-//    std::cout << "deserialize -> reading " << tmp << " ...\n";
+//    // std::cout << "deserialize -> reading " << tmp << " ...\n";
     this->services->setWaterBikes(tmp == "1");
     for (int i = 0; i < 3; ++i) {
         char type;
@@ -238,11 +238,11 @@ void Parcs::deserialize(const std::string& data) {
         if (type == 'H') {
             hotelRoom = new HotelRoom();
             accommodation = hotelRoom;
-            std::cout << " HR found!\n";
+//            std::cout << " HR found!\n";
         } else if (type == 'C') {
             cabin = new Cabin();
             accommodation = cabin;
-            std::cout << " Cab found!\n";
+//            std::cout << " Cab found!\n";
         } else {
             // Handle unexpected type identifier
             std::cerr << "deserialize -> Unexpected type identifier: " << type << " where H or C as only valid options." <<std::endl;
@@ -252,33 +252,33 @@ void Parcs::deserialize(const std::string& data) {
 
         // Deserialize the accommodation data
         std::getline(ss, tmp, '_');
-        std::cout << "deserialize -> reading " << tmp << " ...\n";
+        // std::cout << "deserialize -> reading " << tmp << " ...\n";
         accommodation->setAccommodationId(std::stoi(tmp));
         std::getline(ss, tmp, '_');
 
-    std::cout << "deserialize -> reading " << tmp << " ...\n";
+    // std::cout << "deserialize -> reading " << tmp << " ...\n";
         accommodation->setNrPeople(std::stoi(tmp));
         std::getline(ss, tmp, '_');
-    std::cout << "deserialize -> reading " << tmp << " ...\n";
+    // std::cout << "deserialize -> reading " << tmp << " ...\n";
         accommodation->setSize(std::stoi(tmp));
         std::getline(ss, tmp, '_');
-    std::cout << "deserialize -> reading " << tmp << " ...\n";
+    // std::cout << "deserialize -> reading " << tmp << " ...\n";
         accommodation->setBathroomWithBath((tmp == "1"));
         std::getline(ss, tmp, '_');
-    std::cout << "deserialize -> reading " << tmp << " ...\n";
+    // std::cout << "deserialize -> reading " << tmp << " ...\n";
         accommodation->getLuxuryLevel()->setBBQ((tmp == "1"));
         std::getline(ss, tmp, '_');
-    std::cout << "deserialize -> reading " << tmp << " ...\n";
+    // std::cout << "deserialize -> reading " << tmp << " ...\n";
         accommodation->getLuxuryLevel()->setSurroundSystem((tmp == "1"));
         std::getline(ss, tmp, '_');
-    std::cout << "deserialize -> reading " << tmp << " ...\n";
+    // std::cout << "deserialize -> reading " << tmp << " ...\n";
         accommodation->getLuxuryLevel()->setBreakfastService(tmp == "1");
-    std::cout << "deserialize -> reading " << tmp << " ...\n";
+    // std::cout << "deserialize -> reading " << tmp << " ...\n";
         std::getline(ss, tmp, '_');
-    std::cout << "deserialize -> reading " << tmp << " ...\n";
+    // std::cout << "deserialize -> reading " << tmp << " ...\n";
         accommodation->getLuxuryLevel()->setCleaningService(tmp == "1");
         std::getline(ss, tmp, '_');
-    std::cout << "deserialize -> reading " << tmp << " ...\n";
+    // std::cout << "deserialize -> reading " << tmp << " ...\n";
         accommodation->getLuxuryLevel()->setAccommodationKind(tmp);
         
 //        manage special derived classes
