@@ -186,7 +186,8 @@ Accommodations* cliNewAccommo(){
         luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
         return new Cabin(nrPeople, size, bathroomWithBath, luxury, bedrooms);
     } else {
-        throw std::invalid_argument("Invalid choice for accommodation type.\n");
+        throw std::invalid_argument("Invalid choice for accommodation type. Valid options:\n+ " + ACCO_KINDS[0]
+                                    + "\n+ " + ACCO_KINDS[1] + "\nYour option was:\n- "+accommodationKind+"\nTry again.\n");
     }
 }
 Parcs::ParcServices* cliNewSrv(){
