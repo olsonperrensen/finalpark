@@ -26,14 +26,16 @@ void VacationParcs::removePark(int id) {
 }
 
 Parcs* VacationParcs::findParcByID(int parkID) {
+    Parcs* parc;
     // Find the park with the given ID in the list of parks.
-        if (Parcs* parc = findItemByID(parcs, parkID)) {
+        if (parc = findItemByID(parcs, parkID)) {
             // If the park is found.
             return parc;
         }
 
     // If the park is not found, print an error message.
     std::cout << "modifyPark -> Error: Parcs " << std::to_string(parkID) << " not found.\n";
+    return parc;
 }
 
 const std::string &VacationParcs::getBizName() const {

@@ -39,7 +39,7 @@
 //    if (lowerStr == "false" || lowerStr == "0" || lowerStr == "no") return false;
 //
 //    // Handle other cases as desired (e.g., throw an exception)
-//    throw std::invalid_argument("\tstringToBool-> CAN'T PARSE FILE PROPERLY... TRYING TO PARSE " + s + " WITH INCORRECT VALUES\n");
+//    throw std::invalid_argument("stringToBool-> CAN'T PARSE FILE PROPERLY... TRYING TO PARSE " + s + " WITH INCORRECT VALUES\n");
 //
 //}
 //
@@ -326,7 +326,7 @@
 ////        index++;
 ////    }
 ////    std::cout << "\n";
-////    std::cout  << "\t---1.Zie Customer Detail---\n" << "\t---2.Back to owner menu---\n" ;
+////    std::cout  << "---1.Zie Customer Detail---\n" << "---2.Back to owner menu---\n" ;
 ////    int keuze = menuKeuze(1, 2);
 ////    switch (keuze) {
 ////        case 1:
@@ -600,18 +600,18 @@
 //}
 //
 ////inline void FileIO::parkHuurvrijMenu() {
-////    std::cout  << "\t---UP park FOR RENT MENU ---\n" ;
+////    std::cout  << "---UP park FOR RENT MENU ---\n" ;
 ////    if (huidigUser->parkBeheerder != nullptr) {
 ////        if (huidigUser->parkBeheerder->isToegevoegd) {
 ////            std::cout  << "You are having a park for rent: \n" ;
 ////            huidigUser->parkBeheerder->zieParkInfo();
 ////            if (huidigUser->parkBeheerder->lijstParkBooking.empty()) {
-////                std::cout  << "\n\n---\t1. Omit the park of renting site ---\n"
-////                            << "\t---2. Back to abonnee menu ---\n" ;
+////                std::cout  << "\n\n---1. Omit the park of renting site ---\n"
+////                            << "---2. Back to abonnee menu ---\n" ;
 ////                switch (menuKeuze(1, 2)) {
 ////                    case 1:
 ////                        deleteInRentPark();
-////                        std::cout  << "\tCome back to UP park FOR RENT MENU \n" ;
+////                        std::cout  << "Come back to UP park FOR RENT MENU \n" ;
 ////                        parkHuurvrijMenu();
 ////                        break;
 ////                    case 2:
@@ -619,7 +619,7 @@
 ////                        break;
 ////                }
 ////            } else {
-////                std::cout  << "\tCome back to abonnee menu \n" ;
+////                std::cout  << "Come back to abonnee menu \n" ;
 ////                abonneeMenu();
 ////            }
 ////        } else {
@@ -648,7 +648,7 @@
 ////    std::string beginDatum, eindDatum, minScores, minKrediets;
 ////    std::cin.ignore();
 ////
-////    std::cout  << "\tPlease enter of your rental info\n" ;
+////    std::cout  << "Please enter of your rental info\n" ;
 ////    do {
 ////        do {
 ////            std::cout  << "Enter the first renting datum " ;
@@ -679,9 +679,9 @@
 ////inline bool FileIO::enterParkInfo() {
 ////    std::string parkId, locatie, description;
 ////    int keuze;
-////    std::cout  << "\tPlease enter your park's information\n" ;
-////    std::cout  << "\tKies the supported app locatie: " ;
-////    std::cout  << "\t1. BOOM \t2.WILLEBROEK \t3.RUMST\n" ;
+////    std::cout  << "Please enter your park's information\n" ;
+////    std::cout  << "Kies the supported app locatie: " ;
+////    std::cout  << "1. BOOM 2.WILLEBROEK 3.RUMST\n" ;
 ////    keuze = menuKeuze(1, 3);
 ////    switch (keuze) {
 ////        case 1:
@@ -695,7 +695,7 @@
 ////            break;
 ////    }
 ////    std::cin.ignore();
-////    std::cout  << "\tEnter the description for your park: \n" ;
+////    std::cout  << "Enter the description for your park: \n" ;
 ////    std::getline(std::cin, description);
 ////    auto *createdPark = new Parcs("PRK" + std::to_string(parkVector.size() + 1), locatie, description);
 ////    parkVector.push_back(createdPark);
@@ -730,9 +730,9 @@
 //inline void FileIO::searchValidParkMenu() {
 //    std::string locatie;
 //    int keuze;
-//    std::cout  << "\tSearch for suitable parks: \n" ;
-//    std::cout  << "\tKies the city you want to stay: \n\n" ;
-//    std::cout  << "\t1. BOOM \t2.WILLEBROEK \t3.RUMST\n" ;
+//    std::cout  << "Search for suitable parks: \n" ;
+//    std::cout  << "Kies the city you want to stay: \n\n" ;
+//    std::cout  << "1. BOOM 2.WILLEBROEK 3.RUMST\n" ;
 //    keuze = menuKeuze(1, 3);
 //    switch (keuze) {
 //        case 1:
@@ -767,8 +767,8 @@
 //        abonneeMenu();
 //    } else {
 //         std::cout << *abonneeSuitableParkLijst[keuze - 1];
-//        std::cout  << "\n\n--> 1.\tBooking to rent this park\n\n"
-//                    << "--> 3.\tBack to park lijst\n" ;
+//        std::cout  << "\n\n--> 1.Booking to rent this park\n\n"
+//                    << "--> 3.Back to park lijst\n" ;
 //        switch (menuKeuze(1, 3)) {
 ////            case 1: {
 ////                if (eind == nullptr) {
@@ -826,15 +826,15 @@
 ////
 ////inline void FileIO::zieBookingMenu() {
 ////    int keuze;
-////    std::cout  << "\n\n\tYour booking vandaag:\n\n" ;
+////    std::cout  << "\n\nYour booking vandaag:\n\n" ;
 ////    if (huidigUser->parkBeheerder == nullptr) {
 ////        std::cout  << "You do not have a park. So you do not have any booking! \n" ;
 ////        abonneeMenu();
 ////    } else {
 ////        int numberBooking = huidigUser->toonAanvragen();
-////        std::cout  << "\n\tKies your option:\n\n" ;
-////        std::cout  << "\n\n--> 1.\tPoint the Booking:\n\n"
-////                    << "--> 2.\tBack to Menu\n" ;
+////        std::cout  << "\nKies your option:\n\n" ;
+////        std::cout  << "\n\n--> 1.Point the Booking:\n\n"
+////                    << "--> 2.Back to Menu\n" ;
 ////        keuze = menuKeuze(1, 3);
 ////        switch (keuze) {
 ////            case 1: {
@@ -1407,7 +1407,7 @@
 //    int keuze;
 //    int subKeuze;
 //    std::string gebruikersnaam, adress, umail,wachtwoord, locatie,paymentMethod;
-//    std::cout  << "\t---ABONNEE REGISTRATIE---\n" ;
+//    std::cout  << "---ABONNEE REGISTRATIE---\n" ;
 //    std::cin.ignore();
 //    do {
 //        std::cout  << R"(Uw gebruikersnaam invoeren:   )" ;
@@ -1434,7 +1434,7 @@
 //    switch (keuze) {
 //        case 1:
 //            std::cout  << "Kies een van de volgende locaties: \n" ;
-//            std::cout  << "1.BOOM\t2.WILLEBROEK\t3.RUMST\n" ;
+//            std::cout  << "1.BOOM2.WILLEBROEK3.RUMST\n" ;
 //            subKeuze = menuKeuze(1, 3);
 //            switch (subKeuze) {
 //                case 1:
