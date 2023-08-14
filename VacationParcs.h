@@ -106,6 +106,48 @@ public:
 
         return os;
     }
+//    discarded due to n complexity being raised too high for the scope of this project...
+//    friend std::ostream& operator<<(std::ostream& os, VacationParcs obj, std::string infoLevel) {
+//        os << "VacationParcs ( name: " << obj.getBizName() << ", address: " << obj.getBizAddress()
+//           << ", VAT: " << obj.getVAT() << ", Parcs: [";
+//
+//        std::vector<Parcs*> parcs = obj.getParcs();
+//        for (size_t i = 0; i < parcs.size(); ++i) {
+//            os << *parcs[i];
+//
+//            // If not the last element, add a comma and a space
+//            if (i != parcs.size() - 1) {
+//                os << ", ";
+//            }
+//        }
+//        os << "], Customers: [";
+//
+//        std::vector<Customer*> customers = obj.getCustomers();
+//        for (size_t i = 0; i < customers.size(); ++i) {
+//            os << *customers[i];
+//
+//            // If not the last element, add a comma and a space
+//            if (i != customers.size() - 1) {
+//                os << ", ";
+//            }
+//        }
+//
+//        os << "], Bookings: [";
+//
+//        std::vector<Booking *> bookings = obj.getBookings();
+//        for (size_t i = 0; i < bookings.size(); ++i) {
+//            os << *bookings[i];
+//
+//            // If not the last element, add a comma and a space
+//            if (i != bookings.size() - 1) {
+//                os << ", ";
+//            }
+//        }
+//
+//        os << "])" << std::endl;
+//
+//        return os;
+//    }
 
     bool operator==(const VacationParcs* other) const {
     return (this->VAT==other->VAT)&&(this->parcs==other->parcs)&&(this->customers==other->customers)&&
