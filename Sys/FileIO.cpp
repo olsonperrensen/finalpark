@@ -1,5 +1,5 @@
 //// LEGACY CODE OF A PREVIOUS VERSION THAT BECAME TOO COMPLEX AND PROBLEMATIC TO MAINTAIN...
-//// Created by r0834721 on 31/7/2023
+//// Created by r0834721 - vak YT6254 on 31/7/2023
 ////
 //
 //#include "FileIO.h"
@@ -246,7 +246,7 @@
 //    __/__/\__/  \___        Empowering Owners, Assisting Employees, :) Customers
 //---/__|" '' "| /___/\----   Your Dream: Getaway | Our Mission: Manage
 //   |''|"'||'"| |' '||
-//   `""`""))""`"`""""        created by r0834721 for a summer retake. All rights reserved)---";
+//   `""`""))""`"`""""        created by r0834721 - vak YT6254 for a summer retake. All rights reserved)---";
 //    std::cout  << std::endl << std::endl << "~ means WIP" << std::endl << std::endl ;
 //    std::cout  << " Use the app as:    1. Customer   2. Owner  3. Staff 4.I've had enough (quit) \n" ;
 //    std::cout  << "----------------------------------------------------------\n\n" ;
