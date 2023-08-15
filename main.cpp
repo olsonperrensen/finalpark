@@ -27,7 +27,11 @@ void manageParc(Parcs *selectedParc);
 
 VacationParcs* company = nullptr;
 
+// !!! MUST do before running -> Change location of .dat files in "Shared.h" (all #defines that end with _BESTAND)
+// with your own path (in my case CLIon only made it work with absolute paths)
 int main() {
+    // !!! MUST do before running -> Change location of .dat files in "Shared.h" (all #defines that end with _BESTAND)
+// with your own path (in my case CLIon only made it work with absolute paths)
     std::vector<Customer*>cv;
     std::vector<Parcs*>pv;
     std::vector<Booking*>bv;
@@ -96,8 +100,11 @@ int main() {
     saveToFile(pv,PARCS_BESTAND);
     // Don't forget to clean up any dynamically allocated memory before exiting
     delete company;
-
+// !!! MUST do before running -> Change location of .dat files in "Shared.h" (all #defines that end with _BESTAND)
+// with your own path (in my case CLIon only made it work with absolute paths)
     return 0;
+    // !!! MUST do before running -> Change location of .dat files in "Shared.h" (all #defines that end with _BESTAND)
+// with your own path (in my case CLIon only made it work with absolute paths)
 }
 
 
