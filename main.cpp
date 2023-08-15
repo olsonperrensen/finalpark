@@ -63,6 +63,8 @@ int main() {
 
         // Create the VacationParcs company with the gathered data
         company = new VacationParcs(name, address, VAT, {newParc}, {newCustomer});
+        delete newParc;
+        delete newCustomer;
     } else if (choice == 2) {
         {// Gather data for VacationParcs
             std::cout << "Due to security reasons, please provide us with the following information of your VacationParc:\n";
@@ -115,6 +117,7 @@ Parcs* cliNewPark(){
     std::vector<Accommodations*> accommodations;
     Accommodations* accommo;
     Parcs::ParcServices* services;
+    Parcs* f_park;
 
     // Gather data for Parcs
     std::cout << "Enter details for a Parc:\n";
@@ -131,7 +134,14 @@ Parcs* cliNewPark(){
     services = cliNewSrv();
     accommo = cliNewAccommo();
     accommodations.push_back(accommo);
-    return new Parcs(parcName, parcAddress, services, accommodations);
+    f_park = new Parcs(parcName, parcAddress, services, accommodations);
+    delete services;
+    delete accommo;
+//     assumming program later expaneded up to 3 acc
+    for (auto e:accommodations) {
+        delete e;
+    }
+    return f_park;
 }
 
 Accommodations* cliNewAccommo(){
@@ -166,6 +176,7 @@ Accommodations* cliNewAccommo(){
         std::string hotelRoomLocation;
         int floor, nrBeds;
         bool childrenBed;
+        HotelRoom* fhr;
 
         std::cout << "Enter details for HotelRoom:\n";
         std::cout << "Children Bed ";
@@ -180,10 +191,13 @@ Accommodations* cliNewAccommo(){
         nrBeds=getInt(1,22);
 
         luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
-        return new HotelRoom(nrPeople, size, bathroomWithBath, luxury, childrenBed, floor, hotelRoomLocation, nrBeds);
+        fhr = new HotelRoom(nrPeople, size, bathroomWithBath, luxury, childrenBed, floor, hotelRoomLocation, nrBeds);
+        delete luxury;
+        return fhr;
 
 
     } else if (accommodationKind == "Cabin") {
+        Cabin* fcab;
         int bedrooms;
 
         std::cout << "Enter details for Cabin:\n";
@@ -191,8 +205,12 @@ Accommodations* cliNewAccommo(){
         bedrooms=getInt(1,22);
 
         luxury = new LuxuryLevel(BBQ, surroundSystem, breakfastService, cleaningService, accommodationKind);
-        return new Cabin(nrPeople, size, bathroomWithBath, luxury, bedrooms);
+        fcab = new Cabin(nrPeople, size, bathroomWithBath, luxury, bedrooms);
+        delete luxury;
+        return fcab;
     } else {
+        delete luxury;
+        delete company;
         throw std::invalid_argument("Invalid choice for accommodation type. Valid options:\n+ " + ACCO_KINDS[0]
                                     + "\n+ " + ACCO_KINDS[1] + "\nYour option was:\n- "+accommodationKind+"\nTry again.\n");
     }
@@ -245,6 +263,7 @@ Customer* cliNewCust(){
     return new Customer(customerName, customerAddress, mail, password, location, paymentMethod);
 }
 Booking* cliNewBkn(){
+    Booking* fb;
     static int bookingID{0};
     int ID,jaar,maand,dag;
     Customer* customer;
@@ -265,6 +284,7 @@ Booking* cliNewBkn(){
     customer = findItemByID(company->getCustomers(), customerID);
     if (!customer) {
         std::cout << "Customer "<< std::to_string(customerID) << " not found. Exiting...\n";
+        delete customer;
         return nullptr;
     }
 
@@ -285,6 +305,11 @@ Booking* cliNewBkn(){
             accommodations.push_back(accommodation);
         } else {
             std::cout << "Accommodation with ID " << std::to_string(accommodationID) << " not found.\n";
+            delete accommodation;
+            delete customer;
+            for (auto e:accommodations) {
+                delete e;
+            }
         }
     }
 
@@ -327,7 +352,14 @@ Booking* cliNewBkn(){
     std::getline(std::cin, status);
 
     // Create the Booking object and return its pointer
-    return new Booking(ID, customer, accommodations, activityPass, sportsPass, bicycleRent, swimmingPass, beginDate, endDate, status);
+    fb = new Booking(ID, customer, accommodations, activityPass, sportsPass, bicycleRent, swimmingPass, beginDate, endDate, status);
+    delete customer;
+    delete beginDate;
+    delete endDate;
+    for (auto e:accommodations) {
+        delete e;
+    }
+    return fb;
 }
 //TODO see vorige todo-s before pushing new main.cpp
 void displayMainMenu() {
@@ -379,6 +411,7 @@ void displayOwnerMenu() {
             {
                 Parcs* newParc=cliNewPark();
                 company->addPark(newParc);
+                delete newParc;
             }
                 break;
             case 2:
@@ -435,6 +468,7 @@ void manageParc(Parcs* selectedParc) {
                 Accommodations* newAccommodation;
                 newAccommodation = cliNewAccommo();
                 selectedParc->addAccommodation(newAccommodation);
+                delete newAccommodation;
             }
                 break;
             case 2:
@@ -453,8 +487,8 @@ void manageParc(Parcs* selectedParc) {
                 newServices = cliNewSrv();
                 // Set the services for the selected parc
                 selectedParc->setServices(newServices);
-                // Optionally, if you don't need the newServices pointer anymore, you can delete it to free the memory
-                // delete newServices;
+                // Don't need SRV? verwijderen...
+                 delete newServices;
             }
                 break;
             case 4:
@@ -467,6 +501,7 @@ void manageParc(Parcs* selectedParc) {
                 updatedAccommodation = cliNewAccommo();
                 // Now, you can add the updatedAccommodation to the selected parc's accommodations list
                 selectedParc->setAccommodation(accommodationID,updatedAccommodation);
+                delete updatedAccommodation;
             }
                 break;
             case 5:
@@ -500,6 +535,7 @@ void displayCustomerMenu() {
                 Customer* newCustomer = cliNewCust();
                 company->registerCustomer(newCustomer);
                 huidigG = company->getCustomers().back();
+                delete newCustomer;
                 break;
             }
             case 2: {
@@ -508,6 +544,7 @@ void displayCustomerMenu() {
                 userID = getInt(1,std::numeric_limits<int>::max());
                 Customer* updatedCustomer = cliNewCust();
                 OS::modifyCustomer(company, userID, updatedCustomer);
+                delete updatedCustomer;
                 break;
             }
             case 3: {
@@ -531,6 +568,7 @@ void displayCustomerMenu() {
                 accommodationID = getInt(1,std::numeric_limits<int>::max());
                 Booking* newBooking = cliNewBkn();
                 OS::bookAccommodation(company, huidigG->getID(), accommodationID, newBooking);
+                delete newBooking;
                 break;
             }
             case 5: {
@@ -539,10 +577,12 @@ void displayCustomerMenu() {
                 bookingID = getInt(1,std::numeric_limits<int>::max());
                 Booking* updatedBooking = cliNewBkn();
                 OS::modifyBooking(company, bookingID, updatedBooking);
+                delete updatedBooking;
                 break;
             }
             case 6:
                 std::cout << "Logging out...\n";
+                delete huidigG;
                 break;
             default:
                 std::cout << "Invalid choice. Please try again.\n";
@@ -580,6 +620,7 @@ void displayEmployeeMenu() {
                     Accommodations* accommodation = findItemByID(parc->getAccommodations(), accommodationID);
                     if (accommodation) {
                         parc->setAccommodation(accommodationID, accommodation);
+                        delete accommodation;
                         break;}
                 }
                 break;

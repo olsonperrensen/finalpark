@@ -246,6 +246,11 @@ void Parcs::deserialize(const std::string& data) {
         } else {
             // Handle unexpected type identifier
             std::cerr << "deserialize -> Unexpected type identifier: " << type << " where H or C as only valid options." <<std::endl;
+//            free up mem
+            delete this->services;
+            delete accommodation;
+            delete hotelRoom;
+            delete cabin;
             continue;
         }
             accommodation->setLuxuryLevel(new LuxuryLevel());
