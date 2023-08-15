@@ -1,5 +1,6 @@
 // Object Oriented Programming - YT6254 - crafted, edited, refactored, debugged, and completed in its entirety by
 // r0834721 for subject YT6254 . Final note 2023-08-15 12:58:00 UTC+01:00
+// Project built and thought based on the C++20 STL standards. Those were followed according to my (limited) dominion of the C++ language.
 // Please Change location of .dat files in "Shared.h" (all #defines that end with _BESTAND) to own path before proceeding to compilation.
 // Good luck!
 #include <iostream>
