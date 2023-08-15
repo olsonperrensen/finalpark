@@ -101,6 +101,15 @@ int main() {
     saveToFile(cv,CUSTOMERS_BESTAND);
     saveToFile(pv,PARCS_BESTAND);
     // Don't forget to clean up any dynamically allocated memory before exiting
+    for (auto e:cv) {
+    delete e;
+    }
+    for (auto e:pv) {
+        delete e;
+    }
+    for (auto e:bv) {
+        delete e;
+    }
     delete company;
 // !!! MUST do before running -> Change location of .dat files in "Shared.h" (all #defines that end with _BESTAND)
 // with your own path (in my case CLIon only made it work with absolute paths)
